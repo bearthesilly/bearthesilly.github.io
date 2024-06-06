@@ -4,7 +4,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 ## Commands
 ### 1
-* `mkdocs new [dir-name]` - Create a new project.
+* `mkdocs new [dir-name]` - Create a new project. wtf?
 ### 2
 * `mkdocs serve` - Start the live-reloading docs server.
 ### 3
