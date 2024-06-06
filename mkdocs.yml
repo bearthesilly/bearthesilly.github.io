@@ -11,8 +11,5 @@ markdown_extensions:
 nav:
   - Home: index.md
   - DeepLearning:
-    - 'Sequence Model' : 'sequence_model.md'
-  - Test:
-    - 'Test1' : 'test1.md'
-    - 'Test2' : 'test2.md'
+    - 'Sequence Model' : sequence model/sequence_model.md
   - About: about.md
