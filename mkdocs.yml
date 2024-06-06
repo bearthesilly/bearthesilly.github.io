@@ -1,7 +1,5 @@
 site_name: csrookie's website
 theme:
-  features:
-    - navigation.instant
   palette:
     # Palette toggle for automatic mode
     - media: "(prefers-color-scheme)"
@@ -35,4 +33,19 @@ nav:
   - DeepLearning:
     - 'Sequence Model' : sequence model/sequence_model.md
     - 'Transformer' : transformer_note/transformer_note.md
-  - About: about.md
+  - Course:
+    - 高等数学上:
+      - 写在最前面: 高等数学上/写在最前面/note.md
+      - 第一&二章 函数 极限与连续: 
+        - 第一章证明总结: 高等数学上/'证明'总结/note.md
+        - 递推数列的极限: 高等数学上/递推数列的极限/note.md
+        - 极限中的概念题: 高等数学上/极限中的概念题/note.md
+        - 连续性 间断点 渐近线: 高等数学上/连续性 间断点 渐近线/note.md
+        - 夹逼准则求极限: 高等数学上/夹逼准则求极限/note.md
+        - 求函数极限: 高等数学上/求函数极限/note.md
+        - 极限与连续随笔: 高等数学上/极限与连续随笔/note.md
+      - 第三&四章 导数与微分 微分中值与导数应用: 
+        - 导数定义与概念专题: 高等数学上/导数定义与概念专题/note.md
+      - 第二&三&四章好题: 高等数学上/第二三四章好题/note.md
+      - 第五章 积分: about.md
+      - 第六章 微分方程: about copy.md
