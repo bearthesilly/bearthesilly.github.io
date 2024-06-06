@@ -1,17 +1,8 @@
 # HomePage
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Welcome to csrookie's website! 
 
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.<br>
-* `mkdocs build` - Build the documentation site.<br>
-* `mkdocs -h` - Print help message and exit.<br>
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+## Introduction
+This is csrookie's personal website, dedicating to share info, resource and experience.  
+Currently interested in cloud points and traditional computor vision.  
+My email: xiongzhzh2023@shanghaitech.edu.cn 
