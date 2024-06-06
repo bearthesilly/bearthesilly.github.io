@@ -2,4 +2,3 @@ site_name: csrookie's website
 nav:
   - Home: index.md
   - About: about.md
-  - Course: course.md
