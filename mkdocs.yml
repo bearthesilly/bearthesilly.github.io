@@ -1,4 +1,9 @@
 site_name: csrookie's website
 nav:
   - Home: index.md
+  - Test :
+    - 'Test1' : 'test1.md'
+    - 'Test2' : 'test2.md'
   - About: about.md
+extra_css:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.css
