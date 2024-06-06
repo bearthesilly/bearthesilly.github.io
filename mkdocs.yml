@@ -12,4 +12,5 @@ nav:
   - Home: index.md
   - DeepLearning:
     - 'Sequence Model' : sequence model/sequence_model.md
+    - 'Transformer' : transformer_note/transformer_note.md
   - About: about.md
