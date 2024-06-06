@@ -1,9 +1,18 @@
 site_name: csrookie's website
+theme:
+  name: material
+use_directory_urls: false
+plugins:
+  - search
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+markdown_extensions:
+  - mdx_math
 nav:
   - Home: index.md
-  - Test :
+  - DeepLearning:
+    - 'Sequence Model' : 'sequence_model.md'
+  - Test:
     - 'Test1' : 'test1.md'
     - 'Test2' : 'test2.md'
   - About: about.md
-extra_css:
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.css
