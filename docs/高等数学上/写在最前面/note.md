@@ -20,6 +20,8 @@
 
 https://www.bilibili.com/video/BV1ui4y127W4
 
+<img src="img/1.png" alt="image" style="zoom:33%;" />
+
 最后, 总结非常重要. 刷了很多的题, 见了很多的提醒, 自己也或多或少积累了一些"起手式"或者是经验, 那么一定要总结成笔记. 
 
 
