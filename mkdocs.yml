@@ -31,7 +31,8 @@ markdown_extensions:
 nav:
   - Home: index.md
   - DeepLearning:
-    - 'Sequence Model' : sequence model/sequence_model.md
+    - 'Partition One: Fundamental + Convolution' : deeplearning_note/深度学习自学.md
+    - 'Partition Two: Sequence Model' : sequence model/sequence_model.md
     - 'Transformer' : transformer_note/transformer_note.md
   - Course:
     - 高等数学上:
