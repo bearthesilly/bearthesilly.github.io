@@ -30,10 +30,12 @@ markdown_extensions:
   - mdx_math
 nav:
   - Home: index.md
-  - DeepLearning:
+  - Deep Learning:
     - 'Partition One: Fundamental + Convolution' : deeplearning_note/深度学习自学.md
     - 'Partition Two: Sequence Model' : sequence model/sequence_model.md
     - 'Transformer' : transformer_note/transformer_note.md
+  - Machine Learning:
+    - 'Datawhale': machine_learning/Datawhale/note.md
   - Course:
     - 高等数学上:
       - 写在最前面: 高等数学上/写在最前面/note.md
