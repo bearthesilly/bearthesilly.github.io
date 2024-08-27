@@ -333,11 +333,35 @@ with open(train_file_path, 'r') as file, open(train_file_res, 'a') as result:
 
 总之, 旅程在此终究是告一段落了, 而这却又仅仅是开始......
 
+## 后记
 
+虽然工作是暂时告一段落了, 但是我还是有很多关于motion captioning这个benchmark的思考. 之前都是一直听学长的, 于是忽略了很多的内容. 首先问题就是: 有没有related work? 进行了搜索, 发现只有MotionGPT设计了关于motion captioning(m2t)的benchmark, 核心是用VQVAE作motion的分词器, 将每一个动作都用一个整数表示, 然后用特殊的标记扩充到vocab里面. 这种范式我们工作是利用不了了, 但是思路确是很straight forward. 
 
+那有没有encoder范式的呢? 而不是tokenizer(VQVAE就是一种变相的动作的分词器). To my knowledge, 没有. 那么退而求其次, 有没有vider captioning呢? 很惊讶的发现, 相关的工作有很多, 最早可以追述到2015年. 以下内容摘录自知乎: 
 
+- 这里只记录了最常规的video captioning task, 即，一条视频生成一个句子。
+- 2015： 最朴素的 encoder-decoder 的结构；decoder 引入 attention机制
+- 2016：考虑对视频的时域建模
+- 2017：引入一些其余可用的信息: 属性，音频，光流
+- 2018：这一年魔改比较多：reconstructor, multimodal memory
+- 2019: 这一年文章数量很多呀：xinwang 提出了VATEX数据集；引入句法信息；使用object information；使用motion feature；grouned video captioning;
+- 2020: 利用构建的scene-graph knowledge; 使用 object information；使用句法信息
+- 2021：模块化；非自回归；dense captioning 有好多篇文章；clip-based captioning; 检索增强
+- 2022: swinbert e2e; zero-shot； 预训练相关的 speific for video captioning；支持集；检索增强；
 
+最早的工作是S2VT, sequence to sequence - video to text: 
 
+![image](img/7.png)
+
+这里是对每一帧的照片进行encode, 然后输入进LSTM网络中. 这个思路其实很朴实无华, 但是提供了非常重要的思路: 将continuos的motion feature输入进语言模型(不过embedding layer)可能对于模型来说就是很难学习, 而这种朴实无华的方法可能就会很work. 当然, 在这种pipeline下, 用ULIP对齐feature和motion的方法依然可能是可取的(二段式训练). 
+
+但是转头一想: 这么直白的pipeline, 为什么没有人尝试呢? 后来我想了想, 原因有二: 
+
+一: 数据集问题. video-text pair数据集很方便制作, 但是4D-text pair数据集却十分稀缺. (4D: 3D(空间点坐标) + 1D(时序信息)). 我之前仿真数据都非常地麻烦, 而且仅仅是humen-centric的dataset. 
+
+二: 工业界转化问题. 在现实中, 我们貌似对于这种4D视频接触的十分少(绝大部分都是视频为主). 而且即使motion captioning能够实现, 转化为工业界的可能性也有待商榷, 理论上只有人机交互, 或者是具身智能, 才需要这方面的功能. 当然, 我目前对工业界相关需求的了解肯定是很少的, 因此我的想象力可能会被局限住. 
+
+无论如何, 这一次宝贵的经历, 我永生难忘. 
 
 
 
