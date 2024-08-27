@@ -128,4 +128,6 @@ nav:
       - 手法与好题: 线性代数/手法与好题/note.md
       - 章节回顾: 线性代数/章节回顾/note.md
       - 总复习: 线性代数/总复习/note.md
+    - 数据结构与算法:
+      - 基本结构与算法分析: Data_Structure_and_Algorithm/基本结构与算法分析.md
   - AAAI2025: AAAI2025/log.md
