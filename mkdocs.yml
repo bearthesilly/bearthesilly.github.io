@@ -26,8 +26,13 @@ plugins:
   - search
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  - javascripts/config.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 markdown_extensions:
   - mdx_math
+  - pymdownx.arithmatex:
+      generic: true
 nav:
   - Home: index.md
   - Deep Learning:
