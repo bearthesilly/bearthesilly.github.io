@@ -2969,27 +2969,25 @@ L(b,w)
 e = |y - \hat{y}|\hspace{1cm}平均绝对误差(MAE)
 </script>
 </p>
-<p>
-<script type="math/tex; mode=display">
+<div class="arithmatex">\[
 e = (\hat{y} - y)^2\hspace{1cm}均方误差(MSE)
-</script>
-</p>
+\]</div>
 <p>在有些任务中, y是概率分布, 那么这个时候可能会选择<strong><em>交叉熵(cross entropy loss)</em></strong>. </p>
 <p>在之前举的例子中, 不同的权重和偏置根据领域知识的输入会得到不同的输出, 我们可以画一个图来记录下w b所对应的Loss, 如下: </p>
 <p><img alt="image" src="img/1.png" /></p>
 <p>在这张图中, 画出来的等高线称为<strong>误差表面(error surface)</strong>, 在这条等高线上, 处处的loss都是相同的. 那么有了loss来衡量目前权重和偏置的"质量如何", 那么如何更新这些参数呢? </p>
 <p>附: 实战中, "领域知识的输入"具体来说是在训练的时候, 输入训练集的输入, 得到对应的结果, 然后根据训练集的ground truth, 以loss的方式进行监督训练 </p>
-<p>第三步: 解一个最优化的问题. 为了更新参数, 我们需要对偏置和权重进行加加减减, 那么依据是什么呢? 肯定需要利用上之前算出来的Loss函数. 我们经常使用<strong>梯度下降(gradient descent)</strong>来进行优化. 首先我们考虑首先更新权重, 而不是偏置. 如果bias视为常数, 那么损失函数将会是关于w的函数, 那么我们可以画出$L-W$的函数图像. 在目前的w下, 会有对应的斜率,  我们需要根据这个斜率来更新w的数值. 我们使用公式如下: 
+<p>第三步: 解一个最优化的问题. 为了更新参数, 我们需要对偏置和权重进行加加减减, 那么依据是什么呢? 肯定需要利用上之前算出来的Loss函数. 我们经常使用<strong>梯度下降(gradient descent)</strong>来进行优化. 首先我们考虑首先更新权重, 而不是偏置. 如果bias视为常数, 那么损失函数将会是关于w的函数, 那么我们可以画出<span class="arithmatex">\(L-W\)</span>的函数图像. 在目前的w下, 会有对应的斜率,  我们需要根据这个斜率来更新w的数值. 我们使用公式如下: 
 <script type="math/tex; mode=display">
 w^1 \leftarrow w^0 - \eta \frac{\partial L}{\partial W}\Bigg|_{w=w^0}
 </script>
 在图中的直观表示就是: </p>
 <p><img alt="image" src="img/2.png" /></p>
-<p>在上述的公式中, $\eta$是一个自己设置的参数, 叫做<strong>学习率</strong>(learning rate). 这不是机器自己找出来的, 因此要和被称为<strong>超参数(hyperparameter)</strong>. 那么一步一步, 我们希望w能够取中低点. 但是在上面这个图中, 我们看到: 有局部最小值和全局最小值. 如果先到达了局部最小值, 那么斜率几乎为零, 步长几乎为零, 这不就是意味着w的取值永远停在了局部最小值的阶段吗? 但是事实上局部最小值是一个假问题, 因为损失函数我们会故意设计成<strong>凸函数</strong>, 从而使得损失函数空间没有弯曲, 局部最低点就是全局最低点. 在两个参数的情况下使用梯度下降, 其实和之前一个参数没有什么不同, 因此可以推广bias参数的更新. 在Pytorch中, 梯度回传会自动帮忙计算.</p>
+<p>在上述的公式中, <span class="arithmatex">\(\eta\)</span>是一个自己设置的参数, 叫做<strong>学习率</strong>(learning rate). 这不是机器自己找出来的, 因此要和被称为<strong>超参数(hyperparameter)</strong>. 那么一步一步, 我们希望w能够取中低点. 但是在上面这个图中, 我们看到: 有局部最小值和全局最小值. 如果先到达了局部最小值, 那么斜率几乎为零, 步长几乎为零, 这不就是意味着w的取值永远停在了局部最小值的阶段吗? 但是事实上局部最小值是一个假问题, 因为损失函数我们会故意设计成<strong>凸函数</strong>, 从而使得损失函数空间没有弯曲, 局部最低点就是全局最低点. 在两个参数的情况下使用梯度下降, 其实和之前一个参数没有什么不同, 因此可以推广bias参数的更新. 在Pytorch中, 梯度回传会自动帮忙计算.</p>
 <h2 id="_2">线性模型</h2>
 <h3 id="_3">基本概念原理</h3>
-<p>对于上面这个例子来说，使用的函数是： <script type="math/tex; mode=display">y = kx + b</script>用来拟合数据；那么我能不能考虑更复杂的情况，即设计更复杂的函数呢？当然是可以的，但是设计上有大学问：</p>
-<p>假如说我设计：<script type="math/tex; mode=display">y = \sum_{i=1}^{t}k_i+\sum_{i=1}^{t}b_i</script>, 相当于是<script type="math/tex; mode=display">\overline{y}=\sum_{i=1}^{t}y_i</script>，那么这个函数真的能拟合到更多的信息吗？事实上是不能的，因为事实上求导公式依然是<script type="math/tex; mode=display">w^1 \leftarrow w^0 - \eta \frac{\partial L}{\partial W}\Bigg|_{w=w^0}</script>，那么站在gradient descent的角度上，根本就是换汤不换药。这就是所谓的<strong>“没有引入非线性性”</strong>，而“把输入的特征x乘上一个权重，再加上一个偏置就得到预测效果”的模型称为<strong>线性模型（linear model）</strong>。线性模型有很大的限制，这一种来自于模型的限制称为模型的偏差，无法模拟真实的情况。</p>
+<p>对于上面这个例子来说，使用的函数是： <span class="arithmatex">\(<span class="arithmatex">\(y = kx + b\)</span>\)</span>用来拟合数据；那么我能不能考虑更复杂的情况，即设计更复杂的函数呢？当然是可以的，但是设计上有大学问：</p>
+<p>假如说我设计：<span class="arithmatex">\(y = \sum_{i=1}^{t}k_i+\sum_{i=1}^{t}b_i\)</span>, 相当于是<span class="arithmatex">\(\overline{y}=\sum_{i=1}^{t}y_i\)</span>，那么这个函数真的能拟合到更多的信息吗？事实上是不能的，因为事实上求导公式依然是<span class="arithmatex">\(w^1 \leftarrow w^0 - \eta \frac{\partial L}{\partial W}\Bigg|_{w=w^0}\)</span>，那么站在gradient descent的角度上，根本就是换汤不换药。这就是所谓的<strong>“没有引入非线性性”</strong>，而“把输入的特征x乘上一个权重，再加上一个偏置就得到预测效果”的模型称为<strong>线性模型（linear model）</strong>。线性模型有很大的限制，这一种来自于模型的限制称为模型的偏差，无法模拟真实的情况。</p>
 <p>那么如何引入非线性性呢？不妨从简单的角度进行思考：能不能在线性模型上引入非线性性呢？因此我们可以考虑分段线性曲线。不妨考虑这样一种非线性函数：当 x 轴的值小于某一个阈值（某个定值）的时候，大于另外一个定值阈值的时候，中间有一个斜坡；所以它是先水平的，再斜坡，再水平的。更具体来说，这种函数叫做hard sigmoid函数，深度学习中pytorch具体定义如下：
 <script type="math/tex; mode=display">
 \text{Hardsigmoid}(x) = 
@@ -3015,42 +3013,40 @@ y=c\sigma(b+wx_1)\hspace{1cm}简洁版本
 <h3 id="_4">矩阵表示</h3>
 <p>假如说用三个hard sigmoid函数来进行拟合：</p>
 <p><img src="img/6.png" alt="image" style="zoom:50%;" /></p>
-<p>那么换一个简单的scenario：使用三个sigmoid function进行拟合。考虑三个数据喂进去： <script type="math/tex; mode=display">(x_i,y_i)\hspace{0.3cm}i=1,2,3</script>, 那么我就希望能够找到合适的<script type="math/tex; mode=display">b_i</script>和<script type="math/tex; mode=display">w_{ij} </script>（代表第i个sigmoid里面乘给第j个特征的权重）。首先对数据进行权重分配（或者说，对特征分配权重，这时候都还是线性操作）
+<p>那么换一个简单的scenario：使用三个sigmoid function进行拟合。考虑三个数据喂进去： <span class="arithmatex">\(<span class="arithmatex">\((x_i,y_i)\hspace{0.3cm}i=1,2,3\)</span>\)</span>, 那么我就希望能够找到合适的<span class="arithmatex">\(<span class="arithmatex">\(b_i\)</span>\)</span>和<script type="math/tex; mode=display">w_{ij} </script>（代表第i个sigmoid里面乘给第j个特征的权重）。首先对数据进行权重分配（或者说，对特征分配权重，这时候都还是线性操作）
 <script type="math/tex; mode=display">
 r_1 = b_1 +w_{11}x_1 + w_{12}x_2 + w_{13}x_3\\
 r_2 = b_2 +w_{21}x_1 + w_{22}x_2 + w_{23}x_3\\
 r_3 = b_3 +w_{31}x_1 + w_{32}x_2 + w_{33}x_3\\
 </script>
 那么这个时候矩阵就排得上用场了：
-$$</p>
-<p>
-<script type="math/tex; mode=display">\begin{bmatrix}
+<script type="math/tex; mode=display">
+\begin{bmatrix}
 r_1 \\
 r_2 \\
 r_3
-\end{bmatrix}</script>
+\end{bmatrix}
 = 
-<script type="math/tex; mode=display">\begin{bmatrix}
+\begin{bmatrix}
 w_{11} & w_{12} & w_{13} \\
 w_{21} & w_{22} & w_{23} \\
 w_{31} & w_{32} & w_{33}
-\end{bmatrix}</script>
-<script type="math/tex; mode=display">\begin{bmatrix}
+\end{bmatrix}
+\begin{bmatrix}
 x_1 \\
 x_2 \\
 x_3
-\end{bmatrix}</script>
+\end{bmatrix}
 +
-<script type="math/tex; mode=display">\begin{bmatrix}
+\begin{bmatrix}
 b_1 \\
 b_2 \\
 b_3
-\end{bmatrix}</script>
-<script type="math/tex; mode=display">
-在这里：</script>r = b + Wx<script type="math/tex; mode=display">, 之后经过sigmoid函数以引入非线性性。（这一步又称为：经过激活函数），表示为：</script>a = \sigma(r)$$</p>
+\end{bmatrix}
+</script>
+在这里：<span class="arithmatex">\(r = b + Wx\)</span>, 之后经过sigmoid函数以引入非线性性。（这一步又称为：经过激活函数），表示为：<span class="arithmatex">\(a = \sigma(r)\)</span></p>
 <p><img src="img/7.png" alt="image" style="zoom:50%;" /></p>
-<p>引入了非线性性，最后的三个非线性函数也应该又权重分配，因此引入线性性分配三个非线性性函数的权重，并配上偏置：<script type="math/tex; mode=display">y=b+\textbf{c}^{T}\textbf{a}</script>
-</p>
+<p>引入了非线性性，最后的三个非线性函数也应该又权重分配，因此引入线性性分配三个非线性性函数的权重，并配上偏置：<span class="arithmatex">\(y=b+\textbf{c}^{T}\textbf{a}\)</span></p>
 <p><img src="img/8.png" alt="image" style="zoom:50%;" /></p>
 <h3 id="_5">定义损失、优化、梯度更新</h3>
 
@@ -3105,6 +3101,12 @@ b_3
       <script src="../../assets/javascripts/bundle.081f42fc.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+        <script src="../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>
