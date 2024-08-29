@@ -2903,8 +2903,95 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      合并两个有序单列表
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      判断单链表是否存在环以及入口节点
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      判断两个链表是否相交以及相交入口
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      单向循环链表
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="单向循环链表">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础知识
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      代码实现
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      约瑟夫环问题
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      双向链表
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      双向循环链表
+    </span>
+  </a>
   
 </li>
         
@@ -3123,8 +3210,95 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      合并两个有序单列表
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      判断单链表是否存在环以及入口节点
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      判断两个链表是否相交以及相交入口
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      单向循环链表
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="单向循环链表">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础知识
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      代码实现
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      约瑟夫环问题
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      双向链表
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      双向循环链表
+    </span>
+  </a>
   
 </li>
         
@@ -3642,6 +3816,170 @@ void ReverseLink(Clink &amp;link){
 }
 </code></pre>
 <h4 id="k">单链表求倒数第k个节点</h4>
+<p>问题描述: 在实战中, 节点数量是很多的. 如果我需要知道单链表倒数第k个节点的数字是多少呢? </p>
+<p>一种暴力的方法是: 先遍历一遍, 直到尾节点, 直到全部的节点数量; 然后再遍历一边. 这当然是可以的, 但是时间复杂的是<code>O(n)</code>; 所以说这种方法是不可取的, 而且一旦节点数量非常大, 那么就会瞬间爆炸. </p>
+<p>更好的方法是: 设计双指针p &amp; q, 然后两者都从头节点出发, 但是先让p走k步, 然后之后p q一起走. 直到p指针变成了空指针, 那么q自动指向的就是倒数第k个节点了. </p>
+<pre><code class="language-c++">struct Node{
+    Node(int data = 0): data_(data), next_(nullptr){}
+    int data_;
+    Node* next_;
+};
+class Clink{
+    //...
+private:
+    Node *head_;
+    // 方便函数访问它的私有成员
+    friend bool GetLastKNode(Clink &amp;link, int k, int &amp;val);
+}
+bool GetLastKNode(Clink &amp;link, int k, int &amp;val){
+    // 注意是引用传递, 这样就可以将值赋给val
+    Node* head = link.head_;
+    Node* q = head;
+    Node* p = head;
+    // 好习惯: 判断参数有效性!! 为什么小心k=0? 因为p最后开始走0步, 然后和q一起到空指针
+    // 悲剧就是: 访问了空指针. 
+    if (k &lt; 1){return false;} 
+    for (int i = 0; i &lt; k; i++){
+        p = p-&gt;next_;
+        if (p == nullptr){
+            return false;
+        }
+    }
+    while (p != nullptr){
+        q = q-&gt;next_;
+        p = p-&gt;next_;
+    }
+    val = q-&gt;data_;
+    return true;
+}
+</code></pre>
+<h4 id="_15">合并两个有序单列表</h4>
+<p>已经有一个链表1和2, 两个从小到大已经排好序了, 然后希望2连接到1上. 并且<strong>最后依然是从小到大排序</strong>.</p>
+<p>我们需要在1 2两个链表上面各自有一个指针, p q来判断两个数字谁打谁小; 同时, 不难想到, 我们希望用一个last指针来储存上一次操作完之后所停留在的节点信息. 处理完之后, 假如说p对应数字更大, 那么就: </p>
+<pre><code class="language-c++">last-&gt;next_ = p;
+p = p-&gt;next_;
+last = last-&gt;next_;
+</code></pre>
+<p>当然, 肯定有一个指针会先走到nullptr的, 那么假如说p变成了空指针, 说明p所在的1链表没有节点要串起来了, 直接将q指向的节点及其后面的一系列节点归并到last上面: </p>
+<pre><code class="language-c++">struct Node{
+    Node(int data = 0): data_(data), next_(nullptr){}
+    int data_;
+    Node* next_;
+};
+class Clink{
+    //...
+private:
+    Node *head_;
+    // 方便函数访问它的私有成员
+    friend bool MergeLink(Clink&amp; link1, Clink&amp; link2);
+}
+bool MergeLink(Clink&amp; link1, Clink&amp; link2){
+    Node* p = link1.head_-&gt;next_;
+    Node* q = link2.head_-&gt;next_;
+    Node* last = link1.head_;
+    link2.head_-&gt;next_ = nullptr;
+    while (p != nullptr &amp;&amp; q != nullptr){
+        if (p-&gt;data_ &lt; q-&gt;data_){
+            last-&gt;next_ = p;
+            p = p-&gt;next_;
+            last = last-&gt;next_;
+        }
+        else{
+            last-&gt;next_ = q;
+            q = q-&gt;next_;
+            last = last-&gt;next_;
+        }
+    }
+    if (p != nullptr){
+        last-&gt;next_ = p;
+    }
+    else{
+        last-&gt;next_ = q;
+    }
+}
+</code></pre>
+<h4 id="_16">判断单链表是否存在环以及入口节点</h4>
+<p>如果存在环的话, 那么假如说开始遍历的话, 根本遍历不完! 什么时候存在环? 打个比方, 地址上来看有: A -&gt; B -&gt; C -&gt; D -&gt; A, 那么就是一个环, 而且遍历是十分危险的. </p>
+<p>不假思索地: 可以遍历的时候, 把每一个节点的地址单独储存起来, 每遍历一步之后, 看这个地址在不在之前储存的地址库里面. 但是, 依然是希望能够原地解决问题. </p>
+<p>环的特点有什么? 除了我总是能回到我之前跑过的地方, 还有一个特点: 两个速度不一样的人跑圈, 总是能快的从后面追上慢的! 因此, 这个问题涉及到了双指针的应用——<strong><em>快慢指针</em></strong>. </p>
+<p>这样一来, 判断出是否存在环就比较简单了. 就比如, slow指针跑的慢, 一次走一个节点; fast指针走得快, 一次走两个节点; fast == slow, 那么就成环, 而如果fast变成了空指针, 那么就说明没有环. 那么这时候就有一个灵性的问题了: 会不会fast指针跨越过slow指针? 其实这是伪命题. 唯一能发生这样的情况就是fast == slow! </p>
+<p>但是如何寻找节点呢? 如下图 : </p>
+<p><img alt="image" src="img/3.png" /></p>
+<p>如果在这个时候, fast slow不再代表快慢, 而是仅仅是记号, 那么把fast指针放回到head, 每次走一步. 那么fast和slow同时开始走, 最后再次相遇的地方正好就是入口的地方!</p>
+<pre><code class="language-c++">bool IsLinkHasCircle(Node* head, int&amp; val){
+    Node* fast = head;
+    Node* slow = head;
+    while (fast != nullptr &amp;&amp; fast-&gt;next_ != nullptr){ // fast走两步, 所以判断两个是不是nullptr, 防止访问空指针
+        slow = slow-&gt;next_;
+        fast = fast-&gt;next_-&gt;next_;
+        if (fast == slow){
+            fast = head;
+            while (fast != slow){
+                slow = slow-&gt;next_;
+                fast = fast-&gt;next_;
+            }
+            val = slow-&gt;data_;
+            return true;
+        }
+    }
+    return false;
+}
+</code></pre>
+<p>附: 这个函数传入的是结构体(Node)指针, 是因为这样方便测试. 测试代码, 详见: <code>clink.cpp</code></p>
+<h4 id="_17">判断两个链表是否相交以及相交入口</h4>
+<p>一种很直接的思路: 先各自遍历两个链表, 得到a b两个长度, 然后假设链表1的长度a更大, 那么就1链表指针先走(a-b)步, 然后1 2链表的两个指针一起走, 最后相遇的地方就是入口; 如果最后两个都各自变成了<code>nullptr</code>, 那么就说明不相交. </p>
+<pre><code class="language-c++">bool IsLinkHasMerge(Node* head1, Node* head2, int&amp; val){
+    int cnt1 = 0, cnt2 = 0;
+    Node* p = head1-&gt;next_;
+    Node* q = head2-&gt;next_;
+    while (p != nullptr){
+        cnt1++;
+        p = p-&gt;next_;
+    }
+    while (q != nullptr){
+        cnt1++;
+        q = q-&gt;next_;
+    }
+    p = head1-&gt;next_;
+    q = head2-&gt;next_;
+    if (cnt1 &gt; cnt2){
+        int offset = cnt1 - cnt2;
+        while (offset-- &gt; 0){
+            p = p-&gt;next_;
+        }
+        while (p != nullptr &amp;&amp; q != nullptr){
+            if (p == q){
+                val = p-&gt;data_;
+                return true;
+            }
+            p = p-&gt;next_;
+            q = q-&gt;next_;
+        }
+        return false;
+    }
+    else {
+        int offset = cnt2 - cnt1;
+        while (offset-- &gt; 0){
+            q = q-&gt;next_;
+        }
+        while (p != nullptr &amp;&amp; q != nullptr){
+            if (p == q){
+                val = p-&gt;data_;
+                return true;
+            }
+            p = p-&gt;next_;
+            q = q-&gt;next_;
+        }
+        return false;
+    }
+}
+</code></pre>
+<h3 id="_18">单向循环链表</h3>
+<h4 id="_19">基础知识</h4>
+<h4 id="_20">代码实现</h4>
+<h4 id="_21">约瑟夫环问题</h4>
+<h3 id="_22">双向链表</h3>
+<h3 id="_23">双向循环链表</h3>
 
 
 
