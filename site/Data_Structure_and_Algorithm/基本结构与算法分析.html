@@ -3976,8 +3976,154 @@ bool MergeLink(Clink&amp; link1, Clink&amp; link2){
 </code></pre>
 <h3 id="_18">单向循环链表</h3>
 <h4 id="_19">基础知识</h4>
+<p>单项循环链表的循环具体来说是:如果有头节点, 尾节点存储着头节点的地址; 如果没有头节点, 尾节点存储着第一个节点的地址. 我们可以专门使用tail指针, 来记录尾节点的地址, 那么<code>tail-&gt;next_</code>就是头节点的地址. 注意, <strong>全程tail的信息应该得到正确的更新</strong>! </p>
 <h4 id="_20">代码实现</h4>
+<pre><code class="language-c++">// circlelink.cpp
+#include &lt;iostream&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+using namespace std;
+
+struct Node{
+    Node(int data = 0) : data_(data), next_(nullptr){}
+    int data_;
+    Node* next_;
+};
+class CircleLink{
+public:
+    CircleLink(){
+        head_ = new Node();
+        // tail指针的信息将在尾插的过程中得到更新!
+        tail_ = head_;
+        head_-&gt;next_ = head_;
+    }
+    ~CircleLink(){
+        Node* p = head_-&gt;next_;
+        while (p != head_){
+            head_-&gt;next_ = p-&gt;next_;
+            delete p;
+            p = head_-&gt;next_;
+        }
+        delete head_;
+    }
+
+public:
+    void InsertTail(int val){
+        Node* node = new Node(val);
+        node-&gt;next_=tail_-&gt;next_;
+        tail_-&gt;next_ = node;
+        // 在这里, tail指针的信息得到更新! 
+        tail_ = node;
+    }
+
+    void InsertHead(int val){
+        Node* node = new Node(val);
+        node-&gt;next_=head_-&gt;next_;
+        head_-&gt;next_ = node;
+        // 如果只有头节点, tail和head一样, 那么头插之后, tail指针需要移动
+        // 但是对于不止头节点情况, tail指针不需要移动. 所以这里需要分类讨论对tail指针的处理!
+        if (node-&gt;next_ == head_){
+            tail_ = node;
+        }
+    }
+
+    void Remove(int val){
+        Node* q = head_;
+        Node* p = head_-&gt;next_;
+        while (p != head_){ // 注意什么时候退出循环! 除非需要可以寻找尾节点, 循环中尽可能少用-&gt;next_判断
+            if (p-&gt;data_ == val){
+                q-&gt;next_ = p-&gt;next_;
+                delete p;
+                // 如果删除的是为节点, 那么tail指针需要得到更新! 
+                if (q-&gt;next_ == head_){
+                    tail_ = q;
+                }
+                return;
+            }
+            else {
+                q = p;
+                p = p-&gt;next_;
+            }
+        }
+        return;
+    }
+
+    bool Find(int val) const{
+        Node* p = head_-&gt;next_;
+        while (p != head_){
+            if (p-&gt;data_ == val){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    void Show() const{
+        Node* p = head_-&gt;next_;
+        while (p != head_){
+            cout &lt;&lt; p-&gt;data_ &lt;&lt; &quot; &quot;;
+            p = p-&gt;next_;
+        }
+        cout &lt;&lt; endl;
+    }
+
+private:
+    Node* head_;
+    Node* tail_;
+ };
+
+void TestBasic(CircleLink clink){
+    srand(time(NULL));
+    for (int i = 0; i &lt; 10; i++){
+        clink.InsertTail(rand()%100);
+    }
+    clink.Show();
+    clink.InsertHead(200);
+    clink.InsertTail(200);
+    clink.Show();
+    clink.Remove(200);
+    clink.Show();
+}
+
+int main(){
+    CircleLink clink;
+    TestBasic(clink);
+    return 0;
+}
+</code></pre>
 <h4 id="_21">约瑟夫环问题</h4>
+<p>已知n个人围坐在一张圆桌周围, 从编号为k的人开始报数, 数到m的那个人出列, 它的下一个人又开始从1报数, 数到m的那个人又出列, 以此重复下去, 直到圆桌周围的人全部出列, 输出人的出列顺序.</p>
+<p>由于环的设计, 这个问题非常适合用单循环链表来解决. 因为涉及到了删除节点, <strong>所以自然想到需要用p q两个指针</strong>(q在p后面, 用来方便删除节点). 那么最后结束的情况是什么呢? 最后, <em>p q指针会重合</em>. </p>
+<pre><code class="language-c++">// circlelink.cpp
+void Joseph(Node* head, int k, int m){
+    Node* p = head;
+    Node* q = head;
+    // q指向最后一个节点! 因为在我们测试的时候, 没有头节点.
+    while (q-&gt;next_ != head){
+        q = q-&gt;next_;
+    }
+    // 到第k个人
+    for (int i = 1; i &lt; k; i++){
+        q = p;
+        p = p-&gt;next_;
+    }
+    for (;;){ // 一直循环, 直到p == q
+        for (int i = 1; i &lt; m; i++){
+            q = p;
+            p = p-&gt;next_;
+        }
+        cout &lt;&lt; p-&gt;data_ &lt;&lt; &quot; &quot;;
+        if (p == q){
+            delete p;
+            break;
+        }
+        q-&gt;next_ = p-&gt;next_;
+        delete p;
+        p = q-&gt;next_;
+    }
+    cout &lt;&lt; endl;
+}
+</code></pre>
 <h3 id="_22">双向链表</h3>
 <h3 id="_23">双向循环链表</h3>
 
