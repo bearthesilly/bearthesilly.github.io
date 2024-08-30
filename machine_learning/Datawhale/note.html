@@ -490,6 +490,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      模型变形
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2928,6 +2937,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      模型变形
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3048,7 +3066,28 @@ b_3
 <p><img src="img/7.png" alt="image" style="zoom:50%;" /></p>
 <p>引入了非线性性，最后的三个非线性函数也应该又权重分配，因此引入线性性分配三个非线性性函数的权重，并配上偏置：<span class="arithmatex">\(y=b+\textbf{c}^{T}\textbf{a}\)</span></p>
 <p><img src="img/8.png" alt="image" style="zoom:50%;" /></p>
+<p>为了方便表示，我们把所有的未知参数都进行拼接，用<span class="arithmatex">\(\theta\)</span>表示。</p>
+<p><img src="img/9.png" alt="image" style="zoom:50%;" /></p>
+<p>在上面的例子中，我们只使用了三个sigmoid函数。但是实际上，可以选择很多个sigmoid函数，它的数量其实也是超参数。一般sigmoid越多可以产生有越多段线的分段线性函数，可以逼近越复杂的函数。</p>
 <h3 id="_5">定义损失、优化、梯度更新</h3>
+<p>接下来要定义损失。之前是 L(w, b)，因为 w 跟 b 是未知的。现在未知的参数很多了，再把它一个一个列出来太累了，所以直接用 θ 来统设所有的参数，所以损失函数就变成 L(θ)。损失函数能够判断 θ 的好坏，其计算方法跟刚才只有两个参数的时候是一样的。先给定 θ 的值，即某一组 <span class="arithmatex">\(\textbf{W}, \textbf{b}, c^T, b\)</span>的值，再把一种特征 x 代进去，得到估测出来的 y，再计算一下跟真实的标签之间的误差 e。把所有的误差通通加起来，就得到损失。</p>
+<p>一开始随机初始化参数，然后得到了第一个<span class="arithmatex">\(\theta_0\)</span>，然后计算每一个未知参数对L的微分，得到向量g:</p>
+<p><img src="img/10.png" alt="image" style="zoom:50%;" /></p>
+<p>假设有 1000 个参数，这个向量的长度就是 1000，这个向量也称为梯度，<span class="arithmatex">\(∇L\)</span> 代表梯度。<span class="arithmatex">\(L(θ0) <span class="arithmatex">(是指计算梯度的位置，是在 θ 等于 <span class="arithmatex">\(θ_0\)</span>的地方。计算出 g 后，接下来跟新参数，\)</span>θ_0\)</span> 代表它是一个起始的值，它是一个随机选的起始的值，代表 <span class="arithmatex">\(θ_1\)</span>更新过一次的结果，<span class="arithmatex">\(θ_2^0\)</span> 减掉微分乘以，减掉 η 乘上微分的值，得到 <span class="arithmatex">\(θ_2^1\)</span>，以此类推，就可以把 1000 个参数都更新了。</p>
+<p><img src="img/11.png" alt="image" style="zoom:50%;" /></p>
+<p>这种操作会重复更新未知参数，直到计算出梯度为零，虽然说实现上几乎不可能做到，但是应该会尽可能的逼近。</p>
+<p>实际上使用梯度下降的时候，会把N笔数据随机分成一个一个的<strong><em>批量（batch）</em></strong>。每一个batch里面有B笔数据。本来是整个N笔数据用来计算一个损失，但是现在一个Batch一个损失。所以实战中，<span class="arithmatex">\(B_1\)</span>拿出来，计算损失，更新参数，然后拿出<span class="arithmatex">\(B_2\)</span>, 再计算一次损失，更新参数，以此类推。最终会把所有的批量都使用过，这样称为一个<strong><em>回合（epoch）</em></strong>。</p>
+<p>通常，<span class="arithmatex">\(批量大小（batch size）*批量数量=总样本（example）数量\)</span>，而batch size就是一个非常常见的超参数。</p>
+<h3 id="_6">模型变形</h3>
+<p>介绍另一种激活函数：<strong><em>修正线性单元(Rectified Linear Unit, ReLU)</em></strong>。图像有一个水平的线，走到某个地方有一个转折的点，变成一个斜坡，公式为：
+<script type="math/tex; mode=display">
+c*max(0,b+wx_1)
+</script>
+机器学习中，Sigmoid或ReLU称为<strong><em>激活函数（activation function）</em></strong>，在深度学习中，还被称为神经元（neuron），很多神经元的网络称为神经网络（neural network）。每一排称为一层，称为隐藏层（hidden layer）。</p>
+<p><img src="img/12.png" alt="image" style="zoom: 33%;" /></p>
+<p>但是不是盲目加深度层数就一定有更好的表现，因为可能会有<strong><em>过拟合（overfitting）</em></strong>: 在训练数据和测试数据上的结果是不一致的。在层数高的网络中，未知参数的更新就要用到<strong><em>反向传播（Backward Propagation, BP）</em></strong>。</p>
+<p>一张图总结机器学习框架： </p>
+<p><img src="img/13.png" alt="image" style="zoom:50%;" /></p>
 
 
 
