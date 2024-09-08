@@ -2986,15 +2986,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#_23" class="md-nav__link">
-    <span class="md-ellipsis">
-      双向循环链表
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -3288,15 +3279,6 @@
   <a href="#_22" class="md-nav__link">
     <span class="md-ellipsis">
       双向链表
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_23" class="md-nav__link">
-    <span class="md-ellipsis">
-      双向循环链表
     </span>
   </a>
   
@@ -4125,7 +4107,127 @@ void Joseph(Node* head, int k, int m){
 }
 </code></pre>
 <h3 id="_22">双向链表</h3>
-<h3 id="_23">双向循环链表</h3>
+<ul>
+<li>每一个节点除了数据域，还有next指针域指向下一个节点，pre指针域指向前一个节点</li>
+<li>头结点的pre是NULL，末尾节点的next是NULL</li>
+</ul>
+<p>注：做题时要判断，题目给出的结构体定义究竟是单向还是双向</p>
+<pre><code class="language-c++">// doublelink.cpp
+#include &lt;iostream&gt;
+using namespace std;
+
+struct Node{
+    Node(int data = 0) 
+        : data_(data)
+        , next_(nullptr)
+        , pre_(nullptr) 
+        {} // 规范化的初始化构造列表,一行一个
+    int data_;
+    Node *next_;
+    Node *pre_;
+};
+
+class DoubleLink{
+public:
+    DoubleLink(){
+        head_ = new Node();
+    }
+    ~DoubleLink(){
+        Node* p = head_;
+        while (p != nullptr){
+            head_ = head_-&gt;next_;
+            delete p;
+            p = head_;
+        }
+    }
+
+private:
+    Node* head_;
+
+public:
+    void InsertHead(int val){
+        Node* node = new Node(val);
+        node-&gt;next_ = head_-&gt;next_;
+        node-&gt;pre_ = head_;
+        if (head_-&gt;next_ != nullptr){
+            head_-&gt;next_-&gt;pre_ = node;
+        }
+        head_-&gt;next_ = node;
+    }
+
+    void InsertTail(int val){
+        Node* p = head_;
+        while (p-&gt;next_ != nullptr){
+            p = p-&gt;next_;
+        }
+        Node* node = new Node(val);
+        node-&gt;pre_ = p;
+        p-&gt;next_ = node;
+    }
+
+    bool Find(int val){
+        Node* p = head_-&gt;next_;
+        while (p != nullptr){
+            if (p-&gt;data_ == val){
+                return true;
+            }
+            else{
+                p = p-&gt;next_;
+            }
+        }
+    }
+
+    void Remove(int val){
+        Node* p = head_-&gt;next_;
+        while (p != nullptr){
+            if (p-&gt;data_ == val){
+                p-&gt;pre_-&gt;next_ = p-&gt;next_;
+                if (p-&gt;next_ != nullptr){
+                    p-&gt;next_-&gt;pre_ = p-&gt;pre_;
+                }
+                Node* next = p-&gt;next_;
+                delete p;
+                p = next; // 有了这一行,说明是删除全部值为val的节点
+            }
+            else{
+                p = p-&gt;next_;
+            }
+        }
+    }
+
+    void Show(){
+        Node* p = head_-&gt;next_;
+        while (p != nullptr){
+            cout &lt;&lt; p-&gt;data_ &lt;&lt; &quot; &quot;;
+            p = p-&gt;next_;
+        }
+        cout &lt;&lt; endl;
+     }
+};
+
+void TestBasic(DoubleLink&amp; dlink){
+    cout &lt;&lt; &quot;Testing Basics!&quot; &lt;&lt; endl;
+    dlink.InsertHead(11);
+    dlink.InsertHead(45);
+    dlink.InsertHead(14);
+    dlink.Show();
+    dlink.InsertTail(19);
+    dlink.InsertTail(19);
+    dlink.InsertTail(810);
+    dlink.Show();
+}
+
+void TestRemoval(DoubleLink&amp; dlink){
+    dlink.Remove(19);
+    dlink.Show();
+}
+
+int main(){
+    DoubleLink dlink;
+    TestBasic(dlink);
+    TestRemoval(dlink);
+}
+</code></pre>
 
 
 
