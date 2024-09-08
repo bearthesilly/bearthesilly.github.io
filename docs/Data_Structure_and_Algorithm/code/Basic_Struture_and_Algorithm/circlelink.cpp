@@ -121,7 +121,7 @@ void Joseph(Node* head, int k, int m){
     cout << endl;
 }
 
-void TestBasic(CircleLink clink){
+void TestBasic(CircleLink& clink){
     cout << "Testing Basic!" << endl;
     srand(time(NULL));
     for (int i = 0; i < 10; i++){
@@ -133,6 +133,7 @@ void TestBasic(CircleLink clink){
     clink.Show();
     clink.Remove(200);
     clink.Show();
+    cout << endl;
 }
 
 void TestJoseph(){
