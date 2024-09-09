@@ -124,21 +124,216 @@ There is no library to link to. The only thing that you need to keep in mind whe
 
 于是命令行运行cpp文件的时候，应该终端运行上面指令，然后终端命令行运行exe文件：`./my_program.exe`
 
-## Transform
+## Transformation
 
+2D transformation：几种常见的2D图形的变换：
+$$
+\begin{bmatrix}
+x' \\
+y'
+\end{bmatrix}
+=
+\begin{bmatrix}
+s_x & 0 \\ 
+0 & s_y
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y
+\end{bmatrix}
+\tag{Scale}
+$$
 
+$$
+\begin{bmatrix}
+x' \\
+y'
+\end{bmatrix}
+=
+\begin{bmatrix}
+-1 & 0 \\ 
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y
+\end{bmatrix}
+\tag{Reflection}
+$$
 
+$$
+\begin{bmatrix}
+x' \\
+y'
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & a \\ 
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y
+\end{bmatrix}
+\tag{Shear}
+$$
 
+$$
+R_\theta = 
+\begin{bmatrix}
+cos\theta & -sin\theta \\
+sin\theta & con\theta
+\end{bmatrix}
+\tag{rotation*}
+$$
 
+$$
+\begin{bmatrix}
+x' \\
+y'
+\end{bmatrix}
+=
+\begin{bmatrix}
+a & b \\ 
+c & d
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y
+\end{bmatrix}
+\tag{Linear Transform}
+$$
 
+$$
+\begin{bmatrix}
+x' \\
+y'
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & a \\ 
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y
+\end{bmatrix}
+\tag{Shear}
+$$
 
+rotation在2D中都是默认绕远点逆时针旋转的。那么注意到，上面这些情况没有涉及到平移，因为其它的变换都是线性变换，但是唯独平移不是。因此为了解决这个问题，采用了Homogenous Coordinates Solution（for more information on this, please refer to [My Linear Algebra Course Reseach On Affine Transformation ](https://github.com/bearthesilly/csrookie/blob/main/Linear Algebra/linear_project.pdf)。
 
+- 
 
+$$
+\begin{bmatrix}
+x' \\
+y' \\
+z'
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 & t_x \\
+0 & 1 & t_y \\
+0 & 0 & 1
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+x \\
+y \\
+1
+\end{bmatrix}
+=
+\begin{bmatrix}
+x+t_x \\
+y+y_t \\
+1
+\end{bmatrix}
+\tag{Tran}
+$$
 
+***Homogeneous Coordinates(齐次坐标)***中，将2D point表示为$(x,y,1)^T$，而将2D vector表示为$(x,y,0)^T$，这很妙的是满足了：
 
+向量相加仍为向量（第三维度是0），点坐标相减为向量（第三维度上1-1 = 0），点加上向量仍为点（第三维度是1+0 = 1）。这也解答了一个问题：点坐标相加是什么呢？ 首先我们需要扩充一下定义：
+$$
+\begin{pmatrix}
+x \\
+y \\
+w
+\end{pmatrix}
+is\ the\ 2D\ point\ 
+\begin{pmatrix}
+x/w \\
+y/w
+\end{pmatrix},
+w ≠ 0
+$$
+之后，就能轻松知道点相加代表什么了：两点的中点。
 
+以上就是仿射变换（affine transformation），表达式如下：
+$$
+\begin{bmatrix}
+x' \\
+y' \\
+z'
+\end{bmatrix}
+=
+\begin{bmatrix}
+a & b & t_x \\
+c & d & t_y \\
+0 & 0 & 1
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+x \\
+y \\
+1
+\end{bmatrix}
+$$
+$Affine\ map = linear\ map + translation$，实质是先线性变换，再进行平移
 
+那么2D transformation重新用矩阵表示：
+$$
+S(s_x,s_y) = 
+\begin{pmatrix}
+s_x & 0 & 0 \\
+0 & s_y & 0 \\
+0 & 0 & 1
+\end{pmatrix}
+\hspace{2cm}
+(Scale)
+\\
+R(\theta) = 
+\begin{pmatrix}
+cos\theta & -sin\theta  & 0\\
+sin\theta & con\theta & 0 \\
+0 & 0 & 1
+\end{pmatrix}
+\hspace{2cm}
+(Rotation)
+\\
+T(t_x, t_y) = 
+\begin{pmatrix}
+1 & 0 & t_x \\
+0 & 1 & t_y \\
+0 & 0 & 1
+\end{pmatrix}
+\hspace{2.5cm}
+(Translation)
+\\
+$$
+在多步骤变换中，交换律是不满足的！例如：先旋转后平移和先平移后旋转的结果是不一样的。一系列的仿射变换矩阵最后不断作用在$(x,y,1)^T$上面，那么最后就能看成是一个矩阵作用在这个点上面。
 
-
-
-
+同时有了Homogenous Coordinates的帮助，我们能够轻松的分解复杂的变换。例如2D点绕着某一特定点进行旋转，就可以把两个点同时进行平移，使得被绕的点移动到远点，然后乘上旋转矩阵，最后平移回去：
+$$
+T(c)
+\cdot
+R(\alpha)
+\cdot
+T(-c)
+$$
+3D Transformation如法炮制。3D point $(x,y,z,1)^T$，3D vector $(x,y,z,0)^T$，并且扩充定义有： 
+$$
+In\ general,(x,y,z,w)(w≠0)\ is\ the\ 3D\ point:\\
+(x/w,y/w,z/w)
+$$
