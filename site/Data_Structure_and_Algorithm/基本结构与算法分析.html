@@ -2986,6 +2986,57 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      顺序栈
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      链表栈
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      常见问题
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="常见问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      括号匹配问题
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      逆波兰表达式
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3279,6 +3330,57 @@
   <a href="#_22" class="md-nav__link">
     <span class="md-ellipsis">
       双向链表
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      顺序栈
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      链表栈
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      常见问题
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="常见问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      括号匹配问题
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      逆波兰表达式
     </span>
   </a>
   
@@ -4111,7 +4213,7 @@ void Joseph(Node* head, int k, int m){
 <li>每一个节点除了数据域，还有next指针域指向下一个节点，pre指针域指向前一个节点</li>
 <li>头结点的pre是NULL，末尾节点的next是NULL</li>
 </ul>
-<p>注：做题时要判断，题目给出的结构体定义究竟是单向还是双向</p>
+<p>注：做题时要判断，题目给出的结构体定义究竟是单向还是双向（因为双向确实是方便）</p>
 <pre><code class="language-c++">// doublelink.cpp
 #include &lt;iostream&gt;
 using namespace std;
@@ -4227,6 +4329,252 @@ int main(){
     TestBasic(dlink);
     TestRemoval(dlink);
 }
+</code></pre>
+<p>## 栈</p>
+<p>栈十分重要！特点：<strong><em>先进后厨，后进先出</em></strong>。栈并不是一个全新的数据结构，而是建立在数组和链表之上实现的。换而言之，在数组和链表中，可以在末尾和头部插入元素，但是在栈中有硬性规定：只能在一个位置加入元素，只能在一个位置删除元素。栈有以下类型：顺序栈和链式栈。</p>
+<h3 id="_23">顺序栈</h3>
+<p><strong>顺序栈（Sequential Stack）</strong>：建立在数组之上。顺序栈中，栈底层数组的起始地址称为<strong>栈底</strong>，而只能在<strong>栈顶（top）</strong>进行元素的进出。一开始，<code>top = 0 // top代表元素的数组下标</code>，代表栈的初始化，栈是空的。之后元素进行<strong>入栈</strong>，而只能从栈顶进入，因此是：<code>arr[top] = val; top++;</code>那么访问栈顶元素就是<code>arr[top-1]</code>了。那么如何实现<strong>出栈</strong>呢？其实<code>top--;</code>就可以了。所以只要控制好top的位置，从而使得栈外的数据访问不到，就能实现出入栈。类似地，想要<strong>空栈</strong>就直接<code>top = 0;</code>。而当<strong>栈满</strong>的时候<code>top == sizeof(arr)/sizeof(arr[0])</code>，就不能再在原地插入元素了，不然就数组越界访问了，所以就要考虑自动扩容（和数组很像）。</p>
+<pre><code class="language-c++">// sequential_stack.cpp
+#include &lt;iostream&gt;
+using namespace std;
+
+// 顺序栈 C++容器适配器 stack
+class SeqStack{
+public:
+    SeqStack(int size = 10)
+        : mtop(0)
+        , mcap(size)
+        {
+            mpStack = new int[mcap];
+        }
+    ~SeqStack(){
+        delete[] mpStack;
+        mpStack = nullptr; // 防止野指针
+    }
+
+public:
+    // 入栈
+    void push(int val){
+        if (mtop == mcap){
+            // 扩容
+            expand(2*mcap);
+        }
+        mpStack[mtop++] = val; // 赋值后,top++
+    }
+
+    void pop(){
+        if (mtop == 0){
+            // 抛异常也是一种return
+            throw &quot;Stack is empty&quot;;
+        }
+        mtop--;
+    }
+
+    int top() const{ // 加const是因为,这个方法是只读的
+        if (mtop == 0){
+            throw &quot;Stack is empty&quot;;
+        }
+        return mpStack[mtop-1];
+    }
+
+    bool empty(){
+        return mtop == 0;
+    }
+
+    int size() const{
+        return mtop;
+    }
+
+private:
+    int* mpStack;
+    int mtop; // 栈顶位置
+    int mcap; // 栈空间大小
+
+private:
+    void expand(int size){
+        int* p = new int[size];
+        memcpy(p, mpStack, mtop*sizeof(int));
+        delete[] mpStack;
+        mpStack = p;
+        mcap = size;
+    }
+};
+
+int main(){
+    int arr[] = {12, 4, 56, 7, 89, 31, 53, 75};
+    SeqStack s;
+    for (int v : arr){
+        s.push(v);
+    }
+    while (!s.empty()){
+        cout &lt;&lt; s.top() &lt;&lt; &quot; &quot;;
+        s.pop();
+    }
+    cout &lt;&lt; endl;
+}
+</code></pre>
+<h3 id="_24">链表栈</h3>
+<p>在顺序栈中，数据的扩容十分低效，因此考虑利用链表的优势来弥补这一不足。</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+using namespace std;
+
+class LinkStack{
+public:
+    LinkStack() : size_(0){
+        head_ = new Node;
+    }
+    ~LinkStack(){
+        Node* p = head_;
+        while (p != nullptr){
+            head_ = head_-&gt;next_;
+            delete p;
+            p = head_;
+        }
+    }
+
+public:
+    // 入栈 头结点的后面第一个有效节点的位置作为栈顶
+    void push(int val){
+        Node* node = new Node(val);
+        node-&gt;next_ = head_-&gt;next_;
+        head_-&gt;next_ = node;
+        size_++;
+    }
+    // 出栈
+    void pop(){
+        if (head_-&gt;next_ == nullptr)
+            throw &quot;Stack is empty!&quot;;
+        Node* p = head_-&gt;next_;
+        head_-&gt;next_ = p-&gt;next_;
+        delete p;
+        size_--;
+    }
+
+    int top() const{
+        if (head_-&gt;next_ == nullptr)
+            throw &quot;Stack is empty!&quot;;
+        return head_-&gt;next_-&gt;data_;
+    } 
+
+    bool empty(){
+        return head_-&gt;next_ == nullptr;
+    }
+
+    int size() const{
+        // 返回栈元素个数，如果遍历，那么就是O(n)
+        // 为了O(1),可以在成员里面加入记录这一参数的设计
+        return size_;
+    }
+private:
+    struct Node{
+        Node(int data = 0) : data_(data), next_(nullptr){}
+        int data_;
+        Node* next_;
+    };
+    Node* head_;
+    int size_;
+};
+
+int main(){
+    int arr[] = {12, 4, 56, 7, 89, 31, 53, 75};
+    LinkStack s;
+    for (int v : arr){
+        s.push(v);
+    }
+    cout &lt;&lt; &quot;The size of the stack is: &quot; &lt;&lt; s.size() &lt;&lt; endl;
+    while (!s.empty()){
+        cout &lt;&lt; s.top() &lt;&lt; &quot; &quot;;
+        s.pop();
+    }
+    cout &lt;&lt; endl;
+    return 0;
+}
+</code></pre>
+<h2 id="_25">常见问题</h2>
+<h3 id="_26">括号匹配问题</h3>
+<p>思路： 1. 遍历s字符串，遇到左括号直接入栈  2. 如果遇到了右括号，从栈顶取出一个左括号，如果匹配，继续；如果不匹配，直接结束，返回false. </p>
+<p>但是依然有一些细节: 1. 如果是<code>(</code>呢？ 左括号都放进了栈里面，因此会跳出循环，因此需要注意循环外要判断栈是否为空    2. 如果是<code>)</code>呢？遇到了右括号，但是栈里面什么都没有，因此没有此遇到右括号，需要判断栈是否为空。</p>
+<pre><code class="language-c++">class Solution {
+public:
+    bool isValid(string s) {
+        stack&lt;char&gt; cs;
+        for (char ch : s){
+            if (ch == '(' || ch == '[' || ch == '{'){
+                cs.push(ch);
+            }
+            else{
+                if (cs.empty())
+                    return false;
+                char cmp = cs.top();
+                cs.pop();
+                if (ch == ')' &amp;&amp; cmp != '('
+                || ch == ']' &amp;&amp; cmp != '['
+                || ch == '}' &amp;&amp; cmp != '{'){
+                    return false;
+                }
+            }
+        }
+        // 还需要判断栈里面是否处理完毕
+        return cs.empty();
+    }
+};
+</code></pre>
+<h3 id="_27">逆波兰表达式</h3>
+<p>逆波兰表达式是一种后缀表达式，所谓后缀就是指算符写在后面。</p>
+<ul>
+<li>平常使用的算式则是一种中缀表达式，如 <code>( 1 + 2 ) * ( 3 + 4 )</code> 。</li>
+<li>该算式的逆波兰表达式写法为 <code>( ( 1 2 + ) ( 3 4 + ) * )</code> 。</li>
+</ul>
+<p>逆波兰表达式主要有以下两个优点：</p>
+<ul>
+<li>去掉括号后表达式无歧义，上式即便写成 <code>1 2 + 3 4 + *</code>也可以依据次序计算出正确结果。</li>
+<li><strong>适合用栈操作运算：遇到数字则入栈；遇到算符则取出栈顶两个数字进行计算，并将结果压入栈中</strong></li>
+</ul>
+<pre><code class="language-c++">输入：tokens = [&quot;10&quot;,&quot;6&quot;,&quot;9&quot;,&quot;3&quot;,&quot;+&quot;,&quot;-11&quot;,&quot;*&quot;,&quot;/&quot;,&quot;*&quot;,&quot;17&quot;,&quot;+&quot;,&quot;5&quot;,&quot;+&quot;]
+输出：22
+解释：该算式转化为常见的中缀算术表达式为：
+  ((10 * (6 / ((9 + 3) * -11))) + 17) + 5
+= ((10 * (6 / (12 * -11))) + 17) + 5
+= ((10 * (6 / -132)) + 17) + 5
+= ((10 * 0) + 17) + 5
+= (0 + 17) + 5
+= 17 + 5
+= 22
+</code></pre>
+<p>思路已经清晰地表达在题目里面了。</p>
+<pre><code class="language-c++">class Solution {
+public:
+    int calculate(int left, int right, char sign){
+        switch(sign){
+            case '+' : return left + right; 
+            case '-' : return left - right; 
+            case '*' : return left * right; 
+            case '/' : return left / right; 
+        }
+        throw &quot;&quot;;
+        // throw的原因是为了通过通过编译，并且防止case中出现非加减乘除的char
+    }
+    int evalRPN(vector&lt;string&gt;&amp; tokens) {
+        stack&lt;int&gt; is;
+        for (string&amp; str : tokens){
+            if (str.size() == 1 &amp;&amp;
+            (str[0] == '+' || str[0] == '-'
+            || str[0] == '*' || str[0] == '/'))
+            {
+                int right = is.top();
+                is.pop();
+                int left = is.top();
+                is.pop();
+                is.push(calculate(left, right, str[0]));
+            }
+            else{
+                // string的数字转化为正整数，c++接口
+                is.push(stoi(str));
+            }
+        }
+        return is.top();
+    }
+};
 </code></pre>
 
 
