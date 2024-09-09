@@ -7,5 +7,5 @@ This is the personal website of csrookie, dedicating to share info, resource and
 
 Currently interested in computer vision(Point Cloud) and computer graphics(Neural Radiance Field).
 
-For further resource and information, please refer to [this link to my github homepage]([bearthesilly/csrookie: Recording my cs path (github.com)](https://github.com/bearthesilly/csrookie)).
+For further resource and information, please refer to [this link to my github homepage](https://github.com/bearthesilly/csrookie).
 
