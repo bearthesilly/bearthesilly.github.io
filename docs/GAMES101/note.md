@@ -221,7 +221,22 @@ y
 \tag{Shear}
 $$
 
-rotation在2D中都是默认绕远点逆时针旋转的。那么注意到，上面这些情况没有涉及到平移，因为其它的变换都是线性变换，但是唯独平移不是。因此为了解决这个问题，采用了Homogenous Coordinates Solution（for more information on this, please refer to [My Linear Algebra Course Reseach On Affine Transformation ](https://github.com/bearthesilly/csrookie/blob/main/Linear Algebra/linear_project.pdf)。
+rotation在2D中都是默认绕远点逆时针旋转的。而且旋转矩阵有着特殊性质(如下)，逆与转置相同的矩阵就成为***正交矩阵***。
+$$
+R_{-\theta} = 
+\begin{pmatrix}
+cos\theta & sin\theta \\
+-sin\theta & cos\theta
+\end{pmatrix}
+= R^T_\theta
+\\
+i.e. \hspace{1cm} 
+R_\theta
+R^T_\theta = I
+$$
+
+
+那么注意到，上面这些情况没有涉及到平移，因为其它的变换都是线性变换，但是唯独平移不是。因此为了解决这个问题，采用了Homogenous Coordinates Solution（for more information on this, please refer to [My Linear Algebra Course Reseach On Affine Transformation ](https://github.com/bearthesilly/csrookie/blob/main/Linear Algebra/linear_project.pdf)。
 
 - 
 
@@ -337,3 +352,204 @@ $$
 In\ general,(x,y,z,w)(w≠0)\ is\ the\ 3D\ point:\\
 (x/w,y/w,z/w)
 $$
+
+## Transformation Cont.
+
+Transformation分为：View(视图)和Projection(投影)。其中，Projection transformation又分为Orthographic(正交投影)和Perspective(透视投影) projection。
+
+### 3D Transformation
+
+3D Transformation的矩阵表达如下：
+
+<img src="img/3.png" alt="image" style="zoom: 33%;" />
+
+<img src="img/4.png" alt="image" style="zoom:33%;" />
+
+借助三个旋转矩阵，我们可以表示任何一种3D-Rotation：
+$$
+R_{xyz}(\alpha,\beta,\gamma)
+=
+R_x(\alpha)R_y(\beta)R_z(\gamma)
+\hspace{1cm} 
+\alpha,\beta,\gamma
+\ \ 
+are\ Eular\ angles
+$$
+那么如何表示绕着旋转轴向量n（默认向量是从远点出发的）旋转α角的旋转矩阵呢？ 这就是**罗德里格斯公式（Rodrigues' Rotation Formula）**
+$$
+R(n,\alpha) = cos(\alpha)\textbf{I} +
+(1-cos(\alpha))nn^T + 
+sin(\alpha)
+\begin{pmatrix}
+0 & -n_z & n_y \\
+n_z & 0 & -n_x \\
+-n_y & n_x & 0
+\end{pmatrix}
+$$
+其中的矩阵非常眼熟，是n向量的dual matrix. 另外，旋转矩阵不是四元数，四元数是为了解决旋转矩阵插值问题而提出的。2D中一个旋转15度的旋转矩阵和一个旋转25度的相加并除2，得到的矩阵并不是旋转20度的。四元数就是解决这个问题的。
+
+### View / Camera Transformation
+
+现实中我们是如何拍照的呢？首先东西都摆好，然后拿出相机，找到好的角度，最后摁下快门。那么“找到好的角度”就是在进行view transformation，“摁下快门”就是在进行projection transformation。
+
+如何perform view transformation？首先我们要定义一下相机：
+
+- Position   $\vec{e}$
+- Gaze direction  $\hat{g}$
+- Up direction  $\hat{t}$    (assuming perpendicular(正交) to $\hat{g}$)
+
+所以说，定下相机位置，然后镜头朝向目标，最后旋转相机（改变相机up direction）就可以定义相机的取经行为了。那么现实中，相机和物体都可以移动，那么根据相对运动**约定俗成**：We always transform the camera to:
+
+- The origin, up at Y axis, look at -Z axis.
+- And transform the objects along with the camera.
+
+ 那么如何transform呢？首先相机在$\vec{e}$位置，那么就进行平移。移动到原点之后，旋转$\hat{g}$到-Z轴，$\hat{t}$到Y轴，（g×t）到X轴。
+
+<img src="img/5.png" alt="image" style="zoom:33%;" />
+
+“旋转$\hat{g}$到-Z轴，$\hat{t}$到Y轴，（g×t）到X轴”绝非简单的事情，矩阵计算会很麻烦。但是我们很容易实现的是：Y轴单位向量转到t，-Z轴单位向量转到g，这样通过求逆就能知道原来需要的$R_{view}$是什么了(这个矩阵很容易用$(1,0,0,0)^T\ (0,1,0,0)^T\ (0,0,-1,0)^T\ $和它相乘进行验证)：
+$$
+R^{-1}_{view} = 
+\begin{bmatrix}
+x_{g×t} & x_t & x_{-g} & 0 \\
+y_{g×t} & y_t & y_{-g} & 0 \\
+z_{g×t} & z_t & z_{-g} & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}
+\\
+R_{view} = 
+\begin{bmatrix}
+x_{g×t} & y_{g×t} & z_{g×t} & 0 \\
+x_t & y_t & z_t & 0 \\
+x_{-g} & y_{-g} & z_{-g} & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}
+$$
+
+### Projection Transformation
+
+Orthographic and Prespective Projection的区别是什么呢？ 如下图(左为正交，右为透视)，同样是立方体，左边的平行线依然平行，但是右边不是。事实上，人眼更类似右边的透视投影；换而言之，透视有**近大远小**的效应；或者说，正交投影是透视投影摄像头放的无限远的情况：
+
+<img src="img/6.png" alt="image" style="zoom: 33%;" />
+
+下图更能直观地体现两者的区别： 
+
+![image](img/7.png)
+
+Orthographic Projection是较容易实现的，相机固定在原点，面向-Z轴，头指向Y轴，然后对物体进行***“Drop Z Coordinate”***，最后**约定俗成地**“Translate and scale the resulting rectangle to $[-1,1]^2$”。
+
+<img src="img/8.png" alt="image" style="zoom: 50%;" />
+
+但是在实际操作的过程中，是将$[l,r]×[b,t]×[f,n]$的立方区域（cuboid）映射到$[-1,1]^3$的canonical(正则)立方体。然后这个区域再Drop Z Coordinate。前面这一步映射的矩阵如下： 
+
+![image](img/9.png)
+
+在右手系下，面朝-Z轴让进远概念混淆（-1 > -2, 但是-1点距离摄像机近）。因此一些情况下会使用左手系（如OpenGL, a Graphics API）。那么经过了平行变换之后，理应上来说，正则立方体里面的物体都有所拉伸。是这样的，因为之后还会有“视口拉伸”对物体再次进行拉伸。
+
+Perspective Projection是较为复杂的，但是确实应用最广的。回顾一下其次坐标中的定义：
+$$
+In\ general,(x,y,z,w)(w≠0)\ is\ the\ 3D\ point:\\
+(x/w,y/w,z/w)
+$$
+因此，（1,0,0,1）和（2,0,0,2）都表示（1,0,0）。那么如何实现透视投影如何实现呢？我们可以把这个过程拆成两步：Frustum -> Cuboid(一个矩阵)；正交投影。示意图如下（左立体图形为Frustum，右立体为Cuboid）
+
+<img src="img/10.png" alt="image" style="zoom:33%;" />
+
+那么“挤压”（squish）矩阵怎么求？见下图：由于先有translation，摄像机已经位于原位了，因此Frustum是一个标准的“台型立方体”。那么剖析一条光线，就会发现可以利用相似三角形去求出新的x and y（我们规定，squish之后，near far两个平面的z都是不变的）
+
+![image](img/11.png)
+
+那么其实这个矩阵很多信息已经呼之欲出了：
+$$
+M^{4×4}_{persp\rightarrow{ortho}}
+\begin{pmatrix}
+x \\ y \\ z \\ 1
+\end{pmatrix}
+=
+\begin{pmatrix}
+nx \\ ny \\ unknown \\ z
+\end{pmatrix}
+\\
+M_{persp\rightarrow{ortho}} = 
+\begin{pmatrix}
+n & 0 & 0 & 0 \\
+0 & n & 0 & 0 \\
+? & ? & ? & ? \\
+0 & 0 & 1 & 0 
+\end{pmatrix}
+$$
+我们又知道（其实是人为规定的），至少，nera平面上的z值和far平面上的z值在经过了矩阵变换之后不会变化。那么第三行至少是：(0,0,A,B)。则对于n平面上的（x,y,n,1）和f平面上的（x,y,f,1）有：
+$$
+nA + B = n^2\hspace{2cm} (1) \\
+fA + B = f^2\hspace{2cm} (2)
+$$
+这样$A = n +f;B = -nf$，我们的$M_{persp\rightarrow{ortho}}$就完全算出来了。最后就有：
+$$
+M_{persp} = M_{ortho}M_{persp\rightarrow{ortho}}
+$$
+好的，投影矩阵终于求出来了。但是有一个问题：我们规定了near and far平面距离XOY平面的距离不变，那么这个Frustum经过了Squishing之后，中间的点的z值是变大了还是变小了呢？假设点为$(x,y,t,1)$其中$n<t<f$，那么经过了矩阵相乘之后：$\hat{z} = ((n+f)z - nf)/z$，而它要和z进行比较：
+$$
+(n+f)z - nf)\ \ ?\ \ z^2 \hspace{2cm}(1) \\
+0\ \ ?\ \ z^2-(n+f)z+nf \hspace{2cm}(2) \\
+0\ \ ?\ \ (z-n)(z-f) \hspace{2cm}(3) \\
+因为\ n<t<f,所以符号是大于号
+$$
+所以说，事实上经过了squish之后，虽然说near far两个平面的z值是不改变的，但是**中间的点的z值是会变大的**，i.e.，**更靠近far平面**。
+
+## Rasterization
+
+### Triangles
+
+定义：Aspect ratio = width / height(宽高比)、vertical field-of-view(fovY)(垂直可视角)。这样一来，就能规范地用宽高比和垂直可视角来定义我们取出来的Frustum了，示意图如下： 
+
+<img src="img/12.png" alt="image" style="zoom:50%;" />
+
+![image](img/13.png)
+
+pre-difine一些概念之后：MVP之后干什么（MVP：model, view, project）？自然需要想：如何把正则立方体转到屏幕上。那么什么事屏幕screen呢？ 屏幕其实是一堆像素，像素矩阵的大小就称为分辨率。当前阶段，对于一个pixel，我们认为是一个小正方形，而且颜色不会变化（For now: A pixel is a little square with uniform color）。Raster是德语中Screen的意思，那么光栅化其实就是希望把canonical cube转化为screen。光栅化这个名字其实也很信达雅：把光 ray 划分为一个一个小栅（小格子）。
+
+如何定义screen space？约定俗成：起点为原点，然后像素的引索是(x, y)形式，而且x y都是正整数。那么，"***Pixel's indices are from (0, 0) to (width-1, height-1)***"。但是注意：像素的中心点其实并不是引索！
+
+<img src="img/14.png" alt="image" style="zoom: 25%;" />
+
+ 那么相当于希望使用一个矩阵，实现：$[-1,1]^2\rightarrow[0,width]×[0,height]$, 且跟z轴无关。这个矩阵其实不难发现：
+$$
+M_{viewport} = 
+\begin{pmatrix}
+width/2 & 0 & 0 & width/2 \\
+0 & height/2 & 0 & height/2 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{pmatrix}
+$$
+这就是***视口拉伸（viewport）***。经过了这一步之后，终于图像呈现到了像素区域内了。那么究竟如何把这***2D Polygon***转化为像素呢？换而言之，用一个一个的小格子（栅）进行划分呢？关于多边形，我们可以先讨论：Triangle Meshes应该如何操作？
+
+那么为什么会先讨论Triangle Mesh呢？原因有很多：
+
+1. 三角形是多边形的基础。多边形可以拆分为多个三角形
+2. 三角形的三个点一定在一个面上（planar）
+3. 三角形内外定义十分清晰（well-defined interior）
+4. 对于三角形内部的点，很容易用三点坐标进行差值（interpolation）表示，例如重心的差值（barycentric interpolation）
+
+<img src="img/15.png" alt="image" style="zoom:25%;" />
+
+分析了优势之后，如何用pixel去逼近triangle呢？如何实现这样的一个algorithm，做到：**Use the input of the position of triangle vertices projected on screen to output the set of pixel values approximating traingle**。(示意图如下)
+
+<img src="img/16.png" alt="image" style="zoom: 25%;" />
+
+之前提到叉乘妙用的时候有过按暗示：点是否在三角形内部是一个很好的判断标准。因此，我们可以尝试**采样**(sampling)所有的像素格子中心点，判断中心点在不在trangle的内部。
+
+<img src="img/17.png" alt="image" style="zoom: 50%;" />
+
+那么相当于是希望设计一个`inside(tri, x+0.5, y+0,5);`函数，从而判断引索为x y的像素的中心点是否在三角形内部（为什么是+0.5？因为viewport已经将canonical cube map到了pixel resolution matrix，所以0.5这个数字是正确的）。那么利用三个cross product就能帮助判断点是否在三角形里面。那么对于点在三角形上的corner case，我们可以自行规定，只需要**严格遵守**就行了；当然不同的API的规则也是不一样的。
+
+那么对于一个三角形来说，我有必要扫过全部的像素来进行光栅化吗？一个三角形单元实际上是不大的，因此如果程序上遍历x y计算开销会起飞。所以说我们可以使用一个Bounding Box! (专业名字叫做Axis Aligned Bounding Box, AABB)。而有的时候，三角形实际上覆盖面积非常小，但是AABB会显示都非常大，这是什么情况呢？那就是三角形非常苗条，而且有旋转。那么对于这种三角形的光栅化，也可以采用Incremental Triangle Traversal Strategy。
+
+<img src="img/18.png" alt="image" style="zoom: 25%;" />
+
+<img src="img/19.png" alt="image" style="zoom: 25%;" />
+
+最后，我们判断了所有的点是否在三角形内部，然后根据这个信息填充对应的像素。但是我们可以看到一种很糟糕的现象：锯齿效应（Aliasing / Jaggies）。没错：抗锯齿是后续一个非常重要的工作。
+
+<img src="img/20.png" alt="image" style="zoom: 33%;" />
+
