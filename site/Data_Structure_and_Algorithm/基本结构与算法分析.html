@@ -3046,12 +3046,7 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#_25" class="md-nav__link">
     <span class="md-ellipsis">
       常见问题
@@ -3079,8 +3074,31 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      中缀转后表达式
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      队列
+    </span>
+  </a>
   
 </li>
       
@@ -3416,12 +3434,7 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#_25" class="md-nav__link">
     <span class="md-ellipsis">
       常见问题
@@ -3449,8 +3462,31 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      中缀转后表达式
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      队列
+    </span>
+  </a>
   
 </li>
       
@@ -4553,8 +4589,8 @@ int main(){
     return 0;
 }
 </code></pre>
-<h2 id="_25">常见问题</h2>
-<h3 id="_26">括号匹配问题</h3>
+<h3 id="_25">常见问题</h3>
+<h4 id="_26">括号匹配问题</h4>
 <p>思路： 1. 遍历s字符串，遇到左括号直接入栈  2. 如果遇到了右括号，从栈顶取出一个左括号，如果匹配，继续；如果不匹配，直接结束，返回false. </p>
 <p>但是依然有一些细节: 1. 如果是<code>(</code>呢？ 左括号都放进了栈里面，因此会跳出循环，因此需要注意循环外要判断栈是否为空    2. 如果是<code>)</code>呢？遇到了右括号，但是栈里面什么都没有，因此没有此遇到右括号，需要判断栈是否为空。</p>
 <pre><code class="language-c++">class Solution {
@@ -4582,8 +4618,8 @@ public:
     }
 };
 </code></pre>
-<h3 id="_27">逆波兰表达式</h3>
-<p>逆波兰表达式是一种后缀表达式，所谓后缀就是指算符写在后面。</p>
+<h4 id="_27">逆波兰表达式</h4>
+<p>逆波兰表达式是一种<strong>后缀表达式</strong>，所谓后缀就是指算符写在后面。</p>
 <ul>
 <li>平常使用的算式则是一种中缀表达式，如 <code>( 1 + 2 ) * ( 3 + 4 )</code> 。</li>
 <li>该算式的逆波兰表达式写法为 <code>( ( 1 2 + ) ( 3 4 + ) * )</code> 。</li>
@@ -4639,6 +4675,84 @@ public:
     }
 };
 </code></pre>
+<h4 id="_28">中缀转后表达式</h4>
+<p>那么如何将中缀表达式转化为逆波兰表达式呢？如果能实现这个，那么就能很好地实现中缀表达式的计算。</p>
+<p>那么例如<code>(1+2)*(3+4)</code>这样的式子如何变成 <code>1 2 + 3 4 + *</code>呢？</p>
+<p>我们要单独设计符号栈。遇到数字，直接输出，而遇到符号：</p>
+<ul>
+<li>栈为空，那么符号直接入栈</li>
+<li>如果是(，直接入栈</li>
+<li>用当前符号和栈顶符号比较优先级*</li>
+</ul>
+<p>优先级*：</p>
+<ul>
+<li>当前符号&gt;栈顶符号，当前符号入栈，结束</li>
+<li>当前符号&lt;=栈顶符号，栈顶符号出栈并输出，继续比较</li>
+</ul>
+<p>直到：1. 栈里面符号出完   2. 遇到)，要一直出栈，直到遇见(为止</p>
+<pre><code class="language-c++">// MiddleToEndExpr.cpp
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;stack&gt;
+using namespace std;
+
+bool Priority(char ch, char topch){
+    if ((ch == '*' || ch == '/') &amp;&amp; 
+    (topch == '+' || topch == '-')){
+        return true;
+    }
+    if (ch == ')'){return false;}
+    if (topch == '(' &amp;&amp; ch != ')'){return true;}
+    return false;
+}
+
+
+string MiddleToEndExpr(string expr){
+    string result;
+    stack&lt;char&gt; s;
+
+    for (char ch : expr){
+        if (ch &gt;= '0' &amp;&amp; ch &lt;= '9'){
+            result.push_back(ch);
+        }
+        else{
+            if (s.empty() || ch == '('){
+                s.push(ch);
+            }
+            else{
+                while (!s.empty()){
+                    char topch = s.top();
+                    if (Priority(ch, topch)){
+                        s.push(ch);
+                        break;
+                    }
+                    else{
+                        s.pop();
+                        if (topch == '(')
+                            break;
+                        result.push_back(topch);
+                    }
+                }
+            }
+        }
+    }
+    // 如果符号栈仍然存留符号
+    while (!s.empty()){
+        result.push_back(s.top());
+        s.pop();
+    }
+    return result;
+}
+
+int main(){
+    cout &lt;&lt; MiddleToEndExpr(&quot;(1+2)*(3+4)&quot;) &lt;&lt; endl;
+    return 0;
+}
+</code></pre>
+<h2 id="_29">队列</h2>
+<p>特点：先进先出，后进后出</p>
+<p>初始化的时候，需要两个指针，first记录头，rear记录尾。入队的过程中，<code>arr[rear] = val; rear++;</code>，那么和栈类似地，出队的时候直接<code>first++；</code>就可以了。当然，rear有越界访问的危险（如果是用数组实现），因为rear可能等于<code>arr.length</code>。而且前面出队的元素根本用不上，就会闲置在那里，浪费空间。所以说在尝试用数组实现队列的时候，逻辑要进行转化：</p>
+<p>逻辑上，当rear准备越界的时候，直接<code>rear = (rear + 1) % arr.length</code>，那么每一次入队都会把之前出队的位置的元素覆盖掉，从而重新利用内存。那么rear可能会追上first的呀！那么怎么判断是空还是满呢？因此，我们不能让数组存满，因此当： <code>(rear+1)%length == first</code>的时候，我们认为环形队列满了（但事实上rear指针所在的地方并没有存数据，或者说存的是已经出队的数据），而<code>first == rear</code>的时候环形队列就是空的。</p>
 
 
 
