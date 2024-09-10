@@ -2929,6 +2929,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#antialiasing-and-z-buffering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Antialiasing and Z-Buffering
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3088,6 +3097,15 @@
   <a href="#triangles" class="md-nav__link">
     <span class="md-ellipsis">
       Triangles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#antialiasing-and-z-buffering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Antialiasing and Z-Buffering
     </span>
   </a>
   
@@ -3507,7 +3525,7 @@ x_{-g} & y_{-g} & z_{-g} & 0 \\
 In\ general,(x,y,z,w)(w≠0)\ is\ the\ 3D\ point:\\
 (x/w,y/w,z/w)
 </script>
-因此，（1,0,0,1）和（2,0,0,2）都表示（1,0,0）。那么如何实现透视投影如何实现呢？我们可以把这个过程拆成两步：Frustum -&gt; Cuboid(一个矩阵)；正交投影。示意图如下（左立体图形为Frustum，右立体为Cuboid）</p>
+因此，（1,0,0,1）和（2,0,0,2）都表示（1,0,0）。那么如何实现透视投影如何实现呢？我们可以把这个过程拆成两步：<strong><em>Frustum（视锥） -&gt; Cuboid</em></strong>(一个矩阵)；正交投影。示意图如下（左立体图形为Frustum，右立体为Cuboid）</p>
 <p><img src="img/10.png" alt="image" style="zoom:33%;" /></p>
 <p>那么“挤压”（squish）矩阵怎么求？见下图：由于先有translation，摄像机已经位于原位了，因此Frustum是一个标准的“台型立方体”。那么剖析一条光线，就会发现可以利用相似三角形去求出新的x and y（我们规定，squish之后，near far两个平面的z都是不变的）</p>
 <p><img alt="image" src="img/11.png" /></p>
@@ -3582,8 +3600,49 @@ width/2 & 0 & 0 & width/2 \\
 <p>那么对于一个三角形来说，我有必要扫过全部的像素来进行光栅化吗？一个三角形单元实际上是不大的，因此如果程序上遍历x y计算开销会起飞。所以说我们可以使用一个Bounding Box! (专业名字叫做Axis Aligned Bounding Box, AABB)。而有的时候，三角形实际上覆盖面积非常小，但是AABB会显示都非常大，这是什么情况呢？那就是三角形非常苗条，而且有旋转。那么对于这种三角形的光栅化，也可以采用Incremental Triangle Traversal Strategy。</p>
 <p><img src="img/18.png" alt="image" style="zoom: 25%;" /></p>
 <p><img src="img/19.png" alt="image" style="zoom: 25%;" /></p>
-<p>最后，我们判断了所有的点是否在三角形内部，然后根据这个信息填充对应的像素。但是我们可以看到一种很糟糕的现象：锯齿效应（Aliasing / Jaggies）。没错：抗锯齿是后续一个非常重要的工作。</p>
+<p>最后，我们判断了所有的点是否在三角形内部，然后根据这个信息填充对应的像素。但是我们可以看到一种很糟糕的现象：锯齿效应（Aliasing / Jaggies）。没错：抗锯齿（Antialiasing）是后续一个非常重要的工作。</p>
 <p><img src="img/20.png" alt="image" style="zoom: 33%;" /></p>
+<h3 id="antialiasing-and-z-buffering">Antialiasing and Z-Buffering</h3>
+<p>如何抗锯齿（也称为反走样）呢？采样能不能改进一下呢？因此需要了解一下Sampling <strong><em>Artifacts(瑕疵)</em></strong>(Errors/Mistakes/Inaccuracies) in Computer Graphics。采样带来的误差有很多例子，如摩尔纹，锯齿效应，Wagon wheel effect等等，它们的采样artifact分别是：sampling in space; undersampling images; sampling in time。但是在这些artifacts背后，有一句话可以描述现象产生的原因：<strong><em>Signals are changing too fast (high frequency), but sampled too slowly</em></strong>。 </p>
+<p>那么Antialiasing的core idea是什么呢？这里直接摆出结论：Blurring (Pre-Filtering) Before Sampling。</p>
+<p><img alt="image" src="img/21.png" /></p>
+<p>边缘高频的信息在模糊化（滤波）后可以降频，因此在较为低频的像素中心点采样下能够有更好的效果（感性理解）。Note antialiased edges in rasterized triangle where pixel values take intermediate values。同时：<strong>先采样后模糊的方法效果并不好</strong>！ 想要抗锯齿，<strong>必须先模糊后采样</strong>！</p>
+<p>此时心中一定有两个问题： 为什么undersampling会造成锯齿效应？以及，为什么先滤波（先模糊）（pre-filtering）再采样可以抗锯齿？那么我们需要频率方面的知识。 </p>
+<p><span class="arithmatex">\(cos2\pi fx\)</span>函数中，<span class="arithmatex">\(f = 1/T\)</span>，代表了频率。f越大，图像振动频率越高，周期越小。根据傅里叶变换，Fourier Transform，任何一个周期函数我都能携程正弦函数和余弦函数的和：Represent a function as a weighted sum of sines and cosines。</p>
+<p><img src="img/22.png" alt="image" style="zoom: 33%;" /></p>
+<p>而更高频率的函数需要更快的采样策略(Higher Ferequencies Need Faster Sampling)(如下图)。</p>
+<p><img alt="image" src="img/23.png" /></p>
+<p>同时，undersampling也会造成Frequenciy Aliases。在下图能够清晰看出：在一个采样频率下，即使是两个频率截然不同的函数，再这个sampling下依然采样处了相同的函数。因此，这个现象也称为“走样”。</p>
+<p><img alt="image" src="img/24.png" /></p>
+<p>而滤波，filtering，从频率的角度上就是：Get rid of certain frequency contents。filtering分为High-Pass and Low-Pass Filtering，这些在SI100B signal processing部分有所设计。</p>
+<p>又一个结论：Filtering = Convolution = Averaging。Averaging还可能理解，但为什么是卷积？在CNN中，卷积的定义是学习过的，因此这里也是如法炮制：对signal函数的值用一个<strong><em>point-wise averaging sliding window</em></strong>。</p>
+<p>Convolution Theorem: Convolution in the spatial domain is equal to multiplication in the frequenct domain, and vice versa. </p>
+<ul>
+<li>Option 1: Filter by convolution in the spatial domain</li>
+<li>Option 2 : First, transform to frequency domain (Fourier transform). Secondly, mutiply by Fourier transform of convolution kernel. Lastly, transform back to spatial domain (inverse Fourier).</li>
+</ul>
+<p>上述内容主要讲述了实施卷积的两种方法：要么直接时域上卷积，要么傅里叶变换到频域，和卷积核相乘，最后合成回去。见下示意图：</p>
+<p><img src="img/25.png" alt="image" style="zoom:50%;" /></p>
+<p>这种卷积sliding window box称为filter kernel。这个box越大，模糊化的能力越强，因此wider filter kernel = lower frequency（这很容易理解）。</p>
+<p>那么采样，sampling，从频率的角度上：Repeating Frequency Contents。见下图，在时域上的函数，通过c冲激函数进行采样。那么a函数转化到了频域上，而冲激函数经过傅里叶变换之后依然是冲激函数，那么时域上的采样是频域上的卷积，就会发现结果是在频域上不断重复的复制粘贴！</p>
+<p>采样定理指出，如果一个连续信号的频谱内容完全位于某个频率 fmax以下，那么这个信号可以通过一个采样率 fs来完美地重建，只要 fs 大于 2fmax。这个条件确保了采样后的信号不会发生混淆，也就是说，原始信号可以从其样本中唯一地重建出来。当采样率 fs 等于或小于 2fmax 时，会发生所谓的“混叠”现象。混叠是指高频信号的样本与低频信号的样本混合在一起，导致无法从采样信号中恢复原始信号。在频域中，这表现为高频信号的频谱“折叠”到低频区域，从而与原始信号的频谱重叠，这就是“重复频谱内容”的含义。</p>
+<p><img src="img/26.png" alt="image" style="zoom: 33%;" /></p>
+<p>因此如果采样越sparse，卷积频率越高，那么就会产生aliasing : Mixed Frequency Contents。见下图：</p>
+<p><img src="img/27.png" alt="image" style="zoom:33%;" /></p>
+<p>有了以上的分析，终于可以知道如何反走样：</p>
+<ul>
+<li>Option1：提高采样率（如提高分辨率；但是不现实）</li>
+<li>Option2：去掉高频。如下方的演示图。而现实中，如何滤波呢？可以考虑：低通滤波器对图像进行平均。</li>
+</ul>
+<p><img alt="image" src="img/28.png" /></p>
+<p>具体操作来说，可以考虑对每一个像素进行averaging：有多少部分被三角形覆盖，颜色上就呈现多少程度。示意图如下(正方形为1-pixel-wide)：</p>
+<p><img src="img/29.png" alt="image" style="zoom:50%;" /></p>
+<p>这个方法说着容易，做着难：如何计算三角形在这个像素格子中覆盖的面积呢？因此有一种近似的计算方法：MSAA, Multi-Sampling Anti-Aliasing。一个像素里面可以再划分为4个小正方形，有四个中心点，然后去感知是否在三角形内。如下：</p>
+<p><img src="img/30.png" alt="image" style="zoom:33%;" /></p>
+<p><img src="img/31.png" alt="image" style="zoom:33%;" /></p>
+<p><img src="img/32.png" alt="image" style="zoom:33%;" /></p>
+<p><img src="img/33.png" alt="image" style="zoom:33%;" /></p>
+<p>MSAA其实并没有提高分辨率，2*2的supersampling看似是一个像素划分为了“四个小像素”，其实只是为了得到一个更合理的像素区域的覆盖比例，从而实现模糊化。这当然只是一种抗锯齿方法，还有很多Milestones，如FXAA(Fast Approximate A), TAA(Temporal AA)。同时，super resolution也是一种抗锯齿的方法，但是原理和场景都不一样：一个512×512的照片拉成1024×1024，那么就会有锯齿效应，因为有信息确实，那么就可以用深度学习来“猜出’信息，从而Antialiasing并提高分辨率。</p>
 
 
 
