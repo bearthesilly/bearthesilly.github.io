@@ -2,7 +2,7 @@
 
 Welcome to csrookie's website! This is the personal website of csrookie, dedicating to share info, resource and experience.
 
-I'm currently a student studying computer science in Shanghaitech University(上海科技大学), Sophomore. Because of the motto "stay fool, stay hungry", I name my github repository 'csrookie' for, literally, I'm still a rookie in the field of cs. 
+I'm currently a student studying computer science in Shanghaitech University(上海科技大学), Sophomore. I name my github repository 'csrookie' for, literally, I'm still a rookie in the field of cs. 
 
 ## Introduction
 Currently interested in computer vision(Point Cloud) and computer graphics(Neural Radiance Field). I am also a little bit interested into the interpretability in Deep Learning. 
