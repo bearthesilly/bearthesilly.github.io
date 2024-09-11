@@ -565,7 +565,7 @@ $$
 
 此时心中一定有两个问题： 为什么undersampling会造成锯齿效应？以及，为什么先滤波（先模糊）（pre-filtering）再采样可以抗锯齿？那么我们需要频率方面的知识。 
 
-$cos2\pi fx$函数中，$f = 1/T$，代表了频率。f越大，图像振动频率越高，周期越小。根据傅里叶变换，Fourier Transform，任何一个周期函数我都能携程正弦函数和余弦函数的和：Represent a function as a weighted sum of sines and cosines。
+$cos2\pi fx$函数中，$f = 1/T$，代表了频率。f越大，图像振动频率越高，周期越小。根据傅里叶变换，Fourier Transform，任何一个周期函数我都能写成正弦函数和余弦函数的和：Represent a function as a weighted sum of sines and cosines。Essentially, 傅里叶变换就是时域->频域。
 
 <img src="img/22.png" alt="image" style="zoom: 33%;" />
 
@@ -624,3 +624,69 @@ Convolution Theorem: Convolution in the spatial domain is equal to multiplicatio
 <img src="img/33.png" alt="image" style="zoom:33%;" />
 
 MSAA其实并没有提高分辨率，2*2的supersampling看似是一个像素划分为了“四个小像素”，其实只是为了得到一个更合理的像素区域的覆盖比例，从而实现模糊化。这当然只是一种抗锯齿方法，还有很多Milestones，如FXAA(Fast Approximate A), TAA(Temporal AA)。同时，super resolution也是一种抗锯齿的方法，但是原理和场景都不一样：一个512×512的照片拉成1024×1024，那么就会有锯齿效应，因为有信息确实，那么就可以用深度学习来“猜出’信息，从而Antialiasing并提高分辨率。
+
+## Shading
+
+### Illumination, Shading and Graphics Pipeline
+
+我们已经知道了如何把远处物体用视锥框起来，转化为正则立方体，最后drop Z coordinates。但是，如何正确地表达遮挡关系呢？毕竟人眼或者是摄像机，只能看到物体的一面。这就是这里要提到的第一点：Visibility / Occlusion, i.e., Z-buffering。
+
+受画家画画的流程的启发，发明了***Painter's Algorithm***：Paint from back to front, overwrite in the framebaffer。什么意思呢？假如说我想画一座山的风景图油画，最远的是山，于是我先画出山的全貌，然后再进一步画眼前的草地，最后画树等细节。因为油画允许**覆盖**，即overwrite，所以说我只要遵循从远到近的作画方式，画出来的就是合乎逻辑的。
+
+我们称物体距离观测点的距离为深度depth。对于画家算法来说，对于n个三角形来说，需要复杂度`O(nlogn)`。因此这个算法就是首先将场景中的多边形根据深度进行排序，然后按照深度从大到小顺序进行描绘；画家算法通常会将不可见的部分覆盖，可以解决可见性问题。对但是有一些时候：Can have unresolvable depth order。即：不能解决有遮挡的物体，或者说不能解决深度不好确定的物体。如下面这张图：三个三角形互相遮挡，这样深度就分不清先后顺序了：
+
+<img src="img/34.png" alt="image" style="zoom: 33%;" />
+
+因此为了解决这种corner case，人们研发了一种新的算法：Z-Buffer。与其对三角形（多边形）进行深度排序，不如直接代入每一个像素的视角：我希望找到每一个像素看到的第一个三角形。规范表述如下：
+
+- Store current min. z-value ***for each sample*** (pixel)
+- Needs an additional buffer for depth values: A frame buffer that stores color values, and a depth buffer (z-buffer) that stores depth.
+
+同时，为了简化计算，原本摄像头是面向-Z轴方向的，即摄像头看到的物体的Z轴值都是负数。但是我们规定：z value is always positive, i.e., smaller z means closer and larger z means further。
+
+也就是说，在我们实施Z-buffer算法的时候，我们希望***同时***得到两个数据：颜色的buffer以及深度的buffer。示意图如下：
+
+![image](img/35.png)
+
+流程：对每一个三角形中覆盖的每一个像素进行遍历，对比每一个像素Z buffer中储存的深度，如果发现这个覆盖住它的一个三角形的depth比记录的depth小，那么两个buffer同时更新数据，直到所有的三角形被遍历完毕。Pseudo-code如下：
+
+````c++
+// Initialize depth buffer to infinite
+// During Rasterization:
+for (each triangle T)
+    for (each sample (x,y,z) in T)
+         if (z < zbuffer[x,y])
+             frambuffer[x,y] = rgb;
+			zbuffer[x,y] = z;
+		else;
+````
+
+示意图如下：
+
+<img src="img/36.png" alt="image" style="zoom:33%;" />
+
+那么这个复杂度是多少呢？答案是`O(n)`，因为其实我们***没有对三角形进行排序***。这便是最重要的visibility algorithm，implemented in hardware for all GPUs。
+
+介绍完了Z buffer之后，我们知道了像素中的点原来对应的空间中的三角形究竟是哪一个了，而且也能知道颜色是什么了。但是现实生活中颜色只是一方面，光线的介入让我们感觉到什么样的世界是“真实的”，因此我们还需要对像素进行***着色***（shading）。shading字典的定义：The darkening or coloring of an illustration or diagram with parallel lines or a block of color。而CG中的定义是：***The process of applying a material to an object***。
+
+接下来要介绍一种A Simple Shading Model: ***Blinn-Phong Reflectance Model***。见下图，根据杯子右边部分区域的***高光（Specular highlights）***，我们猜测光源在右边；而杯子右边能够接受光照，但是没有直接反射到摄像头里面，但是我们依然能够看见这一部分，这就是***漫反射（Diffuse reflection）***；但是同时，杯子的左面没有直接接收到光照，而是，比如说，接收到了墙体反射的光，这种就称为***环境光照（Ambient lighting）***。
+
+<img src="img/37.png" alt="image" style="zoom:33%;" />
+
+再定义一些事情，见下图(Surface parameter可以是colors, shinisess, ...)：
+
+<img src="img/38.png" alt="image" style="zoom:33%;" />
+
+但是，Shading is Local，i.e.，No shadows will be generated!（shading ≠ shadow）。那么接下来，我们开始尝试表示杯子图中所演示的三种现象：
+
+Diffuse Reflection：我们把光视为一种能量，那么漫反射中进入眼睛的光亮就可以表示为进入眼睛的能量有多少。联想太阳板：把它正对太阳自然是能量获取最大的情况，而如果板子有所倾斜，那么能量就不是max了。因此，这里介绍***Lambert's cosine law***：In general, light per unit area is proportional to $cos\theta = l\vdot n$。如下图：
+
+![image](img/39.png)
+
+同时，光还有falloff效应：一个点光源的光场中，一个单位面积接收到的能量与距离的平方成反比：
+
+<img src="img/40.png" alt="image" style="zoom:25%;" />
+
+有了上面两个知识点的铺垫，***漫反射***，也称作***Lambertian Shading***，的表达方式终于出现了，见下图。***这个式子展示了究竟有多少的光，或者说能量，到达了Shading Point (而不是人眼)***。但是注意到，这个式子其实是***independent of view direction***。为什么呢？因为理想化的认为中，漫反射的实质其实是***shading point吸收了入射光线的能量，然后均匀的散发出去***。当然，关于颜色，物体表面颜色所拆分成的RGB三通道各自的diffuse coefficient就蕴含了颜色的信息。当然，这个***Blinn-Phong Reflectance Model***只是一个经验模型，并不是完全的真是的物理模型，更多的accuracy detail在ray tracing里面会再次提及。
+
+<img src="img/41.png" alt="image" style="zoom:33%;" />
