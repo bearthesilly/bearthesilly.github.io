@@ -111,7 +111,7 @@ $$
 
 矩阵之间的乘法略。矩阵的转置有以下性质：$(AB)^T=B^TA^T$。那么点乘就可以表示为：$\vec{a}\cdot\vec{b} = \vec{a}^T\vec{b}$
 
-## Eigen库
+## Eigen and OpenCV库
 
 Eigen是一个高层次的C ++库，有效支持线性代数，矩阵和矢量运算，数值分析及其相关的算法。
 
@@ -123,6 +123,8 @@ There is no library to link to. The only thing that you need to keep in mind whe
 `g++ -I /path/to/eigen/ my_program.cpp -o my_program `
 
 于是命令行运行cpp文件的时候，应该终端运行上面指令，然后终端命令行运行exe文件：`./my_program.exe`
+
+OpenCV同理：当然可以把这个库编进环境里面，但是为了方便，也可以使用`-I /path/to/opencv2/`来实现。
 
 ## Transformation
 
