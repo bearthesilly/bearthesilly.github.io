@@ -136,5 +136,7 @@ nav:
   - Course (Extracurriculum):
     - 数据结构与算法:
       - 基本结构与算法分析: Data_Structure_and_Algorithm/基本结构与算法分析.md
-    - GAMES101: GAMES101/note.md
+    - GAMES101: 
+      - Note: GAMES101/note.md
+      - Homework: GAMES101/note_hw.md
   - AAAI2025: AAAI2025/log.md

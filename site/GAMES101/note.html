@@ -12,7 +12,7 @@
         <link rel="prev" href="../Data_Structure_and_Algorithm/%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90.html">
       
       
-        <link rel="next" href="../AAAI2025/log.html">
+        <link rel="next" href="note_hw.html">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>GAMES101 - csrookie's website</title>
+        <title>Note - csrookie's website</title>
       
     
     
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              GAMES101
+              Note
             
           </span>
         </div>
@@ -2788,6 +2788,43 @@
   
   
   
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    GAMES101
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            GAMES101
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
     <li class="md-nav__item md-nav__item--active">
       
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
@@ -2800,7 +2837,7 @@
           
   
   <span class="md-ellipsis">
-    GAMES101
+    Note
   </span>
   
 
@@ -2811,7 +2848,7 @@
         
   
   <span class="md-ellipsis">
-    GAMES101
+    Note
   </span>
   
 
@@ -2970,6 +3007,35 @@
     </ul>
   
 </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="note_hw.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homework
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -3604,9 +3670,18 @@ fA + B = f^2\hspace{2cm} (2)
 </script>
 这样<span class="arithmatex">\(A = n +f;B = -nf\)</span>，我们的<span class="arithmatex">\(M_{persp\rightarrow{ortho}}\)</span>就完全算出来了。最后就有：
 <script type="math/tex; mode=display">
+M_{persp} = 
+\begin{pmatrix}
+n & 0 & 0 & 0 \\
+0 & n & 0 & 0 \\
+0 & 0 & n+f & -nf \\
+0 & 0 & 1 & 0 
+\end{pmatrix}
+\\
 M_{persp} = M_{ortho}M_{persp\rightarrow{ortho}}
 </script>
-好的，投影矩阵终于求出来了。但是有一个问题：我们规定了near and far平面距离XOY平面的距离不变，那么这个Frustum经过了Squishing之后，中间的点的z值是变大了还是变小了呢？假设点为<span class="arithmatex">\((x,y,t,1)\)</span>其中<span class="arithmatex">\(n&lt;t&lt;f\)</span>，那么经过了矩阵相乘之后：<span class="arithmatex">\(\hat{z} = ((n+f)z - nf)/z\)</span>，而它要和z进行比较：
+好的，</p>
+<p>投影矩阵终于求出来了。但是有一个问题：我们规定了near and far平面距离XOY平面的距离不变，那么这个Frustum经过了Squishing之后，中间的点的z值是变大了还是变小了呢？假设点为<span class="arithmatex">\((x,y,t,1)\)</span>其中<span class="arithmatex">\(n&lt;t&lt;f\)</span>，那么经过了矩阵相乘之后：<span class="arithmatex">\(\hat{z} = ((n+f)z - nf)/z\)</span>，而它要和z进行比较：
 <script type="math/tex; mode=display">
 (n+f)z - nf)\ \ ?\ \ z^2 \hspace{2cm}(1) \\
 0\ \ ?\ \ z^2-(n+f)z+nf \hspace{2cm}(2) \\

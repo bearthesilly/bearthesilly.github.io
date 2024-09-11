@@ -487,9 +487,19 @@ fA + B = f^2\hspace{2cm} (2)
 $$
 这样$A = n +f;B = -nf$，我们的$M_{persp\rightarrow{ortho}}$就完全算出来了。最后就有：
 $$
+M_{persp} = 
+\begin{pmatrix}
+n & 0 & 0 & 0 \\
+0 & n & 0 & 0 \\
+0 & 0 & n+f & -nf \\
+0 & 0 & 1 & 0 
+\end{pmatrix}
+\\
 M_{persp} = M_{ortho}M_{persp\rightarrow{ortho}}
 $$
-好的，投影矩阵终于求出来了。但是有一个问题：我们规定了near and far平面距离XOY平面的距离不变，那么这个Frustum经过了Squishing之后，中间的点的z值是变大了还是变小了呢？假设点为$(x,y,t,1)$其中$n<t<f$，那么经过了矩阵相乘之后：$\hat{z} = ((n+f)z - nf)/z$，而它要和z进行比较：
+好的，
+
+投影矩阵终于求出来了。但是有一个问题：我们规定了near and far平面距离XOY平面的距离不变，那么这个Frustum经过了Squishing之后，中间的点的z值是变大了还是变小了呢？假设点为$(x,y,t,1)$其中$n<t<f$，那么经过了矩阵相乘之后：$\hat{z} = ((n+f)z - nf)/z$，而它要和z进行比较：
 $$
 (n+f)z - nf)\ \ ?\ \ z^2 \hspace{2cm}(1) \\
 0\ \ ?\ \ z^2-(n+f)z+nf \hspace{2cm}(2) \\
