@@ -3691,8 +3691,6 @@ width/2 & 0 & 0 & width/2 \\
 <p><img src="img/32.png" alt="image" style="zoom:33%;" /></p>
 <p><img src="img/33.png" alt="image" style="zoom:33%;" /></p>
 <p>MSAA其实并没有提高分辨率，2*2的supersampling看似是一个像素划分为了“四个小像素”，其实只是为了得到一个更合理的像素区域的覆盖比例，从而实现模糊化。这当然只是一种抗锯齿方法，还有很多Milestones，如FXAA(Fast Approximate A), TAA(Temporal AA)。同时，super resolution也是一种抗锯齿的方法，但是原理和场景都不一样：一个512×512的照片拉成1024×1024，那么就会有锯齿效应，因为有信息确实，那么就可以用深度学习来“猜出’信息，从而Antialiasing并提高分辨率。</p>
-<h2 id="shading">Shading</h2>
-<h3 id="illumination-shading-and-graphics-pipeline">Illumination, Shading and Graphics Pipeline</h3>
 <p>我们已经知道了如何把远处物体用视锥框起来，转化为正则立方体，最后drop Z coordinates。但是，如何正确地表达遮挡关系呢？毕竟人眼或者是摄像机，只能看到物体的一面。这就是这里要提到的第一点：Visibility / Occlusion, i.e., Z-buffering。</p>
 <p>受画家画画的流程的启发，发明了<strong><em>Painter's Algorithm</em></strong>：Paint from back to front, overwrite in the framebaffer。什么意思呢？假如说我想画一座山的风景图油画，最远的是山，于是我先画出山的全貌，然后再进一步画眼前的草地，最后画树等细节。因为油画允许<strong>覆盖</strong>，即overwrite，所以说我只要遵循从远到近的作画方式，画出来的就是合乎逻辑的。</p>
 <p>我们称物体距离观测点的距离为深度depth。对于画家算法来说，对于n个三角形来说，需要复杂度<code>O(nlogn)</code>。因此这个算法就是首先将场景中的多边形根据深度进行排序，然后按照深度从大到小顺序进行描绘；画家算法通常会将不可见的部分覆盖，可以解决可见性问题。对但是有一些时候：Can have unresolvable depth order。即：不能解决有遮挡的物体，或者说不能解决深度不好确定的物体。如下面这张图：三个三角形互相遮挡，这样深度就分不清先后顺序了：</p>
@@ -3718,6 +3716,8 @@ for (each triangle T)
 <p>示意图如下：</p>
 <p><img src="img/36.png" alt="image" style="zoom:33%;" /></p>
 <p>那么这个复杂度是多少呢？答案是<code>O(n)</code>，因为其实我们<strong><em>没有对三角形进行排序</em></strong>。这便是最重要的visibility algorithm，implemented in hardware for all GPUs。</p>
+<h2 id="shading">Shading</h2>
+<h3 id="illumination-shading-and-graphics-pipeline">Illumination, Shading and Graphics Pipeline</h3>
 <p>介绍完了Z buffer之后，我们知道了像素中的点原来对应的空间中的三角形究竟是哪一个了，而且也能知道颜色是什么了。但是现实生活中颜色只是一方面，光线的介入让我们感觉到什么样的世界是“真实的”，因此我们还需要对像素进行<strong><em>着色</em></strong>（shading）。shading字典的定义：The darkening or coloring of an illustration or diagram with parallel lines or a block of color。而CG中的定义是：<strong><em>The process of applying a material to an object</em></strong>。</p>
 <p>接下来要介绍一种A Simple Shading Model: <strong><em>Blinn-Phong Reflectance Model</em></strong>。见下图，根据杯子右边部分区域的<strong><em>高光（Specular highlights）</em></strong>，我们猜测光源在右边；而杯子右边能够接受光照，但是没有直接反射到摄像头里面，但是我们依然能够看见这一部分，这就是<strong><em>漫反射（Diffuse reflection）</em></strong>；但是同时，杯子的左面没有直接接收到光照，而是，比如说，接收到了墙体反射的光，这种就称为<strong><em>环境光照（Ambient lighting）</em></strong>。</p>
 <p><img src="img/37.png" alt="image" style="zoom:33%;" /></p>
