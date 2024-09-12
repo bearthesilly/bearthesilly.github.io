@@ -238,7 +238,7 @@ R^T_\theta = I
 $$
 
 
-那么注意到，上面这些情况没有涉及到平移，因为其它的变换都是线性变换，但是唯独平移不是。因此为了解决这个问题，采用了Homogenous Coordinates Solution（for more information on this, please refer to [My Linear Algebra Course Reseach On Affine Transformation ](https://github.com/bearthesilly/csrookie/blob/main/Linear Algebra/linear_project.pdf)。
+那么注意到，上面这些情况没有涉及到平移，因为其它的变换都是线性变换，但是唯独平移不是。因此为了解决这个问题，采用了Homogenous Coordinates Solution。
 
 - 
 
