@@ -253,3 +253,75 @@ target_link_libraries(Rasterizer ${OpenCV_LIBRARIES})
 `"C:\\Users\\23714\\Desktop\\CG\\opencv\\build"`这两处的设计都是为了再三确保能够找到opencv，`C:\\Users\\23714\\Desktop\\CG\\eigen-3.4.0\\eigen-3.4.0`这一处的设计是为了找到Eigen库。
 
 最后打开了visual studio 2022，打开这个文件夹，然后就莫名其妙开始cmake了，最后终于生成了exe文件。总之，这种方法是终于work了，虽然啼笑皆非，不知道为什么work了。。。
+
+## Homework 2
+
+这里需要手动进行光栅化。对于每一个投影到2D的三角形，需要创建一个bounding box，然后遍历box中的像素，判断是是否在三角形内部。这是对于逐个像素的，而对于逐个三角形进行操作的时候，像素需要比较该位置的插值深度值 (interpolated depth value)和深度 缓冲区 (depth buffer)的值，如果更近，那么就要更新深度和颜色。
+
+首先是判断点是否在三角形内部：利用三个叉乘***是否符号一样***来进行判断。
+
+````c++
+static bool insideTriangle(float x, float y, const Vector3f* _v)
+{   
+    // TODO : Implement this function to check if the point (x, y) is inside the triangle represented by _v[0], _v[1], _v[2]
+    Vector3f P = Vector3f(x,y,_v[0].z());
+    Vector3f AB = _v[1] - _v[0];
+    Vector3f AP = P - _v[0];
+    auto cross1 = AB.cross(AP);
+ 
+    Vector3f BC = _v[2] - _v[1];
+    Vector3f BP = P - _v[1];
+    auto cross2 = BC.cross(BP);
+ 
+    Vector3f CA = _v[0] - _v[2];
+    Vector3f CP = P - _v[2];
+    auto cross3 = CA.cross(AP);
+ 
+    if ((cross1.z() > 0 && cross2.z() > 0 && cross3.z() > 0) ||
+        (cross1.z() < 0 && cross2.z() < 0 && cross3.z() < 0)) {
+        return true;
+    }
+ 
+    return false;
+}
+````
+
+而光栅化流程中，确定bounding box首先要初始化`minX maxX minY maxY`，这里我就随便拿第一个顶点进行初始化了，然后直到找出三个点中的`minX maxX minY maxY`，并且转化为整数。然后遍历框架中的每一个点，判断是不是在三角形内部，如果是的话，计算差值出来的深度，拿这个值和buffer里面的比较，如果这里的深度跟小，说明更近，应该更新颜色和深度buffer。
+
+````c++
+void rst::rasterizer::rasterize_triangle(const Triangle& t) {
+    auto v = t.toVector4();
+    float minX=t.v[0].x(), maxX=t.v[0].x(), minY=t.v[0].y(), maxY=t.v[0].y();
+
+    for(auto& v : t.v)
+    {   
+        minX=std::min(minX, v.x());
+        maxX=std::max(maxX, v.x());
+        minY=std::min(minY, v.y());
+        maxY=std::max(maxY, v.y());
+    }
+
+    for (int y = floor(minY); y < ceil(maxY); y++) {
+        for (int x = floor(minX); x < ceil(maxX); x++) {
+            if (!insideTriangle(x + 0.5, y + 0.5, t.v)) {continue;}
+
+            auto Barycentric2D = computeBarycentric2D(x, y, t.v);
+            float alpha = std::get<0>(Barycentric2D), beta = std::get<1>(Barycentric2D), gamma = std::get<2>(Barycentric2D);
+            float w_reciprocal = 1.0 / (alpha / v[0].w() + beta / v[1].w() + gamma / v[2].w());
+            float z_interpolated = alpha * v[0].z() / v[0].w() + beta * v[1].z() / v[1].w() + gamma * v[2].z() / v[2].w();
+            z_interpolated *= w_reciprocal;
+ 
+            auto ind = get_index(x, y);
+            if (depth_buf[ind] > z_interpolated) {
+                depth_buf[ind] = z_interpolated;
+                set_pixel(Eigen::Vector3f(x, y, z_interpolated), t.getColor());
+            }
+        }
+    }
+}
+````
+
+如果要写出上述的代码，需要理解`int rst::rasterizer::get_index`用作buffer vector的引索。最后效果如下：
+
+<img src="img/hw_2.png" alt="image" style="zoom:33%;" />
+

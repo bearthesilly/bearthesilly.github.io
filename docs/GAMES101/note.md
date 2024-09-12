@@ -699,6 +699,109 @@ Diffuse Reflection：我们把光视为一种能量，那么漫反射中进入�
 
 <img src="img/40.png" alt="image" style="zoom:25%;" />
 
-有了上面两个知识点的铺垫，***漫反射***，也称作***Lambertian Shading***，的表达方式终于出现了，见下图。***这个式子展示了究竟有多少的光，或者说能量，到达了Shading Point (而不是人眼)***。但是注意到，这个式子其实是***independent of view direction***。为什么呢？因为理想化的认为中，漫反射的实质其实是***shading point吸收了入射光线的能量，然后均匀的散发出去***。当然，关于颜色，物体表面颜色所拆分成的RGB三通道各自的diffuse coefficient就蕴含了颜色的信息。当然，这个***Blinn-Phong Reflectance Model***只是一个经验模型，并不是完全的真是的物理模型，更多的accuracy detail在ray tracing里面会再次提及。
+有了上面两个知识点的铺垫，***漫反射***，也称作***Lambertian Shading***，的表达方式终于出现了，见下图。***这个式子展示了究竟有多少的光，或者说能量，到达了Shading Point (而不是人眼)，并即将散发出去***。但是注意到，这个式子其实是***independent of view direction***。为什么呢？因为理想化的认为中，漫反射的实质其实是***shading point吸收了入射光线的能量，然后均匀的散发出去***。当然，关于颜色，物体表面颜色所拆分成的RGB三通道各自的diffuse coefficient就蕴含了颜色的信息。当然，这个***Blinn-Phong Reflectance Model***只是一个经验模型，并不是完全的真是的物理模型，更多的accuracy detail在ray tracing里面会再次提及。
 
 <img src="img/41.png" alt="image" style="zoom:33%;" />
+
+### Shading, Pipeline and Texture Mapping
+
+在Blinn-Phong中，认为如果产生了高光，是因为光线发生了镜面反射，然后人眼正好能够接受。但是，Blinn-Phong也做了一个很有意思的处理：***V close to mirror dirction -> half vector（半程向量）near normal***。
+
+<img src="img/42.png" alt="image" style="zoom:33%;" />
+
+首先是注意到：这个模型貌似是没有考虑l和n的夹角带来的能量损失问题，因为毕竟Blinn-Phong只是一个经验模型，这里省略了；其次是为什么要使用bivector，因为这个向量很好算，式子如上，计算量不大，而如果计算了反射光线方向向量r和v的角度余弦值，那么这个模型就是Phong模型，i.e.，Blinn Phong是Phong模型的改进版；最后，为什么有p指数次幂？因为虽然说确实，cos能够表示方向错差而带来的能量损失（表现为光不高亮），但是现实是：我在bivector与法向量n重合的时候能够看到高亮，而在偏离了一定的小视角后，光亮迅速下降，一直到偏差不多一定角度之后，就没有高光了。因此，用$cos^p\alpha$的函数形状能够更好地拟合高光现象。函数示意图如下：
+
+![image](img/43.png)
+
+下面这个图很好地展示了ks和p两个参数带来的影响：
+
+<img src="img/44.png" alt="image" style="zoom:33%;" />
+
+最后剩下环境光：在Blinn Phong中做了一个大胆的假设：全局的环境光都是一样的，相当于是一个常数（但现实并不如此，而真正的环境光在之后的全局光照中会详细介绍）。示意图如下：
+<img src="img/45.png" alt="image" style="zoom:33%;" />
+
+那么最后，Blinn-Phong Reflection Model终于诞生了*(当然，要注意n l h等向量都是normalize后的单位向量)*：
+
+![image](img/46.png)
+
+接下来介绍着色频率，Shading Frequencies。之前的模型一直在提到Shading Point，那么实际操作中，Shading Point选哪些点呢？依我个人看法，选Shading Point也能算是一种sampling。那么Shading Frequencies是如何影响图像的呢？如下：
+
+![image](img/47.png)
+
+上面三张图对应的是三种Shading Point采样策略：第一张图是一个面片里面有一个固定的法向量，挑一个点算出着色，然后认为面片里面的着色都是一样的；第二张图是每一个triangle的三个顶点都算出各自法向量（咋求？马上会说），算出三个点的着色，然后通过差值方法（后面会说）来填充三角形内部每一个点的着色，这样就有了一个很好的过渡效果；最后是每一个像素都进行着色的计算。上面这个图的演示效果还是很明显的。
+
+第一种对应的就是***Flat Shading***：Triangle face is flat, so every point in it has the same normal vector。这种方法对于光滑表面非常不友好。第二种对应的是***Gouraud Shading***（高洛德着色）：Interpolate colors from vertices across traingle (we can calculate the normal vector of each vertex)。第三种对应的是***Phong Shading***：Interpolate normal vectors across each triangle and compute full shading model at each pixel。
+
+那么留下了两个问题：第一个是顶点的法向量怎么求？这个点肯定被多个三角形所共有，那么用这些三角形的法向量来求不就可以了吗？事实也是如此，但是关于是向量简单相加，还是按照三角形面积加权相加，实验证明后者效果更好，但是前者更为简单。示意图如下：
+
+<img src="img/48.png" alt="image" style="zoom: 33%;" />
+
+那么第二个是如何用顶点法向量求出每一个像素的法向量呢？这需要用到***重心差值(Barycentric Interpolation)***，之后会介绍。
+
+接下来，介绍***渲染管线：Graphic (Real-time Tendering) Pipeline***。这里的Pipeline其实是一种流程，介绍了究竟是如何进行渲染的。如下：
+
+![image](img/49.png)
+
+其中，Rasterization包含了Z-Buffering，判断每一个像素究竟是由哪一个三角形管；关于shading什么时候进行，如果是Gouraud Shading那么其实在Vertex Processing里面就可以进行着色了，而如果是Phong Shading那么就要在Fragment Processing里面着色。关于手搓着色器Shader，推荐网站：http://shadertoy.com/view/ld3Gz2。最终希望实现的，就是Highly Complex 3D Scence in Realtime。
+
+最后介绍Texture Mapping。之前的Blinn Phong模型中描述的是光的能量，但是现实中，在同一个光源接收下，也有可能是蓝色，或者是黄色。因此，这就需要纹理属性来表示这一部分的信息了，经典的有漫反射中的k_d参数等。怎么定义一个点的属性？首先我们要定义：三维物体表面是二维的。那么纹理texture就是一张图，我们会把这个图“蒙在三维物体表面”。
+
+![image](img/50.png)
+
+那么我就希望有一个对应关系，使得：***Each triangle vertex is assigned to a texture coordinate(u,v)***。通常，约定俗成u v的范围是[0, 1]。这种对应关系怎么求呢？这里直接默认我们将会知道这种对应关系是什么，而之后会讲。
+
+<img src="img/51.png" alt="image" style="zoom:33%;" />
+
+最最后的一个坑：如何三角形差值？三角形三个顶点有各自的属性，如何定义or算三角形内部的点属性，使得三角形看起来有一种过渡效果？下节课会说。
+
+## Texture Mapping
+
+首先从重心坐标开始说起，这是为了解决如何差值计算的问题。为什么我们希望差值？因为我们希望Obtain smoothly varying values across triangles。那么差值什么呢？有Texture coordinates, colors, normal vectors等等属性。那么如何差值？重心坐标就是关键。
+
+在一个三角形中，如果一个点在三角形内部，那么满足：
+$$
+(x, y) = \alpha A + \beta B + \gamma C \\
+\alpha + \beta + \gamma = 1 \\
+\alpha, \beta ,\gamma >0
+$$
+当三个参数都是1/3的时候，这个点就是重心坐标了；而如果是任意一个点呢？公示如下：
+
+<img src="img/52.png" alt="image" style="zoom:33%;" />
+
+而公式推广一下：$V=\alpha V_A + \beta V_B + \gamma V_C$，$V_i$ canbe positions, texture, coordinates, color, normal vector, depth, material attributes ...
+
+而这种操作也会有一定的问题：比如说texture magnification。第一种情况，Easy Case，如果说我有很高分辨率的图，但是纹理太小了，因此(x, y)映射过去后的(u, v)可能不是整数，因此要round为整数，那么这就表现为：多个像素聚在一起对应的是texture一个位置，从而造成了方格的感觉。
+
+![image](img/53.png)
+
+如何解决呢？双线性插值：Bilinear Interpolation。见下图：如果(x, y)落在了红点位置，那么如果采用Nearest找到右上角的中心点所对应的texel，那么就会造成一个后果：落在u11的红点的属性值都是这个texel的value，magnification就出现了。因此，可以看身边的四个中心点。注意到s t参数，这两个参数在使用引索作为单位的情况下，应该是都是小于1的数字，因为u01 u11两个点之间的数字都是1（按理说，u v坐标系范围都是0-1，这里为了契合texel的概念，同样赋予了一套引索，我们这里的s t都是用引索来作为基准的）。因此，在两个方向上就可以进行线性差值了。$f(x,y)=lerp(t,u_o,u_1)$代表竖直方向上进行了一次线性插值，而双向差值就是水平和数值都要差值。
+
+<img src="img/54.png" alt="image" style="zoom: 25%;" />
+
+那么第二种情况，Hard Case，如果纹理很大，但是我的图的resolution较小，那么texture magnification现象更严重。如下图。
+
+![image](img/55.png)
+
+问题是什么呢？已上图为例，近***处的像素投射到的Texture里面的覆盖面积较小***，尚且误差不大，***但是远处的像素投射过去，覆盖的面积很大***，而这种情况采取平均听起来就怪怪的。
+
+![image](img/56.png)
+
+那supersampling能不能解决的？能，即降低覆盖区域，但是速度很慢。有没有更好的办法？之前我们都是用texel中心点信息来进行差值，是Point Query，那么可以尝试转化为Range Query。因此引入了Mipmap概念，可以帮助进行范围查询：这个方法很快，***但只能做近似的正方形的查询***。我们对一个正方形的图形能够逐步降低分辨率，如下：
+
+![image](img/57.png)
+
+这一步可以在得到texture之后提前计算出来。那么我们就可以构建视觉金字塔，或者叫做***Mip Hierarchy***。那么我们引入的额外存储是多少呢？如果Level 0的图的存储量为1，那么之后其实是4/3。
+
+<img src="img/58.png" alt="image" style="zoom:25%;" />
+
+那么如何知道一个像素映射到纹理上的区域大小呢？可以借助像素邻居中心点的信息。如下，我希望知道左边小正方形在纹理上的覆盖面积，那么借助上下左右四个中心点，五个都投影到纹理上，然后利用这五个点就能大概知道覆盖面积长什么样子了，如右图红色区域。我们用边长为L的正方形拟合这一片区域，L的边长公式如下（其实是投影后的(u,v)00到01,10***两个***距离中的最大值）。那么如何用Mipmap求这个正方形区域覆盖的texture值的平均值？那么巧妙之处就在于，***我知道这个区域在$D=Log_2 L$层的Mipmap中一定会缩小成近似于1个像素的大小区域！！***，因此就能非常快的知道这个平均值是多少。
+
+<img src="img/59.png" alt="image"  />
+
+我们提到，是***近似***与一个像素，其实如果面积真的是一个像素的话，可能给是类似于1.8层这种数据。那么在这样的情况下，我们可以算法可以再进一步：***Trilinear Interpolation***。假如说是1.8层，那么就是1层的位置进行一次双向差值，2层进行一次双向差值，两个值再根据D值进行差值计算。如下图：
+
+<img src="img/60.png" alt="image" style="zoom:33%;" />
+
+这种三差值听起来很有道理，但是仍然有一个问题：模糊化。因为毕竟，D越高，越模糊（之前的图也能直观感受到）；同时，很多像素投射到纹理上面，覆盖面积细长，用正方形来拟合就会overblur。那么因此设计了Anisotropic Filtering（各向异性过滤）。如下图：有了Ripmap，原来细长的覆盖区域可以用长方形包住，那么overblur会得到缓解。一般来说，各向异性过滤的存储量将会是原来的三倍。
+
+![image](img/61.png)
