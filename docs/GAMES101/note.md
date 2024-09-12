@@ -754,7 +754,7 @@ Diffuse Reflection：我们把光视为一种能量，那么漫反射中进入�
 
 最最后的一个坑：如何三角形差值？三角形三个顶点有各自的属性，如何定义or算三角形内部的点属性，使得三角形看起来有一种过渡效果？下节课会说。
 
-## Texture Mapping
+### Texture Mapping
 
 首先从重心坐标开始说起，这是为了解决如何差值计算的问题。为什么我们希望差值？因为我们希望Obtain smoothly varying values across triangles。那么差值什么呢？有Texture coordinates, colors, normal vectors等等属性。那么如何差值？重心坐标就是关键。
 
@@ -805,3 +805,50 @@ $$
 这种三差值听起来很有道理，但是仍然有一个问题：模糊化。因为毕竟，D越高，越模糊（之前的图也能直观感受到）；同时，很多像素投射到纹理上面，覆盖面积细长，用正方形来拟合就会overblur。那么因此设计了Anisotropic Filtering（各向异性过滤）。如下图：有了Ripmap，原来细长的覆盖区域可以用长方形包住，那么overblur会得到缓解。一般来说，各向异性过滤的存储量将会是原来的三倍。
 
 ![image](img/61.png)
+
+同时，Textures doesn't have to only represent colors：纹理也可以记录法向量（normal / bump mapping）等。那么法线贴图是在干什么？Adding surface detail without adding more triangles。如下图，黑线为原来的物体表面，而使用了贴图，高度会扰动，从而肉眼可见地法向量方向将会发生变化。
+
+<img src="img/62.png" alt="image" style="zoom:33%;" />
+
+那么法向量的扰动数学上如何表示？我们先看一个维度上的：
+
+<img src="img/63.png" alt="image" style="zoom:33%;" />
+
+拓展到3D之后，公示如下：
+
+<img src="img/64.png" alt="image" style="zoom:33%;" />
+
+注意这个公式是默认真实世界法向量是(0, 0, 1)！因此这个公式在实际运用的过程中，对于一个法向量来说，我先转化它到（0, 0, 1），然后通过法向量贴图进行扰动，算出一个新的法向量，然后转化到原来世界的坐标系。
+
+但是这种方法终究是改变几何，仅仅是改变了法向量欺骗人眼。因此又发明了一种Displacement mapping，这个方法实际上是移动了顶点，但是代价是需要supersampling。
+
+## Geometry
+
+### Introduction
+
+ 几何Geometry的表示可以有很多种方式，但是大致分为两类：一类是***隐式表达（Implicit）***，如algebraic surface，level sets，distance functions等；一类是***显示表达（Explicit）***，如point cloud，polygon mesh，subdivision，NURBS等。
+
+什么是隐式表达？我不知道点的具体位置，但是我知道点之间的相互关系。例如，在一个单位球上的点的隐式表达就可以是：$x^2 + y^2 + z^2 = 1$。更一般地，$f(x,y,z) = 0$。这种方法优点是很容易看出来一个点是否在几何体里面，而缺点是很难画出来，很抽象
+
+那么显示表达呢？All points are given directly or via parameter mapping。例如：$f(u,v) = (cosu, cosv, sinu)$，那么这代表的一系列点就是显示表示出来的。这种方法优点是很容易画出来，但是很难判断一个点在不在几何体里面。
+
+那么Best Representation究竟是什么呢？That depends on tasks！因此，我们需要了解更多的隐式表达和显示表达。对于implicit来说，第一种是数学公式的表示，这非常不直观；第二种是Constructive Solid Geometry(CSG)，尝试用基本几何形体之间的Boolean operations去合成复杂的几何体；第三种是距离函数：Giving minimum distance (could be signed distance) from anywhere to object，详细内容可以进这个[知乎链接](https://zhuanlan.zhihu.com/p/365440831)；第四种是Level Set Methods，思想和距离函数其实是一模一样的，只不过是距离表示在网格里面了；第五种是分型(Fractals)，例如雪花，很像递归。
+
+<img src="img/65.png" alt="image" style="zoom: 25%;" />
+
+<img src="img/66.png" alt="image" style="zoom: 25%;" />
+
+<img src="img/67.png" alt="image" style="zoom:25%;" />
+
+Implicit Representation的优点：
+
+- compact description(e.g, a function)
+- certain queries easy(inside object, distance to surface)
+- good for ray-to-surface intersection (more later)
+- for simple shapes, exact description / no sampling error
+- easy to handle changes in topology (e.g., handling fluid with distance function)
+
+同时也有缺点：difficult to model complex shapes。
+
+
+
