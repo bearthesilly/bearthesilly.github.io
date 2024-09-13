@@ -139,4 +139,6 @@ nav:
     - GAMES101: 
       - Note: GAMES101/note.md
       - Homework: GAMES101/note_hw.md
-  - AAAI2025: AAAI2025/log.md
+  - Blog: 
+    - AAAI2025: Blog/AAAI2025/log.md
+    - NeRF: Blog/NeRF/note.md
