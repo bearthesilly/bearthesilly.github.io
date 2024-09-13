@@ -832,7 +832,9 @@ $$
 
 那么显示表达呢？All points are given directly or via parameter mapping。例如：$f(u,v) = (cosu, cosv, sinu)$，那么这代表的一系列点就是显示表示出来的。这种方法优点是很容易画出来，但是很难判断一个点在不在几何体里面。
 
-那么Best Representation究竟是什么呢？That depends on tasks！因此，我们需要了解更多的隐式表达和显示表达。对于implicit来说，第一种是数学公式的表示，这非常不直观；第二种是Constructive Solid Geometry(CSG)，尝试用基本几何形体之间的Boolean operations去合成复杂的几何体；第三种是距离函数：Giving minimum distance (could be signed distance) from anywhere to object，详细内容可以进这个[知乎链接](https://zhuanlan.zhihu.com/p/365440831)；第四种是Level Set Methods，思想和距离函数其实是一模一样的，只不过是距离表示在网格里面了；第五种是分型(Fractals)，例如雪花，很像递归。
+那么Best Representation究竟是什么呢？That depends on tasks！因此，我们需要了解更多的隐式表达和显示表达。
+
+对于implicit来说，第一种是数学公式的表示，这非常不直观；第二种是Constructive Solid Geometry(CSG)，尝试用基本几何形体之间的Boolean operations去合成复杂的几何体；第三种是距离函数：Giving minimum distance (could be signed distance) from anywhere to object，详细内容可以进这个[知乎链接](https://zhuanlan.zhihu.com/p/365440831)；第四种是Level Set Methods，思想和距离函数其实是一模一样的，只不过是距离表示在网格里面了；第五种是分型(Fractals)，例如雪花，很像递归。
 
 <img src="img/65.png" alt="image" style="zoom: 25%;" />
 
@@ -850,5 +852,48 @@ Implicit Representation的优点：
 
 同时也有缺点：difficult to model complex shapes。
 
+对于explicit来说，第一种是点云，是最简单的方式，list of points (x, y, z)，点云密度很大，一般点云之后会转化为多边形面片；第二种是多边形面片，CG中经常使用，常用***Wavefront Object File (.obj) Format***表示。什么是obj Format？其实就是：***a text file that specifies vertices, normals, texture, coordinates and their connectivities***。如下图：
 
+<img src="img/68.png" alt="image" style="zoom:33%;" />
 
+v代表的是顶点坐标，vt代表的是一系列的纹理坐标，vn代表一系列的法向量，最后f代表的是v-vt-vn对应关系。
+
+## Curves and Surfaces
+
+曲线主要以Bezier Curves贝塞尔曲线呈现，是显示表达的一种（因为实质是用参数直接表示曲线），思想是用一系列控制点去定义曲线，如下图：一开始p0 p1两点，t0时刻方向如图；之后p0->p3，p2 p3方向t1方向如图，那么这样就能画出一条图中的曲线。所以说，p0->p3曲线，用p1 p2两点控制。
+
+<img src="img/69.png" alt="image" style="zoom: 25%;" />
+
+更特殊地，我们考虑三个点情况下的贝塞尔曲线，而这种情况下的算法叫做***de Casteljau算法***，而画出的曲线也叫做***quadratic Bezier curve***。如图：靠考虑b0变化到b2，同时一开始的b0b1和b1b2切线方向已经固定。其实这个时候，脑中能脑补一个画面。那么根据算法，如果b0->b2看成一个0->1的过程（或者说，消耗的时间是1），那么t时刻的点位于$b_0^2$位置。这个位置是如何求出来的呢？
+
+首先b0b1上选出$b_0^1$，满足：$b_0b_0^1/b_0^1b_1=t/(1-t)$，再在b1b2上选出$b_1^1$，满足：$b_1b_1^1/b_1^1b2=t/(1-t)$，最后连接$b_0^1b_1^1$，在上面选出$b_0^2$，满足$b_0^1b_0^2/b_0^2b_1^1=t/(1-t)$。因此说，这是显示表达，因为实质是参数表达。
+
+<img src="img/70.png" alt="image" style="zoom:33%;" />
+
+那么四个点呢？依然如下，图中满足：$b_0b_0^1/b_0^1b_1 = b_1b_1^1/b_1^1b_2 = b_2b_2^1/b_2^1b_3 \\ = b_0^1b_0^2/b_0^2b_1^1 = b_1^1b_1^2/b_1^2b_2^1 = b_0^2b_0^3/b_0^3/b_0^3b_1^2 = t/(1-t)$
+
+<img src="img/71.png" alt="image" style="zoom: 33%;" />
+
+线性代数上表示如下图:
+
+<img src="img/72.png" alt="image" style="zoom:33%;" />
+
+那么上面是一个控制点的情况，根据quadratic一词也看出来了，这是二阶的情况，而如果是两个控制点，就是3阶。那么n阶公式如下：***Berstein form of a Bezier curve of order n***。
+
+<img src="img/73.png" alt="image" style="zoom: 33%;" />
+
+贝塞尔曲线有两个很好的性质：第一个是对贝塞尔曲线进行仿射变换，只需要对所有的点进行仿射变换，然后再运行一次de Casteljau算法即可，而不需要对原来这个曲线上的每一个点进行仿射变换；第二个是贝塞尔曲线一定在控制点们所形成的凸包（Convex Hull）之内（可以直观看出来）。
+
+但是如果当贝塞尔曲线面临高阶的情况，即控制点很多的情况下，有的时候曲线不能很好的反映控制点的走势，如下图。因此实际操作中，一般四个控制点控制一条贝塞尔曲线，即：***Peicewise cubic Bezier the most common technique***。那么如果piecewise操作，那么***$C^0$连续***是保证了，即两个贝塞尔曲线共用一个端点，但是会不禁问：如果希望一阶导也连续呢？即切线也是共用的？那么这就是***$C^1$连续***，甚至可以更高阶连续，这叫做***曲率连续***。不同类型的连续，有各自进一步的复杂操作，这里不过多涉及。
+
+<img src="img/74.png" alt="image" style="zoom:25%;" />
+
+而曲面（Surface）表达明显更为复杂，当然也是用的是贝塞尔曲面。见下图，我们可以直观理解贝塞尔曲面是怎么形成的。那么数学上是如何实现的呢？
+
+<img src="img/75.png" alt="image" style="zoom:33%;" />
+
+在一个方向上面，可以得到四条贝塞尔曲线。从同一端同时出发，那么就会有四个点，这四个点将会在另一个方向上形成一个个贝塞尔曲线，因此这四个点扫完，曲面就诞生了。
+
+<img src="img/76.png" alt="image" style="zoom: 25%;" />
+
+<img src="img/77.png" alt="image" style="zoom: 25%;" />
