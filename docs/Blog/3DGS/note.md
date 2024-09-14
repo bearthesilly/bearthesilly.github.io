@@ -22,19 +22,24 @@
 
 在CG geometry中提到过Constructive Solid Geometry(CSG)，尝试用基本几何形体之间的Boolean operations去合成复杂的几何体，但是如果基本几何形体太多，肯定不方便网络和优化。那么有没有一种高度参数化的、方便优化的基本几何形体呢？论文中创新性地使用了3D Gaussian Ellipsoid来作为基本几何形体。中心点定为μ (x, y, z)，然后通过一个***协方差矩阵（covariance matrix）***去定义椭球的大小和形状。高斯用真实世界坐标系下的协方差矩阵∑来进行定义：
 $$
-G(x) = e^{-\frac{1}{2} \left( x \right)^\top \Sigma^{-1} \left( x \right)}
+G(x) = e^{-\frac{1}{2} \left( x \right)^\top \Sigma^{-1} \left( x \right)}
 $$
+
 但是在渲染成2D的时候，要以摄像机为原点的笛卡尔坐标系，因此需要对协方差矩阵进行变换，从而得到摄像机视角下的、将进行光栅化的3D高斯椭球：（变换有两点：一个是frustum->cuboid，i.e.，projective transformation；另一个是translation，即viewing transformation）
+
 $$
 \Sigma' = J W \Sigma W^\top J^\top
 \\
 where\ W\ is\ the\ viewing\ transformation\ and\  
 J\ is\  Jacobian\ \\ of\ the\ affine\ approximation\ of\ projective\ transformation
 $$
+
 至于为什么公式长成这样，这是因为涉及到保持协方差矩阵的**半正定**性质。这在协方差矩阵变换的上下文中非常重要，确保变换后的矩阵依然是一个合法的协方差矩阵。那么正定矩阵长什么样子呢？假设有一个单位球，然后我在三个坐标轴方向放缩，然后进行旋转，那么一个大致的椭球就出来了，虽然不是高斯分布。因此：Given a scaling matrix 𝑆 and rotation matrix 𝑅, we can find the corresponding Σ:
+
 $$
-\Sigma = R S S^\top R^\top
+\Sigma = R S S^\top R^\top
 $$
+
 注意到这个矩阵也是半正定的。R S矩阵定义了方向，和椭球的三个轴向的长度，然后配合第一个G(x)公式对表面进行高斯分布。论文中用一个三维向量s来表示放缩（xyz轴放缩系数）和一个四元数q来表示旋转。因此，对于高斯椭球来说，这个是explicit representation，但是用高斯椭球表示geometry又是implicit representation。在上述的定义之后，基本几何体——高斯椭球终于定义完毕，高度的参数化使得它容易被优化（optimized），且表面的explicit representation公式可微，使得它可以进行梯度下降。
 
 ## Spherical Harmonic for Color
