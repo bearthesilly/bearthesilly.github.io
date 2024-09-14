@@ -9,8 +9,10 @@
       
       
       
-        <link rel="prev" href="../AAAI2025/log.html">
+        <link rel="prev" href="../../GAMES101/note_hw.html">
       
+      
+        <link rel="next" href="../3DGS/note.html">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -2909,27 +2911,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../AAAI2025/log.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    AAAI2025
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -3107,6 +3088,48 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3DGS/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3DGS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AAAI2025/log.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AAAI2025
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3276,9 +3299,11 @@
 
 
 <h1 id="nerf">NeRF</h1>
+<blockquote>
 <p>Representing Scenes as Neural Radiance Fields for View Synthesis</p>
 <blockquote>
 <p><a href="https://arxiv.org/abs/2003.08934">论文链接</a></p>
+</blockquote>
 </blockquote>
 <h2 id="motivation">Motivation</h2>
 <p>要真正理解工作究竟干了什么，逻辑上，要先了解一个3D物体模型摆在那里，是如何成像到屏幕上的。传统CG上，是真实物体用frustum框住，经过透视投影到2D，然后通过光栅化赋予像素颜色，通过Shading打上光，通过纹理赋予其他属性，等等。但是这种方法高度不可参数化，而且工作量复杂，因为需要获取texture，geometry等信息。有什么好的方法去 represent a <strong><em>static</em></strong> scene呢？论文中提出了一种<strong><em>continuous 5D function</em></strong>来进行表示，并配合了<strong><em>Volume Rendering</em></strong>进行2D成像。那么有了如此高度化参数化的表达形式，我们可不可以用来干一些创新的操作呢？神经网络就很喜欢参数，并且喜欢拟合函数进行“猜测”。因此，作者用神经网络强大 的“猜测”能力，解决了一个实际应用问题： <strong><em>synthesizing novel views of complex scenes</em></strong>。</p>
