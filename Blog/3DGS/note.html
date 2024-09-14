@@ -3171,22 +3171,22 @@
 </ul>
 <h2 id="3d-gaussian-ellipsoid">3D Gaussian Ellipsoid</h2>
 <p>在CG geometry中提到过Constructive Solid Geometry(CSG)，尝试用基本几何形体之间的Boolean operations去合成复杂的几何体，但是如果基本几何形体太多，肯定不方便网络和优化。那么有没有一种高度参数化的、方便优化的基本几何形体呢？论文中创新性地使用了3D Gaussian Ellipsoid来作为基本几何形体。中心点定为μ (x, y, z)，然后通过一个<strong><em>协方差矩阵（covariance matrix）</em></strong>去定义椭球的大小和形状。高斯用真实世界坐标系下的协方差矩阵∑来进行定义：
-$$
-G(x) = e^{-\frac{1}{2} \left( x \right)^\top \Sigma^{-1} \left( x \right)}</p>
-<p>
 <script type="math/tex; mode=display">
-但是在渲染成2D的时候，要以摄像机为原点的笛卡尔坐标系，因此需要对协方差矩阵进行变换，从而得到摄像机视角下的、将进行光栅化的3D高斯椭球：（变换有两点：一个是frustum->cuboid，i.e.，projective transformation；另一个是translation，即viewing transformation）
+G(x) = e^{-\frac{1}{2} \left( x \right)^\top \Sigma^{-1} \left( x \right)}
 </script>
+</p>
+<p>但是在渲染成2D的时候，要以摄像机为原点的笛卡尔坐标系，因此需要对协方差矩阵进行变换，从而得到摄像机视角下的、将进行光栅化的3D高斯椭球：（变换有两点：一个是frustum-&gt;cuboid，i.e.，projective transformation；另一个是translation，即viewing transformation）</p>
+<div class="arithmatex">\[
 \Sigma' = J W \Sigma W^\top J^\top
-\
-where\ W\ is\ the\ viewing\ transformation\ and\<br />
-J\ is\  Jacobian\ \ of\ the\ affine\ approximation\ of\ projective\ transformation
-<script type="math/tex; mode=display">
-至于为什么公式长成这样，这是因为涉及到保持协方差矩阵的**半正定**性质。这在协方差矩阵变换的上下文中非常重要，确保变换后的矩阵依然是一个合法的协方差矩阵。那么正定矩阵长什么样子呢？假设有一个单位球，然后我在三个坐标轴方向放缩，然后进行旋转，那么一个大致的椭球就出来了，虽然不是高斯分布。因此：Given a scaling matrix 𝑆 and rotation matrix 𝑅, we can find the corresponding Σ:
-</script>
-\Sigma = R S S^\top R^\top</p>
-<p>$$
-注意到这个矩阵也是半正定的。R S矩阵定义了方向，和椭球的三个轴向的长度，然后配合第一个G(x)公式对表面进行高斯分布。论文中用一个三维向量s来表示放缩（xyz轴放缩系数）和一个四元数q来表示旋转。因此，对于高斯椭球来说，这个是explicit representation，但是用高斯椭球表示geometry又是implicit representation。在上述的定义之后，基本几何体——高斯椭球终于定义完毕，高度的参数化使得它容易被优化（optimized），且表面的explicit representation公式可微，使得它可以进行梯度下降。</p>
+\\
+where\ W\ is\ the\ viewing\ transformation\ and\  
+J\ is\  Jacobian\ \\ of\ the\ affine\ approximation\ of\ projective\ transformation
+\]</div>
+<p>至于为什么公式长成这样，这是因为涉及到保持协方差矩阵的<strong>半正定</strong>性质。这在协方差矩阵变换的上下文中非常重要，确保变换后的矩阵依然是一个合法的协方差矩阵。那么正定矩阵长什么样子呢？假设有一个单位球，然后我在三个坐标轴方向放缩，然后进行旋转，那么一个大致的椭球就出来了，虽然不是高斯分布。因此：Given a scaling matrix 𝑆 and rotation matrix 𝑅, we can find the corresponding Σ:</p>
+<div class="arithmatex">\[
+\Sigma = R S S^\top R^\top
+\]</div>
+<p>注意到这个矩阵也是半正定的。R S矩阵定义了方向，和椭球的三个轴向的长度，然后配合第一个G(x)公式对表面进行高斯分布。论文中用一个三维向量s来表示放缩（xyz轴放缩系数）和一个四元数q来表示旋转。因此，对于高斯椭球来说，这个是explicit representation，但是用高斯椭球表示geometry又是implicit representation。在上述的定义之后，基本几何体——高斯椭球终于定义完毕，高度的参数化使得它容易被优化（optimized），且表面的explicit representation公式可微，使得它可以进行梯度下降。</p>
 <h2 id="spherical-harmonic-for-color">Spherical Harmonic for Color</h2>
 <p>一个高斯椭球应该有哪些property？除了3D Position，协方差矩阵，还应该有什么？首先想到应该是类似于NeRF中的density，而论文中，不透明度用opacity α表示。通常情况下，对于一个基本单位的高斯椭球，只有一个opacity值。那么还有颜色呢？这就有些麻烦了，因为椭球上有很多的点，不像NeRF那样用光线方向向量就能知道一个点的RGB值（5D函数）。那么如何给椭球上的点来一个"5D Function"呢？论文中就使用了球谐函数的方法拟合颜色。</p>
 <p>球谐函数可以把复杂的颜色变化用一些数学函数来表示，就是把颜色变化分解成几个简单的“波形”。球谐函数的阶数 ll和次数 m决定了描述颜色的细节。例如，低阶球谐函数可以描述大的颜色变化（如球面上的颜色渐变），而高阶球谐函数可以描述小的、细微的颜色变化（如高光或反射细节）。通过一些数学公式（通常是积分）来计算球谐系数 <span class="arithmatex">\(c_l^m\)</span>。这些系数告诉<strong><em>每个球谐函数对颜色的贡献</em></strong>。这相当于是泰勒展开：一个椭球上的颜色变化用一个函数很难写出来，我就用多个频率不同的函数去表达，然后记录的是各自函数的表达式与各自函数对应的权重。</p>
