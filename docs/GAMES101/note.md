@@ -858,7 +858,7 @@ Implicit Representation的优点：
 
 v代表的是顶点坐标，vt代表的是一系列的纹理坐标，vn代表一系列的法向量，最后f代表的是v-vt-vn对应关系。
 
-## Curves and Surfaces
+### Curves and Surfaces
 
 曲线主要以Bezier Curves贝塞尔曲线呈现，是显示表达的一种（因为实质是用参数直接表示曲线），思想是用一系列控制点去定义曲线，如下图：一开始p0 p1两点，t0时刻方向如图；之后p0->p3，p2 p3方向t1方向如图，那么这样就能画出一条图中的曲线。所以说，p0->p3曲线，用p1 p2两点控制。
 
@@ -897,3 +897,45 @@ v代表的是顶点坐标，vt代表的是一系列的纹理坐标，vn代表一
 <img src="img/76.png" alt="image" style="zoom: 25%;" />
 
 <img src="img/77.png" alt="image" style="zoom: 25%;" />
+
+### Mesh Operation
+
+Mesh Division是三角形细化，从而提高分辨率；Mesh Simplification简化三角形，但是简化要有一定的规则；Mesh Regularization三角形可能有大有小，渲染上就会带来一定的麻烦。
+
+Mesh Division怎么做？怎么引入更多的三角形？三角形越多，越能拟合出较为光滑的模型。表面细分中的一种代表类型——Loop Division（和循环没有关系）——分为两步：第一步是增加三角形数量。就比如说取三个三角形的三个中点，连接起来，就形成了四个三角形。第二步是Assign new vertex positions according to weights。如果仅仅连成四个三角形，那么很难产生光滑的效果，这可想而知，因为平面还是那个平面。因此我希望***新产生的顶点与原来的旧顶点都能够产生一定的位移***，从而为拟合光滑平面提供可能性。
+
+<img src="img/78.png" alt="image" style="zoom: 33%;" />
+
+对于新的顶点来说，更新规则如下图；至于权重为什么长这个样子，中间的白色、将要更新位置的点离A B点较近，离C D较远，因此A B点在坐标上的贡献应该是较高的。
+
+<img src="img/79.png" alt="image" style="zoom: 25%;" />
+
+那么旧顶点呢？这个旧顶点要估计到自己原来的位置，又要考虑到周围的点的坐标。因此规则如下：其中vertex degree代表这个顶点被几个三角形共用。
+
+![image](img/80.png)
+
+从下面这张图可以看出来：Loop Division表现很好。
+
+<img src="img/81.png" alt="image" style="zoom: 25%;" />
+
+那么Mesh Simplification的goal是reduce number of mesh elements ***while maintaing the overall shape***。有一些情况下，我不希望三角形那么多，比如说游戏里面，会有简化的需求。这里介绍一种方法叫做边坍塌（edge collapsing）。但是这绝非简单的事情：哪些边需要坍塌？因此需要引入一种metric: Quadric Error Metric。如下图：
+
+![image](img/82.png)
+
+![image](img/83.png)
+
+## Shadow Mapping
+
+在shading中有一个问题：着色中无法展示影子，因为传统光栅化很难处理全局方面的事情。Shadow Mapping技术实施的时候，是***不知道***场景的geometry的，而且必须尽可能防走样。那么关键idea是什么呢？***The points NOT in shadow must be seen both by the light and by the camera.***用这种思想处理得到的点光源场景下的阴影我们称为硬阴影。
+
+第一步：站在点光源的视角看场景，并记录看到的image的depth。
+
+<img src="img/84.png" alt="image" style="zoom:25%;" />
+
+第二步：人眼看见的image的点重新投射(reproject)给点光源的视野，然后推算出它应该在点光源image上的哪一个位置，然后比较点光源记录的深度和人眼看到的这个点的距离点光源的实际深度：如果记录比实际小，说明我看到的这个点应该是被遮挡住的；反之，这个点应该能被点光源照到，说明不在阴影中。这就是一种Shadow Mapping。
+
+<img src="img/85.png" alt="image" style="zoom:25%;" />
+
+但是这种方法也是有自己的问题：假如说光线被点A遮挡，而它被看见，投影回去，然后判断点A的深度和点光源记录的深度谁大谁小，而***浮点数***的运算与比较就会出现偏差，尤其是判断浮点数是否相等。因此shadow mapping会略有偏差，尤其是光线被遮挡的那些部分。而且这种方法会提前进行一次点光源的光栅化与Z-buffering。而有硬阴影，那么就有软阴影。如下：它的影子的变化是渐进的，而不是突兀地转变。这种情况怎么产生的呢？实际上，是因为光源不是点光源，而是有体积的（没错，如果是点光源，那么不可能有软阴影）。
+
+<img src="img/86.png" alt="image" style="zoom: 33%;" />
