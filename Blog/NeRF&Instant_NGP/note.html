@@ -3390,7 +3390,10 @@ t_i \sim \mathcal{U} \left( t_n + \frac{i - 1}{N} (t_f - t_n), \; t_n + \frac{i}
 <p><img alt="image" src="img/4.png" /></p>
 <h2 id="instant-ngp">Instant NGP</h2>
 <blockquote>
-<p>Neural graphics primitives, parameterized by fully connected neural networks, can be costly to train and evaluate</p>
+<p>Neural graphics primitives, parameterized by fully connected neural networks, can be costly to train and evaluate.</p>
+<blockquote>
+<p><a href="https://arxiv.org/abs/2201.05989">论文链接</a></p>
+</blockquote>
 </blockquote>
 <p>Instant-NPG和NeRF有很多的相似之处，但是NeRF原来的MLP网络训练时间很长。为了能高质量重建场景，往往需要一个比较大的网络，每个采样点过一遍网络就会耗费大量时间。因此论文中提出了使用grid来解决，即voxel。把整个空间用一个个的立方体，每一个顶点都对应一个高维特征，那么对于任何一个点，找到包围它的八个定点，利用它们的xyz坐标用一种<strong><em>数据结构引索</em></strong>出八个高维特征，然后通过Interpolation就可以实现点的高维特征的表达了。</p>
 <p>那么什么数据结构能够通过点的坐标信息引索值呢？哈希表应运而生。将xyz坐标通过哈希函数映射到整数，然后在数组里面引索出高维特征，就可以了。而立方体的大小如果是固定的话，那么就不够robust，因此需要不同分辨率下的立方体划分。来多重表达这个高维向量。论文中，一共有8种分辨率，然后最后会对八个属性结果再一次进行插值。</p>
