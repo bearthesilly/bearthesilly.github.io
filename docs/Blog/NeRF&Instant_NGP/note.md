@@ -117,7 +117,9 @@ $$
 
 ## Instant NGP
 
-> Neural graphics primitives, parameterized by fully connected neural networks, can be costly to train and evaluate
+> Neural graphics primitives, parameterized by fully connected neural networks, can be costly to train and evaluate.
+>
+> > [论文链接](https://arxiv.org/abs/2201.05989)
 
 Instant-NPG和NeRF有很多的相似之处，但是NeRF原来的MLP网络训练时间很长。为了能高质量重建场景，往往需要一个比较大的网络，每个采样点过一遍网络就会耗费大量时间。因此论文中提出了使用grid来解决，即voxel。把整个空间用一个个的立方体，每一个顶点都对应一个高维特征，那么对于任何一个点，找到包围它的八个定点，利用它们的xyz坐标用一种***数据结构引索***出八个高维特征，然后通过Interpolation就可以实现点的高维特征的表达了。
 
