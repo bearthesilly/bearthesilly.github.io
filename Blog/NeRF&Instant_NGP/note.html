@@ -9,10 +9,6 @@
       
       
       
-        <link rel="prev" href="../../GAMES101/note_hw.html">
-      
-      
-        <link rel="next" href="../3DGS/note.html">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -2874,19 +2870,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -2900,7 +2894,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Blog
@@ -2911,30 +2905,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    NeRF
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="note.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../NeRF/note.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2943,146 +2917,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#motivation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Motivation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#technical-contribution" class="md-nav__link">
-    <span class="md-ellipsis">
-      Technical Contribution
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5d-volume-rendering" class="md-nav__link">
-    <span class="md-ellipsis">
-      5D &amp; Volume Rendering
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="5D & Volume Rendering">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#detailed-definition-of-5d-function" class="md-nav__link">
-    <span class="md-ellipsis">
-      Detailed Definition of 5D Function
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#volume-rendering" class="md-nav__link">
-    <span class="md-ellipsis">
-      Volume Rendering
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#training-and-inferencing-for-task" class="md-nav__link">
-    <span class="md-ellipsis">
-      Training and Inferencing for Task
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Training and Inferencing for Task">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pipeline" class="md-nav__link">
-    <span class="md-ellipsis">
-      Pipeline
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#multi-view-consistent-representation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Multi-view Consistent Representation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#positional-encoding" class="md-nav__link">
-    <span class="md-ellipsis">
-      Positional Encoding
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#hierarchical-volume-sampling" class="md-nav__link">
-    <span class="md-ellipsis">
-      Hierarchical Volume Sampling
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#concatenation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Concatenation
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#conclusion" class="md-nav__link">
-    <span class="md-ellipsis">
-      Conclusion
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -3381,6 +3215,17 @@ t_i \sim \mathcal{U} \left( t_n + \frac{i - 1}{N} (t_f - t_n), \; t_n + \frac{i}
 <p><img alt="image" src="img/3.png" /></p>
 <p>于是乎地，一篇伟大的工作诞生了：</p>
 <p><img alt="image" src="img/4.png" /></p>
+<h1 id="instant-ngp">Instant NGP</h1>
+<blockquote>
+<p>Neural graphics primitives, parameterized by fully connected neural networks, can be costly to train and evaluate</p>
+</blockquote>
+<p>Instant-NPG和NeRF有很多的相似之处，但是NeRF原来的MLP网络训练时间很长。为了能高质量重建场景，往往需要一个比较大的网络，每个采样点过一遍网络就会耗费大量时间。因此论文中提出了使用grid来解决，即voxel。把整个空间用一个个的立方体，每一个顶点都对应一个高维特征，那么对于任何一个点，找到包围它的八个定点，利用它们的xyz坐标用一种<strong><em>数据结构引索</em></strong>出八个高维特征，然后通过Interpolation就可以实现点的高维特征的表达了。</p>
+<p>那么什么数据结构能够通过点的坐标信息引索值呢？哈希表应运而生。将xyz坐标通过哈希函数映射到整数，然后在数组里面引索出高维特征，就可以了。而立方体的大小如果是固定的话，那么就不够robust，因此需要不同分辨率下的立方体划分。来多重表达这个高维向量。论文中，一共有8种分辨率，然后最后会对八个属性结果再一次进行插值。</p>
+<p>在论文中，数组的容量有限，因此可能会产生哈希冲突，即不同的立方体顶点索引到的高维向量可能是一样的。但是论文中认为，这并不是问题，因为有八个分辨率的结果，足以克服这种小扰动。</p>
+<p><img alt="image" src="img/7.png" /></p>
+<p>因此Instant NGP的pipeline<a href="https://zhuanlan.zhihu.com/p/631284285">如上</a>，和NeRF非常相似。对于一个点，在一个分辨率下，找到立方体的八个顶点，这八个顶点xyz坐标各自经过哈希函数得到引索，从哈希表中以<span class="arithmatex">\(O(1)\)</span>的时间复杂度得到各自的高维特征向量，然后进行插值，这个操作重复八次（因为有八个分辨率）。得到了八个高维向量之后，再次插值得到向量，输入MLP（这里使用的不是NeRF的MLP，而是很小的MLP，因为输入向量的参数数量不多）；而之后的一切和NeRF非常相似。</p>
+<p>关于<span class="arithmatex">\(point\rightarrow vector_{input}\)</span>的生动化过程如下（来自原论文；用2D的演示图来演示3D中的实际操作）</p>
+<p><img alt="image" src="img/8.png" /></p>
 
 
 
