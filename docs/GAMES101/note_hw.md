@@ -325,3 +325,177 @@ void rst::rasterizer::rasterize_triangle(const Triangle& t) {
 
 <img src="img/hw_2.png" alt="image" style="zoom:33%;" />
 
+### Homework 3
+
+在之前，光栅化中一个像素的颜色仅仅是由原三角形决定的（当然，是z_interpolated最近的三角形），但是实际中，颜色不仅仅由它决定，还由法向量、纹理颜色决定。因此，首先是要在上一次作业的基础上，写出支持纹理、法向量等信息，且像素中心点颜色由三角形三点插值得来的程序。插值公式如下：
+$$
+(x, y) = \alpha A + \beta B + \gamma C \\
+\alpha + \beta + \gamma = 1 \\
+\alpha, \beta ,\gamma >0
+$$
+
+
+````c++
+void rst::rasterizer::rasterize_triangle(const Triangle& t, const std::array<Eigen::Vector3f, 3>& view_pos) 
+{
+    auto v = t.toVector4();
+    float minX=t.v[0].x(), maxX=t.v[0].x(), minY=t.v[0].y(), maxY=t.v[0].y();
+
+    for(auto& v : t.v)
+    {   
+        minX=std::min(minX, v.x());
+        maxX=std::max(maxX, v.x());
+        minY=std::min(minY, v.y());
+        maxY=std::max(maxY, v.y());
+    }
+    for (int y = floor(minY); y < ceil(maxY); y++) {
+        for (int x = floor(minX); x < ceil(maxX); x++) {
+            if (insideTriangle(x + 0.5, y + 0.5, t.v)) { // 在三角形里面
+                // 利用注释的代码，求重心信息
+                auto Barycentric2D = computeBarycentric2D(x + 0.5, y + 0.5, t.v);
+                // 这里的三个参数就对应的是公式中的三个参数
+                float alpha = std::get<0>(Barycentric2D), beta = std::get<1>(Barycentric2D), gamma = std::get<2>(Barycentric2D);
+                float Z = 1.0 / (alpha / v[0].w() + beta / v[1].w() + gamma / v[2].w());
+                float zp = alpha * v[0].z() / v[0].w() + beta * v[1].z() / v[1].w() + gamma * v[2].z() / v[2].w();
+                zp *= Z; // zp就是之前的z_interpolated
+                
+                if (zp < depth_buf[get_index(x, y)]){
+                    depth_buf[get_index(x, y)] = zp;
+                    // 根据提示注释，调用插值函数
+                    auto interpolated_color = interpolate(alpha, beta, gamma, t.color[0], t.color[1], t.color[2], 1);
+                    auto interpolated_normal = interpolate(alpha, beta, gamma, t.normal[0], t.normal[1], t.normal[2], 1);
+                    auto interpolated_texcoords = interpolate(alpha, beta, gamma, t.tex_coords[0], t.tex_coords[1], t.tex_coords[2], 1);
+                    auto interpolated_shadingcoords = interpolate(alpha, beta, gamma, view_pos[0], view_pos[1], view_pos[2], 1);
+                    // 将上述的信息都注入pixel_color，同样借助注释
+                    fragment_shader_payload payload(interpolated_color, interpolated_normal.normalized(), interpolated_texcoords, texture ? &*texture : nullptr);
+                    payload.view_pos = interpolated_shadingcoords;
+                    auto pixel_color = fragment_shader(payload);
+				   // 和上一次一样，该像素点终于赋予了一个颜色值
+                    Vector2i point;
+                    point << x, y;
+                    set_pixel(point, pixel_color);
+                }
+            }
+        }
+    } 
+}
+````
+
+将`get_projection_matrix()`函数从上一次作业复制过来，可以`./Rasterizer output.png normal`来查看***仅仅额外补充法向量信息之后的图片***。
+
+<img src="img/normal.png" alt="image" style="zoom:33%;" />
+
+那么接下来如何加入光照，实现`phong_fragment_shader()`函数。首先回归一下blinn-phong模型:
+![image](img/46.png)
+
+<img src="img/42.png" alt="image" style="zoom:33%;" />
+
+因此在函数中实现这些参数，最后实现光照的影响：
+
+````c++
+Eigen::Vector3f phong_fragment_shader(const fragment_shader_payload& payload)
+{
+    Eigen::Vector3f ka = Eigen::Vector3f(0.005, 0.005, 0.005);
+    Eigen::Vector3f kd = payload.color;
+    Eigen::Vector3f ks = Eigen::Vector3f(0.7937, 0.7937, 0.7937);
+
+    auto l1 = light{{20, 20, 20}, {500, 500, 500}};
+    auto l2 = light{{-20, 20, 0}, {500, 500, 500}};
+
+    std::vector<light> lights = {l1, l2};
+    Eigen::Vector3f amb_light_intensity{10, 10, 10};
+    Eigen::Vector3f eye_pos{0, 0, 10};
+
+    float p = 150;
+
+    Eigen::Vector3f color = payload.color;
+    Eigen::Vector3f point = payload.view_pos;
+    Eigen::Vector3f normal = payload.normal;
+
+    Eigen::Vector3f result_color = {0, 0, 0};
+    // 注意这里是RGB三个通道都结合在这个参数里面，因此图中的公式是element-wise product
+    for (auto& light : lights)
+    {
+        // 开始实现一系列的向量，注意归一化
+        Eigen::Vector3f l = (light.position - point).normalized();
+        Eigen::Vector3f v = (eye_pos - point).normalized();
+        Eigen::Vector3f h = (l + v).normalized();
+        Eigen::Vector3f n = normal.normalized();
+ 
+        //ambient 环境光
+        Eigen::Vector3f la = ka.cwiseProduct(amb_light_intensity);
+        //diffuse 漫反射
+        Eigen::Vector3f ld = kd.cwiseProduct((light.intensity / (light.position - point).dot(light.position - point))) * std::max(0.0f, n.dot(l));
+        //specular 镜面反射 高光
+        Eigen::Vector3f ls = ks.cwiseProduct((light.intensity / (light.position - point).dot(light.position - point))) * std::pow(std::max(0.0f, n.dot(h)),p);
+        result_color += la + ld + ls;
+    }
+
+    return result_color * 255.f;
+}
+````
+
+最后`.\Rasterizer.exe phong.png phong`的结果是：
+
+<img src="img/phong.png" alt="image" style="zoom:33%;" />
+
+最后，贴上纹理，实现`texture_fragment_shader()`，***将纹理颜色视为公式中的 kd***，实现 Texture Shading Fragment Shader。
+
+````c++
+Eigen::Vector3f texture_fragment_shader(const fragment_shader_payload& payload)
+{
+    Eigen::Vector3f return_color = {0, 0, 0};
+    if (payload.texture)
+    {
+        // TODO: Get the texture value at the texture coordinates of the current fragment
+        // getcolor返回的是color[0][1][2]
+        // fragment_shader_payload在shader头文件中定义的，其中定义了tex
+        return_color = payload.texture->getColor(payload.tex_coords.x(), payload.tex_coords.y());
+    }
+    Eigen::Vector3f texture_color;
+    texture_color << return_color.x(), return_color.y(), return_color.z();
+ 
+    Eigen::Vector3f ka = Eigen::Vector3f(0.005, 0.005, 0.005);
+    Eigen::Vector3f kd = texture_color / 255.f;
+    Eigen::Vector3f ks = Eigen::Vector3f(0.7937, 0.7937, 0.7937);
+ 
+    auto l1 = light{{20, 20, 20}, {500, 500, 500}};
+    auto l2 = light{{-20, 20, 0}, {500, 500, 500}};
+ 
+    std::vector<light> lights = {l1, l2};
+    Eigen::Vector3f amb_light_intensity{10, 10, 10};
+    Eigen::Vector3f eye_pos{0, 0, 10};
+ 
+    float p = 150;
+	// 这里颜色换成了纹理上的颜色
+    Eigen::Vector3f color = texture_color;
+    Eigen::Vector3f point = payload.view_pos;
+    Eigen::Vector3f normal = payload.normal;
+ 
+    Eigen::Vector3f result_color = {0, 0, 0};
+ 
+    for (auto& light : lights)
+    {
+        Eigen::Vector3f l = (light.position - point).normalized();
+        Eigen::Vector3f v = (eye_pos - point).normalized();
+        Eigen::Vector3f h = (l + v).normalized();
+        Eigen::Vector3f n = normal.normalized();
+ 
+        //ambient 环境光
+        Eigen::Vector3f la = ka.cwiseProduct(amb_light_intensity);
+        //diffuse 漫反射
+        Eigen::Vector3f ld = kd.cwiseProduct((light.intensity / (light.position - point).dot(light.position - point))) * std::max(0.0f, n.dot(l));
+        //specular 镜面反射 高光
+        Eigen::Vector3f ls = ks.cwiseProduct((light.intensity / (light.position - point).dot(light.position - point))) * std::pow(std::max(0.0f, n.dot(h)),p);
+        result_color += la + ld + ls;	
+    }
+ 
+    return result_color * 255.f;
+}
+````
+
+`.\Rasterizer.exe texture.png texture`之后，结果如下：
+
+<img src="img/texture.png" alt="image" style="zoom:33%;" />
+
+之后关于bump和displacement的内容略过。
