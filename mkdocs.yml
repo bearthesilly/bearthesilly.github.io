@@ -39,8 +39,6 @@ nav:
     - 'Partition One: Fundamental + Convolution' : deeplearning_note/深度学习自学.md
     - 'Partition Two: Sequence Model' : sequence model/sequence_model.md
     - 'Transformer' : transformer_note/transformer_note.md
-  - Machine Learning:
-    - 'Datawhale': machine_learning/Datawhale/note.md
   - Course (Curriculum):
     - 高等数学上:
       - 写在最前面: 高等数学上/写在最前面/note.md
@@ -140,6 +138,7 @@ nav:
       - Note: GAMES101/note.md
       - Homework: GAMES101/note_hw.md
   - Blog: 
-    - NeRF: Blog/NeRF/note.md
+    - Datawhale: machine_learning/Datawhale/note.md
+    - NeRF&Instant_NGP: Blog/NeRF/note.md
     - 3DGS: Blog/3DGS/note.md
     - AAAI2025: Blog/AAAI2025/log.md
