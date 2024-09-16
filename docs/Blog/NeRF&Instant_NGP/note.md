@@ -1,24 +1,25 @@
-# NeRF
+# NeRF & Instant NGP
+## NeRF
 
 > Representing Scenes as Neural Radiance Fields for View Synthesis
 
 > > [论文链接](https://arxiv.org/abs/2003.08934)
 
-## Motivation
+### Motivation
 
 要真正理解工作究竟干了什么，逻辑上，要先了解一个3D物体模型摆在那里，是如何成像到屏幕上的。传统CG上，是真实物体用frustum框住，经过透视投影到2D，然后通过光栅化赋予像素颜色，通过Shading打上光，通过纹理赋予其他属性，等等。但是这种方法高度不可参数化，而且工作量复杂，因为需要获取texture，geometry等信息。有什么好的方法去 represent a ***static*** scene呢？论文中提出了一种***continuous 5D function***来进行表示，并配合了***Volume Rendering***进行2D成像。那么有了如此高度化参数化的表达形式，我们可不可以用来干一些创新的操作呢？神经网络就很喜欢参数，并且喜欢拟合函数进行“猜测”。因此，作者用神经网络强大 的“猜测”能力，解决了一个实际应用问题： ***synthesizing novel views of complex scenes***。
 
-## Technical Contribution
+### Technical Contribution
 
 - An approach for representing continuous scenes ***with complex geometry and materials as 5D neural radiance fields***, parameterized as basic ***MLP*** networks.
 - A ***hierarchical sampling strategy*** to allocate the MLP’s capacity ***towards space with visible scene content.*** （这一点后面会说）
 - A ***positional encoding*** to map each input 5D coordinate into a higher dimensional space, which enables us to successfully optimize neural radiance fields to represent high-frequency scene content.（之后也会说）
 
-## 5D & Volume Rendering
+### 5D & Volume Rendering
 
 以下的内容，还***没涉及***到down-streaming task相关的内容。在task-specific application的时候，逻辑会和下面介绍的略有不同。
 
-### Detailed Definition of 5D Function
+#### Detailed Definition of 5D Function
 
 在定义函数之前，先说明一些背景。假设一个物体在**原点**，然后距离半径为R的半球里面，分布了很多的camera，面向这个物体，能够拍摄照片，i.e.，能够发出大量的光线。光线拥有单位方向向量，用笛卡尔坐标系下的标准球坐标系进行表示，因此只需要两个参数：$\theta$  $\phi$进行表示。
 
@@ -26,7 +27,7 @@
 
 这便是Technical Contribution第一点。
 
-### Volume Rendering
+#### Volume Rendering
 
 那么我们现在可以高度参数化一个模型了：在一个视角下，即在一堆散发出来的光线下，会经过现实模型中的一系列点，然后都能通过函数知道在这条（些）光线的视角下，它们各自的density与RGB是多少。那么如何成像呢？我总不能再走一遍Graphics Pipeline了，要利用上这些参数。因此，这里沿用了传统的体渲染技术：use ***classical volume rendering technique***s to accumulate those colors and densities into a 2D image（论文原文）。在这条光线上，***假设***我知道经过了哪些点，那么这些点的xyz坐标和光线的density和RGB我都知道。这条光线将会代表的颜色是什么呢？体渲染公式如下：
 $$
@@ -46,9 +47,9 @@ $$
 
 那么这样一个光线最后呈现的颜色知道了，一个摄像头就是知道了不同方向的光线的颜色，也就知道了最后如何像素上面填颜色了。
 
-## Training and Inferencing for Task
+### Training and Inferencing for Task
 
-### Pipeline
+#### Pipeline
 
 那么接下来将会详细讲解网络的pipeline。首先输入进网络的是一个视角下拍摄的照片，以及摄像机的位置和方向。网络一共有两个：粗网络和细网络。粗网络上：首先，一条光线上，会通过粗采样在近点和远点之间***选出一堆空间中的（不是物体上的！）点***（没错，原本物体的3D信息是不知道的），输入进5D函数（这个函数使用一堆全连接层去拟合的）（一开始不知道，任意初始化的），***“得到”***（“得到”这一块的网络也会细讲）这些点的density and RGB，然后；然后对于相机来说，用这些密度和颜色信息进行体渲染，得到一张图片，pixel-wise地和ground truth图片进行颜色上的比较，计算出***MSE Loss***并反向传播更新梯度。拿到了粗网络提供的点的密度信息，更新采样策略，进行细采样，得到新的一堆采样点，和粗采样出来的点集进行和并，再一次一起输入进5D函数，***“得到”***了一堆的颜色和密度信息，进行体渲染，得到图片并计算***MSE Loss***，最后用粗网络的loss和细网络自己刚刚算出来的loss相加，用这个***合并后的Loss***去反向传播。
 
@@ -62,7 +63,7 @@ Loss公式：$L = \sum_{r \in R} \left( \left\| \hat{C}_c(r) - C(r) \right\|_2^2
 
 ![image](img/1.png)
 
-### Multi-view Consistent Representation
+#### Multi-view Consistent Representation
 
 > We encourage the representation to be multiview consistent by restricting the network to predict the volume density σ as a function of only the location x, while allowing the RGB color c to be predicted as a function of both location and viewing direction. (from NeRF)
 
@@ -72,7 +73,7 @@ Loss公式：$L = \sum_{r \in R} \left( \left\| \hat{C}_c(r) - C(r) \right\|_2^2
 
 <img src="img/2.png" alt="image" style="zoom: 67%;" />
 
-### Positional Encoding
+#### Positional Encoding
 
 > This is consistent with recent work by Rahaman et al. , which shows that deep networks are biased towards learning lower frequency function. (from NeRF)
 
@@ -85,7 +86,7 @@ $$
 
 这便是technical contribution第二点。
 
-### Hierarchical Volume Sampling
+#### Hierarchical Volume Sampling
 
 > Our rendering strategy of densely evaluating the neural radiance field network at N query points along each camera ray is inefficient: free space and occluded regions that do not contribute to the rendered image are still sampled repeatedly. (from NeRF)
 
@@ -100,11 +101,11 @@ $$
 
 这便是technical contribution第三点。
 
-### Concatenation
+#### Concatenation
 
 为什么xyz坐标信息经过位置编码之后变成了256的高维信息之后，仍然需要和原来的位置编码concate呢？原论文中没细说，但是通常认为这种方法有助于提高网络对细节的捕捉能力，因为网络能够接收到更多的频率成分，这对于表示复杂的场景和细节非常重要。
 
-## Conclusion
+### Conclusion
 
 5D函数表示，位置编码，继承式采样（细采样）非常work。下图展示了：如果没有视角信息（5D缺失方向角度的2D）、没有位置编码的效果是较差的。直观看出：没有视角信息，很难产生高光（specularity）效果；没有位置编码，模型不robust，inference结果pixel之间的颜色变化很保守。
 
@@ -114,7 +115,7 @@ $$
 
 ![image](img/4.png)
 
-# Instant NGP
+## Instant NGP
 
 > Neural graphics primitives, parameterized by fully connected neural networks, can be costly to train and evaluate
 
