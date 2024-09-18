@@ -2988,9 +2988,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tile-tasterization-rendering" class="md-nav__link">
+  <a href="#tile-rasterization-rendering" class="md-nav__link">
     <span class="md-ellipsis">
-      Tile-Tasterization &amp; α-Rendering
+      Tile-Rasterization &amp; α-Rendering
     </span>
   </a>
   
@@ -3096,9 +3096,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tile-tasterization-rendering" class="md-nav__link">
+  <a href="#tile-rasterization-rendering" class="md-nav__link">
     <span class="md-ellipsis">
-      Tile-Tasterization &amp; α-Rendering
+      Tile-Rasterization &amp; α-Rendering
     </span>
   </a>
   
@@ -3181,7 +3181,7 @@ Y_{l}^{m}(\theta, \phi) = \sqrt{\frac{4\pi}{2l + 1}} \cdot \frac{(l + m)!}{(l - 
 </script>
 用球谐系数计算表达最后颜色：<span class="arithmatex">\(C(\theta, \phi) \approx \sum_{l=0}^{L} \sum_{m=-l}^{l} c_{l}^{m} Y_{l}^{m}(\theta, \phi)\)</span></p>
 <p>用<span class="arithmatex">\(C(\theta, \phi)\)</span>上查阅xyz坐标就能得到RGB值，因此这种类似于“5D函数”的东西终于表达出来了。论文中，<span class="arithmatex">\(l=4\)</span>，因此一共有1+3+5+7 = 16个球谐基函数，而RGB每一个通道都有一个<span class="arithmatex">\(C(\theta, \phi)\)</span>，因此关于颜色的表达将会使用3*16 = 48个参数（当然所有的3D高斯椭球共用一套球谐基函数）</p>
-<h2 id="tile-tasterization-rendering">Tile-Tasterization &amp; α-Rendering</h2>
+<h2 id="tile-rasterization-rendering">Tile-Rasterization &amp; α-Rendering</h2>
 <p>有了一堆的高斯椭球，我还知道一条光线视角下穿过点的opacity与RGB，如何综合它们得到一个最终的RGB值呢？论文中没有使用NeRF的density那一套逐pixel的公式，而是使用了逐tile(瓦片)的Alpha Rendering。</p>
 <p>我们的方法首先将屏幕划分为 16×16 的瓦片，然后对 3D 高斯点进行视锥体和每个瓦片的剔除。具体来说，我们只保留那些在视锥体中具有 99% 置信区间的高斯点。此外，我们使用一个保护带来简化地剔除那些位置极端的高斯点（即那些均值接近近裁剪面并且远离视锥体的点），因为计算它们的投影 2D 协方差可能会不稳定。然后，我们根据每个高斯点与瓦片的重叠数量实例化每个高斯点，并为每个实例分配一个结合了视空间深度和瓦片 ID 的键。接着，我们使用快速的 GPU 基数排序（Radix Sort）对高斯点进行排序。注意，没有额外的每像素排序，而是根据这种初始排序进行混合。因此，我们的 α-blending 在某些配置下可能是近似的。然而，当高斯点的尺寸接近单个像素时，这些近似变得微不足道。我们发现，这种选择极大地提高了训练和渲染性能，同时在收敛场景中没有产生明显的伪影。</p>
 <p>排序后，我们为每个瓦片生成一个列表，通过确定第一个和最后一个按深度排序的条目，这些条目投影到给定的瓦片上。对于光栅化，我们为每个瓦片启动一个线程块。每个块首先协作地将高斯点包加载到共享内存中，然后，对于每个像素，按前到后遍历列表，累积颜色和 α 值，从而最大化数据加载/共享和处理的并行性。<strong><em>当像素的 α 达到目标饱和度时，相应的线程停止。定期查询瓦片中的线程，当所有像素的 α 饱和（即 α 达到 1）时，整个瓦片的处理终止。</em></strong></p>
