@@ -134,7 +134,7 @@ nav:
       - 'Transformer' : transformer_note/transformer_note.md
     - 数据结构与算法:
       - 基本结构与算法分析: Data_Structure_and_Algorithm/基本结构与算法分析.md
-      - 搜索与排序: 
+      - 搜索与排序: Data_Structure_and_Algorithm/搜索与排序.md
     - GAMES101: 
       - Note: GAMES101/note.md
       - Homework: GAMES101/note_hw.md
