@@ -35,10 +35,6 @@ markdown_extensions:
       generic: true
 nav:
   - Home: index.md
-  - Deep Learning:
-    - 'Partition One: Fundamental + Convolution' : deeplearning_note/深度学习自学.md
-    - 'Partition Two: Sequence Model' : sequence model/sequence_model.md
-    - 'Transformer' : transformer_note/transformer_note.md
   - Course (Curriculum):
     - 高等数学上:
       - 写在最前面: 高等数学上/写在最前面/note.md
@@ -132,8 +128,13 @@ nav:
       - 章节回顾: 线性代数/章节回顾/note.md
       - 总复习: 线性代数/总复习/note.md
   - Course (Extracurriculum):
+    - Deep Learning:
+      - 'Partition One: Fundamental + Convolution' : deeplearning_note/深度学习自学.md
+      - 'Partition Two: Sequence Model' : sequence model/sequence_model.md
+      - 'Transformer' : transformer_note/transformer_note.md
     - 数据结构与算法:
       - 基本结构与算法分析: Data_Structure_and_Algorithm/基本结构与算法分析.md
+      - 搜索与排序: 
     - GAMES101: 
       - Note: GAMES101/note.md
       - Homework: GAMES101/note_hw.md
