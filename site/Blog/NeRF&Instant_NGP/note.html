@@ -3349,18 +3349,18 @@
 <p>那么可以来看这个5D函数到底干什么了：输入的是<strong><em>一个点的坐标</em></strong><span class="arithmatex">\(\textbf{x}（x, y, z）\)</span>，以及一个经过<strong><em>该点的光线</em></strong>的单位方向向量的笛卡尔单位球的<strong><em>角度表示</em></strong>(<span class="arithmatex">\(\theta\)</span>,  <span class="arithmatex">\(\phi\)</span>)，输出的是这个输入下该点的<strong><em>RGB值</em></strong><span class="arithmatex">\(\textbf{c} = (r,g,b)\)</span>和<strong><em>密度</em></strong>(density)<span class="arithmatex">\(\sigma\)</span>。这一句话里面最难理解的是密度<span class="arithmatex">\(\sigma\)</span>了，它代表该点的对光的阻挡效果，密度越高，光越透不过去，反之则光很容易透过去。这很容易理解，阳光下举起一片薄树叶，依然能够看到树叶后的部分景色；而如果举起一块鹅卵石，根本看不见。另外，为什么RGB值还需要输出，一个点的RGB直觉中不应该一样吗？但是其实细想发现不是如此。一个物体在不同视角下，因为光线的不同，颜色是会发生略微的变化的，即使是这个物体上的同一个点。</p>
 <p>这便是Technical Contribution第一点。</p>
 <h4 id="volume-rendering">Volume Rendering</h4>
-<p>那么我们现在可以高度参数化一个模型了：在一个视角下，即在一堆散发出来的光线下，会经过现实模型中的一系列点，然后都能通过函数知道在这条（些）光线的视角下，它们各自的density与RGB是多少。那么如何成像呢？我总不能再走一遍Graphics Pipeline了，要利用上这些参数。因此，这里沿用了传统的体渲染技术：use <strong><em>classical volume rendering technique</em></strong>s to accumulate those colors and densities into a 2D image（论文原文）。在这条光线上，<strong><em>假设</em></strong>我知道经过了哪些点，那么这些点的xyz坐标和光线的density和RGB我都知道。这条光线将会代表的颜色是什么呢？体渲染公式如下：
-$$
+<p>那么我们现在可以高度参数化一个模型了：在一个视角下，即在一堆散发出来的光线下，会经过现实模型中的一系列点，然后都能通过函数知道在这条（些）光线的视角下，它们各自的density与RGB是多少。那么如何成像呢？我总不能再走一遍Graphics Pipeline了，要利用上这些参数。因此，这里沿用了传统的体渲染技术：use <strong><em>classical volume rendering technique</em></strong>s to accumulate those colors and densities into a 2D image（论文原文）。在这条光线上，<strong><em>假设</em></strong>我知道经过了哪些点，那么这些点的xyz坐标和光线的density和RGB我都知道。这条光线将会代表的颜色是什么呢？体渲染公式如下：</p>
+<div class="arithmatex">\[
 C(r) = \int_{t_n}^{t_f} T(t) \cdot \sigma(r(t)) \cdot c(r(t)) \, dt
 ,\ where:
-\</p>
-<p>T(t) = \exp\left(-\int_{t_n}^{t} \sigma(r(s)) \, ds \right)
-$$
-其中：</p>
+\\
+T(t) = \exp\left(-\int_{t_n}^{t} \sigma(r(s)) \, ds \right)
+\]</div>
+<p>其中：</p>
 <ul>
-<li>$C(r) $是光线 $r $的最终颜色，有红绿蓝三个颜色的分量。</li>
-<li>$t_n <span class="arithmatex">\(和\)</span> t_f $分别是光线的近裁剪面和远裁剪面的参数。</li>
-<li>$T(t) $是从起点到当前点t的透明度积累（通常为 <span class="arithmatex">\(T(t) = \exp\left(-\int_{t_n}^{t} \sigma(r(s)) \, ds \right)\)</span>）。</li>
+<li><span class="arithmatex">\(C(r)\)</span>是光线<span class="arithmatex">\(r\)</span>的最终颜色，有红绿蓝三个颜色的分量。</li>
+<li><span class="arithmatex">\(t_n\)</span>和<span class="arithmatex">\(t_f\)</span>分别是光线的近裁剪面和远裁剪面的参数。</li>
+<li><span class="arithmatex">\(T(t)\)</span>是从起点到当前点t的透明度积累（通常为 <span class="arithmatex">\(T(t) = \exp\left(-\int_{t_n}^{t} \sigma(r(s)) \, ds \right)\)</span>）。</li>
 <li><span class="arithmatex">\(\sigma(r(t))\)</span> 是点 <span class="arithmatex">\(r(t)\)</span>处的体积密度。</li>
 <li><span class="arithmatex">\(c(r(t))\)</span>是点 <span class="arithmatex">\(r(t)\)</span>处的颜色。</li>
 </ul>
@@ -3387,7 +3387,7 @@ $$
 <p>第二点：<span class="arithmatex">\(\gamma\)</span>是什么玩意儿？其实这代表Positional Encoding坐标和方向向量之后结果。为什么要位置编码？因为实际中，点之间的距离变化较短，但是蕴含的信息的变化可能“较快”，即，sampling频率不够，容易造成输出图像颜色和密度变化较为平缓的现象。Positional Encoding公式如下：
 <script type="math/tex; mode=display">
 \gamma(x) = \left[ \sin(2^0 \pi x), \cos(2^0 \pi x), \ldots, \sin(2^{L-1} \pi x), \cos(2^{L-1} \pi x) \right] \\
-where\ \gamma is\ a\ mapping\ from\ R\ into\ R^{2L}
+where\ \gamma \ is\ a\ mapping\ from\ R\ into\ R^{2L}
 </script>
 这样通过双射将低频的信息投射到高频的信息，让它能够感知高频的变化，从而增加鲁棒性。这在transformer中也有应用。在本篇工作中，xyz信息和view信息都进行了位置编码。</p>
 <p>这便是technical contribution第二点。</p>
