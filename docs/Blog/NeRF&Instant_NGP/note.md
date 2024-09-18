@@ -30,18 +30,19 @@
 #### Volume Rendering
 
 那么我们现在可以高度参数化一个模型了：在一个视角下，即在一堆散发出来的光线下，会经过现实模型中的一系列点，然后都能通过函数知道在这条（些）光线的视角下，它们各自的density与RGB是多少。那么如何成像呢？我总不能再走一遍Graphics Pipeline了，要利用上这些参数。因此，这里沿用了传统的体渲染技术：use ***classical volume rendering technique***s to accumulate those colors and densities into a 2D image（论文原文）。在这条光线上，***假设***我知道经过了哪些点，那么这些点的xyz坐标和光线的density和RGB我都知道。这条光线将会代表的颜色是什么呢？体渲染公式如下：
+
 $$
 C(r) = \int_{t_n}^{t_f} T(t) \cdot \sigma(r(t)) \cdot c(r(t)) \, dt
 ,\ where:
 \\
-
 T(t) = \exp\left(-\int_{t_n}^{t} \sigma(r(s)) \, ds \right)
 $$
+
 其中：
 
-- $C(r) $是光线 $r $的最终颜色，有红绿蓝三个颜色的分量。
-- $t_n $和$ t_f $分别是光线的近裁剪面和远裁剪面的参数。
-- $T(t) $是从起点到当前点t的透明度积累（通常为 $T(t) = \exp\left(-\int_{t_n}^{t} \sigma(r(s)) \, ds \right)$）。
+- $C(r)$是光线$r$的最终颜色，有红绿蓝三个颜色的分量。
+- $t_n$和$t_f$分别是光线的近裁剪面和远裁剪面的参数。
+- $T(t)$是从起点到当前点t的透明度积累（通常为 $T(t) = \exp\left(-\int_{t_n}^{t} \sigma(r(s)) \, ds \right)$）。
 - $\sigma(r(t))$ 是点 $r(t)$处的体积密度。
 - $c(r(t))$是点 $r(t)$处的颜色。
 
@@ -80,7 +81,7 @@ Loss公式：$L = \sum_{r \in R} \left( \left\| \hat{C}_c(r) - C(r) \right\|_2^2
 第二点：$\gamma$是什么玩意儿？其实这代表Positional Encoding坐标和方向向量之后结果。为什么要位置编码？因为实际中，点之间的距离变化较短，但是蕴含的信息的变化可能“较快”，即，sampling频率不够，容易造成输出图像颜色和密度变化较为平缓的现象。Positional Encoding公式如下：
 $$
 \gamma(x) = \left[ \sin(2^0 \pi x), \cos(2^0 \pi x), \ldots, \sin(2^{L-1} \pi x), \cos(2^{L-1} \pi x) \right] \\
-where\ \gamma is\ a\ mapping\ from\ R\ into\ R^{2L}
+where\ \gamma \ is\ a\ mapping\ from\ R\ into\ R^{2L}
 $$
 这样通过双射将低频的信息投射到高频的信息，让它能够感知高频的变化，从而增加鲁棒性。这在transformer中也有应用。在本篇工作中，xyz信息和view信息都进行了位置编码。
 
