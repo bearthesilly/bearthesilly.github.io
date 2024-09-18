@@ -83,7 +83,9 @@ $$
 \gamma(x) = \left[ \sin(2^0 \pi x), \cos(2^0 \pi x), \ldots, \sin(2^{L-1} \pi x), \cos(2^{L-1} \pi x) \right] \\
 where\ \gamma \ is\ a\ mapping\ from\ R\ into\ R^{2L}
 $$
-这样通过双射将低频的信息投射到高频的信息，让它能够感知高频的变化，从而增加鲁棒性。这在transformer中也有应用。在本篇工作中，xyz信息和view信息都进行了位置编码。
+这样通过双射将低频的信息投射到高频的信息，让它能够感知高频的变化，从而增加鲁棒性。在本篇工作中，xyz信息和view信息都进行了位置编码。有趣的是，这在transformer中也有应用，但是论文中着重提及了Transformer和NeRF中两者作用上的区别：
+
+> A similar mapping is used in the popular Transformer architecture, where it is referred to as a positional encoding. However, Transformers use it for a different goal of providing the discrete positions of tokens in a sequence as input to an architecture that does not contain any notion of order. In contrast, we use these functions to map continuous input coordinates into a higher dimensional space to enable our MLP to more easily approximate a higher frequency function.
 
 这便是technical contribution第二点。
 

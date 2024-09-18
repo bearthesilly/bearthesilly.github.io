@@ -62,7 +62,7 @@ $$
 
 用$C(\theta, \phi)$上查阅xyz坐标就能得到RGB值，因此这种类似于“5D函数”的东西终于表达出来了。论文中，$l=4$，因此一共有1+3+5+7 = 16个球谐基函数，而RGB每一个通道都有一个$C(\theta, \phi)$，因此关于颜色的表达将会使用3*16 = 48个参数（当然所有的3D高斯椭球共用一套球谐基函数）
 
-## Tile-Tasterization & α-Rendering
+## Tile-Rasterization & α-Rendering
 
 有了一堆的高斯椭球，我还知道一条光线视角下穿过点的opacity与RGB，如何综合它们得到一个最终的RGB值呢？论文中没有使用NeRF的density那一套逐pixel的公式，而是使用了逐tile(瓦片)的Alpha Rendering。
 
