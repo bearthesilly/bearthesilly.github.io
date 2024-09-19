@@ -1061,4 +1061,69 @@ Flux的另一个定义： photons flowing through a sensor in unit time。
 
 <img src="img/102.png" alt="image" style="zoom:33%;" />
 
+在上述的模型中，我们一般用$(\theta, \phi)$这种球坐标系中的两个关键角度来表示，其中前者是向量和z正半轴的夹角，后者是向量投影到XOY后和x正半轴的夹角。那么A代表面积，那么有differential solid angels formula:
+$$
+dA = r^2sin\theta d\theta d\phi \\
+d\omega = dA/r^2 = sin\theta d\theta d\phi
+$$
 因此点光源散发出来的单位方向上的Intensity是：$I = \phi / 4\pi$。
+
+#### Irradiance & Radiance
+
+Irradiance 定义如下:
+
+<img src="img/103.png" alt="image" style="zoom:33%;" />
+
+因此在点光源中传播出来的光线，事实上Itensity其实没有衰减，衰减的其实是irradiance。
+
+Radiance 定义如下：
+
+<img src="img/104.png" alt="image" style="zoom:33%;" />
+
+那么radiance可以视为一个单位solid angle上面传过来的irradiance，那么事实上两者的关系就差了一个积分：
+
+<img src="img/105.png" alt="image" style="zoom:33%;" />
+
+概念总结：
+
+- 立体角(solid angle): 平面角在三维空间的延伸, 就理解为三维的角度即可.
+
+- 辐射通量(radiant flux): 单位时间内辐射的能量.
+- 辐射强度(radiant intensity): 单位时间内在单位立体角上辐射的能量.
+- 辐射度或者辐射亮度(radiance): 单位时间内在单位立体角上辐射的并照射到单位投影面积上的能量.
+- 辐照度(irradiance): 单位时间内辐射的并照射到单位面积上的能量, 也就是各个角度上辐射度总和.
+
+### Bidirectional Reflectance Distribution Function (BRDF)
+
+之前我们尝试用radiance去理解irradiance，那么接下来尝试用这两个概念去理解反射。一个点从一个单位角收到irradiance能量，然后再求另外一个radiance。公式如下：
+
+<img src="img/106.png" alt="image" style="zoom: 33%;" />
+
+这个$f_r$参数就代表了这个物体表面的属性。因此对于每一个shading point，都认为收到了四面八方的radiance，因此求和得到：
+
+<img src="img/107.png" alt="image" style="zoom: 33%;" />
+
+但是挑战在于：接受的radiance不仅仅可能来自于光源，也可能来自其它物体反射出来的radiance。因此这有一点递归的意味了。在解决这个问题之前，先定下通用的渲染方程：这个方程考虑了物体自己发光的情况
+
+![image](img/108.png)
+
+那么说回反射。提到：上面这个方程中有入射radiance是来自其他物体，自己反射出来的radiance其实也可能影响其他物体的反射。因此，事实上，对于一个点的反射方程来说，其实就是两个量不是很清楚：入射radiance 出射radiance。我们尝试用简单的符号表示上述的过程：
+
+<img src="img/109.png" alt="image" style="zoom: 33%;" />
+
+更进一步地，我们可以把这种入射到出射的转化视为一种算子，如下：
+
+<img src="img/110.png" alt="image" style="zoom:33%;" />
+
+写成算子之后，能帮助解出这个方程，类似于等比公式：
+
+<img src="img/111.png" alt="image" style="zoom:33%;" />
+
+<img src="img/112.png" alt="image" style="zoom:33%;" />
+
+终于，通过这样的计算，我们终于能够非常良好地模拟光照了。下面图片非常生动地展示了引入BRDF之后，全局光照的效果是多么的明显；这也正是在第一节课的时候为什么说：光照越好越亮，代表效果越好：上图中没有引入BRDF，p点是黑的，因为不认为光线能够到达这个地方；但是在下面这个图中，允许光线两次弹射，p点就比上图亮了。
+
+<img src="img/113.png" alt="image" style="zoom:33%;" />
+
+<img src="img/114.png" alt="image" style="zoom:33%;" />
+
