@@ -984,3 +984,81 @@ $$
 如果$t_{enter} < t_{exit}$，那么我们就知道有交点了。那么如果有负数的情况呢？我们现在有两个时间，如果$t_{exit}<0$，那么就说明盒子在光线的背后，不可能相交；而如果$t_{exit}>=0 \ and \ t_{enter}<0$呢？说明光线起点在盒子里面，说明绝对有交点。综上所述：$t_{enter}<t_{exit}$&&$t_{exit}>=0$情况下，光线就会和AABB相交。这样的话，就能简单地求出t的值。
 
 <img src="img/92.png" alt="image" style="zoom:33%;" />
+
+### Acceleration
+
+#### Uniform Spatial Partitions(Grids)
+
+假如说找到了大包围盒，我们可以创建一个个网格盒子，然后判断哪些盒子里面是有物体的（Store each object in overlapping cells）。一条光线过去，会和大包围盒中的许多网格盒子相交。当相交的网格盒子里面储存了物体的时候，再一次判断在这个网格盒子里面，光线是否和物体发生了相交。那么如何划分网格盒子呢？太大太小都不好（可以感性理解），因此实践中，heuristically，场景中各自的数量应该是物体数量的27倍。在什么情况下，这种grid加速效果很好呢？***Generally, grids work well on large collections of objects that are distributed evenly in size and space***。为什么呢？因为我们期望光线经过一个个网格盒子的时候，里面都经常能碰见物体。
+
+换而言之：假如说空间分布的不均匀的时候，grid表现不佳，“Teapot in a stadium”。因为很多的各自都完全是空格子，而要遍历很多的空格子才能找到包含茶壶的格子
+
+#### Spatial Partitioning
+
+如何允许“不均匀”地划分空间？一种常见的方法是八叉树（Octree）。在空间中首先化为8块，对于每一块来说，如果里面有很多物体的话，我就可以再划分为8块；对于新产生的8块来说，继续重复上述的步骤。这就是一种不均匀的划分，而“这一块里面包含多少物体我就再分为8份”这种规则是我们自己定义的。于是通过八叉树，我们能够不均匀地划分空间，并且力图将细粒度的盒子分配给那些物体集中的地方，而在没有物体的地方直接用一个大盒子表示（即不进行进一步的八叉树划分）。
+
+***但是实践中，人们并不倾向于选择八叉树***。人们又发明了KD-Tree，与八叉树思想类似，但是关键在于，每一次只在一条轴上划一刀，并且轴的选择是交替的。示意图如下：其中，首先横向划一刀，然后上下两部分都竖直方向划一刀，然后之后再横向，以此类推；3D中，轴的选择可以是x y z轮流来。
+
+<img src="img/93.png" alt="image" style="zoom:50%;" />
+
+这样一来，我们可以通过KD树的结构来划分格子，然后格子中储存物体。如下图（2D演示）：
+
+<img src="img/94.png" alt="image" style="zoom:33%;" />
+
+<img src="img/95.png" alt="image" style="zoom:33%;" />
+
+当光线过来的时候，从树的根节点开始从上往下遍历：先判断和A相不相交？如果相交，判断和1 B是否相交呢？假如和1相交，因为1没有子节点，因此1中储存的所有物体都和光线判断是否相交；如果和B相交，那么就继续判断和2与C相交，以此类推。
+
+这个流程看起来棒极了，但是却仍然渐渐不被使用。为什么？因为判定object和AABB是否相交也是一个大问题。这个算法不是没有，但是很难实践，因此KD树的建立不是简单的事情；同时，一个物体可能会出现在多个叶子结点，但是这并不是我们所希望见到的。
+
+#### Object Partitions & Bounding Volume Hierarchy(BVH)
+
+之前那种划分都是从空间角度入手。那么能不能从物体角度入手呢？答案是可以的，于是BVH算法应运而生，成为了最广泛使用的划分方式。
+
+<img src="img/96.png" alt="image" style="zoom:33%;" />
+
+<img src="img/97.png" alt="image" style="zoom:33%;" />
+
+首先用一个大AABB包住所有的三角形，然后可以参考KD树，左右分出两部分，每一部分里面都***完整包含***了很多三角形（当然，两个AABB可以相交），然后以此类推。步骤可以概括如下：
+
+<img src="img/98.png" alt="image" style="zoom:33%;" />
+
+How to subdivide a node?
+
+- Choose a dimension to split.
+- Heuristic #1: Always choose the longest axis in node.
+- Heuristic #2: Split node at location of median object.
+
+Termination criteria? Heuristic: stop when node contains few element. 
+
+遍历BVH的伪代码如下：
+
+<img src="img/99.png" alt="image" style="zoom: 33%;" />
+
+Spatial划分和BVH物体划分的区别概述如下：
+
+<img src="img/100.jpg" alt="image" style="zoom: 33%;" />
+
+### Basic radiometry
+
+radiometry，辐射度量学，为什么要引入这个东西呢？Blinn-Phong模型很粗糙，而Whitted style ray tracing往往给出的结果总是距离“正确”有一点距离。辐射度量学表述了如何表示光照的属性，单位等等，定义了光照的若干属性：***Radiant flux, intensity, irradiance, radiance***。***Perform lighting calculations in a physically correct manner***。
+
+#### Radiant Energy and Flux (Power)
+
+Definition: Radient energy is the energy of electromagnetic radiation. It is measured in units of joules.  $Q[J=Joule]$
+
+Definition: Radiant flux(power) is the energy emitted, reflected, transmitted or received, per unit time.  $\phi = dQ/dt[W=Watt]$
+
+Flux的另一个定义： photons flowing through a sensor in unit time。
+
+我们需要详细定义一一些blinn-phong中粗糙对待的事情：例如点光源散发光，不同角度光落在一个点上等；而前者对应的概念就是Radiant Intensity，后者对应的是irradience。
+
+#### Radiant Intensity
+
+<img src="img/101.png" alt="image" style="zoom: 33%;" />
+
+立体角是什么？它描述了空间中的一个角度有多大。
+
+<img src="img/102.png" alt="image" style="zoom:33%;" />
+
+因此点光源散发出来的单位方向上的Intensity是：$I = \phi / 4\pi$。
