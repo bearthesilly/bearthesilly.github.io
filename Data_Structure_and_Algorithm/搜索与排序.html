@@ -3162,6 +3162,18 @@ int BinarySearch(int arr[], int i, int j, int val){
     }
 }
 </code></pre>
+<p>但是递归看似优雅美丽，然而它也有一些头疼的地方：</p>
+<ul>
+<li>每次递归调用都会在调用栈上分配新的栈帧（stack frame），这会占用内存。如果递归过深，会超出栈的最大深度（<strong><em>Python 默认限制为 1000 次调用</em></strong>），导致 <code>RecursionError: maximum recursion depth exceeded in comparison</code> 错误：</li>
+<li>对于某些递归算法，它们利用递归的时候，时间复杂度奇高无比，例如斐波那契数列的计算：<span class="arithmatex">\(O(n)\)</span>。下面的程序在n到50的时候，计算一轮甚至需要长达10分钟。</li>
+</ul>
+<pre><code class="language-c++">int f(n){
+    if n == 1 or 0:
+        return 1;
+    else:
+        return f(n-1) + f(n-2);
+}
+</code></pre>
 
 
 

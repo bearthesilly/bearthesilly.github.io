@@ -3144,6 +3144,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#monte-carlo-path-tracing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monte Carlo Path Tracing
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3657,6 +3666,15 @@
   <a href="#bidirectional-reflectance-distribution-function-brdf" class="md-nav__link">
     <span class="md-ellipsis">
       Bidirectional Reflectance Distribution Function (BRDF)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monte-carlo-path-tracing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monte Carlo Path Tracing
     </span>
   </a>
   
@@ -4483,6 +4501,27 @@ d\omega = dA/r^2 = sin\theta d\theta d\phi
 <p>终于，通过这样的计算，我们终于能够非常良好地模拟光照了。下面图片非常生动地展示了引入BRDF之后，全局光照的效果是多么的明显；这也正是在第一节课的时候为什么说：光照越好越亮，代表效果越好：上图中没有引入BRDF，p点是黑的，因为不认为光线能够到达这个地方；但是在下面这个图中，允许光线两次弹射，p点就比上图亮了。</p>
 <p><img src="img/113.png" alt="image" style="zoom:33%;" /></p>
 <p><img src="img/114.png" alt="image" style="zoom:33%;" /></p>
+<h3 id="monte-carlo-path-tracing">Monte Carlo Path Tracing</h3>
+<p>首先补充一些概率论背景：在<span class="arithmatex">\(X\sim p(x)\)</span>分布下，概率密度函数恒大于等于0，且<span class="arithmatex">\(\int p(x)dx=1\)</span>（概率之和应该为1），而定义期望为：<span class="arithmatex">\(E[X]=\int xp(x)dx\)</span>。接下来介绍一种积分方法：蒙特卡洛积分。蒙特卡洛一开始是为了解决求定积分的问题的，定义如下：</p>
+<p><img src="img/115.png" alt="image" style="zoom:33%;" /></p>
+<p>所以说，问题从原来的求定积分转化为了如何设定优质的PDF（概率密度函数，Probability Density Function）了。可想而知的是：采样越多，方差越小；Sample on x, integrate on x。</p>
+<p>这对于Path Tracing究竟有什么关联的？Whitted-Style Ray Tracing中，允许光多次弹射，且有一些前提：当光线到达光滑物体，会发生镜面折射，且如果是玻璃，会有折射；而光线到达漫反射地方，则认为不再传播。但是这些明显不符合物理现实。Where the ray be reflected for gloddy materials？能够看到高光，但是并没有那么光滑。说明当眼睛放出一条光线打到glossy物体上，光应该四散，否则如果是镜面反射，那么应该能够呈现周围与环境。同时如果没有漫反射，那么全局光线效果的差异会相当明显。</p>
+<p><img src="img/116.png" alt="image" style="zoom:33%;" /></p>
+<p><img src="img/117.jpg" alt="image" style="zoom:33%;" /></p>
+<p>但是渲染方程应该是对的！因为完全是按照物理世界的规则来的，考虑到了四周来的光！只不过是规则没有正确地设定。但是这个方程涉及到了球面上的积分，而且涉及到了递归执行。如何数值上高效计算积分呢？我们就可以考虑引入蒙特卡洛求积分方法了。</p>
+<p><img src="img/118.png" alt="image" style="zoom:33%;" /></p>
+<p><img src="img/119.png" alt="image" style="zoom:33%;" /></p>
+<p><img src="img/120.png" alt="image" style="zoom:33%;" /></p>
+<p>上面三张图片展示的algorithm究竟意味着什么？我们终于知道了：对于一个点来说，如何接受四处来的光，并沿着一个方向再发射出多少radiance的光线了。在以前Blinn-Phong中，强行光分为三种，分别用不同的系数来代表specular, diffuse and ambient; 而如今，所有的光一视同仁，而该点某一角度下的“glossy还是glassy”与否，都通过<span class="arithmatex">\(f_{r}\)</span>这个参数进行表示。Pseudocode如下：</p>
+<pre><code class="language-c++">shade(p, wo)
+    Randomly choose N directions wi~pdf
+    L0 = 0.0
+    For each wi
+        Trace a ray r(p, wi)
+        If ray r hit the light
+            Lo += (1/N) * L_i * f_r * cosine / pdf(wi)
+    Return Lo
+</code></pre>
 
 
 
