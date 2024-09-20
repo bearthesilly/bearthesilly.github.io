@@ -1127,3 +1127,105 @@ Radiance 定义如下：
 
 <img src="img/114.png" alt="image" style="zoom:33%;" />
 
+### Monte Carlo Path Tracing
+
+首先补充一些概率论背景：在$X\sim p(x)$分布下，概率密度函数恒大于等于0，且$\int p(x)dx=1$（概率之和应该为1），而定义期望为：$E[X]=\int xp(x)dx$。接下来介绍一种积分方法：蒙特卡洛积分。蒙特卡洛一开始是为了解决求定积分的问题的，定义如下：
+
+<img src="img/115.png" alt="image" style="zoom:33%;" />
+
+所以说，问题从原来的求定积分转化为了如何设定优质的PDF（概率密度函数，Probability Density Function）了。可想而知的是：采样越多，方差越小；Sample on x, integrate on x。
+
+这对于Path Tracing究竟有什么关联的？Whitted-Style Ray Tracing中，允许光多次弹射，且有一些前提：当光线到达光滑物体，会发生镜面折射，且如果是玻璃，会有折射；而光线到达漫反射地方，则认为不再传播。但是这些明显不符合物理现实。Where the ray be reflected for gloddy materials？能够看到高光，但是并没有那么光滑。说明当眼睛放出一条光线打到glossy物体上，光应该四散，否则如果是镜面反射，那么应该能够呈现周围与环境。同时如果没有漫反射，那么全局光线效果的差异会相当明显。
+
+<img src="img/116.png" alt="image" style="zoom:33%;" />
+
+<img src="img/117.jpg" alt="image" style="zoom:33%;" />
+
+但是渲染方程应该是对的！因为完全是按照物理世界的规则来的，考虑到了四周来的光！只不过是规则没有正确地设定。但是这个方程涉及到了球面上的积分，而且涉及到了递归执行。如何数值上高效计算积分呢？我们就可以考虑引入蒙特卡洛求积分方法了。
+
+<img src="img/118.png" alt="image" style="zoom:33%;" />
+
+<img src="img/119.png" alt="image" style="zoom:33%;" />
+
+<img src="img/120.png" alt="image" style="zoom:33%;" />
+
+上面三张图片展示的algorithm究竟意味着什么？我们终于知道了：对于一个点来说，如何接受四处来的光，并沿着一个方向再发射出多少radiance的光线了。在以前Blinn-Phong中，强行光分为三种，分别用不同的系数来代表specular, diffuse and ambient; 而如今，所有的光一视同仁，而该点某一角度下的“glossy还是glassy”与否，都通过$f_{r}$这个参数进行表示。Pseudocode如下：
+
+````c++
+shade(p, wo)
+    Randomly choose N directions wi~pdf
+    L0 = 0.0
+    For each wi
+    	Trace a ray r(p, wi)
+    	If ray r hit the light
+    		Lo += (1/N) * L_i * f_r * cosine / pdf(wi)
+   	Return Lo
+````
+
+进一步地：如何计算Recursively呢？意思是如下图：P中接受的直接光照，应该也有来自Q点射出来的光线，那么计算流程中如何体现这种“包含”或者说“递归”一层含义呢？那么其实我可以视为：有一个摄像机在P，随机方向放出光线，如果说PG方向的光线打中了物体（而不是打中了直接光照的光线），那么计算Q的蒙特卡洛渲染方程积分，加到P点：
+
+<img src="img/121.png" alt="image" style="zoom:33%;" />
+
+````c++
+shade(p, wo)
+    Randomly choose N directions wi~pdf
+    L0 = 0.0
+    For each wi
+    	Trace a ray r(p, wi)
+    	If ray r hit the light
+    		Lo += (1/N) * L_i * f_r * cosine / pdf(wi)
+    	Else is ray r hit an object at q
+    		Lo += (1/N) * shade(q, -wi) * f_r * cosine / pdf(wi)
+   	Return Lo
+````
+
+这挺对的。但是仍然问题没有完全被解决。第一点：如果这样递归计算，光线数量会***瞬间爆炸***，因为N取的太大的话，计算开销是指数增长的。解决方案可以很粗暴：N=1，但是可想而知，噪声问题会存在；但是在Path Tracing中，就是规定N=1。虽然对于一个shading point来说，只允许追踪一条path，但是为了克服噪点，我可以让一个pixel追踪多条路径，而对于每条路径上可能路过的shading point来说，它们各自计算渲染方程的时候，N都是为1，计算不会爆炸；最后一个pixel的radiance是所有path的radiance的平均（这是因为pixel reconstruction filter问题）。Pseudocode如下：
+
+````c++ 
+ray_generation(camPos, pixel)
+    Uniformly choose N sample positions within the pixel
+    pixel_radiance = 0.0
+    For each sample in the pixel
+    	Shoot a ray r(camPos, cam_to_sample)
+    	If ray r hit the scene at P
+    		pixel_radiance += 1 / N * shade(p, sample_to_cam)
+    Return pixel_radiance
+````
+
+第二点：诶？这个递归好像是没有终止条件？为了解决如何规定追踪如何停下来，人们发明了俄罗斯轮盘赌（Russian Roulette）方法：如下图所示：
+
+<img src="img/122.png" alt="image" style="zoom:33%;" />
+
+最妙的地方在于：期望值是一样的。因此伪代码需要略微修改：
+
+````c++
+shade(p, wo)
+    Manually specify a probability P_RR
+    Randomly select ksi in a uniform dist. in [0, 1]
+    if (ksi > P_RR) return 0.0;
+    
+    Randomly choose ONE directions wi~pdf
+    Trace a ray r(p, wi)
+    If ray r hit the light
+    	Return (1/N) * L_i * f_r * cosine / pdf(wi) / P_RR
+    Else is ray r hit an object at q
+    	Return (1/N) * shade(q, -wi) * f_r * cosine / pdf(wi) / P_RR
+````
+
+目前为止，这就是一个正确地算法了。但是事实上，这并不高效，因为需要克服噪声的话，需要SPP（samples per pixel）值很高。有没有什么提高的方法呢？在之前，对于一个shading point来说，都是随机选取一条光线进行追踪，因此很可能随机追踪的结果就是碰不见物体或者光源。因此我能不能重新改变采样策略呢？毕竟蒙特卡洛计算定积分是允许不同的概率分布的。 
+
+<img src="img/123.png" alt="image" style="zoom:33%;" />
+
+我们希望着重于光源对该点的radiance影响。因此对光源进行采样，算出额外的radiance:
+
+<img src="img/124.png" alt="image" style="zoom:33%;" />
+
+因此，之前我们都假设： light is "accidentally" shot by uniform hemisphere sampling。但是现在我们考虑两部分的radiance：light source(direct, no need to have RR) and other reclectors(indirect, RR)。伪代码如下图：
+
+<img src="img/125.png" alt="image" style="zoom:33%;" />
+
+当然，还有最后最后一个小问题：万一光源的共线是被遮挡的呢？因此还需要判断这个光源的贡献到底能不能成立。因此需要shading point和光源进行连线，判断是否和物体相交。因此伪代码中还需要额外判断光源贡献是否被遮挡，那么完整的流程终于介绍完毕。这种算法是正确的，而且能够生成非常逼近于现实的照片：
+
+<img src="img/126.png" alt="image" style="zoom:33%;" />
+
+pixel有了radiance，经过gamma correction, curves, color space等流程，最后能变为颜色。这一部分不会cover。
