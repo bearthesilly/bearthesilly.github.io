@@ -3158,6 +3158,48 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#materials-and-appearances" class="md-nav__link">
+    <span class="md-ellipsis">
+      Materials and Appearances
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Materials and Appearances">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#material-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Material Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#microfacet-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      Microfacet Material
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#properties-of-brdf-and-measuring-brdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Properties of BRDF and Measuring BRDF
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3675,6 +3717,48 @@
   <a href="#monte-carlo-path-tracing" class="md-nav__link">
     <span class="md-ellipsis">
       Monte Carlo Path Tracing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#materials-and-appearances" class="md-nav__link">
+    <span class="md-ellipsis">
+      Materials and Appearances
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Materials and Appearances">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#material-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Material Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#microfacet-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      Microfacet Material
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#properties-of-brdf-and-measuring-brdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Properties of BRDF and Measuring BRDF
     </span>
   </a>
   
@@ -4522,6 +4606,90 @@ d\omega = dA/r^2 = sin\theta d\theta d\phi
             Lo += (1/N) * L_i * f_r * cosine / pdf(wi)
     Return Lo
 </code></pre>
+<p>进一步地：如何计算Recursively呢？意思是如下图：P中接受的直接光照，应该也有来自Q点射出来的光线，那么计算流程中如何体现这种“包含”或者说“递归”一层含义呢？那么其实我可以视为：有一个摄像机在P，随机方向放出光线，如果说PG方向的光线打中了物体（而不是打中了直接光照的光线），那么计算Q的蒙特卡洛渲染方程积分，加到P点：</p>
+<p><img src="img/121.png" alt="image" style="zoom:33%;" /></p>
+<pre><code class="language-c++">shade(p, wo)
+    Randomly choose N directions wi~pdf
+    L0 = 0.0
+    For each wi
+        Trace a ray r(p, wi)
+        If ray r hit the light
+            Lo += (1/N) * L_i * f_r * cosine / pdf(wi)
+        Else is ray r hit an object at q
+            Lo += (1/N) * shade(q, -wi) * f_r * cosine / pdf(wi)
+    Return Lo
+</code></pre>
+<p>这挺对的。但是仍然问题没有完全被解决。第一点：如果这样递归计算，光线数量会<strong><em>瞬间爆炸</em></strong>，因为N取的太大的话，计算开销是指数增长的。解决方案可以很粗暴：N=1，但是可想而知，噪声问题会存在；但是在Path Tracing中，就是规定N=1。虽然对于一个shading point来说，只允许追踪一条path，但是为了克服噪点，我可以让一个pixel追踪多条路径，而对于每条路径上可能路过的shading point来说，它们各自计算渲染方程的时候，N都是为1，计算不会爆炸；最后一个pixel的radiance是所有path的radiance的平均（这是因为pixel reconstruction filter问题）。Pseudocode如下：</p>
+<pre><code class="language-c++">ray_generation(camPos, pixel)
+    Uniformly choose N sample positions within the pixel
+    pixel_radiance = 0.0
+    For each sample in the pixel
+        Shoot a ray r(camPos, cam_to_sample)
+        If ray r hit the scene at P
+            pixel_radiance += 1 / N * shade(p, sample_to_cam)
+    Return pixel_radiance
+</code></pre>
+<p>第二点：诶？这个递归好像是没有终止条件？为了解决如何规定追踪如何停下来，人们发明了俄罗斯轮盘赌（Russian Roulette）方法：如下图所示：</p>
+<p><img src="img/122.png" alt="image" style="zoom:33%;" /></p>
+<p>最妙的地方在于：期望值是一样的。因此伪代码需要略微修改：</p>
+<pre><code class="language-c++">shade(p, wo)
+    Manually specify a probability P_RR
+    Randomly select ksi in a uniform dist. in [0, 1]
+    if (ksi &gt; P_RR) return 0.0;
+
+    Randomly choose ONE directions wi~pdf
+    Trace a ray r(p, wi)
+    If ray r hit the light
+        Return (1/N) * L_i * f_r * cosine / pdf(wi) / P_RR
+    Else is ray r hit an object at q
+        Return (1/N) * shade(q, -wi) * f_r * cosine / pdf(wi) / P_RR
+</code></pre>
+<p>目前为止，这就是一个正确地算法了。但是事实上，这并不高效，因为需要克服噪声的话，需要SPP（samples per pixel）值很高。有没有什么提高的方法呢？在之前，对于一个shading point来说，都是随机选取一条光线进行追踪，因此很可能随机追踪的结果就是碰不见物体或者光源。因此我能不能重新改变采样策略呢？毕竟蒙特卡洛计算定积分是允许不同的概率分布的。 </p>
+<p><img src="img/123.png" alt="image" style="zoom:33%;" /></p>
+<p>我们希望着重于光源对该点的radiance影响。因此对光源进行采样，算出额外的radiance:</p>
+<p><img src="img/124.png" alt="image" style="zoom:33%;" /></p>
+<p>因此，之前我们都假设： light is "accidentally" shot by uniform hemisphere sampling。但是现在我们考虑两部分的radiance：light source(direct, no need to have RR) and other reclectors(indirect, RR)。伪代码如下图：</p>
+<p><img src="img/125.png" alt="image" style="zoom:33%;" /></p>
+<p>当然，还有最后最后一个小问题：万一光源的共线是被遮挡的呢？因此还需要判断这个光源的贡献到底能不能成立。因此需要shading point和光源进行连线，判断是否和物体相交。因此伪代码中还需要额外判断光源贡献是否被遮挡，那么完整的流程终于介绍完毕。这种算法是正确的，而且能够生成非常逼近于现实的照片：</p>
+<p><img src="img/126.png" alt="image" style="zoom:33%;" /></p>
+<p>pixel有了radiance，经过gamma correction, curves, color space等流程，最后能变为颜色。这一部分不会cover。</p>
+<h2 id="materials-and-appearances">Materials and Appearances</h2>
+<h3 id="material-types">Material Types</h3>
+<p>图形学中，什么是材质？BRDF就反映了材质的特点！我们不妨来看看光线现象与材质之间的关系是如何通过<span class="arithmatex">\(f_{r}\)</span>体现的：第一种，在漫反射中，Blinn-Phong中还是用intensity等去大概模拟真实物理现象，但是现在可以用物理层面上正确的渲染方程去计算漫反射光线的radiance了。我们定义反射率albedo，可以是RGB三个通道自己的反射率，albedo范围为0-1.</p>
+<p><img src="img/127.png" alt="image" style="zoom:33%;" /></p>
+<p>第二种是glossy，这种材质一般是金属表面所拥有的。</p>
+<p><img src="img/128.png" alt="image" style="zoom:33%;" /></p>
+<p>第三种是理想反射与折射，如玻璃。</p>
+<p><img src="img/129.png" alt="image" style="zoom:33%;" /></p>
+<p>第四种是只有理想反射，如镜子。</p>
+<p><img src="img/130.png" alt="image" style="zoom:33%;" /></p>
+<p>那么折射究竟如何计算折射方向呢？这里介绍Snell's Law。根据snell定律，直到了两个材质的折射率，那么就能计算出折射角的正弦值；而方向向量两个维度的确定就是依赖于镜面反射了。</p>
+<p><img src="img/131.png" alt="image" style="zoom:33%;" /></p>
+<p><img src="img/132.png" alt="image" style="zoom:33%;" /></p>
+<p>而通过计算发现：如果上图中的式子小于零，那么就不会发生折射，只会发生<strong><em>全反射现象</em></strong>（Total Internal Reflection）。如下图所介绍：（图源：维基百科）而对于折射有专门的BTDF（类似于BRDF，但是公式针对折射）公式。</p>
+<p><img src="img/133.png" alt="image" style="zoom: 50%;" /></p>
+<p>那么有多少能量会折射？多少能量会反射？那么就引入了菲涅尔项（Fresnel Term）：如下图所示，入射角很小，书的倒影看的不是很清楚；但是平着看过去，就能发现影子较为清晰。</p>
+<p><img src="img/134.png" alt="image" style="zoom:33%;" /></p>
+<p>如下图是绝缘体的Reflectance-Angle图（一般实际渲染中，只看红线数据）</p>
+<p><img src="img/135.png" alt="image" style="zoom:33%;" /></p>
+<p>如下图是导体的Reflectance-Angle图（一般实际渲染中，只看红线数据）</p>
+<p><img src="img/136.png" alt="image" style="zoom:33%;" /></p>
+<p><img src="img/137.png" alt="image" style="zoom:33%;" /></p>
+<h3 id="microfacet-material">Microfacet Material</h3>
+<p>引入菲涅尔项，是为了正式介绍Microfacet Material: 微表面材质。这个理论假设：粗糙物体表面从近处看当然是粗糙的，但是从远处看，几乎是平的，i.e，每一个微表面我都可以认为是镜面，有自己的法线，因此一个粗糙物体表面有一个自己的法线表面分布。如果法向量方向较为concentrated，那么就认为是glossy；如果方向十分分散，那么认为是diffuse（漫反射材质）。如下图：</p>
+<p><img src="img/138.png" alt="image" style="zoom:33%;" /></p>
+<p>因此，结合菲涅尔项，我们可以表示：多少微表面能够把光线反射到一定方向上？公示如下图：</p>
+<p><img src="img/139.png" alt="image" style="zoom:33%;" /></p>
+<p>其中，shadowing-masking term是为了修政一种现象：有的微镜面反射出的光线原本是符合要求的方向，但是可能会被其他微镜面遮挡住。因此这一项就是用来进行一定的修正的。</p>
+<p>还有一种材质，它带有一定的方向性。例如说从一个角度看过去，漫反射程度高；而另一个角度看过去，镜面反射程度高。因此材质还分为各向异性(anisotropic)与各向同性(isotropic)。定义有：如果BRDF在不同的方位角（azimuthal）下不同，那么就是各向异性材料，典型的有Brushed Metal, Velvet等。</p>
+<h3 id="properties-of-brdf-and-measuring-brdf">Properties of BRDF and Measuring BRDF</h3>
+<p>BRDF有哪些性质？如下图演示：</p>
+<p><img src="img/140.png" alt="image" style="zoom:33%;" /></p>
+<p><img src="img/141.png" alt="image" style="zoom:33%;" /></p>
+<p><img src="img/142.png" alt="image" style="zoom:33%;" /></p>
+<p>那么如何测出BRDF？实践证明，红线的菲涅尔数值和真正实际的值有一定的差距，因此计算出BRDF有不小的挑战，因此如果能测量BRDF那自然是最好。现实中有一种仪器，叫做gonioreflectometer。通过光源和摄像机的不断环绕以模拟不同的入射角和实际的出射角。相机和测量原理如下图：</p>
+<p><img src="img/143.png" alt="image" style="zoom:33%;" /></p>
+<p><img src="img/144.png" alt="image" style="zoom:33%;" /></p>
 
 
 

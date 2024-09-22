@@ -1229,3 +1229,77 @@ shade(p, wo)
 <img src="img/126.png" alt="image" style="zoom:33%;" />
 
 pixel有了radiance，经过gamma correction, curves, color space等流程，最后能变为颜色。这一部分不会cover。
+
+## Materials and Appearances
+
+### Material Types
+
+图形学中，什么是材质？BRDF就反映了材质的特点！我们不妨来看看光线现象与材质之间的关系是如何通过$f_{r}$体现的：第一种，在漫反射中，Blinn-Phong中还是用intensity等去大概模拟真实物理现象，但是现在可以用物理层面上正确的渲染方程去计算漫反射光线的radiance了。我们定义反射率albedo，可以是RGB三个通道自己的反射率，albedo范围为0-1.
+
+<img src="img/127.png" alt="image" style="zoom:33%;" />
+
+第二种是glossy，这种材质一般是金属表面所拥有的。
+
+<img src="img/128.png" alt="image" style="zoom:33%;" />
+
+第三种是理想反射与折射，如玻璃。
+
+<img src="img/129.png" alt="image" style="zoom:33%;" />
+
+第四种是只有理想反射，如镜子。
+
+<img src="img/130.png" alt="image" style="zoom:33%;" />
+
+那么折射究竟如何计算折射方向呢？这里介绍Snell's Law。根据snell定律，直到了两个材质的折射率，那么就能计算出折射角的正弦值；而方向向量两个维度的确定就是依赖于镜面反射了。
+
+<img src="img/131.png" alt="image" style="zoom:33%;" />
+
+<img src="img/132.png" alt="image" style="zoom:33%;" />
+
+而通过计算发现：如果上图中的式子小于零，那么就不会发生折射，只会发生***全反射现象***（Total Internal Reflection）。如下图所介绍：（图源：维基百科）而对于折射有专门的BTDF（类似于BRDF，但是公式针对折射）公式。
+
+<img src="img/133.png" alt="image" style="zoom: 50%;" />
+
+那么有多少能量会折射？多少能量会反射？那么就引入了菲涅尔项（Fresnel Term）：如下图所示，入射角很小，书的倒影看的不是很清楚；但是平着看过去，就能发现影子较为清晰。
+
+<img src="img/134.png" alt="image" style="zoom:33%;" />
+
+如下图是绝缘体的Reflectance-Angle图（一般实际渲染中，只看红线数据）
+
+<img src="img/135.png" alt="image" style="zoom:33%;" />
+
+如下图是导体的Reflectance-Angle图（一般实际渲染中，只看红线数据）
+
+<img src="img/136.png" alt="image" style="zoom:33%;" />
+
+<img src="img/137.png" alt="image" style="zoom:33%;" />
+
+### Microfacet Material
+
+引入菲涅尔项，是为了正式介绍Microfacet Material: 微表面材质。这个理论假设：粗糙物体表面从近处看当然是粗糙的，但是从远处看，几乎是平的，i.e，每一个微表面我都可以认为是镜面，有自己的法线，因此一个粗糙物体表面有一个自己的法线表面分布。如果法向量方向较为concentrated，那么就认为是glossy；如果方向十分分散，那么认为是diffuse（漫反射材质）。如下图：
+
+<img src="img/138.png" alt="image" style="zoom:33%;" />
+
+因此，结合菲涅尔项，我们可以表示：多少微表面能够把光线反射到一定方向上？公示如下图：
+
+<img src="img/139.png" alt="image" style="zoom:33%;" />
+
+其中，shadowing-masking term是为了修政一种现象：有的微镜面反射出的光线原本是符合要求的方向，但是可能会被其他微镜面遮挡住。因此这一项就是用来进行一定的修正的。
+
+还有一种材质，它带有一定的方向性。例如说从一个角度看过去，漫反射程度高；而另一个角度看过去，镜面反射程度高。因此材质还分为各向异性(anisotropic)与各向同性(isotropic)。定义有：如果BRDF在不同的方位角（azimuthal）下不同，那么就是各向异性材料，典型的有Brushed Metal, Velvet等。
+
+### Properties of BRDF and Measuring BRDF
+
+BRDF有哪些性质？如下图演示：
+
+<img src="img/140.png" alt="image" style="zoom:33%;" />
+
+<img src="img/141.png" alt="image" style="zoom:33%;" />
+
+<img src="img/142.png" alt="image" style="zoom:33%;" />
+
+那么如何测出BRDF？实践证明，红线的菲涅尔数值和真正实际的值有一定的差距，因此计算出BRDF有不小的挑战，因此如果能测量BRDF那自然是最好。现实中有一种仪器，叫做gonioreflectometer。通过光源和摄像机的不断环绕以模拟不同的入射角和实际的出射角。相机和测量原理如下图：
+
+<img src="img/143.png" alt="image" style="zoom:33%;" />
+
+<img src="img/144.png" alt="image" style="zoom:33%;" />
