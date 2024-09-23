@@ -1303,3 +1303,39 @@ BRDF有哪些性质？如下图演示：
 <img src="img/143.png" alt="image" style="zoom:33%;" />
 
 <img src="img/144.png" alt="image" style="zoom:33%;" />
+
+## Cameras, Lenses and Light Fields
+
+光栅化与ray tracing其实都是在模拟synthesis图像，但是现实中我们能够捕捉真实的物体，比如说使用相机。这种行为就是Capture。照相的发展，最开始是小孔成像（Pinhole），之后演变出光线经过棱镜从而成像在传感器上（Lenses Form Image on Sensor）。一个相机有哪些部件呢？首先是快门（shutter），能够控制光进入相机的时间；其次，光进入相机之后，会被Sensor所记录，而传感器真正记录的是irradiance：Each sensor point would integrate light from all points on the object, so all pixel values would be similar, i.e, the sensor records irradiance。
+
+利用小孔成像制作的Pinhole Camera很早就被发明了，而且真的可以用来拍照，并且因为没有棱镜的存在，画面中颜色的变化都是锐利的，而不像棱镜相机一样会有所虚化。
+
+接下来介绍一系列的概念。首先是视场：Field of View。如果Sensor更为靠近棱镜，那么视场会更大，如下图所示。
+
+<img src="img/145.png" alt="image" style="zoom:33%;" />
+
+一般相机的定义中，胶片的大小是35mm，然后根据一个焦距f会定义出一个FOV角度。但是手机中就会不一样了，手机的厚度很小，因此实际上手机的胶片大小是很小的，从而在焦距f优先的情况下，依然可以有很好的FOV。相关介绍见下图；同时，也可以调整胶片的有效大小面积，从而改变FOV。
+
+<img src="img/146.png" alt="image" style="zoom:33%;" />
+
+接下来是曝光（Exposure）。我们定义：Exposure = time * irradiance。曝光时间由快门控制，而Irradiance is the power of light falling on a unit area of sensor, which is controlled by lens aperture（光圈） and focal length。光圈的设计是仿生人类瞳孔的，可以控制光线进入的多少。同样，也可以通过调整感光度（ISO gain）来调控成像信息与采集光线信息之间的关系：Change the amplification (analog and/or digital) between sensor values and digital image values。
+
+<img src="img/147.png" alt="image" style="zoom:33%;" />
+
+通过上面的展示图，我们不难发现：光圈越大，景深越大；快门时间越短，虚化效果越不明显；ISO越大，噪点越大。描述光圈有专门的F数：FN or F/N，其中N就是f-number。简单理解F数就是光圈直径的倒数，N越大，说明光圈越小，取景越深，光量越小；而实际上：The f-number of a lens is defined as the focal length divided by the diameter of the aperture。同时，快门速度越快，越不容易模糊，但是可能会有走样现象；快门略慢一些，相当于是在时间维度supersampling，因此一定程度上有益于反走样抗锯齿。快门的速度可以延伸出Fast and Slow Photography。
+
+之前一直在说相机的不同部件，但是最最重要的其实是镜头。真实的镜头其实都是由棱镜组组成的，非常的复杂；同时有些棱镜长的不是我们想象的那种棱镜，例如Aberration现象。这里介绍一种简单的、理想的棱镜：Ideal Thin Lens，平行光经过它会聚在焦点。这种棱镜会满足一种基本的物理规律：
+
+<img src="img/148.png" alt="image" style="zoom:33%;" />
+
+那么在ray tracing中如何引入透镜（lens）呢？下图介绍了setup：
+
+<img src="img/150.png" alt="image" style="zoom:33%;" />
+
+在渲染的时候，操作如下：
+
+<img src="img/151.png" alt="image" style="zoom:33%;" />
+
+BTW，下图展示了Depth of Focus(焦深)是如何影响Depth of Field(景深)的：
+
+<img src="img/152.png" alt="image" style="zoom:33%;" />
