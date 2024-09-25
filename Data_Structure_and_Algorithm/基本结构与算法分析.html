@@ -2750,6 +2750,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="数据结构算法复杂度介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#brief-intro" class="md-nav__link">
+    <span class="md-ellipsis">
+      Brief Intro
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#algorithm-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithm Analysis
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2775,6 +2799,15 @@
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       基本信息
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expand" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expand
     </span>
   </a>
   
@@ -3380,6 +3413,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="数据结构算法复杂度介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#brief-intro" class="md-nav__link">
+    <span class="md-ellipsis">
+      Brief Intro
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#algorithm-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithm Analysis
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3405,6 +3462,15 @@
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       基本信息
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expand" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expand
     </span>
   </a>
   
@@ -3739,6 +3805,7 @@
 <h1 id="_1">基本结构与算法分析</h1>
 <p>数组，链表，栈，队列</p>
 <h2 id="_2">数据结构算法复杂度介绍</h2>
+<h3 id="brief-intro">Brief Intro</h3>
 <p>数据结构: 相互之间存在一种或者多种特定关系的数据元素的集合. 在逻辑上可以分为线性结构, 散列结构, 树形结构, 图形结构等等</p>
 <p>算法: 求解具体问题的步骤描述, 代码上表现出来是解决特定问题的一组有限的指令序列</p>
 <p>算法复杂度: 时间和空间复杂度, 衡量算法效率, 算法在执行过程中, 随着数据规模n的增长, 算法执行所花费的时间和空间的增长速度. </p>
@@ -3748,6 +3815,23 @@
 <p><img src="img/2.png" alt="image" style="zoom:50%;" /></p>
 <p><img src="img/4.png" alt="image" style="zoom: 50%;" /></p>
 <p><img src="img/5.png" alt="image" style="zoom: 50%;" /></p>
+<h3 id="algorithm-analysis">Algorithm Analysis</h3>
+<p>Landau Symbols规定：</p>
+<ul>
+<li><span class="arithmatex">\(\Theta\)</span> notation: A function <span class="arithmatex">\(f(n) = \Theta(g(n))\)</span> if there exist positive <span class="arithmatex">\(k, c_1, c_2\)</span> such that: <span class="arithmatex">\(c_1 g(n) &lt; f(n) &lt; c_2 g(n)\)</span> whenever <span class="arithmatex">\(n&gt;k\)</span></li>
+<li>Big O notation: <span class="arithmatex">\(f(n) = O(g(n))\)</span> if there exists k and c such that <span class="arithmatex">\(f(n) &lt; cg(n)\)</span> whenever <span class="arithmatex">\(n&gt;k\)</span></li>
+</ul>
+<p>我们从极限的角度来看<span class="arithmatex">\(\Theta\)</span>，如果f(n) g(n)都是最高指数相同的多项式，且系数相同，如果说：</p>
+<p><span class="arithmatex">\(\lim_{n \to \infty} \frac{f(n)}{g(n)} = c \quad \text{where} \quad 0 &lt; c &lt; \infty\)</span>，那么我任取<span class="arithmatex">\(c &gt; \varepsilon &gt; 0\)</span>，那么总会存在正数k，使得：</p>
+<p><span class="arithmatex">\(\left| \frac{f(n)}{g(n)} - c \right| &lt; \varepsilon \ \text{whenever} \ n &gt; k\)</span>，那么就会有：
+<script type="math/tex; mode=display">
+c - \varepsilon < \frac{f(n)}{g(n)} < c + \varepsilon \\
+g(n)(c - \varepsilon) < f(n) < g(n)(c + \varepsilon) \\
+c_1 g(n) < f(n) < c_2 g(n)
+</script>
+于是类似地，可以通过这种极限形式重新定义上面两个符号，顺便再如下图定义：<span class="arithmatex">\(o, \omega, \Omega\)</span></p>
+<p><img src="img/9.png" alt="image" style="zoom: 33%;" /></p>
+<p><img src="img/10.png" alt="image" style="zoom: 50%;" /></p>
 <h2 id="_3">引言</h2>
 <p>考虑一种问题：<strong><em>compute the summation for a polynomial at a fixed value x.</em></strong>对于一个多项式：<span class="arithmatex">\(f(x)=a_0+a_1x+a_2x^2+⋯+a_{n−1}x^{n−1}+a_nx^n\)</span>来说，代入x之后如何计算？当然，我们可以利用一个数组去储存系数，用引索代表幂，即：a[i] = <span class="arithmatex">\(a_i\)</span></p>
 <pre><code class="language-c++">double fpoly1 ( int n, double a[ ], double x )
@@ -3816,6 +3900,16 @@
 // c/c++中, 不能用变量来初始化数组, 必须要用常量
 // 如果访问arr[10], 那么就是越界访问
 </code></pre>
+<h3 id="expand">Expand</h3>
+<p>在插入元素的时候，需要判断数组内存满了没有；如果满了，需要开辟新的更大的内存，并且把原来的数据拷贝过去。那么是乘以2好，还是加上一个常数呢？我们先定义amortized time均摊时间：If n operations requires <span class="arithmatex">\(\Theta(f(n))\)</span>, we will say that an individual operation has an amortized run time of <span class="arithmatex">\(\Theta(f(n)/n)\)</span>. 那么分析double的情况：假设在一次扩容中，Inserting n objects would require 1, 2, 4, 8, ..., all the way up to the largest <span class="arithmatex">\(2^k &lt; n\)</span> or <span class="arithmatex">\(k=\lfloor lg(n) \rfloor\)</span>
+<script type="math/tex; mode=display">
+\sum_{k=0}^{\lfloor \lg(n) \rfloor} 2^k = 2^{\lfloor \lg(n) \rfloor + 1} - 1 \leq 2^{\lg(n)+1} - 1 = 2^{\lg(n)} 2^1 - 1 = 2n - 1 = \Theta(n)
+</script>
+那么double的均摊时间就是<span class="arithmatex">\(\Theta(1)\)</span>, 而如果是一次内存加m呢？
+<script type="math/tex; mode=display">
+\sum_{k=1}^{n/m} m k = m \sum_{k=1}^{n/m} k = \frac{\frac{n}{m}\left(\frac{n}{m}+1\right)}{2} = \frac{n^2}{2m} + \frac{n}{2} = \Theta\left(n^2\right)
+</script>
+那么均摊时间就是<span class="arithmatex">\(\Theta(n)\)</span>了，因此最好的策略是double内存。</p>
 <h3 id="_6">增删改查——基本接口</h3>
 <p>首先回顾: 内存分区. </p>
 <ul>
@@ -5054,22 +5148,23 @@ int main(){
 }
 </code></pre>
 <h3 id="stl">STL实现</h3>
+<p>queue头文件中的STL所支持的函数：push(), pop()(没有返回值), top()(专门返回栈顶值)。注意，没有专门提供栈底元素的函数，因为队列是LIFO（last-in, first-out），没有访问栈底元素的接口。</p>
 <pre><code class="language-c++">#include &lt;iostream&gt;
-#include &lt;queue&gt;
+#include &lt;stack&gt;
 using namespace std;
-int main()
-{
-    queue&lt;int&gt; iqueue;
+int main() {
+    stack&lt;int&gt; istack;
 
-    iqueue.push(13);
-    iqueue.push(42);
-    cout &lt;&lt; &quot;Head: &quot; &lt;&lt; iqueue.front() &lt;&lt; endl;
-    iqueue.pop(); // no return value
-    cout &lt;&lt; &quot;Head: &quot; &lt;&lt; iqueue.front() &lt;&lt; endl;
-    cout &lt;&lt; &quot;Size: &quot; &lt;&lt; iqueue.size() &lt;&lt; endl;
+    istack.push( 13 );
+    istack.push( 42 );
+    cout &lt;&lt; &quot;Top: &quot; &lt;&lt; istack.top() &lt;&lt; endl;
+    istack.pop();                             // no return value
+    cout &lt;&lt; &quot;Top: &quot; &lt;&lt; istack.top() &lt;&lt; endl;
+    cout &lt;&lt; &quot;Size: &quot; &lt;&lt; istack.size() &lt;&lt; endl;
 
     return 0;
 }
+
 </code></pre>
 <h2 id="_31">队列</h2>
 <h3 id="_32">基础与代码实现</h3>
@@ -5272,7 +5367,7 @@ int main(){
 }
 </code></pre>
 <h3 id="stl_1">STL实现</h3>
-<p>队列的STL实现：</p>
+<p>queue头文件中的STL所支持的函数：push(), pop()(没有返回值), front()(专门返回队首值)。注意，没有专门提供队尾元素的函数，因为队列是FIFO（first-in, first-out），没有访问队尾元素的接口。</p>
 <pre><code class="language-c++">#include &lt;iostream&gt;
 #include &lt;queue&gt;
 using namespace std;
