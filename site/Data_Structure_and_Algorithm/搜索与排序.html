@@ -3111,15 +3111,13 @@
 <h3 id="_3">原理与代码实现</h3>
 <p>希望在一个没有顺序的数组里面，希望找到val元素，如果是线性搜索，时间复杂度是<code>O(n)</code>。那么如果在<strong><em>有序的序列</em></strong>（前提!）中，能不能更快地找到我希望的元素呢？那么可以使用二分搜索。</p>
 <p>二分搜索中，有两个下标，一个first一个last，一头一尾。然后首先计算序列中间的元素：<code>int middle = (first + last)/2</code>，然后判断<code>arr[middle] &lt;=&gt; val</code>。如果val更大，说明在middle右边，反之则在左边。同时，要对first last这两个参数进行更新，把去除掉一半部分之后剩下的序列作为新的操作对象。那么什么时候应该停下来呢？假如说val不存在序列里面，那么最后last一定会在first之前。这就是循环停止的标志。</p>
-<p>````c++\
-while (first &lt;= last){  <br />
+<pre><code class="language-c++">while (first &lt;= last){    
     int middle = (first + last)/2;
     if (arr[middle] &gt; val):{last = middle-1;}
     if (arr[middle] &lt; val):{last = middle+1;}
-}</p>
-<pre><code>
-````c++
-// binarysearch.cpp
+}
+</code></pre>
+<pre><code class="language-c++">// binarysearch.cpp
 #include &lt;iostream&gt;
 using namespace std;
 int BinarySearch(int arr[], int size, int val){

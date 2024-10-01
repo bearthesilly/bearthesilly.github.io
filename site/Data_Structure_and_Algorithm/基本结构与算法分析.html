@@ -3124,6 +3124,57 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      哈希表
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="哈希表">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hash-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hash function
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapping-to-0-m-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mapping to [0, M-1]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dealing-with-collisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dealing with collisions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3777,6 +3828,57 @@
   <a href="#stl_1" class="md-nav__link">
     <span class="md-ellipsis">
       STL实现
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      哈希表
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="哈希表">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hash-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hash function
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapping-to-0-m-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mapping to [0, M-1]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dealing-with-collisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dealing with collisions
     </span>
   </a>
   
@@ -5385,6 +5487,70 @@ int main()
     return 0;
 }
 </code></pre>
+<h2 id="_33">哈希表</h2>
+<h3 id="overview">Overview</h3>
+<p>哈希表又称散列表，一种以「key-value」形式存储数据的数据结构。所谓以「key-value」形式存储数据，是指任意的键值 key 都唯一对应到内存中的某个位置。只需要输入查找的键值，就可以快速地找到其对应的 value。可以把哈希表理解为一种高级的数组，这种数组的下标可以是很大的整数，浮点数，字符串甚至结构体。</p>
+<blockquote>
+<p>reference: https://oi.wiki/ds/hash/</p>
+</blockquote>
+<p>我们很希望：Store data so that all operations are <span class="arithmatex">\(\Theta\)</span>(1) time, and the memory requirement should be <span class="arithmatex">\(\Theta\)</span>(n). 举一个现实生活中的例子。假设一个班100个人，那么如何存储100个人的成绩呢？假设每一个学生都有一个8位学号，如果希望实现“引索——学生”一一对应，难道我需要创建一个<span class="arithmatex">\(10^8\)</span>的数组吗？ 其实不必。后来发现，绝大部分的人最后三位不一样，于是可以考虑：<span class="arithmatex">\(f(number) = number[:-3]\)</span>，那么创建的数组只需要<span class="arithmatex">\(10^3\)</span>个位置了。那么问题在于：万一有两个学生最后三位相同呢？其实当然有可能，但是概率很低。</p>
+<p>在上面这个例子中：The process of mapping an object or a number onto an integer in a given range is called <strong><em>hashing</em></strong>，对应的就是“通过学生的学号得到一个三位数字”，这个函数也称为哈希函数；同时，有一个问题：multiple objects may hash to the same value，这对应的就是两个学生最后的三位数相同，这种现象就是<strong><em>哈希冲突（collision）</em></strong>。后面也会介绍到：  Hash tables use a hash function together with a mechanism for dealing with collisions.</p>
+<p>对于一个hash process来说，主要流程如下图：</p>
+<p><img src="img/11.png" alt="image" style="zoom:33%;" /></p>
+<h3 id="hash-function">Hash function</h3>
+<p>哈希的定义：（From Merriam-Webster）a restatement of something that is already known.  我们希望哈希函数有以下的性质：</p>
+<ul>
+<li>The hash value must be deterministic（It must always return the same 32-bit integer each time）</li>
+<li>Equal objects hash to equal values</li>
+<li>Should be fast, like <span class="arithmatex">\(\Theta(1)\)</span></li>
+<li>If two objects are randomly chosen, there should be only a one-in-<span class="arithmatex">\(2^{32}\)</span> chance that they have the same hash value</li>
+</ul>
+<p>We will look at two classes of hash hunctions:</p>
+<ul>
+<li>Predetermined hash functions (explicit)</li>
+<li>Arithmetic hash functions (implicit)</li>
+</ul>
+<p>Predetermined hash functions：最简单的解决方案就是给每一个对象一个独特的号码，但是当录入了两个相同的object之后，输入这个object，返回的是两个号码。因此：These hash values must depend on the member variables, usually this uses <strong><em>arithmetic functions</em></strong>.</p>
+<p>An arithmetic hash value is a deterministic function that is calculated from the relevant member variables of an object. We will look at arithmetic hash functions for <strong><em>strings</em></strong>. A string is simply an array of bytes, each byte stores a value from 0 to 255. 因此，哈希函数必须是这些字节的函数。打个比方：哈希函数返回的是字符串所有的char的字节里面储存的数字。但是这种哈希函数不是很好，首先是：它的时间复杂度是<span class="arithmatex">\(\Theta(n)\)</span>，而且非常有可能会发生哈希冲突，比如说"from" "form"两个单词。</p>
+<p>换一种哈希函数：Let the individual characters represent the coefficients of a polynomial in x. Use Horner’s rule to evaluate this polynomial at a prime number, e.g., x=12347:</p>
+<pre><code class="language-c++">unsigned int hash( string const &amp;str ) {
+    unsigned int hash_value = 0;
+    for ( int k = 0; k &lt; str.length(); ++k ) {
+        hash_value = 12347*hash_value + str[k];
+    }
+    return hash_value;
+}
+</code></pre>
+<p>In general, any member variables that are used to uniquely define an object may be used as coefficients in such a polynomial.</p>
+<h3 id="mapping-to-0-m-1">Mapping to [0, M-1]</h3>
+<p>为什么需要把32bit映射到这个区间中？因为哈希表实际上是数组，而这个数组的大小是固定为M的，因此才需要mapping这一步，不然的话，内存要求非常的高。可能会认为：把32bit的整数映射到这个区间，直接模M不就好了吗？但是实则不然，计算余数非常的expensive；但是好消息是，如果<span class="arithmatex">\(M=2^m\)</span>的话，我们可以用位运算简化计算。</p>
+<p>bitwise operators有：&amp; &lt;&lt; &gt;&gt;。如何理解位运算如何节省计算开支？假如说我想计算7985325 % 100，那么在这个十进制的情况下，因为<span class="arithmatex">\(100=10^2\)</span>，所以说取最后两位就可以了，就能直观看出来最后余数应该是25.</p>
+<p>因此在二进制中，假如说计算：<span class="arithmatex">\(100011100101_2 \% 10000_2\)</span>，那么由于我们知道：二进制中的10000是2的四次方，因此直接取最后四位就是结果：0101。反过来，如果说是乘以这个数字，那么结果就是原来这个数字后面填上四位。无论是取出最后的四位还是后面填充四位，其实都能通过位运算进行简便的计算：</p>
+<pre><code class="language-c++">unsigned int hash_M( unsigned int n, unsigned int m ) {
+    return n &amp; ((1 &lt;&lt; m) – 1);
+}
+</code></pre>
+<p><img alt="image" src="img/12.png" /></p>
+<p>上面关于代码的解释来自<a href="https://kimi.moonshot.cn/">Kimi</a>。但是这种哈希函数也有弊端：假如说哈希函数输出的总是偶数，而偶数模2的多少次幂也会是偶数，因此它限制了映射的多样性，导致哈希碰撞的概率增加。</p>
+<p>因此人们发明了multiplicative method：We need to obfuscate the bits. 而最简单的obsfucate就是相乘；如果在自己乘自己的相乘中，中间的一位数字所能造成的影响会放大。因此乘以一个整数常数是一个合理的选择:</p>
+<pre><code class="language-c++">// Take the middle m bits of Cn:
+unsigned int const C = 581869333;  // some number
+shift = 11; // some number
+unsigned int hash_M( unsigned int n, unsigned int m ) {
+    unsigned int shift = (32 – m)/2;
+    return ((C*n) &gt;&gt; shift) &amp; ((1 &lt;&lt; m) – 1);
+}
+</code></pre>
+<p>在shift = 11, m = 10, n = 42的情况下，示意图如下：</p>
+<p><span class="arithmatex">\((C*n) &gt;&gt; shift\)</span>过程：</p>
+<p><img alt="image" src="img/13.png" /></p>
+<p><span class="arithmatex">\((1 &lt;&lt; m) – 1\)</span>过程：</p>
+<p><img alt="image" src="img/14.png" /></p>
+<p><span class="arithmatex">\((C*n) &gt;&gt; shift) \&amp; ((1 &lt;&lt; m) – 1\)</span>过程：</p>
+<p><img alt="image" src="img/15.png" /></p>
+<p>结果示意图：</p>
+<p><img alt="image" src="img/16.png" /></p>
+<h3 id="dealing-with-collisions">Dealing with collisions</h3>
 
 
 
