@@ -3168,6 +3168,39 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Dealing with collisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chained-hash-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chained hash tables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-addressing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Open addressing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linear-probe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linear Probe下的哈希实现
+    </span>
+  </a>
+  
 </li>
         
       </ul>
@@ -3879,6 +3912,39 @@
   <a href="#dealing-with-collisions" class="md-nav__link">
     <span class="md-ellipsis">
       Dealing with collisions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dealing with collisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chained-hash-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chained hash tables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-addressing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Open addressing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linear-probe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linear Probe下的哈希实现
     </span>
   </a>
   
@@ -5551,6 +5617,210 @@ unsigned int hash_M( unsigned int n, unsigned int m ) {
 <p>结果示意图：</p>
 <p><img alt="image" src="img/16.png" /></p>
 <h3 id="dealing-with-collisions">Dealing with collisions</h3>
+<p>这里介绍两种处理哈希冲突的方法：Chained hash tables and Open addressing.</p>
+<h4 id="chained-hash-tables">Chained hash tables</h4>
+<p>也被称为拉链法，open hashing。拉链法是在每个存放数据的地方开一个链表，如果有多个键值索引到同一个地方，只用把他们都放到那个位置的链表里就行了。查询的时候需要把对应位置的链表整个扫一遍，对其中的每个数据比较其键值与查询的键值是否一致。如果索引的范围是 <img alt="1\ldots M" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />，哈希表的大小为 <img alt="N" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />，那么一次插入/查询需要进行期望<span class="arithmatex">\(O(\frac{N}{M})\)</span>次比较。</p>
+<blockquote>
+<p>Reference: oi.wiki</p>
+</blockquote>
+<p>其中，<span class="arithmatex">\(\lambda = \frac{N}{M}\)</span>定义为<em>load factor</em>。如果希望降低时间复杂度，可以使用平衡二叉树来储存linked list（assuming that we can order the objects），但是：The memory requirements are increased by <span class="arithmatex">\(\Theta(n)\)</span>, as each node will require two pointers.</p>
+<h4 id="open-addressing">Open addressing</h4>
+<p>Chained hash tables 需要特殊的内存分配，能不能创建一个没有显著内存分配的哈希表呢？We can deal with collisions by storing collisions elsewhere by defining an implicit rule which tells us where to look next.</p>
+<p>假如说，一个物体最后对应的数字是5，如果5地方没有object，那么这个object就会储存在5里面。如果又一个物体对应的是5呢？如果没有链表的话，它就不能储存在5里面了，那么这个时候：We need a rule to tells us where to look next, for example, look in the next bin to see if it is occupied.</p>
+<p>但是这个规则必须非常快，而且很容易去follow，同时should be general enough to deal with the fact that the next cell could also be occupied, e.g., continue searching until the first empty bin is found. 当然，在搜索和删除的时候，也必须要遵守这一套规则。</p>
+<p>There are numerous strategies for defining the order in which the bins should be searched，例如Linear probing线性探测，Quadratic probing二次探测，Double hashing双重散列，“Last come, first served”，Cuckoo hashing. 这里介绍其中的两种：线形探测和二次探测。</p>
+<p>Linear probing: 假如说inserting an object into bin k, if k is empty, we occupy it, otherwise we check k+1, k+2, and so on, until an empty bin is found(If reaching the end of the array, we start at the front of the array). 插入insertion的过程很好理解，那么搜索的时候呢？首先查看appropriate bin，然后不断向前搜bin直到：要么item被找到，要么发现了空bin，要么遍历完了全部的数组。其中，第二种情况代表要查找的物体不在数组里面，第三种情况代表物体不在数组里面且数组是满的。</p>
+<p>搜索不是一件麻烦的事情，但是删除erasing是。如果仅仅是找到了item然后删掉而不做任何事情的话，后果会很严重，因为rule规定，当初存物体的时候是遇到empty bin才能防止物体，而搜索的时候遇到hole代表这个物体不在数组里面。因此可见，删除绝对不仅仅是“删”那么简单。</p>
+<p><img alt="image" src="img/17.png" /></p>
+<p><img alt="image" src="img/18.png" /></p>
+<p>上面一共有两种情况，其中hole代表删除元素之后留下的空位，potential candidate这个位置大有讲究：hole和candidate中间的bin里面都有元素，而且这些元素都could not have been copied into the hole。因此有两种情况如上图：第一种是candidate是hole的后面，如果这个candidate index对应的元素的哈希值在蓝勾的位置中，那么就说明这个元素之所以储存在candidate这个位置，是因为在插入的时候，linear probing的过程中经过了hole和hole后面的一些不可能移动的元素。因此：we move the object at index only if its hash value is either equal to or less than the hole or greater than the index of the potential candidate。</p>
+<p>反之就是第二种情况，如果candidate元素的哈希值是在蓝勾的位置，说明这个元素之所以位于candidate bin是因为linear probing且经过了hole，因此：In this case, we move the object at index only if its hash value is both greater than the index of the potential candidate and less than or equal to the hole. </p>
+<p>在这两种情况下，如果成功移动的话，candidate又会形成一个新的hole，因此这个判断会递归进行。</p>
+<p>上面这种删除的方法貌似很好，但是实话来说还是很复杂，能不能用一种懒的方法？假如说删掉了一个地方的元素，然后标记它为ERASED，在搜索的时候视它为occupied，插入的时候视它为unoccupied。</p>
+<p><img alt="image" src="img/19.png" /></p>
+<p>但是在上面这种情况中，我删除了3AD，然后希望插入ACD，那么会发生什么呢？ACD再一次的插入了！原来没有删除的时候，在3AD之后linear probing，发现了ACD，因此不会再插入，但是删除了之后会发生上述的重复插入的风险。（待施工。。。）</p>
+<p>Run-time analysis：It is possible to estimate the average number of probes for a <strong><em>successful search</em></strong>, where <span class="arithmatex">\(\lambda\)</span> is the load factor:
+<script type="math/tex; mode=display">
+\frac{1}{2}(1+\frac{1}{1-\lambda})
+</script>
+The number of probes for an unsuccessful search or for an insertion is higher:
+<script type="math/tex; mode=display">
+\frac{1}{2}(1+\frac{1}{(1-\lambda)^2})
+</script>
+我们的目标是希望所有的操作都是<span class="arithmatex">\(\Theta(1)\)</span>，但是可惜的是随着lambda的增高，运行时间会上升。同时，线性探测有Primary clustering的现象，即储存的元素连成段，导致每一次插入都需要probe很多元素。因此：可以尝试Choose a different strategy than linear probing. </p>
+<p>二次探测Quadratic probing：这里的“二次，quadratic”的意思其实是二次方，代表着Probing的步长不是1，而是k×k。但是通常来说，采取的解决方案如下：</p>
+<pre><code class="language-c++">int initial = hash_M( x.hash(), M );
+for ( int k = 0; k &lt; M; ++k ) {
+    bin = (initial + c1*k + c2*k*k) % M;
+}
+</code></pre>
+<p>更具体地：</p>
+<p><img alt="image" src="img/20.png" /></p>
+<p><img alt="image" src="img/21.jpg" /></p>
+<p>在这种probing策略下，runtime的评估如下：
+<img alt="image" src="img/22.jpg" /></p>
+<p>在这种情况下，clustering依然可能发生（Objects placed in the same bin will follow the same sequence）。但是已经是一个较好的策略了。</p>
+<h3 id="linear-probe">Linear Probe下的哈希实现</h3>
+<p>使用<code>STATE_UNUSE; STATE_USING; STATE_DEL</code>三个参数来代表bin(bucket)的状态。</p>
+<p>增加：通过哈希函数计算数据存放的地方：如果该位置空闲，那么直接储存元素，完成；而如果该位置被占用，从当前位置向后找空闲的位置，存放该元素。</p>
+<p>查询：通过哈希函数计算数据存储的地方，从该位置取值，如果是元素值那么就查到了，如果不是，说明放在这个位置之前里面已经有元素了，发生了哈希冲突，因此需要往后面寻找元素。</p>
+<p>删除：通过哈希函数计算数据存放的地方，从该位置取值，判断状态STATE_USING。如果是要删除的值，那么就当前位置修改为STATE_DEL；如果不是，那么说明之前发生了哈希冲突，从当前位置向后遍历，找到元素修改状态；如果遇到了STATE_UNUSE，结束！</p>
+<pre><code class="language-c++">// linear_probe_hash.cpp
+#include &lt;iostream&gt;
+using namespace std;
+
+enum State{
+    STATE_UNUSE, // 从未使用过的桶
+    STATE_USING, // 正在使用的桶
+    STATE_DEL, // 元素被删除了的桶
+};
+
+struct Bucket{
+    Bucket(int key = 0, State state = STATE_UNUSE)
+        : key_(key)
+        , state_(state)
+    {}
+    int key_; // 存储的数据
+    State state_; // 桶当前的状态
+};
+
+class HashTable{
+public:
+    HashTable(int size = primes_[0], double loadFactor = 0.75)
+        : useBucketNum_(0)
+        , loadFactor_(loadFactor)
+        , primeIdx_(0)
+    {
+        // 用户传入的size调整到最近的比较大的素数上
+        if (size != primes_[0]){
+            for (; primeIdx_ &lt; PRIME_SIZE; primeIdx_++){
+                if (primes_[primeIdx_] &gt; size){
+                    break;
+                }
+            }
+            // 用户传入的size值过大,已经超过最后一个素数,则调整到最后一个素数
+            if (primeIdx_ == PRIME_SIZE){
+                primeIdx_--;
+            }
+        }
+        tableSize_ = primes_[primeIdx_];
+        table_ = new Bucket[tableSize_];
+    }
+
+    ~HashTable(){
+        delete[] table_;
+        table_ = nullptr;
+    }
+public:
+    // 插入元素
+    bool insert(int key){
+        // 考虑扩容
+        double factor = useBucketNum_*1.0 / tableSize_; 
+        // 两个int相除得到int, 但是其中一个可以通过*1.0变成浮点数
+        cout &lt;&lt; &quot;factor: &quot; &lt;&lt; factor &lt;&lt; endl;
+        if (factor &gt; loadFactor_){
+            // 哈希表扩容
+            expand();
+        }
+        // 此处的哈希函数
+        int idx = key % tableSize_;
+        if (table_[idx].state_ != STATE_USING){
+            table_[idx].state_ = STATE_USING;
+            table_[idx].key_ = key;
+            useBucketNum_++;
+            return true;
+        }
+        // Linear Probe
+        for (int i = (idx+1) % tableSize_; i != idx; i = (i+1) % tableSize_){
+            if (table_[i].state_ != STATE_USING){
+                table_[i].state_ = STATE_USING;
+                table_[i].key_ = key;
+                useBucketNum_++;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // 删除元素
+    bool erase(int key){
+        int idx = key % tableSize_;
+        int i = idx;
+        do{
+            if (table_[i].state_ == STATE_USING &amp;&amp; table_[i].key_ == key){
+                table_[i].state_ = STATE_DEL;
+                useBucketNum_--;
+            }
+            i = (i + 1) % tableSize_;
+        } while(table_[i].state_ != STATE_DEL &amp;&amp; i != idx);
+        return true;
+    }
+
+    // 查询 
+    bool find(int key){
+        int idx = key % tableSize_;
+        int i = idx;
+        do{
+            if (table_[i].state_ == STATE_USING &amp;&amp; table_[i].key_ == key){
+                return true;
+            }
+            i = (i + 1) % tableSize_;
+        } while(table_[i].state_ != STATE_UNUSE &amp;&amp; i != idx);
+        return false;
+    }
+private:
+    void expand(){
+        ++primeIdx_;
+        if (primeIdx_ == PRIME_SIZE){
+            throw &quot;HashTable is too large! Can not expand anymore&quot;;
+        }
+        Bucket *newTable = new Bucket[primes_[primeIdx_]];
+        for (int i = 0; i &lt; tableSize_; i++){
+            if (table_[i].state_ == STATE_USING){
+                // 旧表有效的数据,重新哈希放在扩容后的新表
+                int idx = table_[i].key_ % primes_[primeIdx_];
+                int k = idx;
+                // 放进新表的时候, 依然要考虑哈希冲突的问题!
+                do{
+                    if (newTable[k].state_ != STATE_USING){
+                        newTable[k].state_ = STATE_USING;
+                        newTable[k].key_ = table_[i].key_;
+                        break;
+                    }
+                    k++;
+                } while(k != idx);
+            }
+        }
+        delete[] table_;
+        table_ = newTable;
+        tableSize_ = primes_[primeIdx_];
+    }
+private:
+    Bucket *table_; // 指向动态开辟的哈希表
+    int tableSize_; // 哈希表当前的长度
+    int useBucketNum_; // 已经使用的桶的个数
+    double loadFactor_; // 哈希表的装载因子
+    static const int PRIME_SIZE = 10; // 素数表的大小
+    static int primes_[PRIME_SIZE]; // 素数表
+    int primeIdx_; // 当前使用的素数的下标
+};
+
+int HashTable::primes_[HashTable::PRIME_SIZE] = {3, 7, 23, 47, 97, 251, 443, 911, 1471, 42773};
+
+
+int main(){
+    HashTable htable;
+    htable.insert(14);
+    cout &lt;&lt; htable.find(14) &lt;&lt; endl;
+    htable.insert(32);
+    htable.insert(21);
+    htable.insert(15);
+    htable.insert(560);
+    cout &lt;&lt; htable.find(14) &lt;&lt; endl;
+    htable.erase(14);
+    cout &lt;&lt; htable.find(14) &lt;&lt; endl;
+}
+</code></pre>
 
 
 
