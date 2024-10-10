@@ -127,17 +127,24 @@ nav:
       - 手法与好题: 线性代数/手法与好题/note.md
       - 章节回顾: 线性代数/章节回顾/note.md
       - 总复习: 线性代数/总复习/note.md
+    - 数据结构与算法:
+      - 基本结构与算法分析: Data_Structure_and_Algorithm/基本结构与算法分析.md
+      - 搜索与排序: Data_Structure_and_Algorithm/搜索与排序.md
   - Course (Extracurriculum):
     - Deep Learning:
       - 'Partition One: Fundamental + Convolution' : deeplearning_note/深度学习自学.md
       - 'Partition Two: Sequence Model' : sequence model/sequence_model.md
       - 'Transformer' : transformer_note/transformer_note.md
-    - 数据结构与算法:
-      - 基本结构与算法分析: Data_Structure_and_Algorithm/基本结构与算法分析.md
-      - 搜索与排序: Data_Structure_and_Algorithm/搜索与排序.md
     - GAMES101: 
       - Note: GAMES101/note.md
       - Homework: GAMES101/note_hw.md
+    - 动手学深度学习:
+      - 预备知识:
+        - 数据操作与数据预处理 : 动手学深度学习/预备知识/数据操作与数据预处理.md
+        - 矩阵计算与自动求导 : 动手学深度学习/预备知识/矩阵计算与自动求导.md
+      - 线性神经网络:
+        - 线性回归 : 动手学深度学习/线性神经网络/线性回归.md
+        - softmax : 动手学深度学习/线性神经网络/softmax.md
   - Blog: 
     - Datawhale: machine_learning/Datawhale/note.md
     - NeRF&Instant_NGP: Blog/NeRF&Instant_NGP/note.md
