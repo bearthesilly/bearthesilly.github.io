@@ -2712,11 +2712,11 @@
         <li class="md-nav__item">
   <a href="#bubble-sort" class="md-nav__link">
     <span class="md-ellipsis">
-      Bubble Sort
+      Bubble Sort 冒泡排序
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Bubble Sort">
+    <nav class="md-nav" aria-label="Bubble Sort 冒泡排序">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3547,11 +3547,11 @@
         <li class="md-nav__item">
   <a href="#bubble-sort" class="md-nav__link">
     <span class="md-ellipsis">
-      Bubble Sort
+      Bubble Sort 冒泡排序
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Bubble Sort">
+    <nav class="md-nav" aria-label="Bubble Sort 冒泡排序">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3808,17 +3808,67 @@ int BinarySearch(int arr[], int i, int j, int val){
 <h3 id="implementation">Implementation</h3>
 <p>首先是一个小技巧：交换元素的操作其实还多了一步“右边元素放在左边的操作”，在连续交换的过程中，这些操作是冗余的。因此：we could just temporarily assign the new entry。示意图如下：</p>
 <p><img src="img/28.png" alt="image" style="zoom:67%;" /></p>
+<p>c++实现非常简单：(注意这里面j作用域的细节！跳出循环时的j我需要使用，那么这个j的定义就不能放在for循环里面，而应该放在外面；以及函数要传入size的原因是数组进入函数之后就会退化为指针，引索访问依然合法，但是不清楚数组的长度)</p>
+<pre><code class="language-c++">// insert_sort.cpp
+void InsertSort(int arr[], int size){
+    for (int i = 0; i &lt; size; i++){
+        int val = arr[i];
+        int j = i-1;
+        for (; j &gt;= 0; j--){
+            if (arr[j] &lt;= val){
+                break;
+            }
+            arr[j+1] = arr[j];
+        }
+        arr[j+1] = val;
+    }
+}
+</code></pre>
 <h3 id="analysis">Analysis</h3>
 <p>可以设想到的是：在worst-cases中，完全倒序的情况下，算法的时间复杂度是<span class="arithmatex">\(\Theta(n^2)\)</span>，因为：the outer for-loop will be executed a total of n – 1 times and the inner for-loop is executed k times, when in the worst case。</p>
 <p>在best-case中，时间复杂度是<span class="arithmatex">\(\Theta(n)\)</span>，因为最好的情况是完全排好序了，这种情况下只需要进行n（更细节地：n-1）次判断该元素和左边的元素有多大。话是如此，但是事实上：<strong>Insertion sort, however, will run in <span class="arithmatex">\(\Theta (n)\)</span> time whenever d = O(n)</strong>, 其中d代表inversions的数量。那么在刚刚描述的最好的情况下，其实d也是<span class="arithmatex">\(O(n)\)</span>，因为<span class="arithmatex">\(0 &lt;= 0*n\)</span>。</p>
 <p>那么这个事实为什么是对的呢？因为n是至少进行判断的次数，或者说，从一次处理逆序对的操作开始的结束时刻，<strong>伴随着一次判断发现这个目标元素左边的元素小于目标元素从而停止操作，这一次判断是必不可少的</strong>，而这种判断一共有n次。而d是哪里来的呢？每一次交换元素的数据都是在处理一对逆序对，不会引入逆序对，<strong>而我们知道对于一次交换元素来说，要么消除逆序对，要么引入逆序对</strong>，所以说run time is <span class="arithmatex">\(\Theta(n+d)\)</span>. 这也解释了为什么：<strong>Insertion sort, however, will run in <span class="arithmatex">\(\Theta (n)\)</span> time whenever d = O(n)</strong></p>
 <p><img src="img/27.png" alt="image" style="zoom:67%;" /></p>
-<p>最后，Memory requirements是<span class="arithmatex">\(\Theta(1)\)</span>。</p>
-<h2 id="bubble-sort">Bubble Sort</h2>
+<p>最后，Memory requirements是<span class="arithmatex">\(\Theta(1)\)</span>。可以这么说：如果数据区域有序（d=O(n)），那么插入排序是所有排序算法中，效率最高的排序算法！在基础排序算法中，插入排序&gt;冒泡排序&amp;选择排序。不仅仅没有交换（trick in implementation），而且比较的次数也少！</p>
+<h2 id="bubble-sort">Bubble Sort 冒泡排序</h2>
 <h3 id="algorithm_1">algorithm</h3>
 <p>Suppose we have an array of data which is unsorted: Starting at the front, traverse the array, find the largest item, and move (or bubble) it to the top. With each subsequent iteration, find the next largest item and bubble it up towards the top of the array. </p>
 <p>简单而言：在一轮从头操作中，从第一个元素开始<strong><em>遍历引索</em></strong>（而不是元素），如果引索对应的元素的右边元素比引索元素大，那么就不动，遍历下一个引索，反之则交换两个元素。通过这种方式，可以通过简单的思考就能发现：一轮操作中，总是能把最大的元素放在最后一个位置。那么进入第i轮操作，就是把第i大的元素放在倒数第i个位置。这种操作将重复n(或者说n-1)次。</p>
 <h3 id="implementation_1">Implementation</h3>
+<pre><code class="language-c++">// bubble_sort.cpp
+#include &lt;iostream&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+using namespace std;
+
+void BubbleSort(int arr[], int size){
+    for (int i = 0; i &lt; size-1; i++){
+        for (int j = 0; j &lt; size - 1 - i; j++){
+            if (arr[j] &gt; arr[j+1]){
+                int tmp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = tmp;
+            }
+        }
+    }
+}
+int main(){
+    int arr[10];
+    srand(time(NULL));
+    for (int i = 0; i &lt; 10; i++){
+        arr[i] = rand() % 100 + 1;
+    }
+    for (int v : arr){
+        cout &lt;&lt; v &lt;&lt; &quot; &quot;;
+    }
+    cout &lt;&lt; endl;
+    BubbleSort(arr, 10);
+    for (int v : arr){
+        cout &lt;&lt; v &lt;&lt; &quot; &quot;;
+    }
+    cout &lt;&lt; endl;
+}
+</code></pre>
 <h3 id="analysis_1">analysis</h3>
 <p>Here we have two nested loops, and therefore calculating the run time is straight-forward:
 <script type="math/tex; mode=display">
@@ -3849,6 +3899,24 @@ int BinarySearch(int arr[], int i, int j, int val){
             }
         }
     }
+</code></pre>
+<pre><code class="language-c++">// bubble_sort.cpp
+void FlaggedBubbleSort(int arr[], int size){
+    for (int i = 0; i &lt; size-1; i++){
+        bool flag = false;
+        for (int j = 0; j &lt; size - 1 - i; j++){
+            if (arr[j] &gt; arr[j+1]){
+                int tmp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = tmp;
+                flag = true;
+            }
+        }
+        if (!flag){
+            return;
+        }
+    }
+}
 </code></pre>
 <h4 id="range-limiting-bubble-sort">Range-Limiting Bubble Sort</h4>
 <p>Intuitively, one may believe that limiting the loops based on the location of the last swap may significantly speed up the algorithm. 比如说在一轮操作中，最后一次进行交换的位置非常靠前，这说明什么？这说明最后一次交换后面的元素其实都是已经排列好了的！很可惜的是，in practice，这个操作带来的影响并不是很大。虽然但是，下面是实现的代码：</p>
@@ -3887,7 +3955,7 @@ int BinarySearch(int arr[], int i, int j, int val){
 <p>Because the bubble sort simply swaps adjacent entries, it cannot be any better than insertion sort which does n + d comparisons where d is the number of inversions</p>
 <p><img src="img/29.png" alt="image" style="zoom:67%;" /></p>
 <p>The following table summarizes the run-times of our modified  bubble sorting algorithms; however, they are all worse than insertion sort in practice:</p>
-<p>## Merge Sort</p>
+<p>## Merge Sort 归并排序</p>
 <h3 id="algorithm_2">algorithm</h3>
 <p>The merge sort algorithm is defined recursively: If the list is of size 1, it is sorted—we are done; Otherwise:</p>
 <ul>
@@ -3903,10 +3971,60 @@ int BinarySearch(int arr[], int i, int j, int val){
 </ul>
 <p>In practice: If the list size is less than a threshold, use an algorithm like insertion sort.</p>
 <p>This strategy is called divide-and-conquer. Merging Sort明显使用的是五大排序技巧中的Merging。那么如何merging呢？假设有两个ordered array，然后创建一个新array，然后用两套引索：哪个array 引索的元素更小，那么元素就放进array，然后这个引索++。当有一个数组遍历完之后，另外一个数组剩余的元素全部按照顺序放进去。就这一点是很好理解的，但是这种操作的核心关键就是<strong><em>two ordered array</em></strong>。</p>
-<p><strong><em>Time</em></strong>: we have to copy n1 + n2 elements. Hence, merging may be performed in Q(n1 + n2) time. If the arrays are approximately the same size, n = n1 ≈ n2, we can say that the run time is Q(n).
-<strong><em>Space</em></strong>: we cannot merge two arrays in-place. This algorithm always required the allocation of a new array. Therefore, the memory requirements are also Q(n).</p>
+<p><strong><em>Time</em></strong>: we have to copy n1 + n2 elements. Hence, merging may be performed in <span class="arithmatex">\(\Theta(n1 + n2)\)</span> time. If the arrays are approximately the same size, n = n1 ≈ n2, we can say that the run time is <span class="arithmatex">\(\Theta(n)\)</span>.
+<strong><em>Space</em></strong>: we cannot merge two arrays in-place. This algorithm always required the allocation of a new array. Therefore, the memory requirements are also <span class="arithmatex">\(\Theta(n)\)</span>.</p>
 <h3 id="implementation_2">Implementation</h3>
-<p>/</p>
+<pre><code class="language-c++">// merge_sort.cpp
+#include &lt;iostream&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+using namespace std;
+
+void Merge(int arr[], int left, int mid, int right){
+    // 需要额外的内存空间，把两个小段有序的序列，合并成大段有序的序列
+    int* p = new int[right-left+1];
+    int idx = 0;
+    int i = left;
+    int j = mid + 1;
+    while (i &lt;= mid &amp;&amp; j &lt;= right){
+        if (arr[i] &lt;= arr[j]){
+            p[idx++] = arr[i++];
+        }
+        else {
+            p[idx++] = arr[j++];
+        }
+    }
+    while (i &lt;= mid){
+        p[idx++] = arr[i++];
+    }
+    while (j &lt;= right){
+        p[idx++] = arr[j++];
+    }
+    // 把合并好的大段有序结果拷贝到原始数组[left, right]区间内
+    for (i = left, j = 0; i &lt;= right; i++, j++){
+        arr[i] = p[j];
+    }
+    delete[] p;
+}
+
+void MergeSort(int arr[], int begin, int end){
+    // 递归结束的条件
+    if (begin &gt;= end){
+        return;
+    }
+    int mid = (begin + end) / 2;
+    // 先递
+    MergeSort(arr, begin, mid);
+    MergeSort(arr, mid + 1, end);
+    // 再归并 [begin, mid] [mid + 1, begin]这两段有序的序列
+    Merge(arr, begin, mid, end);
+
+}
+
+void MergeSort(int arr[], int size){
+    MergeSort(arr, 0, size-1);
+}
+</code></pre>
 <h3 id="run-time-analysis">Run-Time Analysis</h3>
 <p><img src="img/31.png" alt="image" style="zoom:67%;" /></p>
 <p><img src="img/32.png" alt="image" style="zoom:67%;" /></p>
