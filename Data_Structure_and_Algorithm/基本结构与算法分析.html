@@ -3054,6 +3054,39 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Open addressing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linear" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linear
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quadratic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quadratic
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#double-hashing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Double Hashing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -4218,6 +4251,39 @@
       Open addressing
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Open addressing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linear" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linear
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quadratic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quadratic
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#double-hashing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Double Hashing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -5957,20 +6023,20 @@ unsigned int hash_M( unsigned int n, unsigned int m ) {
 </blockquote>
 <p><strong>其中，<span class="arithmatex">\(\lambda = \frac{N}{M}\)</span>定义为<em>load factor</em></strong>。Load Factor is to describe the length of the linked lists and this is the average number of objects per bin。如果load factor很大，那么access times的时间复杂度将会增大到<span class="arithmatex">\(O(\lambda)\)</span>。如果希望降低时间复杂度，可以使用平衡二叉树来储存linked list（assuming that we can order the objects），但是：The memory requirements are increased by <span class="arithmatex">\(\Theta(n)\)</span>, as each node will require two pointers.</p>
 <h4 id="open-addressing">Open addressing</h4>
+<h5 id="linear">Linear</h5>
 <p>Chained hash tables 需要特殊的内存分配，能不能创建一个没有显著内存分配的哈希表呢？We can deal with collisions by storing collisions elsewhere by defining an implicit rule which tells us where to look next.</p>
 <p>假如说，一个物体最后对应的数字是5，如果5地方没有object，那么这个object就会储存在5里面。如果又一个物体对应的是5呢？如果没有链表的话，它就不能储存在5里面了，那么这个时候：We need a rule to tells us where to look next, for example, look in the next bin to see if it is occupied.</p>
 <p>但是这个规则必须非常快，而且很容易去follow，同时should be general enough to deal with the fact that the next cell could also be occupied, e.g., continue searching until the first empty bin is found. 当然，在搜索和删除的时候，也必须要遵守这一套规则。</p>
 <p>There are numerous strategies for defining the order in which the bins should be searched，例如Linear probing线性探测，Quadratic probing二次探测，Double hashing双重散列，“Last come, first served”，Cuckoo hashing. 这里介绍其中的两种：线形探测和二次探测。</p>
 <p>Linear probing: 假如说inserting an object into bin k, if k is empty, we occupy it, otherwise we check k+1, k+2, and so on, until an empty bin is found(If reaching the end of the array, we start at the front of the array). 插入insertion的过程很好理解，那么搜索的时候呢？首先查看appropriate bin，然后不断向前搜bin直到：要么item被找到，要么发现了空bin，要么遍历完了全部的数组。其中，第二种情况代表要查找的物体不在数组里面，第三种情况代表物体不在数组里面且数组是满的。</p>
+<p>散列函数为：<span class="arithmatex">\(h(k,i)=(h_1(k)+i)modm\)</span></p>
 <p>搜索不是一件麻烦的事情，但是删除erasing是。如果仅仅是找到了item然后删掉而不做任何事情的话，后果会很严重，因为rule规定，当初存物体的时候是遇到empty bin才能防止物体，而搜索的时候遇到hole代表这个物体不在数组里面。因此可见，删除绝对不仅仅是“删”那么简单。</p>
 <p><img alt="image" src="img/17.png" /></p>
 <p><img alt="image" src="img/18.png" /></p>
 <p>上面一共有两种情况，其中hole代表删除元素之后留下的空位，potential candidate这个位置大有讲究：hole和candidate中间的bin里面都有元素，<strong><em>而且这些元素都could not have been copied into the hole</em></strong>（i.e.，这些位置中的元素的哈希值所引索出来的位置就是这个位置）。因此有两种情况如上图：第一种是candidate是hole的后面，如果这个<strong><em>candidate index对应的元素的哈希值</em></strong>在蓝勾的位置中，那么就说明这个元素之所以储存在candidate这个位置，是因为在插入的时候，linear probing的过程中经过了hole和hole后面的一些不可能移动的元素。因此：we move the object at index only if its hash value is either equal to or less than the hole or greater than the index of the potential candidate。</p>
 <p>反之就是第二种情况，如果candidate元素的哈希值是在蓝勾的位置，说明这个元素之所以位于candidate bin是因为linear probing且经过了hole，因此：In this case, we move the object at index only if its hash value is both greater than the index of the potential candidate and less than or equal to the hole. </p>
 <p>在这两种情况下，如果成功移动的话，candidate又会形成一个新的hole，<strong><em>因此这个判断会递归进行</em></strong>。</p>
-<p>上面这种删除的方法貌似很好，但是实话来说还是很复杂，能不能用一种懒的方法？假如说删掉了一个地方的元素，然后标记它为ERASED，在搜索的时候视它为occupied，插入的时候视它为unoccupied。</p>
-<p><img alt="image" src="img/19.png" /></p>
-<p>但是在上面这种情况中，我删除了3AD，然后希望插入ACD，那么会发生什么呢？ACD再一次的插入了！原来没有删除的时候，在3AD之后linear probing，发现了ACD，因此不会再插入，但是删除了之后会发生上述的重复插入的风险。（待施工。。。）</p>
+<p>上面这种删除的方法貌似很好，但是实话来说还是很复杂，能不能用一种懒的方法？假如说删掉了一个地方的元素，然后标记它为ERASED，<strong><em>在搜索的时候视它为occupied，插入的时候视它为unoccupied。</em></strong>也就是说，可以在erased地方插入新元素。这种方法称为Lazy Erasing。</p>
 <p>Run-time analysis：It is possible to estimate the average number of probes for a <strong><em>successful search</em></strong>, where <span class="arithmatex">\(\lambda\)</span> is the load factor:
 <script type="math/tex; mode=display">
 \frac{1}{2}(1+\frac{1}{1-\lambda})
@@ -5980,18 +6046,31 @@ The number of probes for an unsuccessful search or for an insertion is higher:
 \frac{1}{2}(1+\frac{1}{(1-\lambda)^2})
 </script>
 我们的目标是希望所有的操作都是<span class="arithmatex">\(\Theta(1)\)</span>，但是可惜的是随着lambda的增高，运行时间会上升。同时，线性探测有Primary clustering的现象，即储存的元素连成段，导致每一次插入都需要probe很多元素。因此：可以尝试Choose a different strategy than linear probing. </p>
+<h5 id="quadratic">Quadratic</h5>
 <p>二次探测Quadratic probing：这里的“二次，quadratic”的意思其实是二次方，代表着Probing的步长不是1，而是k×k。但是通常来说，采取的解决方案如下：</p>
 <pre><code class="language-c++">int initial = hash_M( x.hash(), M );
 for ( int k = 0; k &lt; M; ++k ) {
     bin = (initial + c1*k + c2*k*k) % M;
 }
 </code></pre>
-<p>更具体地：</p>
+<p>散列函数为：<span class="arithmatex">\(h(k,i)=(h_1(k)+c_1i+c_2i^2)modm\)</span>。更具体地：</p>
 <p><img alt="image" src="img/20.png" /></p>
 <p><img alt="image" src="img/21.jpg" /></p>
+<p>关于“This guarantees that all M entries are visited before the pattern repeats”的结论，证明如下（核心思想：证明任意两次的probing的hash value值都不一样，利用数论知识和<span class="arithmatex">\(M=2^m\)</span>条件予以证明）：</p>
+<p><img src="img/35.png" alt="image" style="zoom:50%;" /></p>
 <p>在这种probing策略下，runtime的评估如下：
 <img alt="image" src="img/22.jpg" /></p>
+<p>Linear和Quadratic两者的对比如下。可见在相同的load factor情况下，无论是successful还是unsuccessful search，二次探测所检查的bin数量比线性探测的少，说明是一个更优的策略。</p>
+<p><img alt="image" src="img/36.png" /></p>
 <p>在这种情况下，clustering依然可能发生（Objects placed in the same bin will follow the same sequence）。但是已经是一个较好的策略了。</p>
+<h5 id="double-hashing">Double Hashing</h5>
+<p>Double hashing 是一种解决哈希冲突的开放地址法（open addressing method），通过使用两个哈希函数来减少冲突发生的概率。它的基本思想是在第一次哈希函数找到的位置发生冲突时，通过第二个哈希函数计算步长（增量），不断尝试新的位置，直到找到一个空闲的位置。</p>
+<p>双重哈希的过程包括以下步骤：</p>
+<ol>
+<li><strong>第一哈希函数</strong> <span class="arithmatex">\(h_1(x)\)</span>：用于将元素映射到哈希表中的一个初始位置。</li>
+<li><strong>第二哈希函数</strong>(secondary hashing function) <span class="arithmatex">\(h_2(x)\)</span>：用于计算步长，即在发生冲突时从该位置跳转多少个位置。</li>
+</ol>
+<p>散列函数为：<span class="arithmatex">\(h(k,i)=(h_1(k)+ih_2(k))modm\)</span>。所以说：线性探测可以认为是第二哈希函数为1的double hashing，线性探测可以认为是第二哈希函数为<span class="arithmatex">\((c_1+c_2i)\)</span>的double hashing。</p>
 <h3 id="linear-probe">Linear Probe下的哈希实现</h3>
 <p>使用<code>STATE_UNUSE; STATE_USING; STATE_DEL</code>三个参数来代表bin(bucket)的状态。</p>
 <p>增加：通过哈希函数计算数据存放的地方：如果该位置空闲，那么直接储存元素，完成；而如果该位置被占用，从当前位置向后找空闲的位置，存放该元素。</p>
