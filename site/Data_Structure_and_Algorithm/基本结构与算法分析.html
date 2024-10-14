@@ -3075,6 +3075,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#double-hashing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Double Hashing
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4259,6 +4268,15 @@
   <a href="#quadratic" class="md-nav__link">
     <span class="md-ellipsis">
       Quadratic
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#double-hashing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Double Hashing
     </span>
   </a>
   
@@ -6011,6 +6029,7 @@ unsigned int hash_M( unsigned int n, unsigned int m ) {
 <p>但是这个规则必须非常快，而且很容易去follow，同时should be general enough to deal with the fact that the next cell could also be occupied, e.g., continue searching until the first empty bin is found. 当然，在搜索和删除的时候，也必须要遵守这一套规则。</p>
 <p>There are numerous strategies for defining the order in which the bins should be searched，例如Linear probing线性探测，Quadratic probing二次探测，Double hashing双重散列，“Last come, first served”，Cuckoo hashing. 这里介绍其中的两种：线形探测和二次探测。</p>
 <p>Linear probing: 假如说inserting an object into bin k, if k is empty, we occupy it, otherwise we check k+1, k+2, and so on, until an empty bin is found(If reaching the end of the array, we start at the front of the array). 插入insertion的过程很好理解，那么搜索的时候呢？首先查看appropriate bin，然后不断向前搜bin直到：要么item被找到，要么发现了空bin，要么遍历完了全部的数组。其中，第二种情况代表要查找的物体不在数组里面，第三种情况代表物体不在数组里面且数组是满的。</p>
+<p>散列函数为：<span class="arithmatex">\(h(k,i)=(h_1(k)+i)modm\)</span></p>
 <p>搜索不是一件麻烦的事情，但是删除erasing是。如果仅仅是找到了item然后删掉而不做任何事情的话，后果会很严重，因为rule规定，当初存物体的时候是遇到empty bin才能防止物体，而搜索的时候遇到hole代表这个物体不在数组里面。因此可见，删除绝对不仅仅是“删”那么简单。</p>
 <p><img alt="image" src="img/17.png" /></p>
 <p><img alt="image" src="img/18.png" /></p>
@@ -6034,7 +6053,7 @@ for ( int k = 0; k &lt; M; ++k ) {
     bin = (initial + c1*k + c2*k*k) % M;
 }
 </code></pre>
-<p>更具体地：</p>
+<p>散列函数为：<span class="arithmatex">\(h(k,i)=(h_1(k)+c_1i+c_2i^2)modm\)</span>。更具体地：</p>
 <p><img alt="image" src="img/20.png" /></p>
 <p><img alt="image" src="img/21.jpg" /></p>
 <p>关于“This guarantees that all M entries are visited before the pattern repeats”的结论，证明如下（核心思想：证明任意两次的probing的hash value值都不一样，利用数论知识和<span class="arithmatex">\(M=2^m\)</span>条件予以证明）：</p>
@@ -6044,6 +6063,14 @@ for ( int k = 0; k &lt; M; ++k ) {
 <p>Linear和Quadratic两者的对比如下。可见在相同的load factor情况下，无论是successful还是unsuccessful search，二次探测所检查的bin数量比线性探测的少，说明是一个更优的策略。</p>
 <p><img alt="image" src="img/36.png" /></p>
 <p>在这种情况下，clustering依然可能发生（Objects placed in the same bin will follow the same sequence）。但是已经是一个较好的策略了。</p>
+<h5 id="double-hashing">Double Hashing</h5>
+<p>Double hashing 是一种解决哈希冲突的开放地址法（open addressing method），通过使用两个哈希函数来减少冲突发生的概率。它的基本思想是在第一次哈希函数找到的位置发生冲突时，通过第二个哈希函数计算步长（增量），不断尝试新的位置，直到找到一个空闲的位置。</p>
+<p>双重哈希的过程包括以下步骤：</p>
+<ol>
+<li><strong>第一哈希函数</strong> <span class="arithmatex">\(h_1(x)\)</span>：用于将元素映射到哈希表中的一个初始位置。</li>
+<li><strong>第二哈希函数</strong>(secondary hashing function) <span class="arithmatex">\(h_2(x)\)</span>：用于计算步长，即在发生冲突时从该位置跳转多少个位置。</li>
+</ol>
+<p>散列函数为：<span class="arithmatex">\(h(k,i)=(h_1(k)+ih_2(k))modm\)</span>。所以说：线性探测可以认为是第二哈希函数为1的double hashing，线性探测可以认为是第二哈希函数为<span class="arithmatex">\((c_1+c_2i)\)</span>的double hashing。</p>
 <h3 id="linear-probe">Linear Probe下的哈希实现</h3>
 <p>使用<code>STATE_UNUSE; STATE_USING; STATE_DEL</code>三个参数来代表bin(bucket)的状态。</p>
 <p>增加：通过哈希函数计算数据存放的地方：如果该位置空闲，那么直接储存元素，完成；而如果该位置被占用，从当前位置向后找空闲的位置，存放该元素。</p>
