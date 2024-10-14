@@ -9,25 +9,25 @@
       
       
       
-        <link rel="prev" href="../Lec3/note.html">
+        <link rel="prev" href="%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9_%E6%AC%A0%E6%8B%9F%E5%90%88_%E8%BF%87%E6%8B%9F%E5%90%88.html">
       
       
-        <link rel="next" href="../Lec5/note.html">
+        <link rel="next" href="../../machine_learning/Datawhale/note.html">
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.25">
     
     
       
-        <title>Lec4 - csrookie's website</title>
+        <title>权重衰退 - csrookie's website</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -46,7 +46,7 @@
       
     
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -71,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -83,7 +88,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../index.html" title="csrookie&#39;s website" class="md-header__button md-logo" aria-label="csrookie's website" data-md-component="logo">
+    <a href="../../index.html" title="csrookie&#39;s website" class="md-header__button md-logo" aria-label="csrookie's website" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -103,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Lec4
+              权重衰退
             
           </span>
         </div>
@@ -214,7 +219,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../index.html" title="csrookie&#39;s website" class="md-nav__button md-logo" aria-label="csrookie's website" data-md-component="logo">
+    <a href="../../index.html" title="csrookie&#39;s website" class="md-nav__button md-logo" aria-label="csrookie's website" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -232,7 +237,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../index.html" class="md-nav__link">
+      <a href="../../index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -249,19 +254,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -275,7 +278,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Course (Curriculum)
@@ -324,7 +327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -380,7 +383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%27%E8%AF%81%E6%98%8E%27%E6%80%BB%E7%BB%93/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%27%E8%AF%81%E6%98%8E%27%E6%80%BB%E7%BB%93/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -401,7 +404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E9%80%92%E6%8E%A8%E6%95%B0%E5%88%97%E7%9A%84%E6%9E%81%E9%99%90/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E9%80%92%E6%8E%A8%E6%95%B0%E5%88%97%E7%9A%84%E6%9E%81%E9%99%90/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -422,7 +425,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%9E%81%E9%99%90%E4%B8%AD%E7%9A%84%E6%A6%82%E5%BF%B5%E9%A2%98/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%9E%81%E9%99%90%E4%B8%AD%E7%9A%84%E6%A6%82%E5%BF%B5%E9%A2%98/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -443,7 +446,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E8%BF%9E%E7%BB%AD%E6%80%A7%20%E9%97%B4%E6%96%AD%E7%82%B9%20%E6%B8%90%E8%BF%91%E7%BA%BF/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E8%BF%9E%E7%BB%AD%E6%80%A7%20%E9%97%B4%E6%96%AD%E7%82%B9%20%E6%B8%90%E8%BF%91%E7%BA%BF/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -464,7 +467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%A4%B9%E9%80%BC%E5%87%86%E5%88%99%E6%B1%82%E6%9E%81%E9%99%90/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%A4%B9%E9%80%BC%E5%87%86%E5%88%99%E6%B1%82%E6%9E%81%E9%99%90/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -485,7 +488,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%B1%82%E5%87%BD%E6%95%B0%E6%9E%81%E9%99%90/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%B1%82%E5%87%BD%E6%95%B0%E6%9E%81%E9%99%90/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -506,7 +509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%9E%81%E9%99%90%E4%B8%8E%E8%BF%9E%E7%BB%AD%E9%9A%8F%E7%AC%94/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%9E%81%E9%99%90%E4%B8%8E%E8%BF%9E%E7%BB%AD%E9%9A%8F%E7%AC%94/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -570,7 +573,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%AF%BC%E6%95%B0%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%A6%82%E5%BF%B5%E4%B8%93%E9%A2%98/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%AF%BC%E6%95%B0%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%A6%82%E5%BF%B5%E4%B8%93%E9%A2%98/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -591,7 +594,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%AC%AC%E4%BA%8C%E4%B8%89%E5%9B%9B%E7%AB%A0%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%AC%AC%E4%BA%8C%E4%B8%89%E5%9B%9B%E7%AB%A0%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -655,7 +658,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86%E4%B8%8E%E5%AE%9A%E7%A7%AF%E5%88%86%E6%A6%82%E5%BF%B5/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86%E4%B8%8E%E5%AE%9A%E7%A7%AF%E5%88%86%E6%A6%82%E5%BF%B5/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -676,7 +679,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86%E4%B8%93%E9%A2%98/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86%E4%B8%93%E9%A2%98/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -697,7 +700,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%AE%9A%E7%A7%AF%E5%88%86%E5%AE%9A%E4%B9%89%E6%B1%82%E6%9E%81%E9%99%90/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%AE%9A%E7%A7%AF%E5%88%86%E5%AE%9A%E4%B9%89%E6%B1%82%E6%9E%81%E9%99%90/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -718,7 +721,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%8F%8D%E5%B8%B8%E7%A7%AF%E5%88%86%E6%95%9B%E6%95%A3%E6%80%A7/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%8F%8D%E5%B8%B8%E7%A7%AF%E5%88%86%E6%95%9B%E6%95%A3%E6%80%A7/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -739,7 +742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%A7%AF%E5%88%86%E4%B8%8D%E7%AD%89%E5%BC%8F/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%A7%AF%E5%88%86%E4%B8%8D%E7%AD%89%E5%BC%8F/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -760,7 +763,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%A7%AF%E5%88%86%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%A7%AF%E5%88%86%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -781,7 +784,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%A7%AF%E5%88%86%E7%9A%84%E5%BA%94%E7%94%A8%26%E5%87%BD%E6%95%B0%E5%BD%A2%E6%80%81/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%A7%AF%E5%88%86%E7%9A%84%E5%BA%94%E7%94%A8%26%E5%87%BD%E6%95%B0%E5%BD%A2%E6%80%81/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -802,7 +805,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%A7%AF%E5%88%86%E9%80%92%E6%8E%A8%E5%85%AC%E5%BC%8F/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%A7%AF%E5%88%86%E9%80%92%E6%8E%A8%E5%85%AC%E5%BC%8F/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -831,7 +834,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%89%8B%E6%B3%95%26painpoint/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%89%8B%E6%B3%95%26painpoint/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -887,7 +890,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -916,7 +919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E7%AF%87/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E7%AF%87/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -937,7 +940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E4%B8%80%E5%85%83%E7%A7%AF%E5%88%86%E5%AD%A6%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E4%B8%80%E5%85%83%E7%A7%AF%E5%88%86%E5%AD%A6%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1001,7 +1004,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%90%91%E9%87%8F%E4%BB%A3%E6%95%B0%E4%B8%8E%E7%A9%BA%E9%97%B4%E6%80%BB%E7%BB%93/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%90%91%E9%87%8F%E4%BB%A3%E6%95%B0%E4%B8%8E%E7%A9%BA%E9%97%B4%E6%80%BB%E7%BB%93/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1057,7 +1060,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1078,7 +1081,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%81%8F%E5%AF%BC%E6%95%B0%E8%AE%A1%E7%AE%97/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%81%8F%E5%AF%BC%E6%95%B0%E8%AE%A1%E7%AE%97/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1099,7 +1102,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%B7%B2%E7%9F%A5%E5%81%8F%E5%AF%BC%E5%8F%8D%E6%B1%82%E5%87%BD%E6%95%B0/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%B7%B2%E7%9F%A5%E5%81%8F%E5%AF%BC%E5%8F%8D%E6%B1%82%E5%87%BD%E6%95%B0/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1120,7 +1123,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%85%A8%E5%BE%AE%E5%88%86%E7%9A%84%E5%88%A4%E5%AE%9A%E4%B8%8E%E8%AE%A1%E7%AE%97/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%85%A8%E5%BE%AE%E5%88%86%E7%9A%84%E5%88%A4%E5%AE%9A%E4%B8%8E%E8%AE%A1%E7%AE%97/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1141,7 +1144,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E9%9A%90%E5%87%BD%E6%95%B0%E5%AD%98%E5%9C%A8%E5%AE%9A%E7%90%86/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E9%9A%90%E5%87%BD%E6%95%B0%E5%AD%98%E5%9C%A8%E5%AE%9A%E7%90%86/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1162,7 +1165,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E6%9E%81%E5%80%BC/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E6%9E%81%E5%80%BC/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1226,7 +1229,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1247,7 +1250,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1268,7 +1271,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1297,7 +1300,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%9C%9F%E4%B8%AD%E6%80%BB%E7%BB%93/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%9C%9F%E4%B8%AD%E6%80%BB%E7%BB%93/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1318,7 +1321,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E9%AB%98%E6%95%B0%E5%A5%BD%E9%A2%98%E4%B8%8A/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E9%AB%98%E6%95%B0%E5%A5%BD%E9%A2%98%E4%B8%8A/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1374,7 +1377,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%9B%B2%E7%BA%BF%E4%B8%8E%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%9B%B2%E7%BA%BF%E4%B8%8E%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1395,7 +1398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%9B%B2%E7%BA%BF%E4%B8%8E%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86%E6%80%BB%E7%BB%93/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%9B%B2%E7%BA%BF%E4%B8%8E%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86%E6%80%BB%E7%BB%93/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1416,7 +1419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%9B%B2%E7%BA%BF%E4%B8%8E%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86%E8%8D%9F%E8%90%83/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%9B%B2%E7%BA%BF%E4%B8%8E%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86%E8%8D%9F%E8%90%83/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1480,7 +1483,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%97%A0%E7%A9%B7%E7%BA%A7%E6%95%B0%E5%92%8C%E5%88%A4%E5%88%AB%E6%B3%95/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%97%A0%E7%A9%B7%E7%BA%A7%E6%95%B0%E5%92%8C%E5%88%A4%E5%88%AB%E6%B3%95/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1501,7 +1504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%97%A0%E7%A9%B7%E7%BA%A7%E6%95%B0%E9%80%89%E6%8B%A9%E9%A2%98%E4%B8%8E%E5%8F%8D%E4%BE%8B/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%97%A0%E7%A9%B7%E7%BA%A7%E6%95%B0%E9%80%89%E6%8B%A9%E9%A2%98%E4%B8%8E%E5%8F%8D%E4%BE%8B/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1522,7 +1525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%B9%82%E5%87%BD%E6%95%B0/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%B9%82%E5%87%BD%E6%95%B0/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1543,7 +1546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%82%85%E9%87%8C%E5%8F%B6%E7%BA%A7%E6%95%B0/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%82%85%E9%87%8C%E5%8F%B6%E7%BA%A7%E6%95%B0/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1572,7 +1575,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E9%AB%98%E6%95%B0%E5%A5%BD%E9%A2%98%E4%B8%8B/note.html" class="md-nav__link">
+      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E9%AB%98%E6%95%B0%E5%A5%BD%E9%A2%98%E4%B8%8B/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1598,19 +1601,17 @@
                 
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
         
           
           <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
@@ -1624,7 +1625,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_3">
             <span class="md-nav__icon md-icon"></span>
             离散数学
@@ -1638,7 +1639,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1694,7 +1695,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec1/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec1/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1715,7 +1716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec2%263/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec2%263/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1736,7 +1737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec4/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec4/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1757,7 +1758,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec5/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec5/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1778,7 +1779,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec6/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec6/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1799,7 +1800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec7/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec7/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1820,7 +1821,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec8/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec8/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1841,7 +1842,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec9/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec9/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1862,7 +1863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec10/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec10/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1883,7 +1884,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec11/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec11/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1904,7 +1905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec12/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec12/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1925,7 +1926,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec13%2614/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec13%2614/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1946,7 +1947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec15/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec15/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1967,7 +1968,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/%E9%9A%8F%E7%AC%94%26%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/%E9%9A%8F%E7%AC%94%26%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1993,19 +1994,17 @@
                 
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_3" >
         
           
           <label class="md-nav__link" for="__nav_2_3_3" id="__nav_2_3_3_label" tabindex="0">
@@ -2019,7 +2018,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_3_3">
             <span class="md-nav__icon md-icon"></span>
             下半部分
@@ -2033,7 +2032,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Lec1/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec1/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2054,7 +2053,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Lec2/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec2/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2075,7 +2074,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Lec3/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec3/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2093,17 +2092,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="note.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec4/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2112,7 +2104,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -2125,7 +2116,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Lec5/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec5/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2146,7 +2137,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Lec6/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec6/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2167,7 +2158,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Lec7/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec7/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2188,7 +2179,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Lec8/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec8/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2209,7 +2200,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Lec9/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec9/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2230,7 +2221,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Lec10/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec10/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2251,7 +2242,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Lec11/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec11/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2272,7 +2263,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Lec12/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec12/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2293,7 +2284,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Lec13/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec13/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2314,7 +2305,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Lec14/note.html" class="md-nav__link">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec14/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2386,7 +2377,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2.html" class="md-nav__link">
+      <a href="../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2407,7 +2398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/note.html" class="md-nav__link">
+      <a href="../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2428,7 +2419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E8%A1%8C%E5%88%97%E5%BC%8F%E4%B8%8E%E4%BC%B4%E9%9A%8F%E7%9F%A9%E9%98%B5/note.html" class="md-nav__link">
+      <a href="../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E8%A1%8C%E5%88%97%E5%BC%8F%E4%B8%8E%E4%BC%B4%E9%9A%8F%E7%9F%A9%E9%98%B5/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2449,7 +2440,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E6%89%8B%E6%B3%95%E4%B8%8E%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
+      <a href="../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E6%89%8B%E6%B3%95%E4%B8%8E%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2470,7 +2461,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E7%AB%A0%E8%8A%82%E5%9B%9E%E9%A1%BE/note.html" class="md-nav__link">
+      <a href="../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E7%AB%A0%E8%8A%82%E5%9B%9E%E9%A1%BE/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2491,7 +2482,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E6%80%BB%E5%A4%8D%E4%B9%A0/note.html" class="md-nav__link">
+      <a href="../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E6%80%BB%E5%A4%8D%E4%B9%A0/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2555,7 +2546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Data_Structure_and_Algorithm/%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90.html" class="md-nav__link">
+      <a href="../../Data_Structure_and_Algorithm/%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2576,7 +2567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Data_Structure_and_Algorithm/%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%8E%92%E5%BA%8F.html" class="md-nav__link">
+      <a href="../../Data_Structure_and_Algorithm/%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%8E%92%E5%BA%8F.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2609,17 +2600,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -2633,7 +2626,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Course (Extracurriculum)
@@ -2682,7 +2675,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../deeplearning_note/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%87%AA%E5%AD%A6.html" class="md-nav__link">
+      <a href="../../deeplearning_note/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%87%AA%E5%AD%A6.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2703,7 +2696,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sequence%20model/sequence_model.html" class="md-nav__link">
+      <a href="../../sequence%20model/sequence_model.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2724,7 +2717,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../transformer_note/transformer_note.html" class="md-nav__link">
+      <a href="../../transformer_note/transformer_note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2788,7 +2781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../GAMES101/note.html" class="md-nav__link">
+      <a href="../../GAMES101/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2809,7 +2802,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../GAMES101/note_hw.html" class="md-nav__link">
+      <a href="../../GAMES101/note_hw.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2835,17 +2828,19 @@
                 
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
@@ -2859,7 +2854,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_3">
             <span class="md-nav__icon md-icon"></span>
             动手学深度学习
@@ -2908,7 +2903,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E4%B8%8E%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86.html" class="md-nav__link">
+      <a href="../%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E4%B8%8E%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2929,7 +2924,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC.html" class="md-nav__link">
+      <a href="../%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2993,7 +2988,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92.html" class="md-nav__link">
+      <a href="../%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3014,7 +3009,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/softmax.html" class="md-nav__link">
+      <a href="../%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/softmax.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3040,17 +3035,19 @@
                 
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3_3_3" id="__nav_3_3_3_label" tabindex="0">
@@ -3064,7 +3061,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_3_3">
             <span class="md-nav__icon md-icon"></span>
             多层感知机
@@ -3078,7 +3075,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA/%E6%84%9F%E7%9F%A5%E6%9C%BA.html" class="md-nav__link">
+      <a href="%E6%84%9F%E7%9F%A5%E6%9C%BA.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3099,7 +3096,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9_%E6%AC%A0%E6%8B%9F%E5%90%88_%E8%BF%87%E6%8B%9F%E5%90%88.html" class="md-nav__link">
+      <a href="%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9_%E6%AC%A0%E6%8B%9F%E5%90%88_%E8%BF%87%E6%8B%9F%E5%90%88.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3117,10 +3114,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA/%E6%9D%83%E9%87%8D%E8%A1%B0%E9%80%80.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="%E6%9D%83%E9%87%8D%E8%A1%B0%E9%80%80.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -3129,6 +3135,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -3199,7 +3206,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../machine_learning/Datawhale/note.html" class="md-nav__link">
+      <a href="../../machine_learning/Datawhale/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3220,7 +3227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Blog/NeRF%26Instant_NGP/note.html" class="md-nav__link">
+      <a href="../../Blog/NeRF%26Instant_NGP/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3241,7 +3248,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Blog/3DGS/note.html" class="md-nav__link">
+      <a href="../../Blog/3DGS/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3262,7 +3269,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Blog/AAAI2025/log.html" class="md-nav__link">
+      <a href="../../Blog/AAAI2025/log.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3300,6 +3307,8 @@
   
   
   
+    
+  
   
 </nav>
                   </div>
@@ -3314,11 +3323,118 @@
                   
 
 
-  <h1>Lec4</h1>
-
-<p><img alt="image" src="img/1.jpg" /></p>
-<p><img alt="image" src="img/2.jpg" /></p>
-<p><img alt="image" src="img/3.jpg" /></p>
+<h1 id="_1">权重衰退</h1>
+<h1 id="_2">什么是权重衰退</h1>
+<p>我们知道了过拟合的问题，那么现在将介绍一些<strong>正则化</strong>（regularization）模型的技术。限制特征的数量是缓解过拟合的一种常用技术，则一点在直觉上可以认同，因为每一个点的特征都过度提取了，导致函数的拟合都被这些被过度提取的特征主导了。如下面的小图，由于weight矩阵过大，导致函数过度拟合，那么如果设想让函数的变化趋于保守，也就是w范数下降，那么是不是能够缓解下图的过拟合现象呢？</p>
+<p><img src="img/8.png" alt="image" style="zoom: 50%;" /></p>
+<p>但是仅仅通过简单的限制特征数量可能仍然使模型在过简单和过复杂中徘徊，我们需要一个更细粒度的工具来调整函数的复杂性，使其达到一个合适的平衡位置。</p>
+<p>在训练参数化机器学习模型时，<strong>权重衰减</strong>（weight decay）是最广泛使用的正则化的技术之一，它通常也被称为<span class="arithmatex">\(L_2\)</span><strong>正则化</strong>。这项技术通过函数与“零”的距离来衡量函数的复杂度，因为在所有函数<span class="arithmatex">\(f\)</span>中，函数<span class="arithmatex">\(f = 0\)</span>（所有输入都得到值<span class="arithmatex">\(0\)</span>）在某种意义上是最简单的。但是我们应该如何精确地测量一个函数和零之间的距离呢？没有一个正确的答案。</p>
+<p>一种简单的方法是通过线性函数<span class="arithmatex">\(f(\mathbf{x}) = \mathbf{w}^\top \mathbf{x}\)</span>中的权重向量的某个范数来度量其复杂性，例如<span class="arithmatex">\(\| \mathbf{w} \|^2\)</span>。要保证权重向量比较小，最常用方法是将其范数作为惩罚项加到最小化损失的问题中。将原来的训练目标<strong>最小化训练标签上的预测损失</strong>，调整为<strong>最小化预测损失和惩罚项之和</strong>。现在，如果我们的权重向量增长的太大，我们的学习算法可能会更集中于最小化权重范数<span class="arithmatex">\(\| \mathbf{w} \|^2\)</span>。</p>
+<p>通过限制参数值的选择范围来控制模型容量：
+<script type="math/tex; mode=display">
+min\ l(\mathbf{w},b)\ subject\ to\ ||w||^2≤\theta
+</script>
+则对于每个<span class="arithmatex">\(\theta\)</span>，都可以找到<span class="arithmatex">\(\lambda\)</span>使得之前的目标函数等价于下面：
+<script type="math/tex; mode=display">
+min\ l(\mathbf{w},b)+\frac{\lambda}{2}||w||^2
+</script>
+这一点可以通过拉格朗日乘子证明。证明如下：</p>
+<blockquote>
+<p>reference: kimi.moonshot.cn  该证明过程已被证明正确无误</p>
+</blockquote>
+<p><img src="img/9.png" alt="image" style="zoom: 33%;" /></p>
+<p><img src="img/10.png" alt="image" style="zoom: 67%;" /></p>
+<p>回归之前的线性回归例子中，损失函数定义如下：
+<script type="math/tex; mode=display">
+L(\mathbf{w}, b) = \frac{1}{n}\sum_{i=1}^n \frac{1}{2}\left(\mathbf{w}^\top \mathbf{x}^{(i)} + b - y^{(i)}\right)^2.
+</script>
+<span class="arithmatex">\(\mathbf{x}^{(i)}\)</span>是样本<span class="arithmatex">\(i\)</span>的特征，<span class="arithmatex">\(y^{(i)}\)</span>是样本<span class="arithmatex">\(i\)</span>的标签，<span class="arithmatex">\((\mathbf{w}, b)\)</span>是权重和偏置参数。为了惩罚权重向量的大小，我们必须以某种方式在损失函数中添加<span class="arithmatex">\(\| \mathbf{w} \|^2\)</span>，但是模型应该如何平衡这个新的额外惩罚的损失？实际上，我们通过<strong>正则化常数</strong><span class="arithmatex">\(\lambda\)</span>来描述这种权衡，这是一个非负超参数，我们使用验证数据拟合：
+<script type="math/tex; mode=display">
+L(\mathbf{w}, b) + \frac{\lambda}{2} \|\mathbf{w}\|^2
+</script>
+对于<span class="arithmatex">\(\lambda = 0\)</span>，我们恢复了原来的损失函数。对于<span class="arithmatex">\(\lambda &gt; 0\)</span>，我们限制<span class="arithmatex">\(\| \mathbf{w} \|\)</span>的大小。这里我们仍然除以<span class="arithmatex">\(2\)</span>：当我们取一个二次函数的导数时，<span class="arithmatex">\(2\)</span>和<span class="arithmatex">\(1/2\)</span>会抵消，以确保更新表达式看起来既漂亮又简单。</p>
+<p>为什么在这里我们使用平方范数而不是标准范数（即欧几里得距离）？我们这样做是为了便于计算。通过平方<span class="arithmatex">\(L_2\)</span>范数，我们去掉平方根，留下权重向量每个分量的平方和。这使得惩罚的导数很容易计算：导数的和等于和的导数。</p>
+<p>此外，为什么我们首先使用<span class="arithmatex">\(L_2\)</span>范数，而不是<span class="arithmatex">\(L_1\)</span>范数。事实上，这个选择在整个统计领域中都是有效的和受欢迎的。<span class="arithmatex">\(L_2\)</span>正则化线性模型构成经典的<strong>岭回归</strong>（ridge regression）算法，<span class="arithmatex">\(L_1\)</span>正则化线性回归是统计学中类似的基本模型，通常被称为<strong>套索回归</strong>（lasso regression）。使用<span class="arithmatex">\(L_2\)</span>范数的一个原因是它对权重向量的大分量施加了巨大的惩罚。这使得我们的学习算法偏向于在大量特征上均匀分布权重的模型。在实践中，这可能使它们对单个变量中的观测误差更为稳定。相比之下，<span class="arithmatex">\(L_1\)</span>惩罚会导致模型将权重集中在一小部分特征上，而将其他权重清除为零。这称为<strong>特征选择</strong>（feature selection），这可能是其他场景下需要的。</p>
+<p><span class="arithmatex">\(L_2\)</span>正则化回归的小批量随机梯度下降更新如下式：
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbf{w} & \leftarrow \left(1- \eta\lambda \right) \mathbf{w} - \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}} \mathbf{x}^{(i)} \left(\mathbf{w}^\top \mathbf{x}^{(i)} + b - y^{(i)}\right).
+\end{aligned}
+</script>
+可以注意到：相比与原先的参数更新，现在唯一的变化就是<span class="arithmatex">\(\left(1- \eta\lambda \right) <span class="arithmatex">\(中的\)</span>- \eta\lambda\)</span>系数。</p>
+<p>我们根据估计值与观测值之间的差异来更新<span class="arithmatex">\(\mathbf{w}\)</span>。然而，我们同时也在试图将<span class="arithmatex">\(\mathbf{w}\)</span>的大小缩小到零。这就是为什么这种方法有时被称为<strong>权重衰减</strong>。我们仅考虑惩罚项，优化算法在训练的每一步<strong>衰减</strong>权重。与特征选择相比，权重衰减为我们提供了一种连续的机制来调整函数的复杂度。较小的<span class="arithmatex">\(\lambda\)</span>值对应较少约束的<span class="arithmatex">\(\mathbf{w}\)</span>，而较大的<span class="arithmatex">\(\lambda\)</span>值对<span class="arithmatex">\(\mathbf{w}\)</span>的约束更大。是否对相应的偏置<span class="arithmatex">\(b^2\)</span>进行惩罚在不同的实践中会有所不同，在神经网络的不同层中也会有所不同。<strong><em>通常，网络输出层的偏置项不会被正则化。</em></strong></p>
+<h2 id="implementation">Implementation</h2>
+<h3 id="_3">从零开始</h3>
+<p>首先，我们<strong>像以前一样生成一些数据</strong>，生成公式如下：
+<script type="math/tex; mode=display">
+y = 0.05 + \sum_{i = 1}^d 0.01 x_i + \epsilon \text{ where }
+\epsilon \sim \mathcal{N}(0, 0.01^2).
+</script>
+我们选择标签是关于输入的线性函数。标签同时被均值为0，标准差为0.01高斯噪声破坏。为了使过拟合的效果更加明显，我们可以将问题的维数增加到<span class="arithmatex">\(d = 200\)</span>，并使用<strong>一个只包含20个样本的小训练集</strong>。(为了方便过拟合，从而演示权重衰退的威力)</p>
+<pre><code class="language-python">n_train, n_test, num_inputs, batch_size = 20, 100, 200, 5
+true_w, true_b = torch.ones((num_inputs, 1)) * 0.01, 0.05
+train_data = d2l.synthetic_data(true_w, true_b, n_train)
+train_iter = d2l.load_array(train_data, batch_size)
+test_data = d2l.synthetic_data(true_w, true_b, n_test)
+test_iter = d2l.load_array(test_data, batch_size, is_train=False)
+def init_params():
+    w = torch.normal(0, 1, size=(num_inputs, 1), requires_grad=True)
+    b = torch.zeros(1, requires_grad=True)
+    return [w, b]
+def l2_penalty(w):
+    return torch.sum(w.pow(2)) / 2
+def train(lambd):
+    w, b = init_params()
+    net, loss = lambda X: d2l.linreg(X, w, b), d2l.squared_loss
+    num_epochs, lr = 100, 0.003
+    animator = d2l.Animator(xlabel='epochs', ylabel='loss', yscale='log',
+                            xlim=[5, num_epochs], legend=['train', 'test'])
+    for epoch in range(num_epochs):
+        for X, y in train_iter:
+            # 增加了L2范数惩罚项，
+            # 广播机制使l2_penalty(w)成为一个长度为batch_size的向量
+            l = loss(net(X), y) + lambd * l2_penalty(w)
+            l.sum().backward()
+            d2l.sgd([w, b], lr, batch_size)
+            # 梯度清零在d2l.sgd函数里面有
+        if (epoch + 1) % 5 == 0:
+            animator.add(epoch + 1, (d2l.evaluate_loss(net, train_iter, loss),
+                                     d2l.evaluate_loss(net, test_iter, loss)))
+    print('w的L2范数是：', torch.norm(w).item())
+train(lambd=0)
+train(lambd=3)
+</code></pre>
+<p>这里第一次其实是禁用了权重衰退，可以发现loss如下图：可以发现，训练的loss在下降，但是测试的loss却高居不下，说明发生了严重的过拟合。</p>
+<p><img src="img/11.png" alt="image" style="zoom: 67%;" /></p>
+<p>第二次的训练结果如下，就能直观发现，权重衰退很好的减少了过拟合：</p>
+<p><img src="img/12.png" alt="image" style="zoom: 67%;" /></p>
+<h3 id="_4">简洁实现</h3>
+<p>在下面的代码中，我们在实例化优化器时直接通过<code>weight_decay</code>指定weight decay超参数。默认情况下，PyTorch同时衰减权重和偏移。这里我们只为权重设置了<code>weight_decay</code>，所以偏置参数<span class="arithmatex">\(b\)</span>不会衰减。</p>
+<pre><code class="language-python">def train_concise(wd):
+    net = nn.Sequential(nn.Linear(num_inputs, 1))
+    for param in net.parameters():
+        param.data.normal_()
+    loss = nn.MSELoss(reduction='none')
+    num_epochs, lr = 100, 0.003
+    # 偏置参数没有衰减
+    trainer = torch.optim.SGD([
+        {&quot;params&quot;:net[0].weight,'weight_decay': wd},
+        {&quot;params&quot;:net[0].bias}], lr=lr)
+    animator = d2l.Animator(xlabel='epochs', ylabel='loss', yscale='log',
+                            xlim=[5, num_epochs], legend=['train', 'test'])
+    for epoch in range(num_epochs):
+        for X, y in train_iter:
+            trainer.zero_grad()
+            l = loss(net(X), y)
+            l.mean().backward()
+            trainer.step()
+        if (epoch + 1) % 5 == 0:
+            animator.add(epoch + 1,
+                         (d2l.evaluate_loss(net, train_iter, loss),
+                          d2l.evaluate_loss(net, test_iter, loss)))
+    print('w的L2范数：', net[0].weight.norm().item())
+</code></pre>
+<p>附：<code>net[0]</code>将返回<code>nn.Sequential</code>容器中的第一个模块，即<code>nn.Linear(num_inputs, 1)</code>创建的线性层。这个线性层是一个<code>nn.Module</code>实例，它包含了该层的权重、偏置以及其它可能的参数。</p>
 
 
 
@@ -3365,14 +3481,14 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.081f42fc.min.js"></script>
+      <script src="../../assets/javascripts/bundle.081f42fc.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       
-        <script src="../../../javascripts/config.js"></script>
+        <script src="../../javascripts/config.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
