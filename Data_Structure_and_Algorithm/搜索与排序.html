@@ -2839,8 +2839,86 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#merge-sort-for-counting-inversions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Merge Sort for counting inversions
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Sort 快速排序
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Sort 快速排序">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#algorithm_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-scenario-and-runtime-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      case scenario and runtime analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#median-of-three-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      median of three strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      implementation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-time-and-memory-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run-time and memory summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#master-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Master Theorem
+    </span>
+  </a>
   
 </li>
       
@@ -3795,8 +3873,86 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#merge-sort-for-counting-inversions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Merge Sort for counting inversions
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Sort 快速排序
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Sort 快速排序">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#algorithm_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-scenario-and-runtime-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      case scenario and runtime analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#median-of-three-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      median of three strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      implementation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-time-and-memory-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run-time and memory summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#master-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Master Theorem
+    </span>
+  </a>
   
 </li>
       
@@ -4212,6 +4368,77 @@ void MergeSort(int arr[], int size){
 <li>在有序数组中查找一个元素，通过每次比较中间元素将搜索范围缩小一半。</li>
 </ul>
 <p>分治法的优点在于它能够将复杂问题简化，使得问题更容易解决，并且可以利用子问题的解来构建原问题的解。然而，分治法也有其局限性，比如递归可能导致栈溢出，合并操作可能需要额外的时间和空间等。因此，在应用分治法时，需要仔细分析问题的性质和算法的效率。</p>
+<h3 id="merge-sort-for-counting-inversions">Merge Sort for counting inversions</h3>
+<blockquote>
+<p>Counting inversions can be achieved by Merge Sort with simply a counter. (计数器)</p>
+</blockquote>
+<p>Count inversions (a, b) with a ∈ A and b ∈ B : </p>
+<p><img src="img/50.png" alt="image" style="zoom: 67%;" /></p>
+<h2 id="quick-sort">Quick Sort 快速排序</h2>
+<h3 id="algorithm_3">algorithm</h3>
+<p>在归并排序中，我们把数组分为两了子列表然后排列他们。那么如果考虑如下操作：<strong><em>Chose an object in the array and partition the remaining objects into two groups relative to the chosen entry</em></strong>。比如说，我在array中选出一个中间的元素，然后剩下的元素分为两类：要么大于这个元素，要么小于。小于的都扔到左边，大于的都扔到右边，<strong>那么这个元素就会回到正确的位置</strong>。那么对于剩下的左边和右边的两个小array，也可以重复这样的操作！就像归并排序，我们也可以规定：如果子列表足够小，那么我们就直接应用插入排序</p>
+<h3 id="case-scenario-and-runtime-analysis">case scenario and runtime analysis</h3>
+<p>在最好的case中，数组应该能够近乎被均分为两个等长的子列表，然后因此，运行时间应该十分接近归并排序<span class="arithmatex">\(\Theta(nln(n))\)</span>，但是如果我们不是很幸运呢？</p>
+<p>假如说我们选中的元素总是恰好就是sub-list中的最小的元素，那么这就说明：<span class="arithmatex">\(T(n)=T(n-1)+\Theta(n)=\Theta(n^2)\)</span>，此时运行时间的表现就下降了，<strong><em>快速排序的时间复杂度退化到了</em></strong><span class="arithmatex">\(\Theta(n^2)\)</span>。我们很是希望找到将会归位于中间的元素（median element），因为这意味着分出来的两个子列表会是等长的，<strong>但<em>是很可惜的是，这样的median element很难找到</em></strong>，甚至换而言之，我们不指望能够总是找到这种median element。</p>
+<p>对于快速排序的流程，我们可以用二叉树来表示（BST representation）。如下图：</p>
+<p><img src="img/38.png" alt="image" style="zoom:50%;" /></p>
+<p>我们认为：<span class="arithmatex">\(a_i, a_j\)</span> <strong>are compared once if one is an ancestor of the other！</strong>我们假设：</p>
+<p>$Proposition: $ The expected number of compares to quicksort an array of n distinct elements <span class="arithmatex">\(a_1&lt;...&lt;a_n\)</span> is <span class="arithmatex">\(O(nlogn)\)</span></p>
+<p>为了证明这个proposition，我们需要有以下引理，一步一步退出：</p>
+<p><span class="arithmatex">\(Theorem1:\)</span> 如果两个元素在sort下是相邻的，那么它们两个一定在快速排序的时候比较过，i.e.，一个是另一个的ancestor。</p>
+<p><span class="arithmatex">\(Theorem2:\)</span>对于不同的n(≥8)个不同的元素<span class="arithmatex">\(a_1&lt;...&lt;a_n\)</span>，那么：The probability that <span class="arithmatex">\(a_1\)</span> and <span class="arithmatex">\(a_n\)</span> are compared during randomized quicksort is <span class="arithmatex">\(\frac{2}{n}\)</span>。因为只有first pivot元素是<span class="arithmatex">\(a_1\)</span> or <span class="arithmatex">\(a_n\)</span>，才能实现一个是另一个的ancestor！可以设想：如果first pivot是另外的一个元素，那么这两个极值肯定会在一左一右。</p>
+<p><span class="arithmatex">\(Theorem3:\)</span> <span class="arithmatex">\(Probability(a_i,a_j\ are\ compared)=\frac{2}{j-i+1},where\ i&lt;j\)</span>  </p>
+<p>定理3为什么是正确的呢？假设对于每一次pivot选择来说，如果选中了<span class="arithmatex">\(a_k,k\notin [i, j]\)</span>，那么此时<span class="arithmatex">\(a_i,a_j\)</span>仍然会在一个sub-list里面。但是当pivot开始要第一次在<span class="arithmatex">\(a_k,k\in [i, j]\)</span>中选取元素的时候，只有选中<span class="arithmatex">\(a_i,a_j\)</span>中的任意一个，才能实现一个是另一个的ancestor，否则这两个元素会在那个pivot节点的一左一右，就无法做到一个是另外一个的ancestor了。显然。<span class="arithmatex">\(theorem1,2\)</span>是定理3的特殊情况。</p>
+<p>有了定理三，我们就能推出：<strong><em>Expected number of compares</em></strong>
+<script type="math/tex; mode=display">
+\sum_{i=1}^{n}\sum_{j=i+1}^{n}\frac{2}{j-i+1}=2\sum_{i=1}^{n}\sum_{j=2}^{n-i+1}
+\frac{1}{j}≤2n\sum_{j=1}^{n}\frac{1}{j}≤2n(lnn+1)
+</script>
+</p>
+<h3 id="median-of-three-strategy">median of three strategy</h3>
+<p>Consider another strategy: Choose the median of the first, middle, and last entries in the list. This will usually give a better approximation of the actual median. 换而言之，选取元素的时候，看sub array的头尾和中间元素，然后选这三个元素中的中间元素作为pivot。</p>
+<p>If we choose a random pivot, this will, on average, divide a set of n items into two sets of size 1/4 n and 3/4 n. Choosing the median-of-three, this will, on average, divide the n items into two sets of size 5/16 n and 11/16 n. <strong><em>It is considered that Median-of-three helps speed the algorithm</em></strong>. </p>
+<blockquote>
+<p>Reference: kimi.moonshot.cn</p>
+<p>具体来说，Median-of-three的步骤如下：</p>
+<ol>
+<li>选取数组的第一个元素、中间元素和最后一个元素。</li>
+<li>比较这三个元素，并将它们按照大小顺序排列。</li>
+<li>选择中间的元素作为基准值。</li>
+</ol>
+<p>这种方法的优势在于，它能够减少快速排序算法在面对特定类型的输入（例如，已经排序或接近排序的数组）时性能恶化的风险。通过选择三个位置的中位数作为基准值，可以更大概率地保证基准值接近整个数组的中间值，从而在划分过程中得到更均衡的两个子数组，提高算法的平均效率。</p>
+<p>在实际应用中，Median-of-three策略通常与其他优化策略结合使用，例如三路划分（3-way partitioning）和插入排序。三路划分是指在快速排序的划分过程中，将数组划分为三个部分：小于基准值的元素、等于基准值的元素和大于基准值的元素。这样可以减少不必要的元素交换，提高排序效率。而当数组的大小较小时，使用插入排序代替快速排序可以更快地完成排序任务。</p>
+<p>总的来说，Median-of-three是一种有效的基准值选取策略，可以提高快速排序算法在各种情况下的性能，尤其是在面对大规模数据集时。</p>
+</blockquote>
+<p>同时，median-of-three还能帮忙减少迭代的次数：</p>
+<p><img src="img/39.png" alt="image" style="zoom:50%;" /></p>
+<p>但是事实证明：median-of-three对于运行时间的影响是有限的！</p>
+<p><img src="img/40.png" alt="image" style="zoom:50%;" /></p>
+<h3 id="implementation_3">implementation</h3>
+<p>If we choose to allocate memory for an additional array, we can implement the partitioning by copying elements either to the front or the back of the additional array and placing the pivot into the resulting hole. 简而言之：在选定了pivot元素之后，遍历剩余的数组，比pivot大的就从末尾开始放，反之就从头部开始放，那么最后会剩下一个空位，就放入pivot element。</p>
+<p>但是这需要额外的空间了。我们能不能就地操作？当然可以。流程如下：</p>
+<p><img src="img/41.png" alt="image" style="zoom:50%;" /></p>
+<p>同时，在每一次进行median of three的时候，把median放在最后，把三个中最小的放在最前面，三个中最大的放在中间。具体演示见ppt。</p>
+<p>代码如下：</p>
+<pre><code class="language-c++"></code></pre>
+<h3 id="run-time-and-memory-summary">Run-time and memory summary</h3>
+<p><strong><em>虽然说我们实现了就地操作，但是迭代其实是需要占用栈空间的</em></strong>。一般来说，depth of recursion is <span class="arithmatex">\(\Theta(ln(n))\)</span>, and the depth of the recursion is <span class="arithmatex">\(\Theta(n)\)</span></p>
+<p><img src="img/42.png" alt="image" style="zoom: 67%;" /></p>
+<h2 id="master-theorem">Master Theorem</h2>
+<p><img src="img/43.png" alt="image" style="zoom: 67%;" /></p>
+<p>递归的时间复杂度的递归式如上，我们很是希望找到一个通用的解法来计算它的时间复杂度。例如，我们知道归并排序的时间复杂度：
+<script type="math/tex; mode=display">
+T(n)=2T(\frac{n}{2})+\Theta(n), while\ T(1)=\Theta(1)\rightarrow T(n)=\Theta(nln(n))
+</script>
+当初，归并排序的时间复杂度是用下面这个流程图来计算的：</p>
+<p><img src="img/44.png" alt="image" style="zoom: 50%;" /></p>
+<p>那么用这个思路，能不能解出一些其他的递归式的时间复杂度呢？两个例子如下：</p>
+<p><img src="img/45.png" alt="image" style="zoom: 50%;" /></p>
+<p><img src="img/46.png" alt="image" style="zoom: 50%;" /></p>
+<p>那么这个经验总结一下，我们就得到了主定理 <span class="arithmatex">\(Master\ Theorem\)</span>:</p>
+<p><img src="img/47.png" alt="image" style="zoom: 50%;" /></p>
+<p><img src="img/48.png" alt="image" style="zoom: 50%;" /></p>
+<p><img src="img/49.png" alt="image" style="zoom: 50%;" /></p>
 
 
 
