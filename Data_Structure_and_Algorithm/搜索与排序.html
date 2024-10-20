@@ -2914,11 +2914,50 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#divide-and-conquer_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Divide and Conquer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Divide and Conquer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#master-theorem" class="md-nav__link">
     <span class="md-ellipsis">
       Master Theorem
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integer-multiplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integer Multiplication
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3561,6 +3600,48 @@
   
   
     <li class="md-nav__item">
+      <a href="../Blog/PointNet/analysis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PointNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Blog/PointMAE/analysis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PointMAE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Blog/NeRF%26Instant_NGP/note.html" class="md-nav__link">
         
   
@@ -3587,6 +3668,27 @@
   
   <span class="md-ellipsis">
     3DGS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Blog/3DGS_reproduction/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3DGS_reproduction
   </span>
   
 
@@ -3948,11 +4050,50 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#divide-and-conquer_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Divide and Conquer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Divide and Conquer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#master-theorem" class="md-nav__link">
     <span class="md-ellipsis">
       Master Theorem
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integer-multiplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integer Multiplication
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4420,13 +4561,97 @@ void MergeSort(int arr[], int size){
 <p><img src="img/41.png" alt="image" style="zoom:50%;" /></p>
 <p>同时，在每一次进行median of three的时候，把median放在最后，把三个中最小的放在最前面，三个中最大的放在中间。具体演示见ppt。</p>
 <p>代码如下：</p>
-<pre><code class="language-c++"></code></pre>
+<pre><code class="language-c++">// quick_sort.cpp
+// reference: ChatGPT 4o model
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+
+// 三点取中法选择基准值
+int medianOfThree(int arr[], int low, int high) {
+    int mid = low + (high - low) / 2;
+
+    // 将low, mid, high三个值按大小排序
+    if (arr[low] &gt; arr[mid])
+        std::swap(arr[low], arr[mid]);
+    if (arr[low] &gt; arr[high])
+        std::swap(arr[low], arr[high]);
+    if (arr[mid] &gt; arr[high])
+        std::swap(arr[mid], arr[high]);
+
+    // 使用中间值作为基准值
+    std::swap(arr[mid], arr[high - 1]); // 将基准值放在high-1的位置
+    return arr[high - 1];
+}
+
+// 分区函数
+int partition(int arr[], int low, int high) {
+    int pivot = medianOfThree(arr, low, high);  // 基准值为三点取中的值
+    int i = low;
+    int j = high - 1;  // pivot已经放在high - 1的位置
+
+    while (true) {
+        // 从左边找到第一个比pivot大的元素
+        while (arr[++i] &lt; pivot);
+        // 从右边找到第一个比pivot小的元素
+        while (arr[--j] &gt; pivot);
+
+        if (i &lt; j)
+            std::swap(arr[i], arr[j]);
+        else
+            break;
+    }
+
+    // 将pivot放回正确的位置
+    std::swap(arr[i], arr[high - 1]);  // i是第一个比pivot大的位置
+    return i;  // 返回pivot的最终位置
+}
+
+// 快速排序主函数
+void quickSort(int arr[], int low, int high) {
+    if (low + 10 &lt;= high) {  // 使用插入排序的阈值，可以根据需要调整
+        int pivotIndex = partition(arr, low, high);
+        quickSort(arr, low, pivotIndex - 1);
+        quickSort(arr, pivotIndex + 1, high);
+    } else {
+        // 当子数组较小时，使用插入排序优化
+        for (int i = low + 1; i &lt;= high; ++i) {
+            int temp = arr[i];
+            int j;
+            for (j = i; j &gt; low &amp;&amp; arr[j - 1] &gt; temp; --j)
+                arr[j] = arr[j - 1];
+            arr[j] = temp;
+        }
+    }
+}
+
+// 快速排序的外部接口
+void quickSort(int arr[], int n) {
+    quickSort(arr, 0, n - 1);
+}
+
+int main() {
+    int arr[] = {24, 97, 40, 67, 88, 85, 15, 66, 53, 44};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    quickSort(arr, n);
+
+    std::cout &lt;&lt; &quot;Sorted array: &quot;;
+    for (int i = 0; i &lt; n; ++i) {
+        std::cout &lt;&lt; arr[i] &lt;&lt; &quot; &quot;;
+    }
+    std::cout &lt;&lt; std::endl;
+
+    return 0;
+}
+
+</code></pre>
 <h3 id="run-time-and-memory-summary">Run-time and memory summary</h3>
 <p><strong><em>虽然说我们实现了就地操作，但是迭代其实是需要占用栈空间的</em></strong>。一般来说，depth of recursion is <span class="arithmatex">\(\Theta(ln(n))\)</span>, and the depth of the recursion is <span class="arithmatex">\(\Theta(n)\)</span></p>
 <p><img src="img/42.png" alt="image" style="zoom: 67%;" /></p>
-<h2 id="master-theorem">Master Theorem</h2>
+<h2 id="divide-and-conquer_1">Divide and Conquer</h2>
+<h3 id="master-theorem">Master Theorem</h3>
 <p><img src="img/43.png" alt="image" style="zoom: 67%;" /></p>
-<p>递归的时间复杂度的递归式如上，我们很是希望找到一个通用的解法来计算它的时间复杂度。例如，我们知道归并排序的时间复杂度：
+<p>递归的时间复杂度的递归式如上，上图中提到的四个参数的<strong><em>具体问题意义</em></strong>值得记住。我们很是希望找到一个通用的解法来计算它的时间复杂度。例如，我们知道归并排序的时间复杂度：
 <script type="math/tex; mode=display">
 T(n)=2T(\frac{n}{2})+\Theta(n), while\ T(1)=\Theta(1)\rightarrow T(n)=\Theta(nln(n))
 </script>
@@ -4439,6 +4664,48 @@ T(n)=2T(\frac{n}{2})+\Theta(n), while\ T(1)=\Theta(1)\rightarrow T(n)=\Theta(nln
 <p><img src="img/47.png" alt="image" style="zoom: 50%;" /></p>
 <p><img src="img/48.png" alt="image" style="zoom: 50%;" /></p>
 <p><img src="img/49.png" alt="image" style="zoom: 50%;" /></p>
+<p>其中：<span class="arithmatex">\(log_ba\)</span>和d比较的意义是什么？为什么需要比较？<span class="arithmatex">\(log_ba\)</span>表示递归部分的“分裂增长率”，而 d 是非递归部分的“合并增长率”。这两者的比较决定了递归调用的次数与每层递归所需时间的相对贡献，从而影响算法的总体时间复杂度。</p>
+<blockquote>
+<p>以下部分reference: ChatGPT 4o model</p>
+</blockquote>
+<p><strong>当 <span class="arithmatex">\(log⁡_b a&gt;d时\)</span></strong>（递归部分主导）</p>
+<ul>
+<li><strong>类比</strong>：你将任务分得非常细，子任务的数量随着递归次数迅速增加，而每个子任务的工作量相对比较小。</li>
+<li><strong>感性理解</strong>：这个场景就像你把任务分配给很多人，每个人做的任务都很简单，但因为子任务的数量非常多，递归的分裂过程花费了大量时间，最终时间主要耗在处理越来越多的子任务上，而不是合并结果。</li>
+<li><strong>结论</strong>：时间主要花在了递归拆分上。递归树有很多层，最终的复杂度由递归决定，即 <span class="arithmatex">\(T(n)=O(nlog_⁡b a)T(n) = \mathcal{O}(n^{\log_b a})T(n)=O(nlog_b a)\)</span>。</li>
+</ul>
+<p><strong>当 <span class="arithmatex">\(log⁡_b a=d时\)</span>时</strong>（递归部分和合并部分平衡）</p>
+<ul>
+<li><strong>类比</strong>：任务拆分后，子任务数量和每层的合并工作恰好达到一个平衡点。</li>
+<li><strong>感性理解</strong>：你把任务分给别人做，并且每次合并结果时，处理的工作量和拆分的子任务数量差不多。这时，每一层的递归处理和合并工作几乎同样耗时，最终的复杂度会受到两者的共同影响。</li>
+<li><strong>结论</strong>：递归和合并工作相互平衡，时间复杂度带有一个对数项，即 <span class="arithmatex">\(T(n)=O(n^d log⁡n)T(n) = \mathcal{O}(n^d \log n)T(n)=O(n^d logn)\)</span>。</li>
+</ul>
+<p><strong>当 <span class="arithmatex">\(log⁡_b a&lt;d时\)</span>时</strong>（合并部分主导）</p>
+<ul>
+<li><strong>类比</strong>：你把任务拆分成很多个子任务，但每个子任务的工作量非常小，合并子任务的时间反而远远超过了子任务的执行时间。</li>
+<li><strong>感性理解</strong>：就像你让很多人帮忙做一些很小的工作，但最终你需要花大量时间把所有的结果合并在一起。此时，递归产生的子任务虽然很多，但它们各自所需的时间比较少，主要耗时集中在合并过程。</li>
+<li><strong>结论</strong>：合并部分占主导地位，复杂度由非递归部分决定，即 <span class="arithmatex">\(T(n)=O(nd)T(n) = \mathcal{O}(n^d)T(n)=O(nd)。\)</span></li>
+</ul>
+<h3 id="example">Example</h3>
+<h4 id="integer-multiplication">Integer Multiplication</h4>
+<p>我们知道给两个二进制的数字x y，计算加减都是一位一位进行操作的。那么乘法的时候使用的是Grade-school算法，通常称为“小学算术算法”，是一种用于手算乘法的算法，它利用了乘法对加法的分配律来简化计算过程。如下图：那么我们能够直观发现，这个算法的复杂度是<span class="arithmatex">\(\Theta(n^2)\)</span></p>
+<p><img src="img/51.png" alt="image" style="zoom: 50%;" /></p>
+<p>那么这个问题能不能用分治解决呢？直接想可能会有点困难，那么直接见下图：按照bit位数分为两部分，然后根据2的幂的性质去用这两部分去表示原来的数字，那么原来的x y相乘就能更换一种新的表达形式：</p>
+<p><img src="img/52.png" alt="image" style="zoom: 50%;" /></p>
+<p>OK，那么a b c d同样也可以各自一分为二进行操作，直到最后只有1个数字。于是我们就能够设计如下的伪代码：</p>
+<p><img src="img/53.png" alt="image" style="zoom: 50%;" /></p>
+<p>那么根据算法，我们能够表示该流程的循环树Recursion Tree：</p>
+<p><img src="img/54.png" alt="image" style="zoom: 50%;" /></p>
+<p>那么我们可以表示时间复杂度：<span class="arithmatex">\(T(n)=4T(\frac{n}{2})+\Theta(n)\)</span>，利用Master Theorem，我们直到这是第三种情况，那么时间复杂度就是<span class="arithmatex">\(T(n)=\Theta(n^{log_24} = \Theta(n^2))\)</span></p>
+<p>特别地：如果希望计算bc + ad的中间项，其实可以不用再进一步分治，因为：
+$$</p>
+<p>bc + ad  =  ac + bd  –  (a – b) (c – d)
+$$
+所以其实只需要ac bd这两个结果需要进行分治就可以了。在这种算法中，一次循环中只需要三个1/2n-bit整数相乘操作。伪代码如下：</p>
+<p><img src="img/55.png" alt="image" style="zoom: 50%;" /></p>
+<p>Recursion Tree如下：</p>
+<p><img src="img/56.png" alt="image" style="zoom: 50%;" /></p>
+<p>那么我们知道：<span class="arithmatex">\(T(n) = 3T(\frac{n}{2}) + \Theta(n)\)</span>，根据Master Theorem可知这是第三种情况，因此时间复杂度是：<span class="arithmatex">\(T(n) = T(n^{log_23})\)</span></p>
 
 
 
