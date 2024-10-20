@@ -151,6 +151,9 @@ nav:
         - 权重衰退: 动手学深度学习/多层感知机/权重衰退.md
   - Blog: 
     - Datawhale: machine_learning/Datawhale/note.md
+    - PointNet: Blog/PointNet/analysis.md
+    - PointMAE: Blog/PointMAE/analysis.md
     - NeRF&Instant_NGP: Blog/NeRF&Instant_NGP/note.md
     - 3DGS: Blog/3DGS/note.md
+    - 3DGS_reproduction: Blog/3DGS_reproduction/note.md
     - AAAI2025: Blog/AAAI2025/log.md
