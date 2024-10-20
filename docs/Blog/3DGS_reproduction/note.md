@@ -77,6 +77,7 @@ apt-get install \
 
 1. `CMakeList`中需要加入: `set(CMAKE_CUDA_ARCHITECTURES "native")`
 2. `/usr/local/lib/cmake/Ceres/FindGlog.cmake`中, `#add glog::glog target`部分全部注释掉
+2. `colmap/cmake/CMakeHelper.cmake`文件中，需要在`macro(COLMAP_ADD_LIBRARY)`一段中， 在`set(multiValueArgs NAME SRCS PRIVATE_LINK_LIBS PUBLIC_LINK_LIBS)`之后加入`find_package(CUDAToolkit REQUIRED)`。
 
 那么`colmap`编译完成之后, 铺垫就完成了. 第一步是mp4处理成图片: 
 
