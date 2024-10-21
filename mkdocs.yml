@@ -129,9 +129,18 @@ nav:
       - 手法与好题: 线性代数/手法与好题/note.md
       - 章节回顾: 线性代数/章节回顾/note.md
       - 总复习: 线性代数/总复习/note.md
+    - 概率论:
+      - Lec1: 概率论/L1.pdf
+      - Lec1-handwriting: 概率论/L1-handwriting.pdf
+      - Lec2: 概率论/L2.pdf
+      - Lec2-handwriting: 概率论/L2-handwriting.pdf
     - 数据结构与算法:
       - 基本结构与算法分析: Data_Structure_and_Algorithm/基本结构与算法分析.md
       - 搜索与排序: Data_Structure_and_Algorithm/搜索与排序.md
+    - 信号与系统:
+      - Chapter1: 信号与系统/Chapter 1.pdf
+      - Chapter2: 信号与系统/Chapter 2.pdf
+      - Chapter3: 信号与系统/Chapter 3.pdf
     - 普通物理:
       - Lec2: 普通物理/Lect2_Kinematics 质点运动学.pdf
       - Lec3: 普通物理/Lect3_Dynamics 质点动力学-1.pdf
