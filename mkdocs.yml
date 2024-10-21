@@ -33,6 +33,8 @@ markdown_extensions:
   - mdx_math
   - pymdownx.arithmatex:
       generic: true
+  - pymdownx.pathconverter:
+      absolute: false
 nav:
   - Home: index.md
   - Course (Curriculum):
@@ -130,6 +132,13 @@ nav:
     - 数据结构与算法:
       - 基本结构与算法分析: Data_Structure_and_Algorithm/基本结构与算法分析.md
       - 搜索与排序: Data_Structure_and_Algorithm/搜索与排序.md
+    - 普通物理:
+      - Lec2: 普通物理/Lect2_Kinematics 质点运动学.pdf
+      - Lec3: 普通物理/Lect3_Dynamics 质点动力学-1.pdf
+      - Lec4: 普通物理/Lect4_Dynamics 质点动力学-2.pdf
+      - Lec5: 普通物理/Lect5_Work_energy 功和能.pdf
+      - Lec6: 普通物理/Lect6_Potential Energy_势能.pdf
+      - Lec7: 普通物理/Lect7_Momentum_动量-预习.pdf
   - Course (Extracurriculum):
     - Deep Learning:
       - 'Partition One: Fundamental + Convolution' : deeplearning_note/深度学习自学.md
