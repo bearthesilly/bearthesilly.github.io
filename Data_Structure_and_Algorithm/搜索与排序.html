@@ -3096,10 +3096,25 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#technical-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      Technical skill
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technical skill">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      为什么需要组合？
+      数列题
     </span>
   </a>
   
@@ -3108,7 +3123,7 @@
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      蝴蝶操作公式
+      换元+主定理/迭代树
     </span>
   </a>
   
@@ -4543,10 +4558,25 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#technical-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      Technical skill
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technical skill">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      为什么需要组合？
+      数列题
     </span>
   </a>
   
@@ -4555,7 +4585,7 @@
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      蝴蝶操作公式
+      换元+主定理/迭代树
     </span>
   </a>
   
@@ -4998,7 +5028,7 @@ void MergeSort(int arr[], int size){
 <p>对于快速排序的流程，我们可以用二叉树来表示（BST representation）。如下图：</p>
 <p><img src="img/38.png" alt="image" style="zoom:50%;" /></p>
 <p>我们认为：<span class="arithmatex">\(a_i, a_j\)</span> <strong>are compared once if one is an ancestor of the other！</strong>我们假设：</p>
-<p>$Proposition: $ The expected number of compares to quicksort an array of n distinct elements <span class="arithmatex">\(a_1&lt;...&lt;a_n\)</span> is <span class="arithmatex">\(O(nlogn)\)</span></p>
+<p>$Proposition: $ <strong>The expected number of compares to quicksort an array of n distinct elements <span class="arithmatex">\(a_1&lt;...&lt;a_n\)</span> is <span class="arithmatex">\(O(nlogn)\)</span></strong>（<strong><em>注意，<span class="arithmatex">\(i,j\)</span>代表顺序中的次序，而不是数组中的引索！</em></strong>）</p>
 <p>为了证明这个proposition，我们需要有以下引理，一步一步退出：</p>
 <p><span class="arithmatex">\(Theorem1:\)</span> 如果两个元素在sort下是相邻的，那么它们两个一定在快速排序的时候比较过，i.e.，一个是另一个的ancestor。</p>
 <p><span class="arithmatex">\(Theorem2:\)</span>对于不同的n(≥8)个不同的元素<span class="arithmatex">\(a_1&lt;...&lt;a_n\)</span>，那么：The probability that <span class="arithmatex">\(a_1\)</span> and <span class="arithmatex">\(a_n\)</span> are compared during randomized quicksort is <span class="arithmatex">\(\frac{2}{n}\)</span>。因为只有first pivot元素是<span class="arithmatex">\(a_1\)</span> or <span class="arithmatex">\(a_n\)</span>，才能实现一个是另一个的ancestor！可以设想：如果first pivot是另外的一个元素，那么这两个极值肯定会在一左一右。</p>
@@ -5120,7 +5150,7 @@ int main() {
 
 </code></pre>
 <h3 id="run-time-and-memory-summary">Run-time and memory summary</h3>
-<p><strong><em>虽然说我们实现了就地操作，但是迭代其实是需要占用栈空间的</em></strong>。一般来说，depth of recursion is <span class="arithmatex">\(\Theta(ln(n))\)</span>, and the depth of the recursion is <span class="arithmatex">\(\Theta(n)\)</span></p>
+<p><strong><em>虽然说我们实现了就地操作，但是迭代其实是需要占用栈空间的</em></strong>。一般来说，the average-case depth of recursion is <span class="arithmatex">\(\Theta(ln(n))\)</span>, and the worst-case depth of the recursion is <span class="arithmatex">\(\Theta(n)\)</span></p>
 <p><img src="img/42.png" alt="image" style="zoom: 67%;" /></p>
 <h2 id="divide-and-conquer_1">Divide and Conquer</h2>
 <h3 id="master-theorem">Master Theorem</h3>
@@ -5146,7 +5176,7 @@ T(n)=2T(\frac{n}{2})+\Theta(n), while\ T(1)=\Theta(1)\rightarrow T(n)=\Theta(nln
 <ul>
 <li><strong>类比</strong>：你将任务分得非常细，子任务的数量随着递归次数迅速增加，而每个子任务的工作量相对比较小。</li>
 <li><strong>感性理解</strong>：这个场景就像你把任务分配给很多人，每个人做的任务都很简单，但因为子任务的数量非常多，递归的分裂过程花费了大量时间，最终时间主要耗在处理越来越多的子任务上，而不是合并结果。</li>
-<li><strong>结论</strong>：时间主要花在了递归拆分上。递归树有很多层，最终的复杂度由递归决定，即 <span class="arithmatex">\(T(n)=O(nlog_⁡b a)T(n) = \mathcal{O}(n^{\log_b a})T(n)=O(nlog_b a)\)</span>。</li>
+<li><strong>结论</strong>：时间主要花在了递归拆分上。递归树有很多层，最终的复杂度由递归决定，即 <span class="arithmatex">\(T(n)=O(n  log_{b}a)T(n) = \mathcal{O}(n^{\log_b a})T(n)=O(nlog_b a)\)</span>。</li>
 </ul>
 <p><strong>当 <span class="arithmatex">\(log⁡_b a=d时\)</span>时</strong>（递归部分和合并部分平衡）</p>
 <ul>
@@ -5158,7 +5188,7 @@ T(n)=2T(\frac{n}{2})+\Theta(n), while\ T(1)=\Theta(1)\rightarrow T(n)=\Theta(nln
 <ul>
 <li><strong>类比</strong>：你把任务拆分成很多个子任务，但每个子任务的工作量非常小，合并子任务的时间反而远远超过了子任务的执行时间。</li>
 <li><strong>感性理解</strong>：就像你让很多人帮忙做一些很小的工作，但最终你需要花大量时间把所有的结果合并在一起。此时，递归产生的子任务虽然很多，但它们各自所需的时间比较少，主要耗时集中在合并过程。</li>
-<li><strong>结论</strong>：合并部分占主导地位，复杂度由非递归部分决定，即 <span class="arithmatex">\(T(n)=O(nd)T(n) = \mathcal{O}(n^d)T(n)=O(nd)。\)</span></li>
+<li><strong>结论</strong>：合并部分占主导地位，复杂度由非递归部分决定</li>
 </ul>
 <h3 id="example">Example</h3>
 <h4 id="integer-multiplication">Integer Multiplication</h4>
@@ -5218,9 +5248,7 @@ bc + ad  =  ac + bd  –  (a – b) (c – d)
 </ul>
 <p>这样，一个长度为 N 的DFT可以被拆解成两个长度为N/2 的DFT，分别计算偶数和奇数项的DFT。</p>
 <p>分解完之后，虽然我们得到了两个较小的DFT结果，但这并不是完整的DFT结果。我们还需要将这些小规模的DFT结果<strong>组合</strong>成完整的DFT。</p>
-<h4 id="_5">为什么需要组合？</h4>
 <p>通过分治法拆分得到的偶数项DFT EkE_kEk 和奇数项DFT OkO_kOk 代表的是原始序列中的不同部分。为了得到完整的DFT结果，我们需要将这些结果组合成一个长度为 NNN 的序列。这个组合过程需要引入所谓的“<strong>旋转因子</strong>”（即 <span class="arithmatex">\(e^{-i \frac{2\pi}{N} k}\)</span>，也称为“<strong>蝴蝶因子</strong>”），这个旋转因子是DFT的本质特征。</p>
-<h4 id="_6">蝴蝶操作公式</h4>
 <p>FFT中的蝴蝶操作通过以下公式来组合偶数和奇数部分的DFT：</p>
 <p><span class="arithmatex">\(X_k = E_k + W_k \cdot O_k\)</span></p>
 <p><span class="arithmatex">\(X_{k+N/2}=Ek−W_k⋅O_k\)</span></p>
@@ -5232,6 +5260,51 @@ bc + ad  =  ac + bd  –  (a – b) (c – d)
 </ul>
 <p>这就是蝴蝶操作的核心，它使用旋转因子将偶数和奇数部分的DFT结果<strong>组合</strong>起来，得到完整的DFT结果。</p>
 </blockquote>
+<h3 id="technical-skill">Technical skill</h3>
+<p>在这一章节，将会总结求分治时间复杂度的技巧和题型。</p>
+<h4 id="_5">数列题</h4>
+<p>一类的题目十分类似于高中数列题，需要大量使用高中数学中做数列题的技巧，以及对迭代树的理解。</p>
+<p>例1：<span class="arithmatex">\(T_1(n) = \begin{cases}\Theta(1),&amp; 1\leq n\leq k\\ T_1(k) + T_1(n - k) + \Theta(n),&amp; n&gt; k \end{cases}.\)</span> (<span class="arithmatex">\(k\)</span> is a constant.)</p>
+<p>Since <span class="arithmatex">\(T_1(n)=\Theta(1),1\leq n\leq k\)</span>, so when <span class="arithmatex">\(n=mk\)</span>, k is any constant integer, according to the recursion equation we have:
+<script type="math/tex; mode=display">
+T_1(k) = \Theta(1), T_1(n) = \Theta(1) + m\Theta(1) + m\Theta(n) = \Theta(1) + \frac{1}{k}\Theta(n) + \frac{1}{k}\Theta(n^2) = \Theta(n^2)
+</script>
+Therefore the time complexity is <span class="arithmatex">\(\Theta(n^2)\)</span>.</p>
+<p>例2：<span class="arithmatex">\(T(n) = T(n-1) + \Theta(c^n),c&gt;1\)</span>
+<script type="math/tex; mode=display">
+\begin{align}
+    T(n) = T(n-1) + \Theta(c^n) \\
+    T(n-1) = T(n-2) + \Theta(c^{n-1}) \\
+    \cdots \\
+    T(1) = T(0) + \Theta(c) 
+\end{align}
+</script>
+上述式子全部相加得到：<span class="arithmatex">\(T(n) = \Theta(\sum_{i=1}^{n} c^i) = \Theta(c^n)\)</span></p>
+<p>例3：<span class="arithmatex">\(T(n)=\Theta(n) + \frac{1}{n}\sum_{i=0}^{n-1}(T(i) + T(n-i))\)</span>。<strong><em>其实这道题就是在求快速排序的期望时间复杂度</em></strong></p>
+<p><img src="img/70.jpg" alt="image" style="zoom:50%;" /></p>
+<p><img src="img/69.jpg" alt="image" style="zoom:50%;" /></p>
+<h4 id="_6">换元+主定理/迭代树</h4>
+<p>例4：<span class="arithmatex">\(T_3(n) = 2T_3(\sqrt{n}) + \Theta(\log n)\)</span></p>
+<p>Let <span class="arithmatex">\(n=2^m\)</span>, we have:<span class="arithmatex">\(T_3(2^m) = 2T_3(2^{\frac{m}{2}}) +\Theta(m)\)</span>. Then we let <span class="arithmatex">\(t(m) = T_3(2^m)\)</span>, we have:
+<script type="math/tex; mode=display">
+t(m) = 2t(\frac{m}{2})+\Theta(m)
+</script>
+Right now we can use the <strong><em>master theorem</em></strong>, we have:
+<script type="math/tex; mode=display">
+t(m) = T_3(2^m) = \Theta(mlogm)
+</script>
+So finally, let <span class="arithmatex">\(n = 2^m\)</span>, we have the time complexity result:
+<script type="math/tex; mode=display">
+    T_3(n) = \Theta(logn*log(logn))
+</script>
+例5：<span class="arithmatex">\(T(n) = T(\frac{n}{2})+\Theta(logn)\)</span></p>
+<p>Let <span class="arithmatex">\(n=2^m, T(2^m)=S(m)\)</span>, we have:
+<script type="math/tex; mode=display">
+T(2^m)=T(2^{m-1})+\Theta(m) \\
+S(m) = S(m-1) + \Theta(m) \\
+\therefore S(m) = \Theta(m^2), T(n) = \Theta(log^2n)
+</script>
+</p>
 
 
 
