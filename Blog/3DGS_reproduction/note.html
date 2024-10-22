@@ -3771,6 +3771,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#sample-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sample Result
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3861,6 +3870,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#sample-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sample Result
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3938,6 +3956,15 @@ apt-get install ffmpeg
 <p><code>ffmpeg -i input.mp4 -vf "setpts=0.2*PTS" input/input_%4d.jpg</code></p>
 <p>然后, 调用<code>convert.py</code>程序: <code>python convert.py -s data</code></p>
 <p>之后就能看到data文件夹里面出现了<code>images sparse</code>两个子文件夹. 那么之后的步骤同上.</p>
+<h2 id="sample-result">Sample Result</h2>
+<p>上课摸鱼的时候录制了一段三得利麦茶的视频，然后经过ffmpeg分照片、convert(colmap)出点云，最后经过训练，终于可以可视化出非常好的结果如下图。</p>
+<p><img alt="image" src="img/3.png" /></p>
+<p>可视化的效果非常好，甚至上面的生产日期等细节都还原的非常到位。值得注意的是，在录制的时候：</p>
+<ol>
+<li>可以不环绕这个物体摄像，可以只拍摄一半视角的；而且仰角可以丰富一点</li>
+<li>摄像移动的速度不要太快，尽可能将视频的时间控制在45秒-1分钟左右比较合适。如果是10-20秒，实测，最后挑出的数据集的照片非常少，就会导致训练就是一坨。</li>
+<li>如果要本地viewer运行服务器上训练的结果，电脑<strong><em>应该配有N卡</em></strong>（实测核显会报错）</li>
+</ol>
 
 
 
