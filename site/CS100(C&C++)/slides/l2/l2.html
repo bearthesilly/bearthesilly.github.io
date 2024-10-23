@@ -1,0 +1,5467 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../l1/l1.html">
+      
+      
+        <link rel="next" href="../l3/l3.html">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.25">
+    
+    
+      
+        <title>L2 - csrookie's website</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cs100-lecture-2" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../index.html" title="csrookie&#39;s website" class="md-header__button md-logo" aria-label="csrookie's website" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            csrookie's website
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              L2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../index.html" title="csrookie&#39;s website" class="md-nav__button md-logo" aria-label="csrookie's website" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    csrookie's website
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Course (Curriculum)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Course (Curriculum)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    高等数学上
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            高等数学上
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    写在最前面
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    第一&二章 函数 极限与连续
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            第一&二章 函数 极限与连续
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%27%E8%AF%81%E6%98%8E%27%E6%80%BB%E7%BB%93/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第一章证明总结
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E9%80%92%E6%8E%A8%E6%95%B0%E5%88%97%E7%9A%84%E6%9E%81%E9%99%90/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    递推数列的极限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%9E%81%E9%99%90%E4%B8%AD%E7%9A%84%E6%A6%82%E5%BF%B5%E9%A2%98/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    极限中的概念题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E8%BF%9E%E7%BB%AD%E6%80%A7%20%E9%97%B4%E6%96%AD%E7%82%B9%20%E6%B8%90%E8%BF%91%E7%BA%BF/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    连续性 间断点 渐近线
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%A4%B9%E9%80%BC%E5%87%86%E5%88%99%E6%B1%82%E6%9E%81%E9%99%90/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    夹逼准则求极限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%B1%82%E5%87%BD%E6%95%B0%E6%9E%81%E9%99%90/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    求函数极限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%9E%81%E9%99%90%E4%B8%8E%E8%BF%9E%E7%BB%AD%E9%9A%8F%E7%AC%94/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    极限与连续随笔
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_3" id="__nav_2_1_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    第三&四章 导数与微分 微分中值与导数应用
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            第三&四章 导数与微分 微分中值与导数应用
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%AF%BC%E6%95%B0%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%A6%82%E5%BF%B5%E4%B8%93%E9%A2%98/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    导数定义与概念专题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%AC%AC%E4%BA%8C%E4%B8%89%E5%9B%9B%E7%AB%A0%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第二&三&四章好题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_4" id="__nav_2_1_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    第五章 积分
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            第五章 积分
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86%E4%B8%8E%E5%AE%9A%E7%A7%AF%E5%88%86%E6%A6%82%E5%BF%B5/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    不定积分与定积分概念
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86%E4%B8%93%E9%A2%98/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    不定积分专题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%AE%9A%E7%A7%AF%E5%88%86%E5%AE%9A%E4%B9%89%E6%B1%82%E6%9E%81%E9%99%90/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    定积分定义求极限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%8F%8D%E5%B8%B8%E7%A7%AF%E5%88%86%E6%95%9B%E6%95%A3%E6%80%A7/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    反常积分敛散性
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%A7%AF%E5%88%86%E4%B8%8D%E7%AD%89%E5%BC%8F/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    积分不等式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%A7%AF%E5%88%86%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    积分及其应用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%A7%AF%E5%88%86%E7%9A%84%E5%BA%94%E7%94%A8%26%E5%87%BD%E6%95%B0%E5%BD%A2%E6%80%81/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    积分的应用&函数形态
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%A7%AF%E5%88%86%E9%80%92%E6%8E%A8%E5%85%AC%E5%BC%8F/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    积分递推公式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%89%8B%E6%B3%95%26painpoint/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手法&painpoint
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_6" id="__nav_2_1_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    第六章 微分方程
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            第六章 微分方程
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    微分方程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E7%AF%87/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    期末复习篇
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E4%B8%80%E5%85%83%E7%A7%AF%E5%88%86%E5%AD%A6%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一元积分学好题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    高等数学下
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            高等数学下
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%90%91%E9%87%8F%E4%BB%A3%E6%95%B0%E4%B8%8E%E7%A9%BA%E9%97%B4%E6%80%BB%E7%BB%93/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第七章 向量空间与空间解析几何
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    第八章 多元函数的微分学
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            第八章 多元函数的微分学
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    多元函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%81%8F%E5%AF%BC%E6%95%B0%E8%AE%A1%E7%AE%97/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    偏导数计算
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%B7%B2%E7%9F%A5%E5%81%8F%E5%AF%BC%E5%8F%8D%E6%B1%82%E5%87%BD%E6%95%B0/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    已知偏导反求函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%85%A8%E5%BE%AE%E5%88%86%E7%9A%84%E5%88%A4%E5%AE%9A%E4%B8%8E%E8%AE%A1%E7%AE%97/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    全微分的判定与计算
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E9%9A%90%E5%87%BD%E6%95%B0%E5%AD%98%E5%9C%A8%E5%AE%9A%E7%90%86/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    隐函数存在定理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E6%9E%81%E5%80%BC/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    多元函数极值
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_3" id="__nav_2_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    第九章 重积分
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            第九章 重积分
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    二重积分
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    二重积分中值定理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    二重积分好题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%9C%9F%E4%B8%AD%E6%80%BB%E7%BB%93/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    期中总结
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E9%AB%98%E6%95%B0%E5%A5%BD%E9%A2%98%E4%B8%8A/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    高数好题上
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_6" id="__nav_2_2_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    第十章 曲线积分和曲面积分
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            第十章 曲线积分和曲面积分
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%9B%B2%E7%BA%BF%E4%B8%8E%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    曲线与曲面积分
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%9B%B2%E7%BA%BF%E4%B8%8E%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86%E6%80%BB%E7%BB%93/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    曲线与曲面积分总结
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%9B%B2%E7%BA%BF%E4%B8%8E%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86%E8%8D%9F%E8%90%83/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    曲线与曲面积分荟萃
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_7" id="__nav_2_2_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    第十一章 级数
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            第十一章 级数
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%97%A0%E7%A9%B7%E7%BA%A7%E6%95%B0%E5%92%8C%E5%88%A4%E5%88%AB%E6%B3%95/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    无穷级数和判别法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%97%A0%E7%A9%B7%E7%BA%A7%E6%95%B0%E9%80%89%E6%8B%A9%E9%A2%98%E4%B8%8E%E5%8F%8D%E4%BE%8B/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    无穷级数选择题与反例
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%B9%82%E5%87%BD%E6%95%B0/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    幂函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%82%85%E9%87%8C%E5%8F%B6%E7%BA%A7%E6%95%B0/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    傅里叶级数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E9%AB%98%E6%95%B0%E5%A5%BD%E9%A2%98%E4%B8%8B/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    高数好题下
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    离散数学
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            离散数学
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    写在最前面
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_2" id="__nav_2_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    上半部分
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            上半部分
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec1/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec2%263/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec2&3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec4/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec5/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec6/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec6
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec7/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec7
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec8/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec8
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec9/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec9
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec10/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec10
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec11/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec11
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec12/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec13%2614/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec13&14
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec15/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec15
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/%E9%9A%8F%E7%AC%94%26%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    随笔&好题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_3" id="__nav_2_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    下半部分
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            下半部分
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec1/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec2/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec3/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec4/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec5/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec6/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec6
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec7/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec7
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec8/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec8
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec9/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec9
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec10/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec10
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec11/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec11
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec12/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec13/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec13
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec14/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec14
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    线性代数
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            线性代数
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    写在最前面
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    课堂笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E8%A1%8C%E5%88%97%E5%BC%8F%E4%B8%8E%E4%BC%B4%E9%9A%8F%E7%9F%A9%E9%98%B5/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    行列式与伴随矩阵
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E6%89%8B%E6%B3%95%E4%B8%8E%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手法与好题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E7%AB%A0%E8%8A%82%E5%9B%9E%E9%A1%BE/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    章节回顾
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E6%80%BB%E5%A4%8D%E4%B9%A0/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    总复习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    概率论
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            概率论
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/L1.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/L1-handwriting.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec1-handwriting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/L2.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/L2-handwriting.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec2-handwriting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/L3.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/L3-handwriting.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec3-handwriting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/L4.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    CS100(C&C++)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            CS100(C&C++)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_6_1" id="__nav_2_6_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    课件
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_6_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            课件
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l0/l0.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l1/l1.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    L2
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="l2.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    L2
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contents
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l3/l3.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l4/l4.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l5/l5.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l6/l6.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L6
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l7/l7.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L7
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l8/l8.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L8
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l9/l9.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L9
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l10/l10.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L10
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l11/l11.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L11
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l12/l12.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l13/l13.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L13
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l14/l14.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L14
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l15/l15.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L15
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l16/l16.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L16
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l17/l17.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L17
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l18/l18.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L18
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l19/l19.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L19
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l20/l20.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L20
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l21/l21.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L21
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l22/l22.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L22
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l23/l23.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L23
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l24/l24.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L24
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l25/l25.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L25
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l26/l26.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L26
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l27/l27.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L27
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l28/l28.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L28
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C%2B%2B%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C++自学note
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cheatsheet.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cheatsheet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    core
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AF%BE%E5%A0%82.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    课堂note
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    数据结构与算法
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            数据结构与算法
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Data_Structure_and_Algorithm/%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基本结构与算法分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Data_Structure_and_Algorithm/%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%8E%92%E5%BA%8F.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    搜索与排序
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    信号与系统
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            信号与系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%201.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%202.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%203.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    普通物理
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
+            <span class="md-nav__icon md-icon"></span>
+            普通物理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect2_Kinematics%20%E8%B4%A8%E7%82%B9%E8%BF%90%E5%8A%A8%E5%AD%A6.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect3_Dynamics%20%E8%B4%A8%E7%82%B9%E5%8A%A8%E5%8A%9B%E5%AD%A6-1.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect4_Dynamics%20%E8%B4%A8%E7%82%B9%E5%8A%A8%E5%8A%9B%E5%AD%A6-2.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect5_Work_energy%20%E5%8A%9F%E5%92%8C%E8%83%BD.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect6_Potential%20Energy_%E5%8A%BF%E8%83%BD.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec6
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect7_Momentum_%E5%8A%A8%E9%87%8F-%E9%A2%84%E4%B9%A0.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec7
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Course (Extracurriculum)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Course (Extracurriculum)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Deep Learning
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Deep Learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deeplearning_note/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%87%AA%E5%AD%A6.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Partition One: Fundamental + Convolution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sequence%20model/sequence_model.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Partition Two: Sequence Model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../transformer_note/transformer_note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transformer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    GAMES101
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            GAMES101
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../GAMES101/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Note
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../GAMES101/note_hw.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homework
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    动手学深度学习
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            动手学深度学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_1" id="__nav_3_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    预备知识
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            预备知识
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E4%B8%8E%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    数据操作与数据预处理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    矩阵计算与自动求导
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_2" id="__nav_3_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    线性神经网络
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            线性神经网络
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    线性回归
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/softmax.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    softmax
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_3" id="__nav_3_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    多层感知机
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            多层感知机
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA/%E6%84%9F%E7%9F%A5%E6%9C%BA.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    感知机
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9_%E6%AC%A0%E6%8B%9F%E5%90%88_%E8%BF%87%E6%8B%9F%E5%90%88.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    模型选择&欠/过拟合
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA/%E6%9D%83%E9%87%8D%E8%A1%B0%E9%80%80.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    权重衰退
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../machine_learning/Datawhale/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Datawhale
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Blog/PointNet/analysis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PointNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Blog/PointMAE/analysis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PointMAE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Blog/NeRF%26Instant_NGP/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NeRF&Instant_NGP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Blog/3DGS/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3DGS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Blog/3DGS_reproduction/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3DGS_reproduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Blog/AAAI2025/log.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AAAI2025
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contents
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<style>
+section::after {
+  content: attr(data-marpit-pagination) '/' attr(data-marpit-pagination-total);
+}
+</style>
+
+<h1 id="cs100-lecture-2">CS100 Lecture 2</h1>
+<p>Variables <span style="color: black; font-family: Times New Roman; font-size: 1.05em;">I</span> and Arithmetic Types</p>
+<hr />
+<h2 id="contents">Contents</h2>
+<ul>
+<li>Variable declaration</li>
+<li>Arithmetic types</li>
+<li>Bits and bytes</li>
+<li>Integer types</li>
+<li>Real floating types</li>
+<li>Character types</li>
+<li>Boolean type</li>
+</ul>
+<hr />
+<h1 id="variable-declaration">Variable declaration</h1>
+<hr />
+<h2 id="type-of-a-variable">Type of a variable</h2>
+<p>Every variable in C has a type.</p>
+<ul>
+<li>The type is <strong>fully deterministic</strong> and <strong>cannot be changed</strong>.</li>
+<li>The type is <strong>known even when the program is not run</strong>.</li>
+<li><span class="arithmatex">\(\Leftrightarrow\)</span> The type is known at <strong>compile-time</strong>.</li>
+<li><span class="arithmatex">\(\Leftrightarrow\)</span> C is <strong>statically-typed</strong> <span class="arithmatex">\({}^{\textcolor{red}{1}}\)</span>. <span class="arithmatex">\(\Leftrightarrow\)</span> C has a <strong>static type system</strong>.</li>
+<li>In contrast, Python is <strong>dynamically-typed</strong>.</li>
+</ul>
+<hr />
+<h2 id="statically-typed-vs-dynamically-typed">Statically-typed vs dynamically-typed</h2>
+<div style="display: grid; grid-template-columns: 1fr 1fr;">
+  <div>
+
+Python: dynamically typed
+
+
+<pre><code class="language-python">a = 42       # Type of a is int.
+a = &quot;hello&quot;  # Type of a becomes str.
+</code></pre>
+
+
+The type of a variable
+
+- can be changed, and
+- is not necessarily known until we run the program.
+
+  </div>
+  <div>
+
+C: statically-typed
+
+
+<pre><code class="language-c">int a = 42;  // Type of a is int.
+a = &quot;hello&quot;; // Error! Types mismatch!
+</code></pre>
+
+
+The type of a variable
+
+- is explicitly written on declaration, and
+- is known at compile-time, and
+- cannot be changed.
+  </div>
+</div>
+
+<p>A type-related error in C is <em>(usually)</em> a <strong>compile error</strong>:
+- It stops the compiler. The executable will not be generated.</p>
+<hr />
+<h2 id="declare-a-variable">Declare a variable</h2>
+<p>To declare a variable, we need to specify its <strong>type</strong> and <strong>name</strong>.</p>
+<pre><code class="language-c">Type name;
+</code></pre>
+<p>Example:</p>
+<pre><code class="language-c">int x;    // Declares a variable named `x`, whose type is `int`.
+double y; // Declares a variable named `y`, whose type is `double`.
+</code></pre>
+<p>We may declare multiple variables of a same type in one declaration statement, separated by <code>,</code>:</p>
+<pre><code class="language-c">int x, y; // Declares two variables `x` and `y`, both having type `int`.
+</code></pre>
+<hr />
+<h2 id="declare-a-variable_1">Declare a variable</h2>
+<p>A <strong>variable declaration</strong> can be placed</p>
+<ul>
+<li>inside a function, which declares a <strong>local variable</strong>, or</li>
+<li>outside of any functions, which declares a <strong>global variable</strong>.</li>
+</ul>
+<div style="display: grid; grid-template-columns: 1fr 1fr;">
+  <div>
+
+
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int x, y; // global variables
+
+int main(void) {
+  scanf(&quot;%d%d&quot;, &amp;x, &amp;y);
+  printf(&quot;%d\n&quot;, x + y);
+}
+</code></pre>
+
+  </div>
+  <div>
+
+
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  // local variables in `main`
+  int x, y;
+  scanf(&quot;%d%d&quot;, &amp;x, &amp;y);
+  printf(&quot;%d\n&quot;, x + y);
+}
+</code></pre>
+
+  </div>
+</div>
+
+<hr />
+<h2 id="local-variables-vs-global-variables">Local variables vs global variables</h2>
+<p>Which one do you prefer?</p>
+<div style="display: grid; grid-template-columns: 1fr 1fr;">
+  <div>
+
+
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int x, y; // global variables
+
+int main(void) {
+  scanf(&quot;%d%d&quot;, &amp;x, &amp;y);
+  printf(&quot;%d\n&quot;, x + y);
+}
+</code></pre>
+
+  </div>
+  <div>
+
+
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  // local variables in `main`
+  int x, y;
+  scanf(&quot;%d%d&quot;, &amp;x, &amp;y);
+  printf(&quot;%d\n&quot;, x + y);
+}
+</code></pre>
+
+  </div>
+</div>
+
+<hr />
+<h2 id="what-are-these-variables-used-for">What are these variables used for?</h2>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+// Other #includes
+
+int x, y; // What are these two variables used for?
+
+int moveSpaceShuttle(SpaceShuttle *shuttle, Coord to, Vehicle *by) {
+  // 109 lines
+}
+int makePreparations(Environment *env, Task tasks[], Time time) {
+  // 73 lines
+}
+LaunchResult launchSpaceShuttle(SpaceShuttle *shuttle, Task tasks[]) {
+  // 35 lines
+}
+// Other 136 functions, 3325 lines in total
+int main(void) {
+  // 120 lines
+}
+</code></pre>
+<hr />
+<h2 id="readability-matters">Readability matters</h2>
+<p><strong>[Best practice]</strong> <u>Declare the variable when you first use it!</u></p>
+<ul>
+<li>If the declaration and use of the variable are too separated, it will become much more difficult to figure out what they are used for as the program goes longer.</li>
+</ul>
+<p><strong>[Best practice]</strong> <u>Use meaningful names!</u></p>
+<ul>
+<li>The program would be a mess if polluted with names like <code>a</code>, <code>b</code>, <code>c</code>, <code>d</code>, <code>x</code>, <code>y</code>, <code>cnt</code>, <code>cnt_2</code>, <code>flag1</code>, <code>flag2</code>, <code>flag3</code> everywhere.</li>
+<li>Use meaningful names: <code>sumOfScore</code>, <code>student_cnt</code>, <code>open_success</code>, ...</li>
+</ul>
+<p><strong>Readability is very important.</strong> Many students debug day and night simply because their programs are not human-readable.</p>
+<hr />
+<h2 id="use-of-global-variables">Use of global variables</h2>
+<p>One reason for using global variables is to have them shared between functions:</p>
+<div style="display: grid; grid-template-columns: 1fr 1fr;">
+  <div>
+
+
+<pre><code class="language-c">int input;
+void work(void) {
+  printf(&quot;%d\n&quot;, input);
+}
+int main(void) {
+  scanf(&quot;%d&quot;, &amp;input);
+  work();
+}
+</code></pre>
+
+  </div>
+  <div>
+
+
+<pre><code class="language-c">void work(void) {
+  // Error: `input` was not decared
+  // in this scope.
+  printf(&quot;%d\n&quot;, input);
+}
+int main(void) {
+  int input;
+  scanf(&quot;%d&quot;, &amp;input);
+  work();
+}
+</code></pre>
+
+
+  </div>
+</div>
+
+<p><span class="arithmatex">\(\Rightarrow\)</span> More about scopes and name lookup in later lectures / recitations.</p>
+<hr />
+<h2 id="initialize-a-variable">Initialize a variable</h2>
+<p>A variable can be <strong>initialized</strong> on declaration.</p>
+<pre><code class="language-c">int x = 42; // Declares the variable `x` of type `int`,
+            // and initializes its value to 42.
+int a = 0, b, c = 42; // Declares three `int` variables, with `a` initialized
+                      // to 0, `c` initialized to 42, and `b` uninitialized.
+</code></pre>
+<p>This is syntactically <strong>different</strong> (though seems equivalent) to</p>
+<pre><code class="language-c">int x;  // Declares `x`, uninitialized.
+x = 42; // Assigns 42 to `x`.
+</code></pre>
+<p><strong>[Best practice]</strong> <u>Initialize the variable if possible. Prefer initialization to later assignment.</u></p>
+<p><span class="arithmatex">\(\Rightarrow\)</span> More on initialization in later lectures.</p>
+<hr />
+<h1 id="arithmetic-types">Arithmetic types</h1>
+<p>Refer to <a href="https://en.cppreference.com/w/c/language/arithmetic_types">this page</a> for a complete, detailed and standard documentation.</p>
+<hr />
+<h2 id="integer-types">Integer types</h2>
+<p>Is <code>int</code> equivalent to <span class="arithmatex">\(\mathbb Z\)</span>?</p>
+<ul>
+<li>Is there a limitation on the numbers that <code>int</code> can represent?</li>
+</ul>
+<hr />
+<h2 id="integer-types_1">Integer types</h2>
+<p>Is <code>int</code> equivalent to <span class="arithmatex">\(\mathbb Z\)</span>?</p>
+<ul>
+<li>Is there a limitation on the numbers that <code>int</code> can represent?</li>
+</ul>
+<p>Experiment:</p>
+<div style="display: grid; grid-template-columns: 1fr 1fr;">
+  <div>
+
+
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  int x = 1;
+  while (1) {
+    printf(&quot;%d\n&quot;, x);
+    x *= 2; // x = x * 2
+    getchar();
+  }
+}
+</code></pre>
+
+  </div>
+  <div>
+
+- On 64-bit Ubuntu 22.04 and compiled with GCC 13, after printing `1073741824` ($2^{30}$), the output becomes negative, and then `0`.
+
+  ```
+  1073741824
+  -2147483648
+  0
+  0
+  ```
+  </div>
+</div>
+
+<hr />
+<h2 id="bits-and-bytes">Bits and bytes</h2>
+<p>Information is stored in computers <strong>in binary</strong>.</p>
+<ul>
+<li><span class="arithmatex">\(42_{\text{ten}}=101010_{\text{two}}\)</span>.</li>
+</ul>
+<p>A <strong>bit</strong> is either <span class="arithmatex">\(0\)</span> or <span class="arithmatex">\(1\)</span>.</p>
+<ul>
+<li>The binary representation of <span class="arithmatex">\(42\)</span> consists of <span class="arithmatex">\(6\)</span> bits.</li>
+</ul>
+<p>A <strong>byte</strong> is <span class="arithmatex">\(8\)</span> bits <span class="arithmatex">\({}^{\textcolor{red}{2}}\)</span> grouped together like <span class="arithmatex">\(10001001\)</span>.</p>
+<ul>
+<li>At least <span class="arithmatex">\(1\)</span> byte is needed to store <span class="arithmatex">\(42\)</span>.</li>
+<li>At least <span class="arithmatex">\(3\)</span> bytes are needed to store <span class="arithmatex">\(142857_{\text{ten}}=100010111000001001_{\text{two}}\)</span></li>
+</ul>
+<hr />
+<h2 id="bits-and-bytes_1">Bits and bytes</h2>
+<p>A 32-bit number: <span class="arithmatex">\(2979269462_{\text{ten}}=10110001100101000000101101010110_{\text{two}}\)</span>.</p>
+<p><a align="center">
+  <img src="img/32bitint.png">
+</a></p>
+<p>Suppose now we have <span class="arithmatex">\(n\)</span> bits.</p>
+<ul>
+<li>How many different values can be represented?</li>
+<li>What is the largest integer that can be represented?</li>
+<li>How do we represent negative numbers? Non-integer values? ...</li>
+</ul>
+<hr />
+<h2 id="bits-and-bytes_2">Bits and bytes</h2>
+<p>Suppose now we have <span class="arithmatex">\(n\)</span> bits.</p>
+<ul>
+<li>How many different values can be represented?</li>
+<li><span class="arithmatex">\(2^n\)</span>.</li>
+<li>What is the largest integer that can be represented?</li>
+<li><span class="arithmatex">\(2^n-1=\underbrace{111\dots 1}_{n}{}_{\text{two}}\)</span>.</li>
+<li>How do we represent negative numbers? Non-integer values? ...</li>
+<li>There are several different <a href="https://en.wikipedia.org/wiki/Signed_number_representations">signed number representations</a>, among which <strong>two's complement</strong> is widely used.</li>
+<li>About floating-point numbers: <a href="https://en.wikipedia.org/wiki/IEEE_754">IEEE754</a></li>
+<li>Details are not covered in CS100.</li>
+</ul>
+<hr />
+<h2 id="integer-types_2">Integer types</h2>
+<p>An integer type in C is either <strong>signed</strong> or <strong>unsigned</strong>, and has a <strong>width</strong> denoting the number of bits that can be used to represent values.</p>
+<p>Suppose we have an integer type of <span class="arithmatex">\(n\)</span> bits in width.</p>
+<ul>
+<li>If the type is <strong>signed</strong> <span class="arithmatex">\({}^{\textcolor{red}{3}}\)</span>, the range of values that can be represented is <span class="arithmatex">\(\left[-2^{n-1},2^{n-1}-1\right]\)</span>.</li>
+<li>If the type is <strong>unsigned</strong>, the range of values that can be represented is <span class="arithmatex">\(\left[0, 2^n-1\right]\)</span>.</li>
+</ul>
+<hr />
+<h2 id="integer-types_3">Integer types</h2>
+<p><a align="center">
+  <img src="img/int_types.png">
+</a></p>
+<hr />
+<h2 id="integer-types_4">Integer types</h2>
+<ul>
+<li>The keyword <code>int</code> is optional in types other than <code>int</code>:</li>
+<li>e.g. <code>short int</code> and <code>short</code> name the same type.</li>
+<li>
+<p>e.g. <code>unsigned int</code> and <code>unsigned</code> name the same type.</p>
+</li>
+<li>
+<p>"Unsigned-ness" needs to be written explicitly: <code>unsigned int</code>, <code>unsigned long</code>, ...</p>
+</li>
+<li>Types without the keyword <code>unsigned</code> are signed by default:</li>
+<li>e.g. <code>signed int</code> and <code>int</code> name the same type.</li>
+<li>e.g. <code>signed long int</code>, <code>signed long</code>, <code>long int</code> and <code>long</code> name the same type.</li>
+</ul>
+<hr />
+<h2 id="width-of-integer-types">Width of integer types</h2>
+<div align="center">
+
+| type        | width (at least) | width (usually) |
+| ----------- | ---------------- | --------------- |
+| `short`     | 16 bits          | 16 bits         |
+| `int`       | 16 bits          | 32 bits         |
+| `long`      | 32 bits          | 32 or 64 bits   |
+| `long long` | 64 bits          | 64 bits         |
+</div>
+
+<ul>
+<li>A signed type has the same width as its <code>unsigned</code> counterpart.</li>
+<li><strong>It is also guaranteed that <code>sizeof(short)</code> <span class="arithmatex">\(\leqslant\)</span> <code>sizeof(int)</code> <span class="arithmatex">\(\leqslant\)</span> <code>sizeof(long)</code> <span class="arithmatex">\(\leqslant\)</span> <code>sizeof(long long)</code>.</strong></li>
+<li><code>sizeof(T)</code> is the number of <strong>bytes</strong> that <code>T</code> holds.</li>
+</ul>
+<hr />
+<h2 id="implementation-defined-behaviors">Implementation-defined behaviors</h2>
+<p>The standard states that the exact width of the integer types is <strong>implementation-defined</strong>.</p>
+<ul>
+<li><strong>Implementation</strong>: The compiler and the standard library.</li>
+<li>An implementation-defined behavior depends on the compiler and the standard library, and is often also related to the hosted environment (e.g. the operating system).</li>
+</ul>
+<hr />
+<h2 id="which-one-should-i-use">Which one should I use?</h2>
+<p><strong><code>int</code> is the most optimal integer type for the platform.</strong></p>
+<ul>
+<li>Use <code>int</code> for integer arithmetic by default.</li>
+<li>Use <code>long long</code> if the range of <code>int</code> is not large enough.</li>
+<li>Use smaller types (<code>short</code>, or even <code>unsigned char</code>) for memory-saving or other special purposes.</li>
+<li>Use <code>unsigned</code> types for special purposes. We will see some in later lectures.</li>
+</ul>
+<hr />
+<h2 id="which-one-is-the-real-world-the-integer-types-or-mathbb-z">Which one is the real world, the integer types or <span class="arithmatex">\(\mathbb Z\)</span>?</h2>
+<p><a align="center">
+  <img src="img/int_types_arrows.png", width=600>
+</a></p>
+<hr />
+<h2 id="real-floating-types">Real floating types</h2>
+<p>"Floating-point": The number's radix point can "float" anywhere to the left, right, or between the significant digits of the number.</p>
+<p>Real floating-point types can be used to represent <em>some</em> real values.</p>
+<ul>
+<li>Real floating-point types <span class="arithmatex">\(\neq\mathbb R\)</span>.</li>
+</ul>
+<hr />
+<h2 id="real-floating-types_1">Real floating types</h2>
+<p>C has three types for representing real floating-point values:</p>
+<ul>
+<li><code>float</code>: single precision. Matches <a href="https://en.wikipedia.org/wiki/Single-precision_floating-point_format">IEEE754 binary32 format</a> if supported.</li>
+<li><code>double</code>: double precision. Matches <a href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">IEEE754 binary64 format</a> if supported.</li>
+<li><code>long double</code>: extended precision. A floating-point type whose precision and range are at least as good as those of <code>double</code>.</li>
+</ul>
+<p>Details of IEEE754 formats are not required in CS100.</p>
+<p>Range of values can be found in <a href="https://en.cppreference.com/w/c/language/arithmetic_types#Range_of_values">this table</a>.</p>
+<hr />
+<h2 id="which-one-should-i-use_1">Which one should I use?</h2>
+<p>Use <code>double</code> for real floating-point arithmetic by default.</p>
+<ul>
+<li>In some cases the precision of <code>float</code> is not enough.</li>
+<li>Don't worry about efficiency! <code>double</code> arithmetic is not necessarily slower than <code>float</code>.</li>
+</ul>
+<p><strong>Do not use floating-point types for integer arithmetic!</strong></p>
+<hr />
+<h2 id="scanfprintf"><code>scanf</code>/<code>printf</code></h2>
+<p>Refer to the table in <a href="https://en.cppreference.com/w/c/io/fscanf">this page</a>.</p>
+<div style="display: grid; grid-template-columns: 1fr 1fr;">
+  <div align="center">
+
+| type        | format specifier |
+| ----------- | ---------------- |
+| `short`     | `%hd`            |
+| `int`       | `%d`             |
+| `long`      | `%ld`            |
+| `long long` | `%lld`           |
+  </div>
+  <div align="center">
+
+| type                 | format specifier |
+| -------------------- | ---------------- |
+| `unsigned short`     | `%hu`            |
+| `unsigned`           | `%u`             |
+| `unsigned long`      | `%lu`            |
+| `unsigned long long` | `%llu`           |
+  </div>
+</div>
+
+<ul>
+<li><code>%f</code> for <code>float</code>, <code>%lf</code> for <code>double</code>, and <code>%Lf</code> for <code>long double</code>.</li>
+</ul>
+<hr />
+<h2 id="exercise">Exercise</h2>
+<p>Write the "A+B" program for real numbers. Which type do you decide to use? How do you read and print the values?</p>
+<hr />
+<h2 id="exercise_1">Exercise</h2>
+<p>Write the "A+B" program for real numbers. Which type do you decide to use? How do you read and print the values?</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  double a, b;
+  scanf(&quot;%lf%lf&quot;, &amp;a, &amp;b);
+  printf(&quot;%lf\n&quot;, a + b);
+  return 0;
+}
+</code></pre>
+<hr />
+<h2 id="character-types">Character types</h2>
+<p>The C standard provides three <strong>different</strong> character types: <code>signed char</code>, <code>unsigned char</code> and <code>char</code>.</p>
+<p>Let <code>T</code> <span class="arithmatex">\(\in\{\)</span><code>signed char</code>, <code>unsigned char</code>, <code>char</code><span class="arithmatex">\(\}\)</span>. It is guaranteed that</p>
+<p><code>1 == sizeof(T) &lt;= sizeof(short) &lt;= sizeof(int) &lt;= sizeof(long) &lt;= sizeof(long long)</code>.
+- <strong><code>T</code> takes exactly 1 byte</strong>.</p>
+<p>Question: What is the valid range of <code>signed char</code>? <code>unsigned char</code>?</p>
+<hr />
+<h2 id="character-types_1">Character types</h2>
+<p>Question: What is the valid range of <code>signed char</code>? <code>unsigned char</code>?</p>
+<ul>
+<li><code>signed char</code>: <span class="arithmatex">\([-128, 127]\)</span>.</li>
+<li><code>unsigned char</code>: <span class="arithmatex">\([0, 255]\)</span>.</li>
+</ul>
+<p>What? A character is an integer?</p>
+<hr />
+<h2 id="ascii-american-standard-code-for-information-interchange">ASCII (American Standard Code for Information Interchange)</h2>
+<p>A character is represented in computers as its <a href="https://en.cppreference.com/w/c/language/ascii">ASCII code</a>, which is a small integer.</p>
+<p><a align="center">
+  <img src="img/ascii_table.png" width=900 >
+</a></p>
+<hr />
+<h2 id="ascii-american-standard-code-for-information-interchange_1">ASCII (American Standard Code for Information Interchange)</h2>
+<p>A character is represented in computers as its <a href="https://en.cppreference.com/w/c/language/ascii">ASCII code</a>, which is a small integer.</p>
+<ul>
+<li>We only consider the so-called <em>ASCII characters</em> here.</li>
+</ul>
+<p><a align="center">
+  <img src="img/ascii_char.png">
+</a></p>
+<p>A character is <strong>nothing but</strong> an integer! In C, there is no "conversion" between characters and ASCII code!</p>
+<hr />
+<h2 id="ascii-american-standard-code-for-information-interchange_2">ASCII (American Standard Code for Information Interchange)</h2>
+<p>Important things to remember:</p>
+<ul>
+<li><span class="arithmatex">\([\)</span><code>'0'</code><span class="arithmatex">\(,\)</span><code>'9'</code><span class="arithmatex">\(]=[48, 57]\)</span>.</li>
+<li><span class="arithmatex">\([\)</span><code>'A'</code><span class="arithmatex">\(,\)</span><code>'Z'</code><span class="arithmatex">\(]=[65, 90]\)</span>.</li>
+<li><span class="arithmatex">\([\)</span><code>'a'</code><span class="arithmatex">\(,\)</span><code>'z'</code><span class="arithmatex">\(]=[97, 122]\)</span>.</li>
+</ul>
+<p>Example: Given a lowercase letter, return its uppercase form.</p>
+<pre><code class="language-c">char to_uppercase(char x) {
+  return x - 32;
+}
+</code></pre>
+<hr />
+<h2 id="best-practice-avoid-magic-numbers">[Best practice] <u>Avoid magic numbers</u></h2>
+<p>What is the meaning of <code>32</code> here? <span class="arithmatex">\(\Rightarrow\)</span> a magic number.</p>
+<pre><code class="language-c">char to_uppercase(char x) {
+  return x - 32;
+}
+</code></pre>
+<p>Write it in a more human-readable way:</p>
+<pre><code class="language-c">char to_uppercase(char x) {
+  return x - ('a' - 'A');
+}
+</code></pre>
+<hr />
+<h2 id="escape-sequence">Escape sequence</h2>
+<p>Some special characters are not directly representable: newline, tab, quote, ...</p>
+<p>We use <a href="https://en.cppreference.com/w/c/language/escape">escape sequences</a>, e.g.</p>
+<div style="display: grid; grid-template-columns: 1fr 1fr;">
+  <div align="center">
+
+| escape sequence | description  |
+| --------------- | ------------ |
+| `\'`            | single quote |
+| `\"`            | double quote |
+| `\\`            | backslash    |
+  </div>
+  <div align="center">
+
+| escape sequence | description     |
+| --------------- | --------------- |
+| `\n`            | newline         |
+| `\r`            | carriage return |
+| `\t`            | horizontal tab  |
+  </div>
+</div>
+
+<hr />
+<h2 id="character-types_2">Character types</h2>
+<p><code>char</code>, <code>signed char</code> and <code>unsigned char</code> are <strong>three different types</strong>.</p>
+<ul>
+<li>Whether <code>char</code> is signed or unsigned is <strong>implementation-defined</strong>.</li>
+<li>If <code>char</code> is signed (unsigned), it represents the same set of values as the type <code>signed char</code> (<code>unsigned char</code>), but <strong>they are not the same type</strong>.</li>
+<li>In contrast, <code>T</code> and <code>signed T</code> are the same type for <code>T</code> <span class="arithmatex">\(\in\{\)</span><code>short</code>, <code>int</code>, <code>long</code>, <code>long long</code><span class="arithmatex">\(\}\)</span>.</li>
+</ul>
+<hr />
+<h2 id="character-types_3">Character types</h2>
+<p>For almost all cases, use <code>char</code> (or, sometimes <code>int</code>) to represent characters.</p>
+<p><code>signed char</code> and <code>unsigned char</code> are used for other purposes.</p>
+<p>To read/print a <code>char</code> using <code>scanf</code>/<code>printf</code>, use <code>%c</code>.</p>
+<hr />
+<h2 id="sad-story-handling-non-ascii-characters">Sad story: Handling non-ASCII characters? ...</h2>
+<p><a align="center">
+  <img src="img/russian_hello.png", width=900>
+</a></p>
+<hr />
+<h2 id="sad-story-handling-non-ascii-characters_1">Sad story: Handling non-ASCII characters? ...</h2>
+<p>Even though the standard provides <code>wchar_t</code>, <code>char8_t</code> (since C23), <code>char16_t</code> and <code>char32_t</code> to handle wide/Unicode characters, there are still a lot of problems.</p>
+<p>C++23 has some improvement.</p>
+<hr />
+<h2 id="thats-why-python-people-laugh-at-us"><a href="https://www.bilibili.com/video/BV1NE411h7hb?p=9&amp;vd_source=7940495b5667750a71bfa10a4c6eb2d9">That's why Python people laugh at us ...</a></h2>
+<p><a align="center">
+  <img src="img/unicode.png", width=900>
+</a></p>
+<hr />
+<p><a align="center">
+  <img src="img/all_int_types_and_z.png", width=900>
+</a></p>
+<hr />
+<h2 id="boolean-type-bool-since-c99">Boolean type: <code>bool</code> (since C99)</h2>
+<p>A type that represents true/false, 0/1, yes/no, ...</p>
+<p>To access the name <code>bool</code>, <code>true</code> and <code>false</code>, <code>&lt;stdbool.h&gt;</code> is needed. (until C23)</p>
+<p>Example: Define a function that accepts a character and returns whether that character is a lowercase letter.</p>
+<div style="display: grid; grid-template-columns: 1fr 1fr;">
+  <div>
+
+Before C99, using `int`, `0` and `1`:
+
+
+<pre><code class="language-c">int is_lowercase(char c) {
+  if (c &gt;= 'a' &amp;&amp; c &lt;= 'z')
+    return 1;
+  else
+    return 0;
+}
+</code></pre>
+
+  </div>
+  <div>
+
+Since C99, using `bool`, `false` and `true`:
+
+
+<pre><code class="language-c">bool is_lowercase(char c) {
+  if (c &gt;= 'a' &amp;&amp; c &lt;= 'z')
+    return true;
+  else
+    return false;
+}
+</code></pre>
+
+  </div>
+</div>
+
+<hr />
+<h2 id="boolean-type-bool-since-c99_1">Boolean type: <code>bool</code> (since C99)</h2>
+<div style="display: grid; grid-template-columns: 1fr 1fr;">
+  <div>
+
+Before C99, using `int`, `0` and `1`:
+
+
+<pre><code class="language-c">int is_lowercase(char c) {
+  if (c &gt;= 'a' &amp;&amp; c &lt;= 'z')
+    return 1;
+  else
+    return 0;
+}
+</code></pre>
+
+  </div>
+  <div>
+
+Since C99, using `bool`, `false` and `true`:
+
+
+<pre><code class="language-c">bool is_lowercase(char c) {
+  if (c &gt;= 'a' &amp;&amp; c &lt;= 'z')
+    return true;
+  else
+    return false;
+}
+</code></pre>
+
+  </div>
+</div>
+
+<p>Both return values can be used as follows:</p>
+<pre><code class="language-c">char c; scanf(&quot;%c&quot;, &amp;c);
+if (is_lowercase(c)) {
+  // do something when c is lowercase ...
+}
+</code></pre>
+<hr />
+<h2 id="best-practice-simplify-your-code">[Best practice] <u>Simplify your code</u></h2>
+<p>Just return the result of the condition expression.</p>
+<div style="display: grid; grid-template-columns: 1fr 1fr;">
+  <div>
+
+
+<pre><code class="language-c">int is_lowercase(char c) {
+  return c &gt;= 'a' &amp;&amp; c &lt;= 'z';
+}
+</code></pre>
+
+  </div>
+  <div>
+
+
+<pre><code class="language-c">bool is_lowercase(char c) {
+  return c &gt;= 'a' &amp;&amp; c &lt;= 'z';
+}
+</code></pre>
+
+  </div>
+</div>
+
+<p>We will introduce the operators (<code>&amp;&amp;</code>, <code>&lt;=</code>, <code>&gt;=</code>) involved here in later lectures.</p>
+<hr />
+<h2 id="summary">Summary</h2>
+<ul>
+<li>Variable declaration</li>
+<li>Type + name</li>
+<li>Multiple variables in one declaration statement</li>
+<li>Global vs local</li>
+<li>Initialization</li>
+</ul>
+<hr />
+<h2 id="summary_1">Summary</h2>
+<ul>
+<li>Arithmetic types</li>
+</ul>
+<p><a align="center">
+  <img src="img/all_types.png">
+</a></p>
+<hr />
+<h2 id="summary_2">Summary</h2>
+<ul>
+<li>Arithmetic types</li>
+<li>Width, signed-ness, valid range</li>
+<li>Which type to choose</li>
+<li>Characters: ASCII code, escape sequence</li>
+<li>Boolean</li>
+</ul>
+<hr />
+<h2 id="exercise_2">Exercise</h2>
+<p>Write a simple calculator that handles input of the form <code>x op y</code>, where <code>x</code> and <code>y</code> are floating-point numbers and <code>op</code> <span class="arithmatex">\(\in\{\)</span> <code>'+'</code>, <code>'-'</code>, <code>'*'</code>, <code>'/'</code> <span class="arithmatex">\(\}\)</span>. You may use a group of <code>if</code>-<code>else</code> statements like this:</p>
+<pre><code class="language-c">if (op == '+') {
+  // ...
+} else if (op == '-') {
+  // ...
+} else if (op == '*') {
+  // ...
+} else if (op == '/') {
+  // ...
+} else {
+  // report an error
+}
+</code></pre>
+<hr />
+<h2 id="notes">Notes</h2>
+<p><span class="arithmatex">\({}^{\textcolor{red}{1}}\)</span> The type of every expression in C is determined at compile-time except for <em>variable-length arrays</em> (since C99).</p>
+<p><span class="arithmatex">\({}^{\textcolor{red}{2}}\)</span> A byte is 8 bits on most platforms, but we do have exceptions: <a href="https://en.wikipedia.org/wiki/36-bit_computing">36-bit computing</a>.</p>
+<p><span class="arithmatex">\({}^{\textcolor{red}{3}}\)</span> There are several different signed number representations, but all popular machines and almost all compilers use <strong>two's complement</strong>. Before C23 and C++20, the C/C++ standards allow for all possible representations, so the minimal valid range for a <span class="arithmatex">\(n\)</span>-bit integer is <span class="arithmatex">\(\left[-2^{n-1}+1,2^{n-1}-1\right]\)</span>, which is the range for <em>one's complement</em> and <em>sign-and-magnitude</em>. Since C23 and C++20, the only representation allowed is two's complement, so the valid range is guaranteed to be <span class="arithmatex">\(\left[-2^{n-1},2^{n-1}-1\right]\)</span>. In CS100 we still assume that two's complement is used, even though we are based on C17/C++17.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.081f42fc.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+        <script src="../../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

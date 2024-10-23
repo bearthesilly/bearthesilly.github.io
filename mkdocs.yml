@@ -134,6 +134,44 @@ nav:
       - Lec1-handwriting: 概率论/L1-handwriting.pdf
       - Lec2: 概率论/L2.pdf
       - Lec2-handwriting: 概率论/L2-handwriting.pdf
+      - Lec3: 概率论/L3.pdf
+      - Lec3-handwriting: 概率论/L3-handwriting.pdf
+      - Lec4: 概率论/L4.pdf
+    - CS100(C&C++):
+      - 课件:
+        - L0: CS100(C&C++)/slides/l0/l0.md
+        - L1: CS100(C&C++)/slides/l1/l1.md
+        - L2: CS100(C&C++)/slides/l2/l2.md
+        - L3: CS100(C&C++)/slides/l3/l3.md
+        - L4: CS100(C&C++)/slides/l4/l4.md
+        - L5: CS100(C&C++)/slides/l5/l5.md
+        - L6: CS100(C&C++)/slides/l6/l6.md
+        - L7: CS100(C&C++)/slides/l7/l7.md
+        - L8: CS100(C&C++)/slides/l8/l8.md
+        - L9: CS100(C&C++)/slides/l9/l9.md
+        - L10: CS100(C&C++)/slides/l10/l10.md
+        - L11: CS100(C&C++)/slides/l11/l11.md
+        - L12: CS100(C&C++)/slides/l12/l12.md
+        - L13: CS100(C&C++)/slides/l13/l13.md
+        - L14: CS100(C&C++)/slides/l14/l14.md
+        - L15: CS100(C&C++)/slides/l15/l15.md
+        - L16: CS100(C&C++)/slides/l16/l16.md
+        - L17: CS100(C&C++)/slides/l17/l17.md
+        - L18: CS100(C&C++)/slides/l18/l18.md
+        - L19: CS100(C&C++)/slides/l19/l19.md
+        - L20: CS100(C&C++)/slides/l20/l20.md
+        - L21: CS100(C&C++)/slides/l21/l21.md
+        - L22: CS100(C&C++)/slides/l22/l22.md
+        - L23: CS100(C&C++)/slides/l23/l23.md
+        - L24: CS100(C&C++)/slides/l24/l24.pdf
+        - L25: CS100(C&C++)/slides/l25/l25.md
+        - L26: CS100(C&C++)/slides/l26/l26.md
+        - L27: CS100(C&C++)/slides/l27/l27.md
+        - L28: CS100(C&C++)/slides/l28/l28.md
+      - C++自学note: CS100(C&C++)/C++自学笔记.md
+      - cheatsheet: CS100(C&C++)/cheatsheet.md
+      - core: CS100(C&C++)/core.md
+      - 课堂note: CS100(C&C++)/课堂.md
     - 数据结构与算法:
       - 基本结构与算法分析: Data_Structure_and_Algorithm/基本结构与算法分析.md
       - 搜索与排序: Data_Structure_and_Algorithm/搜索与排序.md
