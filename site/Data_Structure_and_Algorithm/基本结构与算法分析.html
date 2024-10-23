@@ -4119,6 +4119,57 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      树
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="树">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tree-structure-terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tree Structure &amp; Terminology
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tree-traversals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tree Traversals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monte-carlo-tree-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monte Carlo Tree Search
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -5753,6 +5804,57 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      树
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="树">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tree-structure-terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tree Structure &amp; Terminology
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tree-traversals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tree Traversals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monte-carlo-tree-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monte Carlo Tree Search
+    </span>
+  </a>
   
 </li>
         
@@ -7862,6 +7964,316 @@ int lengthOfLongestSubstring(string s) {
 }
 </code></pre>
 <p>原本在滑动窗口引入一个新的元素之后，可能需要遍历当前子串以判断新来的元素是否在先前出现过。但是现在能够储存<char, int>即&lt;字符，下标&gt;的信息，那么在新元素进来的时候，可以以它为键查看这个元素是否出现过并且如果出现过能够返回上一个该字符的下标，方便滑动窗口left边界的调整。</p>
+<h2 id="_36">树</h2>
+<h3 id="tree-structure-terminology">Tree Structure &amp; Terminology</h3>
+<p>A rooted tree data structure stores information in nodes. 最顶上的第一个节点，被称为root（根）；而每一个节点都有几个successors（继承者）；<em>而每一个节点，除了根节点，都会被至少一个节点指向</em>！在树的结构中，有很多术语Terminology，绝大部分在离散数学中有所覆盖，这里再次回顾：</p>
+<ol>
+<li>子节点：All nodes will have zero or more child nodes or children.</li>
+<li>父节点：For all nodes other than the root node, there is one parent node</li>
+<li>deg/度：一个节点的度（degree）是它子节点的数量</li>
+<li>siblings/兄弟节点：对于两个节点来说，如果它们有共同的父节点，那么称为兄弟节点（siblings）</li>
+<li>leaf nodes/叶子节点：度为0的节点称为叶子结点（leaf node）</li>
+<li>Internal/内部节点：除了叶子结点的所有节点都是内部节点（internal node）</li>
+<li>ordered tree/有序树：有序树是一种树形结构，其中每个节点的子节点都按照特定的顺序排列。这种顺序通常对树的操作和算法有影响</li>
+<li>unordered tree/无序树：无序树是一种树形结构，其中节点的子节点没有特定的顺序。这意味着子节点可以以任何顺序添加或排列，不像有序树那样有明确的顺序要求</li>
+<li>path/路径：A path is a sequence of edges between nodes. The length of this path is number of edges in the path. <strong><em>For each node in a tree, there exists a unique path from the root node to that node</em></strong></li>
+<li>depth/深度：The length of this path is the depth of the node</li>
+<li>height/高度：The height of a tree is defined as the maximum depth of any node within the tree. <strong><em>The height of a tree with one node is 0</em></strong>. For convenience, we define the height of the empty tree to be  –1</li>
+<li>ancestor/祖先节点：any node y on the (unique) path from root r to node n is an ancestor of node n. </li>
+<li>descendent/后代节点：any node y for which n is an ancestor of y. </li>
+</ol>
+<blockquote>
+<p>Thus, a node is both an ancestor and a descendant of itself.</p>
+<p>We can add the adjective strict to exclude equality: a is a strict descendant of b if a is a descendant of b but a ≠ b</p>
+<p>The root node is an ancestor of all nodes</p>
+</blockquote>
+<ol>
+<li>A recursive definition of a tree: A degree-0 node is a tree and a node with degree n is a tree if it has n children and all of its children are disjoint trees (i.e., with no intersecting nodes)</li>
+<li>subtree：Given any node <span class="arithmatex">\(a\)</span> within a tree, the collection of <span class="arithmatex">\(a\)</span> and all of its descendants is said to be a subtree of the tree with root <span class="arithmatex">\(a\)</span>.</li>
+</ol>
+<h3 id="implementation">Implementation</h3>
+<p>类似于之前的关于数据结构的介绍，首先我们要了解树支持我们使用什么操作，如插入，删除，寻找之类。Operations on a tree include:</p>
+<ul>
+<li>Accessing the root</li>
+<li>Access the parent of the current object</li>
+<li>Find the degree of the current object</li>
+<li>Get a reference to a child</li>
+<li>Attach a new sub-tree to the current object</li>
+<li>Detach this tree from its parent</li>
+</ul>
+<p>We can implement a general tree by using a class which stores an element and stores the children in a list.</p>
+<p>大体上，树的程序设计接口如下图所示：</p>
+<pre><code class="language-c++">class Simple_tree {
+    private:
+        Type element;
+        Simple_tree *parent_node;
+        Single_list&lt;Simple_tree *&gt; children;
+ 
+    public:
+        Simple_tree( Type const &amp; = Type(), Simple_tree * = nullptr );
+ 
+        Type retrieve() const;
+        Simple_tree *parent() const;
+        int degree() const;
+        bool is_root() const;
+        bool is_leaf() const;
+        Simple_tree *child( int n ) const;
+        int height() const;
+
+        void insert( Type const &amp; );
+        void attach( Simple_tree * );
+        void detach();
+};
+</code></pre>
+<p>举一个例子，如下图，一个含有六个节点的树可以用如下的树结构表示。利用node类的地址域来搭建边，而叶子结点的地址域是空指针。</p>
+<p><img src="img/69.png" alt="image" style="zoom:67%;" /></p>
+<p>一个经典的implementation如下：</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;stdexcept&gt;
+#include &lt;vector&gt;
+
+// 假设我们有一个模板类 Single_list 来存储子节点
+template &lt;typename T&gt;
+class Single_list {
+private:
+    std::vector&lt;T&gt; list;
+
+public:
+    void insert(T const &amp;item) {
+        list.push_back(item);
+    }
+
+    // 非 const 版本的 operator[]
+    T&amp; operator[](int index) {
+        if (index &lt; 0 || index &gt;= list.size()) {
+            throw std::out_of_range(&quot;Index out of range&quot;);
+        }
+        return list[index];
+    }
+
+    // const 版本的 operator[]，保证不修改成员变量
+    const T&amp; operator[](int index) const {
+        if (index &lt; 0) {
+            throw std::out_of_range(&quot;Index cannot be negative&quot;);
+        }
+        // 将 index 转换为 std::size_t 以避免符号不匹配的比较
+        if (static_cast&lt;std::size_t&gt;(index) &gt;= list.size()) {
+            throw std::out_of_range(&quot;Index out of range&quot;);
+        }
+        return list[index];
+    }
+
+    int size() const {
+        return list.size();
+    }
+
+    void clear() {
+        list.clear();
+    }
+};
+
+
+template &lt;typename Type&gt;
+class Simple_tree {
+private:
+    Type element;
+    Simple_tree *parent_node;
+    Single_list&lt;Simple_tree *&gt; children;
+
+public:
+    Simple_tree(Type const &amp;elem = Type(), Simple_tree *parent = nullptr)
+        : element(elem), parent_node(parent) {}
+
+    // 返回当前节点的元素
+    Type retrieve() const {
+        return element;
+    }
+
+    // 返回父节点的指针
+    Simple_tree *parent() const {
+        return parent_node;
+    }
+
+    // 返回当前节点的子节点数量
+    int degree() const {
+        return children.size();
+    }
+
+    // 判断当前节点是否为根节点
+    bool is_root() const {
+        return parent_node == nullptr;
+    }
+
+    // 判断当前节点是否为叶节点
+    bool is_leaf() const {
+        return children.size() == 0;
+    }
+
+    // 返回第n个子节点的指针
+    Simple_tree *child(int n) const {
+        if (n &lt; 0 || n &gt;= children.size()) {
+            throw std::out_of_range(&quot;Invalid child index&quot;);
+        }
+        return children[n];
+    }
+
+    // 计算树的高度
+    int height() const {
+        if (is_leaf()) {
+            return 0;
+        }
+        int max_child_height = 0;
+        for (int i = 0; i &lt; children.size(); ++i) {
+            max_child_height = std::max(max_child_height, children[i]-&gt;height());
+        }
+        return 1 + max_child_height;
+    }
+
+    // 插入一个新节点
+    void insert(Type const &amp;elem) {
+        Simple_tree *new_child = new Simple_tree(elem, this);
+        children.insert(new_child);
+    }
+
+    // 添加已经存在的子树为当前节点的子节点
+    void attach(Simple_tree *child_tree) {
+        if (child_tree == nullptr) {
+            throw std::invalid_argument(&quot;Cannot attach a null tree&quot;);
+        }
+
+        // 如果该子树已经有父节点，则先从其原父节点分离
+        if (child_tree-&gt;parent() != nullptr) {
+            child_tree-&gt;detach();
+        }
+
+        // 将当前树作为子树的父节点
+        child_tree-&gt;parent_node = this;
+        children.insert(child_tree);
+    }
+
+    // 从父节点分离自己（detach）
+    void detach() {
+        if (parent_node != nullptr) {
+            for (int i = 0; i &lt; parent_node-&gt;children.size(); ++i) {
+                if (parent_node-&gt;children[i] == this) {
+                    parent_node-&gt;children[i] = parent_node-&gt;children[parent_node-&gt;children.size() - 1];
+                    parent_node-&gt;children.size()--;
+                    break;
+                }
+            }
+        }
+        parent_node = nullptr;
+    }
+
+    int size() const {
+    // 当前节点的大小至少为1
+    int total_size = 1; 
+
+    // 遍历所有子节点，递归计算子树大小
+    for (int i = 0; i &lt; children.size(); ++i) {
+        total_size += children[i]-&gt;size();  // 递归调用子节点的 size()
+    }
+
+    return total_size;
+}
+};
+
+int main() {
+    // 示例用法
+    Simple_tree&lt;int&gt; root(10);
+    root.insert(20);
+    root.insert(30);
+
+    Simple_tree&lt;int&gt; *child1 = root.child(0);
+    Simple_tree&lt;int&gt; *child2 = root.child(1);
+
+    std::cout &lt;&lt; &quot;Root: &quot; &lt;&lt; root.retrieve() &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;Child 1: &quot; &lt;&lt; child1-&gt;retrieve() &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;Child 2: &quot; &lt;&lt; child2-&gt;retrieve() &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;Root height: &quot; &lt;&lt; root.height() &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;Size: &quot; &lt;&lt; root.size() &lt;&lt; std::endl;
+    return 0;
+}
+</code></pre>
+<p>特别地，当detach的时候，如果已经是要分离的是根节点，那么什么都不做；而否则，把这个对象从父节点的子节点列表删除掉，并把父节点的地址域置为NULL。</p>
+<p>当计算树的size的时候，如果没有任何子节点，那么size就是1；否则遍历所有的children节点并递归式地调用size方法，求总size。</p>
+<p>计算树的height的时候，如果没有子节点，高度就是0；否则高度就是1+任何子树的高度的最大值</p>
+<h3 id="tree-traversals">Tree Traversals</h3>
+<p>离散数学中已有介绍：树的搜索有两种，广度优先和深度优先。</p>
+<p>广度优先遍历（Breadth-first traversals）会在下移至下一层之前访问给定深度的所有节点。最简单的实现方式是利用队列（queue）：</p>
+<ul>
+<li>Place the root node into a queue</li>
+<li>While the queue is not empty: <strong><em>Pop the node at the front of the queue and Push all of its children into the queue</em></strong></li>
+</ul>
+<p>对于广度优先来说，运行时间是<span class="arithmatex">\(\Theta(n)\)</span>，而需要的空间是<span class="arithmatex">\(\Theta(n)\)</span>（ maximum nodes at a given depth）</p>
+<p>深度优先遍历（Depth-first Traversal）是一种用于遍历树的回溯算法。在任何节点，前往尚未访问的第一个子节点；</p>
+<p>如果我们已经访问了所有子节点（其中叶子节点是一个特殊情况），则回溯到父节点并重复此过程。 我们一旦访问了根节点的所有子节点，遍历就结束了。示例如下图：</p>
+<p><img src="img/70.png" alt="image" style="zoom:50%;" /></p>
+<p>而实现深度优先，可以使用栈stack。Create a stack and push the root node onto the stack。While the stack is not empty: Pop the top node and Push all of the children of that node to the top of the stack <strong><em>in reverse order</em></strong>. </p>
+<p>栈方法实现的深度优先算法，运行时间是<span class="arithmatex">\(\Theta(n)\)</span>，而内存需求：If each node has a maximum of two children, the memory required is <span class="arithmatex">\(\Theta(h)\)</span>:  the height of the tree.</p>
+<blockquote>
+<p>The objects on the stack are all unvisited siblings from the root to the current node</p>
+</blockquote>
+<p>关于深度优先的总结如下：</p>
+<p><img src="img/71.png" alt="image" style="zoom:50%;" /></p>
+<h3 id="monte-carlo-tree-search">Monte Carlo Tree Search</h3>
+<blockquote>
+<p>Reference: ChatGPT o4 model</p>
+</blockquote>
+<p>Monte Carlo Tree Search（蒙特卡罗树搜索）是一种基于 <strong>随机模拟</strong> 和 <strong>树结构搜索</strong> 的算法。它用于解决具有不确定性或复杂性的问题，通过在可能的决策空间中进行模拟来评估选择的效果。</p>
+<p>MCTS 的基本思路是通过构建一棵搜索树来探索决策空间，并基于模拟的结果来引导搜索。它逐步扩展树的节点，并通过随机采样（即蒙特卡罗方法）评估每个节点的潜在价值。</p>
+<p>MCTS 主要包括四个核心步骤：</p>
+<ol>
+<li><strong>选择（Selection）</strong></li>
+<li><strong>扩展（Expansion）</strong></li>
+<li><strong>模拟（Simulation）</strong></li>
+<li><strong>反向传播（Backpropagation）</strong></li>
+</ol>
+<p>每个步骤都有特定的角色，且会反复进行，直到达到设定的时间限制或计算资源限制。</p>
+<ol>
+<li>选择（Selection）</li>
+</ol>
+<p>在树中，从根节点开始，根据某种选择策略（如基于已知信息的启发式算法），选择一个节点进行扩展。通常会选择那些具有较高探索价值的节点。</p>
+<p>常用的选择策略是 <strong>UCB1 (Upper Confidence Bound for Trees)</strong>，它平衡了探索新路径和利用已有知识之间的关系： <span class="arithmatex">\(UCB1 = \overline{X_i} + C \sqrt{\frac{\ln N}{n_i}}\)</span></p>
+<ul>
+<li><span class="arithmatex">\(\overline{X_i}\)</span>是节点的平均获胜率。</li>
+<li><span class="arithmatex">\(N\)</span>是父节点的访问次数。</li>
+<li><span class="arithmatex">\(n_i\)</span> 是该节点的访问次数。</li>
+<li>
+<p><span class="arithmatex">\(C\)</span> 是平衡探索和利用的常数。</p>
+</li>
+<li>
+<p>扩展（Expansion）</p>
+</li>
+</ul>
+<p>一旦选择到了需要扩展的节点，如果该节点还没有所有的可能后续动作作为子节点，则可以扩展一个或多个子节点。每个子节点代表当前决策点后的某个可能状态。</p>
+<ol>
+<li>模拟（Simulation）</li>
+</ol>
+<p>在扩展的节点上进行一次或多次模拟，随机在该节点之后的状态中进行一系列行动，直到到达游戏的结束状态或设定的深度。这种模拟通常是随机的，也可以根据某些启发式规则进行。</p>
+<ul>
+<li>
+<p>模拟的结果可以是 <strong>胜利、失败</strong> 或 <strong>平局</strong> 等终结状态。</p>
+</li>
+<li>
+<p>反向传播（Backpropagation）</p>
+</li>
+</ul>
+<p>在模拟结束后，将模拟结果（如胜利、失败）沿着从新扩展的节点到根节点的路径反向传播，更新经过路径上所有节点的统计信息（如获胜次数、访问次数等），以便后续搜索时可以更好地引导决策。</p>
+<p>优点与缺点</p>
+<p>优点：</p>
+<ol>
+<li><strong>无需大量手工设计的评估函数</strong>：MCTS 通过随机模拟和搜索树自动评估局面，不需要像传统游戏AI那样手动设计评估函数。</li>
+<li><strong>渐进最优</strong>：随着模拟次数的增加，MCTS 的决策效果会越来越好，理论上可以达到最优解。</li>
+<li><strong>适用于不完全信息问题</strong>：MCTS 也可以处理那些不完全信息或有随机性的决策问题。</li>
+<li><strong>探索与利用的平衡</strong>：通过像 UCB1 这样的选择策略，MCTS 既能探索新的可能决策路径，又能利用当前已有的信息。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li><strong>计算量较大</strong>：MCTS 依赖于大量的模拟，因此在计算资源不足或时间紧张的情况下，效果可能不佳。</li>
+<li><strong>模拟质量依赖于策略</strong>：如果模拟策略过于随机，可能导致模拟效果不准确，从而影响整体算法性能。</li>
+</ol>
+<p>应用领域：MCTS 已广泛应用于各种领域，尤其是在 <strong>游戏AI</strong> 和 <strong>规划问题</strong> 中。它最著名的应用是在 <strong>围棋</strong> 中，比如谷歌的 AlphaGo 使用了基于 MCTS 的搜索算法。此外，MCTS 也被用于机器人控制、自动规划、数据挖掘等多个领域。</p>
 
 
 
