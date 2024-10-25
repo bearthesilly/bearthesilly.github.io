@@ -4165,6 +4165,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#forest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Forest
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5853,6 +5862,15 @@
   <a href="#monte-carlo-tree-search" class="md-nav__link">
     <span class="md-ellipsis">
       Monte Carlo Tree Search
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Forest
     </span>
   </a>
   
@@ -8274,6 +8292,19 @@ int main() {
 <li><strong>模拟质量依赖于策略</strong>：如果模拟策略过于随机，可能导致模拟效果不准确，从而影响整体算法性能。</li>
 </ol>
 <p>应用领域：MCTS 已广泛应用于各种领域，尤其是在 <strong>游戏AI</strong> 和 <strong>规划问题</strong> 中。它最著名的应用是在 <strong>围棋</strong> 中，比如谷歌的 AlphaGo 使用了基于 MCTS 的搜索算法。此外，MCTS 也被用于机器人控制、自动规划、数据挖掘等多个领域。</p>
+<h3 id="forest">Forest</h3>
+<p>A rooted forest is a data structure that is a collection of disjoint rooted trees. </p>
+<p>Note that:</p>
+<ul>
+<li>
+<p>Any tree can be converted into a forest by removing the root node</p>
+</li>
+<li>
+<p>Any forest can be converted into a tree by adding a root node that has the roots of all the trees in the forest as children</p>
+</li>
+</ul>
+<p>Traversals on forests can be achieved by treating the roots as children of a notional root. 如下图所示：</p>
+<p><img alt="image" src="img/72.png" /></p>
 
 
 
