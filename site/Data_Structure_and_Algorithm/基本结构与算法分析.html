@@ -4181,17 +4181,59 @@
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Traversal Order">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#binary-tree" class="md-nav__link">
+  <a href="#definition-and-methodology" class="md-nav__link">
     <span class="md-ellipsis">
-      Binary Tree
+      Definition and Methodology
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Binary Tree">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-traversal-to-determine-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Traversal to Determine Tree
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Traversal to Determine Tree">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    <span class="md-ellipsis">
+      先序+后序
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    <span class="md-ellipsis">
+      前序+中序
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    <span class="md-ellipsis">
+      后序+中序
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#tree-and-full-binary-tree" class="md-nav__link">
@@ -5943,17 +5985,59 @@
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Traversal Order">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#binary-tree" class="md-nav__link">
+  <a href="#definition-and-methodology" class="md-nav__link">
     <span class="md-ellipsis">
-      Binary Tree
+      Definition and Methodology
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Binary Tree">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-traversal-to-determine-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Traversal to Determine Tree
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Traversal to Determine Tree">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    <span class="md-ellipsis">
+      先序+后序
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    <span class="md-ellipsis">
+      前序+中序
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    <span class="md-ellipsis">
+      后序+中序
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#tree-and-full-binary-tree" class="md-nav__link">
@@ -8338,7 +8422,7 @@ int main() {
 <p>计算树的height的时候，如果没有子节点，高度就是0；否则高度就是1+任何子树的高度的最大值</p>
 <h3 id="tree-traversals">Tree Traversals</h3>
 <p>离散数学中已有介绍：树的搜索有两种，广度优先和深度优先。</p>
-<p>广度优先遍历（Breadth-first traversals）会在下移至下一层之前访问给定深度的所有节点。最简单的实现方式是利用队列（queue）：</p>
+<p>广度优先遍历（Breadth-first traversals）会在下移至下一层之前访问给定深度的所有节点。<strong><em>最简单的实现方式是利用队列（queue）：</em></strong></p>
 <ul>
 <li>Place the root node into a queue</li>
 <li>While the queue is not empty: <strong><em>Pop the node at the front of the queue and Push all of its children into the queue</em></strong></li>
@@ -8347,7 +8431,7 @@ int main() {
 <p>深度优先遍历（Depth-first Traversal）是一种用于遍历树的回溯算法。在任何节点，前往尚未访问的第一个子节点；</p>
 <p>如果我们已经访问了所有子节点（其中叶子节点是一个特殊情况），则回溯到父节点并重复此过程。 我们一旦访问了根节点的所有子节点，遍历就结束了。示例如下图：</p>
 <p><img src="img/70.png" alt="image" style="zoom:50%;" /></p>
-<p>而实现深度优先，可以使用栈stack。Create a stack and push the root node onto the stack。While the stack is not empty: Pop the top node and Push all of the children of that node to the top of the stack <strong><em>in reverse order</em></strong>. </p>
+<p><strong><em>而实现深度优先，可以使用栈stack</em></strong>。Create a stack and push the root node onto the stack。While the stack is not empty: Pop the top node and Push all of the children of that node to the top of the stack <strong><em>in reverse order</em></strong>. </p>
 <p>栈方法实现的深度优先算法，运行时间是<span class="arithmatex">\(\Theta(n)\)</span>，而内存需求：If each node has a maximum of two children, the memory required is <span class="arithmatex">\(\Theta(h)\)</span>:  the height of the tree.</p>
 <blockquote>
 <p>The objects on the stack are all unvisited siblings from the root to the current node</p>
@@ -8426,6 +8510,7 @@ int main() {
 <p>Traversals on forests can be achieved by treating the roots as children of a notional root. 如下图所示：</p>
 <p><img alt="image" src="img/72.png" /></p>
 <h3 id="traversal-order">Traversal Order</h3>
+<h4 id="definition-and-methodology">Definition and Methodology</h4>
 <blockquote>
 <p>Reference: kimi.moonshot.cn</p>
 </blockquote>
@@ -8446,7 +8531,69 @@ int main() {
 <li><strong>特点</strong>：后序遍历可以用于删除树，因为它会先访问子节点，最后访问根节点，确保在删除节点时不会丢失对子树的引用。</li>
 <li><strong>应用</strong>：后序遍历常用于删除树、计算表达式的值等。</li>
 </ol>
-<h3 id="binary-tree">Binary Tree</h3>
+<p>通过上述的定义，能够很容易认同下面的结论：</p>
+<ol>
+<li>前序的第一个是 <code>root</code>，后序的最后一个是 <code>root</code>。</li>
+<li>先确定根节点，然后根据中序遍历，在根左边的为左子树，根右边的为右子树。</li>
+<li>对于每一个子树可以看成一个全新的树，仍然遵循上面的规律。</li>
+</ol>
+<blockquote>
+<p>Reference: oi.wiki</p>
+</blockquote>
+<h4 id="using-traversal-to-determine-tree">Using Traversal to Determine Tree</h4>
+<blockquote>
+<p>Reference: [1] https://zhuanlan.zhihu.com/p/668057634</p>
+<p>[2] https://blog.csdn.net/qq_37437983/article/details/79613947</p>
+<p>[3] oi.wiki</p>
+<p>[4] https://www.cnblogs.com/lanhaicode/p/10390147.html</p>
+</blockquote>
+<p>假定已知遍历结果，能否确定二叉树结构？先说结论[1]：</p>
+<table>
+<thead>
+<tr>
+<th>已知序列</th>
+<th>能否确定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>先序+中序</td>
+<td>一定可以</td>
+</tr>
+<tr>
+<td>中序+后序</td>
+<td>一定可以</td>
+</tr>
+<tr>
+<td>先序+后序</td>
+<td>不一定</td>
+</tr>
+</tbody>
+</table>
+<h5 id="_37">先序+后序</h5>
+<p><img src="img/84.png" alt="image" style="zoom:50%;" /></p>
+<p>既然先序遍历和后序遍历的结果无法决定原二叉树，那么反例就是上图。1，2图的先序遍历都是AB，后续遍历都是BA，说明同一个结果可以对应出两种树，因此先序+后续无法决定树。</p>
+<p>那么变态的出题人就可以出这个问题：[2]</p>
+<p><strong><em>输入描述</em></strong> Input Description：输入文件共2行，第一行表示该树的前序遍历结果，第二行表示该树的后序遍历结果。输入的字符集合为{a-z}，长度不超过26。<strong><em>输出描述</em></strong> Output Description：输出文件只包含一个不超过长整型的整数，表示可能的中序遍历序列的总数。</p>
+<p>我们知道：前序遍历：根结点 ---&gt; 左子树 ---&gt; 右子树；中序遍历：左子树---&gt; 根结点 ---&gt; 右子树；后序遍历：左子树 ---&gt; 右子树 ---&gt; 根结点。由以上的前中后遍历顺序可以看出在已知前序遍历和后序遍历的情况下，中序遍历不是唯一确定的。<strong><em>而且中序遍历的不确定性是由一个节点（只有一边子树）的左右子树的不确定性决定的</em></strong>。所以当这种节点有n个时，中序遍历的可能性就有:2^n。</p>
+<p>那么问题就转变为如果确定这种节点的数量。可以总结出一个规律，如上例。前序遍历为ab，后序遍历为ba，此时无法确定b是为左子树还是右子树，那么就产生了一个特殊节点。所以规律就是(此时a,b分别为前序遍历和后序遍历的字符串)：<strong><em>a[i]==b[j]时，a[i+1]==b[j-1]</em></strong>则产生一个特殊节点。（<em>其中a字符串代表前序遍历，b字符代表后序遍历</em>）</p>
+<h5 id="_38">前序+中序</h5>
+<p>首先要明确：前序遍历的第一个元素是二叉树的根节点；中序遍历中根节点的左边的元素是左子树，右边的是右子树；后序遍历得到最后一个元素是二叉树的根节点。</p>
+<p>关于上述的结论，下面这张图[3]生动地进行了展现：
+<img src="img/85.png" alt="image" style="zoom:50%;" /></p>
+<p>大致流程如下（部分思路借鉴[4]）：</p>
+<p>第一步：看前序遍历的第一个节点，它就是根节点</p>
+<p>第二步：找到中序遍历中的根节点的位置。确定左子树和右子树里面有哪些节点</p>
+<p>第三步：此时<strong><em>不能</em></strong>利用中序遍历的特点得出左子树的样子，而是应该使用前序遍历的条件，找出左子树的根节点（就是前序遍历的第二个节点），然后就能知道对于左子树来说，根节点是谁，以及左右都有哪些元素。</p>
+<p>第四步：把前序遍历结果中左子树和根节点结果遮住不看，剩下的第一个元素就是右子树的根节点，然后知道了这个根节点之后，结合中序遍历的结果就能知道右子树的左右子树都有什么元素了</p>
+<p>第五步：如此重复下去，就能知道最终的结果了。</p>
+<h5 id="_39">后序+中序</h5>
+<p>后序遍历的最后一个元素是根节点。思路和上一个十分的类似（部分思路借鉴[4]）：</p>
+<p>第一步：看后序遍历的最后一个节点，它就是根节点</p>
+<p>第二步：找到中序遍历中的根节点的位置，确定左子树和右子树里面有哪些节点</p>
+<p>第三步：此时<strong><em>不能</em></strong>通过中序遍历的特点得到右子树的样子。后序遍历的倒数第二个节点是右子树的根节点，然后再中序遍历的右子树内的节点元素中找到根节点，就能确定右子树的左右子树了。</p>
+<p>第四步：在后序遍历中遮住根节点和右子树的元素，那么剩下的序列中的倒数第一个就是左子树的根节点了。在中序遍历中的左子树元素序列中找到左子树的根节点，那么就能知道左子树的左右子树里面的元素有哪些了。</p>
+<p>第五步：重复上述的步骤，就能得到最终的结果。</p>
 <h4 id="tree-and-full-binary-tree">Tree and Full Binary Tree</h4>
 <p>二叉树的定义是什么：二叉树其实是一种限制restriction，限制每一个节点最多有两个孩子；同时我们定义，<strong><em>a full node</em></strong>是左右子树<strong><em>都不是</em></strong>空树的节点。那么显而易见地：</p>
 <ol>
@@ -8473,7 +8620,7 @@ int main() {
 <p><img alt="image" src="img/76.png" /></p>
 <p>完美二叉树被认为是十分理想的情况，因为深度和平均深度都是<span class="arithmatex">\(\Theta(ln(n))\)</span>。但是这终究是理想的情况，因此我们很是希望尽可能找到接近完美二叉树的二叉树。</p>
 <h4 id="complete-binary-tree">Complete Binary Tree</h4>
-<p><strong>完全二叉树（complete binary tree）</strong>：只有最下面两层结点的度数可以小于 2，且最下面一层的结点都集中在该层最左边的连续位置上。</p>
+<p><strong>完全二叉树（complete binary tree）</strong>：只有最下面两层结点的度数可以小于 2，且最下面一层的结点都集中在该层最左边的连续位置上。那么有一个容易遗忘的点：如果要计算完全二叉树的叶节点，那么除了完全二叉树的最后一层有叶节点，倒数第二层其实也有可能由叶节点！（倒数第二层没有挂上孩子的节点，注意可能有一个倒数第二层的节点只挂了一个孩子，那么这个父节点不是叶节点）</p>
 <p><img alt="image" src="img/77.png" /></p>
 <p>之前提到，我们很是希望尽可能找到接近完美二叉树的二叉树。因此对于n个节点来说，如果不能摆成完美二叉树的结构，那么按照顺序地、合乎逻辑的摆法就是完全二叉树了。关于完全二叉树，有以下几个性质和定理：</p>
 <p><span class="arithmatex">\(Theorem1:\)</span> The height of a complete binary tree with n nodes is <span class="arithmatex">\(h = ⌊lg(n)⌋\)</span></p>
