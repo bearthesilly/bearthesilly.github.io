@@ -4174,6 +4174,66 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#traversal-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      Traversal Order
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#binary-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Binary Tree
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Binary Tree">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tree-and-full-binary-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tree and Full Binary Tree
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perfect-binary-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perfect Binary Tree
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complete-binary-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complete Binary Tree
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#left-child-right-sibling-binary-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Left-child Right-sibling Binary Tree
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5873,6 +5933,66 @@
       Forest
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traversal-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      Traversal Order
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#binary-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Binary Tree
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Binary Tree">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tree-and-full-binary-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tree and Full Binary Tree
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perfect-binary-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perfect Binary Tree
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complete-binary-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complete Binary Tree
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#left-child-right-sibling-binary-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Left-child Right-sibling Binary Tree
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -8305,6 +8425,94 @@ int main() {
 </ul>
 <p>Traversals on forests can be achieved by treating the roots as children of a notional root. 如下图所示：</p>
 <p><img alt="image" src="img/72.png" /></p>
+<h3 id="traversal-order">Traversal Order</h3>
+<blockquote>
+<p>Reference: kimi.moonshot.cn</p>
+</blockquote>
+<p>当然可以。树的遍历是指按照某种顺序访问树中的每个节点，确保每个节点都被访问一次。树的三种主要遍历方式是前序遍历（Pre-order Traversal）、中序遍历（In-order Traversal）和后序遍历（Post-order Traversal）。这些遍历方式通常用于二叉树，但也可以应用于任何树结构。下面我将详细介绍这三种遍历方式：</p>
+<ol>
+<li><strong>前序遍历（Pre-order Traversal）</strong>：</li>
+<li><strong>访问顺序</strong>：根节点 -&gt; 左子树 -&gt; 右子树</li>
+<li><strong>过程</strong>：首先访问根节点，然后递归地对左子树进行前序遍历，最后递归地对右子树进行前序遍历。</li>
+<li><strong>应用</strong>：前序遍历常用于创建树的副本、打印树结构等。</li>
+<li><strong>中序遍历（In-order Traversal）</strong>：</li>
+<li><strong>访问顺序</strong>：左子树 -&gt; 根节点 -&gt; 右子树</li>
+<li><strong>过程</strong>：首先递归地对左子树进行中序遍历，然后访问根节点，最后递归地对右子树进行中序遍历。</li>
+<li><strong>特点</strong>：对于二叉搜索树，中序遍历可以得到一个有序的节点序列。</li>
+<li><strong>应用</strong>：中序遍历常用于二叉搜索树的有序遍历。</li>
+<li><strong>后序遍历（Post-order Traversal）</strong>：</li>
+<li><strong>访问顺序</strong>：左子树 -&gt; 右子树 -&gt; 根节点</li>
+<li><strong>过程</strong>：首先递归地对左子树进行后序遍历，然后递归地对右子树进行后序遍历，最后访问根节点。</li>
+<li><strong>特点</strong>：后序遍历可以用于删除树，因为它会先访问子节点，最后访问根节点，确保在删除节点时不会丢失对子树的引用。</li>
+<li><strong>应用</strong>：后序遍历常用于删除树、计算表达式的值等。</li>
+</ol>
+<h3 id="binary-tree">Binary Tree</h3>
+<h4 id="tree-and-full-binary-tree">Tree and Full Binary Tree</h4>
+<p>二叉树的定义是什么：二叉树其实是一种限制restriction，限制每一个节点最多有两个孩子；同时我们定义，<strong><em>a full node</em></strong>是左右子树<strong><em>都不是</em></strong>空树的节点。那么显而易见地：</p>
+<ol>
+<li>Each child is either empty or another binary tree  </li>
+<li>This restriction allows us to label the children as left and right subtrees</li>
+</ol>
+<p>以及关于<strong><em>full node</em></strong>定义的示意图如下；同时相对地，我们把能够插入叶子节点的节点称为<strong><em>empty node</em></strong></p>
+<p><img alt="image" src="img/73.png" /></p>
+<p>一个<strong><em>full binary tree</em></strong>（完整二叉树）是每个节点<strong><em>要么是满节点（左右子树均非空），要么是叶子节点的二叉树。</em></strong></p>
+<p>而在二叉树上的一些操作的时间复杂度的总结如下图：</p>
+<p><img alt="image" src="img/74.png" /></p>
+<p>二叉树的经典应用就是Expression Tree了。一个表达式，可以利用二叉树来表示，然后需要的得到表达式的时候，遍历一遍二叉树就可以了。例子如下：值得注意的是，<strong><em>中序遍历即可得到表达式，而后序遍历能够得到逆波兰表达式</em></strong>：</p>
+<p><img alt="image" src="img/75.png" /></p>
+<h4 id="perfect-binary-tree">Perfect Binary Tree</h4>
+<p>上一节介绍了完整二叉树，此处介绍<em>完美二叉树</em>（又称<em>满二叉树</em>）。所有叶结点的深度均相同，且所有非叶节点的子节点数量均为 2 的二叉树称为完美二叉树。关于完美二叉树有如下的定律：</p>
+<ul>
+<li>A perfect binary tree of height <span class="arithmatex">\(h\)</span> has <span class="arithmatex">\(2^{h + 1} – 1\)</span> nodes</li>
+<li>A perfect binary tree with n nodes has height <span class="arithmatex">\(lg(n + 1) – 1\)</span></li>
+<li>The height is <span class="arithmatex">\(\Theta(ln(n))\)</span></li>
+<li>There are <span class="arithmatex">\(2^h\)</span> leaf nodes</li>
+<li>The average depth of a node is <span class="arithmatex">\(\Theta(ln(n))\)</span></li>
+</ul>
+<p>其中值得补充证明的是第五条，其证明过程如下：</p>
+<p><img alt="image" src="img/76.png" /></p>
+<p>完美二叉树被认为是十分理想的情况，因为深度和平均深度都是<span class="arithmatex">\(\Theta(ln(n))\)</span>。但是这终究是理想的情况，因此我们很是希望尽可能找到接近完美二叉树的二叉树。</p>
+<h4 id="complete-binary-tree">Complete Binary Tree</h4>
+<p><strong>完全二叉树（complete binary tree）</strong>：只有最下面两层结点的度数可以小于 2，且最下面一层的结点都集中在该层最左边的连续位置上。</p>
+<p><img alt="image" src="img/77.png" /></p>
+<p>之前提到，我们很是希望尽可能找到接近完美二叉树的二叉树。因此对于n个节点来说，如果不能摆成完美二叉树的结构，那么按照顺序地、合乎逻辑的摆法就是完全二叉树了。关于完全二叉树，有以下几个性质和定理：</p>
+<p><span class="arithmatex">\(Theorem1:\)</span> The height of a complete binary tree with n nodes is <span class="arithmatex">\(h = ⌊lg(n)⌋\)</span></p>
+<p>证明：当n=0的时候，明显是正确的。那么假设n个点的时候，高度是<span class="arithmatex">\(h = ⌊lg(n)⌋\)</span>。那么欲证明：<span class="arithmatex">\(h = ⌊lg(n+1)⌋\)</span>是n+1个节点的完全树的高度。那么当节点+1的时候，有两种情况：本来n的时候，树是完美二叉树；以及n个节点的时候，是完全二叉树，但不是完美二叉树。</p>
+<p>第一种情况：如果原来是完美二叉树，那么<span class="arithmatex">\(n=2^{h+1}-1\)</span>。当n+1的时候，自然知道：<span class="arithmatex">\(h = h+1\)</span>，符合；</p>
+<p>第二种情况：证明过程图如下：</p>
+<p><img alt="image" src="img/78.png" /></p>
+<p>可以利用数组来储存完全二叉树：用广度优先方式遍历所有的节点，然后把节点们以此放入数组里面。这样一来，完全二叉树里面加减节点，完全等效于数组里面增加和删除元素。值得注意的是，在数列储存的时候，第一个元素可以空出来，这是一个非常重要的技巧，因为这样一来：index为k的节点的两个孩子的数组索引恰好就是<span class="arithmatex">\(2k,2k+1\)</span>；同时index为k的节点的父节点就是<span class="arithmatex">\(k//2\)</span>。</p>
+<p><img src="img/79.png" alt="image" style="zoom:67%;" /></p>
+<p>这种和2乘除就能得到孩子或者父节点的方法在c++里面可以利用<strong><em>位运算</em></strong>简化计算：</p>
+<pre><code class="language-c++">parent = k &gt;&gt; 1;
+left_child = k &lt;&lt; 1;
+right_child = left_child | 1;
+</code></pre>
+<p>那么这就引人思考一个问题：为什么不用数组储存任何的二叉树呢？这是因为会有大量浪费的内存。如果需要保持之前上述所说的优化，for instance，一个12个节点的树需要32的位置用来储存。在最坏的情况，需要的内存将会是<strong>指数级增长</strong>。</p>
+<h4 id="left-child-right-sibling-binary-tree">Left-child Right-sibling Binary Tree</h4>
+<p>对于常规的树结构，我们貌似只能用链表来储存结构。那么：有没有可能可以把常规的树当做二叉树来存储呢？如果我们考虑如下的储存思路：</p>
+<ul>
+<li>The first child of each node is its left sub-tree</li>
+<li>The next sibling of each node is in its right sub-tree</li>
+</ul>
+<p>那么这种存储方式就是一种Left-Child Right-Sibling（左孩子右兄弟）。如下图所示：每一个节点的有节点都是这个节点的sibling，而左节点存放的全是这个节点的孩子节点：</p>
+<p><img src="img/80.png" alt="image" style="zoom:67%;" /></p>
+<p>The transformation of a general tree into a left-child right-sibling binary tree has been called the <strong><em>Knuth transform</em></strong>。特别地：</p>
+<ul>
+<li><strong><em>A pre-order traversal of the original tree is identical to the pre-order traversal of the Knuth transform</em></strong></li>
+<li><strong><em>A post-order traversal of the original tree is identicalto the in-order traversal of the Knuth transform</em></strong></li>
+</ul>
+<p><img src="img/81.png" alt="image" style="zoom:67%;" /></p>
+<p><img src="img/82.png" alt="image" style="zoom:67%;" /></p>
+<p>更有意思的是，一个森林forest也可以通过这种方式进行储存：</p>
+<ul>
+<li>Choose one of the roots of the trees as the root of the binary tree</li>
+<li>Let each subsequent root of a tree be a right child of the previous root</li>
+<li>This is the binary-tree representation of this forest</li>
+<li>Think of the roots as siblings of each other</li>
+</ul>
+<p>示意图如下：</p>
+<p><img src="img/83.png" alt="image" style="zoom:67%;" /></p>
 
 
 
