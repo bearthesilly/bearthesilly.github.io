@@ -4235,6 +4235,11 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+        
           <li class="md-nav__item">
   <a href="#tree-and-full-binary-tree" class="md-nav__link">
     <span class="md-ellipsis">
@@ -4268,11 +4273,6 @@
       Left-child Right-sibling Binary Tree
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -6039,6 +6039,11 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+        
           <li class="md-nav__item">
   <a href="#tree-and-full-binary-tree" class="md-nav__link">
     <span class="md-ellipsis">
@@ -6072,11 +6077,6 @@
       Left-child Right-sibling Binary Tree
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -8211,8 +8211,11 @@ int lengthOfLongestSubstring(string s) {
 </blockquote>
 <ol>
 <li>A recursive definition of a tree: A degree-0 node is a tree and a node with degree n is a tree if it has n children and all of its children are disjoint trees (i.e., with no intersecting nodes)</li>
-<li>subtree：Given any node <span class="arithmatex">\(a\)</span> within a tree, the collection of <span class="arithmatex">\(a\)</span> and all of its descendants is said to be a subtree of the tree with root <span class="arithmatex">\(a\)</span>.</li>
+<li><strong><em>subtree：Given any node <span class="arithmatex">\(a\)</span> within a tree, the collection of <span class="arithmatex">\(a\)</span> and all of its descendants is said to be a subtree of the tree with root <span class="arithmatex">\(a\)</span>.</em></strong></li>
 </ol>
+<p>值得注意的是这个子树的定义一定不能理解错了！<strong><em>是全部的descendants！</em></strong></p>
+<p><img alt="image" src="img/86.png" /></p>
+<p>补充：一个含有n个节点的树，它的ordered tree一共有<span class="arithmatex">\(\frac{2n!}{(n+1)!n!}\)</span>种，而这就是大名鼎鼎的<strong><em>卡特兰数</em></strong>。</p>
 <h3 id="implementation">Implementation</h3>
 <p>类似于之前的关于数据结构的介绍，首先我们要了解树支持我们使用什么操作，如插入，删除，寻找之类。Operations on a tree include:</p>
 <ul>
@@ -8594,7 +8597,7 @@ int main() {
 <p>第三步：此时<strong><em>不能</em></strong>通过中序遍历的特点得到右子树的样子。后序遍历的倒数第二个节点是右子树的根节点，然后再中序遍历的右子树内的节点元素中找到根节点，就能确定右子树的左右子树了。</p>
 <p>第四步：在后序遍历中遮住根节点和右子树的元素，那么剩下的序列中的倒数第一个就是左子树的根节点了。在中序遍历中的左子树元素序列中找到左子树的根节点，那么就能知道左子树的左右子树里面的元素有哪些了。</p>
 <p>第五步：重复上述的步骤，就能得到最终的结果。</p>
-<h4 id="tree-and-full-binary-tree">Tree and Full Binary Tree</h4>
+<h3 id="tree-and-full-binary-tree">Tree and Full Binary Tree</h3>
 <p>二叉树的定义是什么：二叉树其实是一种限制restriction，限制每一个节点最多有两个孩子；同时我们定义，<strong><em>a full node</em></strong>是左右子树<strong><em>都不是</em></strong>空树的节点。那么显而易见地：</p>
 <ol>
 <li>Each child is either empty or another binary tree  </li>
@@ -8603,11 +8606,14 @@ int main() {
 <p>以及关于<strong><em>full node</em></strong>定义的示意图如下；同时相对地，我们把能够插入叶子节点的节点称为<strong><em>empty node</em></strong></p>
 <p><img alt="image" src="img/73.png" /></p>
 <p>一个<strong><em>full binary tree</em></strong>（完整二叉树）是每个节点<strong><em>要么是满节点（左右子树均非空），要么是叶子节点的二叉树。</em></strong></p>
+<blockquote>
+<p>注意！一个完整二叉树如果有n个非叶子节点，那么这个完整二叉树一共有2n+1个节点</p>
+</blockquote>
 <p>而在二叉树上的一些操作的时间复杂度的总结如下图：</p>
 <p><img alt="image" src="img/74.png" /></p>
 <p>二叉树的经典应用就是Expression Tree了。一个表达式，可以利用二叉树来表示，然后需要的得到表达式的时候，遍历一遍二叉树就可以了。例子如下：值得注意的是，<strong><em>中序遍历即可得到表达式，而后序遍历能够得到逆波兰表达式</em></strong>：</p>
 <p><img alt="image" src="img/75.png" /></p>
-<h4 id="perfect-binary-tree">Perfect Binary Tree</h4>
+<h3 id="perfect-binary-tree">Perfect Binary Tree</h3>
 <p>上一节介绍了完整二叉树，此处介绍<em>完美二叉树</em>（又称<em>满二叉树</em>）。所有叶结点的深度均相同，且所有非叶节点的子节点数量均为 2 的二叉树称为完美二叉树。关于完美二叉树有如下的定律：</p>
 <ul>
 <li>A perfect binary tree of height <span class="arithmatex">\(h\)</span> has <span class="arithmatex">\(2^{h + 1} – 1\)</span> nodes</li>
@@ -8619,8 +8625,12 @@ int main() {
 <p>其中值得补充证明的是第五条，其证明过程如下：</p>
 <p><img alt="image" src="img/76.png" /></p>
 <p>完美二叉树被认为是十分理想的情况，因为深度和平均深度都是<span class="arithmatex">\(\Theta(ln(n))\)</span>。但是这终究是理想的情况，因此我们很是希望尽可能找到接近完美二叉树的二叉树。</p>
-<h4 id="complete-binary-tree">Complete Binary Tree</h4>
+<h3 id="complete-binary-tree">Complete Binary Tree</h3>
 <p><strong>完全二叉树（complete binary tree）</strong>：只有最下面两层结点的度数可以小于 2，且最下面一层的结点都集中在该层最左边的连续位置上。那么有一个容易遗忘的点：如果要计算完全二叉树的叶节点，那么除了完全二叉树的最后一层有叶节点，倒数第二层其实也有可能由叶节点！（倒数第二层没有挂上孩子的节点，注意可能有一个倒数第二层的节点只挂了一个孩子，那么这个父节点不是叶节点）</p>
+<blockquote>
+<p><strong><em>注意1：完全二叉树不一定是完整二叉树，因为完全二叉树倒数第二层可能有节点只有一个孩子节点。</em></strong></p>
+<p><strong><em>注意2：完全二叉树一定有一个子树是完美二叉树，但是这个完美二叉树的高度可能是h-1也可能是h-2！</em></strong></p>
+</blockquote>
 <p><img alt="image" src="img/77.png" /></p>
 <p>之前提到，我们很是希望尽可能找到接近完美二叉树的二叉树。因此对于n个节点来说，如果不能摆成完美二叉树的结构，那么按照顺序地、合乎逻辑的摆法就是完全二叉树了。关于完全二叉树，有以下几个性质和定理：</p>
 <p><span class="arithmatex">\(Theorem1:\)</span> The height of a complete binary tree with n nodes is <span class="arithmatex">\(h = ⌊lg(n)⌋\)</span></p>
@@ -8636,7 +8646,7 @@ left_child = k &lt;&lt; 1;
 right_child = left_child | 1;
 </code></pre>
 <p>那么这就引人思考一个问题：为什么不用数组储存任何的二叉树呢？这是因为会有大量浪费的内存。如果需要保持之前上述所说的优化，for instance，一个12个节点的树需要32的位置用来储存。在最坏的情况，需要的内存将会是<strong>指数级增长</strong>。</p>
-<h4 id="left-child-right-sibling-binary-tree">Left-child Right-sibling Binary Tree</h4>
+<h3 id="left-child-right-sibling-binary-tree">Left-child Right-sibling Binary Tree</h3>
 <p>对于常规的树结构，我们貌似只能用链表来储存结构。那么：有没有可能可以把常规的树当做二叉树来存储呢？如果我们考虑如下的储存思路：</p>
 <ul>
 <li>The first child of each node is its left sub-tree</li>
@@ -8647,7 +8657,7 @@ right_child = left_child | 1;
 <p>The transformation of a general tree into a left-child right-sibling binary tree has been called the <strong><em>Knuth transform</em></strong>。特别地：</p>
 <ul>
 <li><strong><em>A pre-order traversal of the original tree is identical to the pre-order traversal of the Knuth transform</em></strong></li>
-<li><strong><em>A post-order traversal of the original tree is identicalto the in-order traversal of the Knuth transform</em></strong></li>
+<li><strong><em>A post-order traversal of the original tree is identical to the in-order traversal of the Knuth transform</em></strong></li>
 </ul>
 <p><img src="img/81.png" alt="image" style="zoom:67%;" /></p>
 <p><img src="img/82.png" alt="image" style="zoom:67%;" /></p>
