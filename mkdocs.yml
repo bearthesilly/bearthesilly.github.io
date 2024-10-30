@@ -175,6 +175,7 @@ nav:
     - 数据结构与算法:
       - 基本结构与算法分析: Data_Structure_and_Algorithm/基本结构与算法分析.md
       - 搜索与排序: Data_Structure_and_Algorithm/搜索与排序.md
+      - 进阶与拓展: Data_Structure_and_Algorithm/进阶与拓展misc.md
     - 信号与系统:
       - Chapter1: 信号与系统/Chapter 1.pdf
       - Chapter2: 信号与系统/Chapter 2.pdf
