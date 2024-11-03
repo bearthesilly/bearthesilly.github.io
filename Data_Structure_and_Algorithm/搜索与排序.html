@@ -5768,9 +5768,14 @@ int BinarySearch(int arr[], int i, int j, int val){
 <p>以下是二叉查找树的例子：</p>
 <p><img alt="image" src="img/99.png" /></p>
 <p>为了搜索一个元素，那么就要在没有找到相同元素之前，不断的比较与元素和（子树）根节点。时间复杂度被认为是O(h)。但是，假如说这棵树非常的不平衡，比如说下面这种情况：数列从小到大排列，而且根节点是最小的元素，因此每一个父节点只有一个右孩子节点。这样的话，时间复杂度就退化到了O(n)，这被认为是worst case。</p>
+<blockquote>
+<p>In a Binary Search Tree, the concept of ’height-balanced’ for a node is defined as: the
+gap between the height of the left sub-tree and the right sub-tree is no greater than 1.</p>
+</blockquote>
 <p><img src="img/100.png" alt="image" style="zoom: 33%;" /></p>
 <p>更恐怖的，一个相同的数列，如果根节点的选取不同，那么整棵树的结构都会非常不一样，同时也导致一些操作，例如搜索，的时间复杂度分析不一样。例如下图：在下图中进行搜索的时候，那么我们就很希望使用的是左上角的二叉搜索树，而不是最右边的。</p>
 <p><img src="img/101.png" alt="image" style="zoom: 50%;" /></p>
+<p><strong><em>重要！</em></strong>不管二叉查找树怎么画，它的in-order中序遍历一定是一样的！所以说只要知道前序遍历和后序遍历中的任意一个，就能够确定树的结构！</p>
 <h3 id="implementation">Implementation</h3>
 <p>首先，我们对于二叉搜索树的建立来说，要明确对重复元素的处理态度：We will assume that in any binary tree, we are not storing duplicate elements unless otherwise stated。这是因为：In reality, it is seldom the case where duplicate elements in a container must be stored as separate entities。</p>
 <p>We will look at an implementation of a binary search tree in the same spirit as we did with our <span class="arithmatex">\(Single\_list\)</span> class. 那么首先可以想到的是，和单向链表非常相似地，这个类里面一定储存了根节点的指针。</p>
@@ -6181,6 +6186,7 @@ public:
 <p>这样我们就能够通过上述的编码规则，重新编码这句话：</p>
 <p><img src="img/122.png" alt="image" style="zoom: 50%;" /></p>
 <p>这样我们就只是了73个bit去表示句子了，而如果正常使用ASCII进行编码，需要使用208个bit。为什么对于任意两个任意两个code之间，我们不需要加分隔符？<strong><em>因为这些code没有一个是另一个code的前缀！</em></strong></p>
+<p><strong><em>重要！</em></strong>如何判断一个code set是不是一个valid Huffman code，需要判断两个条件：第一，是否没有一个code是另外一个code的前缀；第二，根据code set画树，树上的每一个节点要么是叶节点要么是满节点。两个条件都满足了，就说明code set是valid Huffman code。</p>
 <p>那么在对方收到了这个码之后，我们再发给对方这个Huffman code tree。这样decode的时候，只需要按照0是left，1是right的traverse规则就能够成功地找到一个个character，从而实现信息的传递。</p>
 <h2 id="introduction-of-sorting">Introduction of Sorting</h2>
 <p>In these topics, we will assume that: We are sorting integers, and Arrays are to be used for both input and output. Sorting algorithms may be performed in-place, that is, with the allocation of at most Q(1) additional memory (e.g., fixed number of local variables). Other sorting algorithms require the allocation of second array of equal size. <strong><em>We will prefer in-place sorting algorithms</em></strong>.</p>

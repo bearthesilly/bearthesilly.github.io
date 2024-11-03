@@ -8920,17 +8920,11 @@ right_child = left_child | 1;
 \end{align*}
 </script>
 所以我们知道了渗透操作的平均运行时间是O(1)，即arbitrary insert时间复杂度是<span class="arithmatex">\(\Theta(1)\)</span>。那么接下来将分析push，insert，access（top是特殊的access）的元素不同情况的时间复杂度：front（优先级高于所有二叉堆中的元素、或者访问二叉堆中优先级最高的元素）、arbitrary（任意一个元素）、back（优先级低于二叉堆中所有元素、或者访问二叉堆中优先级最低的元素）</p>
-<ol>
-<li><strong><em>Push，i.e.，Insert</em></strong></li>
-</ol>
+<p><strong><em>Push，i.e.，Insert</em></strong></p>
 <p>如果要插入一个优先级高于二叉堆中所有元素的元素，i.e.，front，那么需要把这个元素放在root，然后后面进行percolation。由于深度是<span class="arithmatex">\(\Theta(log_2n)\)</span>，而且一定会所有height都进行一次换位置，所以时间复杂度是<span class="arithmatex">\(\Theta(ln(n))\)</span>。而如果是插入任意一个元素，那么平均一次的percolation如上文所推导的那样，是<span class="arithmatex">\(\Theta(1)\)</span>。那么如果是插入一个优先级小于二叉堆中所有元素的元素，那么直接插入<strong>array的最后一个位置</strong>即可。</p>
-<ol>
-<li><strong><em>Access</em></strong></li>
-</ol>
+<p><strong><em>Access</em></strong></p>
 <p>如果要访问二叉堆中优先级最高的元素，直接访问top即可；而如果是任意的元素或者是优先级最小的元素，那么都需要遍历array才能知道，所以说是<span class="arithmatex">\(\Theta(n)\)</span></p>
-<ol>
-<li><strong><em>Delete</em></strong></li>
-</ol>
+<p><strong><em>Delete</em></strong></p>
 <p>如果是要删除二叉堆中优先级最高的元素，那么下面一定要有元素上位，而且上位的次数一定是二叉堆的高度，所以说时间复杂度是<span class="arithmatex">\(\Theta(ln(n))\)</span>；如果是删除任意的一个、或者是优先级最低的元素，那么还是需要<span class="arithmatex">\(\Theta(n)\)</span>遍历，然后percolation，总体上来说是<span class="arithmatex">\(\Theta(n)\)</span>。</p>
 <p>因此上述的时间复杂度总计如下图:</p>
 <p><img src="img/90.png" alt="image" style="zoom: 67%;" /></p>
