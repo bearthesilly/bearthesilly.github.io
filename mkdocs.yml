@@ -206,6 +206,8 @@ nav:
         - 感知机: 动手学深度学习/多层感知机/感知机.md
         - 模型选择&欠/过拟合: 动手学深度学习/多层感知机/模型选择_欠拟合_过拟合.md
         - 权重衰退: 动手学深度学习/多层感知机/权重衰退.md
+      - 注意力机制:
+        - 注意力: 动手学深度学习/注意力机制/注意力.md
   - Blog: 
     - Datawhale: machine_learning/Datawhale/note.md
     - PointNet: Blog/PointNet/analysis.md
