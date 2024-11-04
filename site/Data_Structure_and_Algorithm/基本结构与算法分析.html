@@ -9127,7 +9127,7 @@ int right = 2*i + 2;
 <p>在in a nut shell中介绍到，霍夫曼编码是用来压缩数据的。那么首先我们就要定义什么是压缩：压缩就是<strong><em>reduce the size of data, more specifically, the number of bits needed to represent data</em></strong>。压缩好处多多，能够减少内存，能够减少传输成本、带宽等等。</p>
 <p>霍夫曼编码的核心idea是：不是所有的字符都有着相同的出现频率的！但是所有的字符却都占用着相同的byte！所以基本的idea就是：能不能越频繁的字符，我就用越少的bits表示；而频率越低的字符，我就用更多的bits表示。</p>
 <p>就随便举一个例子就能生动的展示上述的思想，以及思想所带来的好处：</p>
-<p><img src="C:\csrookie.github.io\docs\Data_Structure_and_Algorithm\img\110.png" alt="image" style="zoom: 50%;" /></p>
+<p><img src="img\110.png" alt="image" style="zoom: 50%;" /></p>
 <p>霍夫曼编码总的algorithm步骤可以总结如下：</p>
 <ul>
 <li>Scan text to be compressed and count frequencies of all characters.</li>
@@ -9137,23 +9137,23 @@ int right = 2*i + 2;
 <li>Encode the text using the Huffman codes.</li>
 </ul>
 <p>首先是scan the text。如下图中的例子，首先我们能够统计text中出现的text种类，然后我们也能够统计所有character出现的次数，aka，频率。</p>
-<p><img src="C:\csrookie.github.io\docs\Data_Structure_and_Algorithm\img\111.png" alt="image" style="zoom: 50%;" /></p>
-<p><img src="C:\csrookie.github.io\docs\Data_Structure_and_Algorithm\img\112.png" alt="image" style="zoom: 50%;" /></p>
+<p><img src="img\111.png" alt="image" style="zoom: 50%;" /></p>
+<p><img src="img\112.png" alt="image" style="zoom: 50%;" /></p>
 <p>统计完成之后：<strong><em>Create binary tree nodes with character and frequency of each character</em></strong>。然后讲节点放进优先队列里面，其中我们定义优先级为：出现频率越低，则队列中的优先级越高。构建示意图如下：</p>
-<p><img src="C:\csrookie.github.io\docs\Data_Structure_and_Algorithm\img\113.png" alt="image" style="zoom: 50%;" /></p>
+<p><img src="img\113.png" alt="image" style="zoom: 50%;" /></p>
 <p>然后利用这个优先队列创建二叉树，创建的规则如下图：</p>
-<p><img src="C:\csrookie.github.io\docs\Data_Structure_and_Algorithm\img\114.png" alt="image" style="zoom: 50%;" /></p>
+<p><img src="img\114.png" alt="image" style="zoom: 50%;" /></p>
 <p>下面展示上述操作了一步、两步、三步、倒数第三步、倒数第二步、最后一步之后的示意图：</p>
-<p><img src="C:\csrookie.github.io\docs\Data_Structure_and_Algorithm\img\115.png" alt="image" style="zoom: 50%;" /></p>
-<p><img src="C:\csrookie.github.io\docs\Data_Structure_and_Algorithm\img\116.png" alt="image" style="zoom: 50%;" /></p>
-<p><img src="C:\csrookie.github.io\docs\Data_Structure_and_Algorithm\img\117.png" alt="image" style="zoom: 50%;" /></p>
-<p><img src="C:\csrookie.github.io\docs\Data_Structure_and_Algorithm\img\118.png" alt="image" style="zoom: 50%;" /></p>
-<p><img src="C:\csrookie.github.io\docs\Data_Structure_and_Algorithm\img\119.png" alt="image" style="zoom: 50%;" /></p>
-<p><img src="C:\csrookie.github.io\docs\Data_Structure_and_Algorithm\img\120.jpg" alt="image" style="zoom: 50%;" /></p>
+<p><img src="img\115.png" alt="image" style="zoom: 50%;" /></p>
+<p><img src="img\116.png" alt="image" style="zoom: 50%;" /></p>
+<p><img src="img\117.png" alt="image" style="zoom: 50%;" /></p>
+<p><img src="img\118.png" alt="image" style="zoom: 50%;" /></p>
+<p><img src="img\119.png" alt="image" style="zoom: 50%;" /></p>
+<p><img src="img\120.jpg" alt="image" style="zoom: 50%;" /></p>
 <p>这样一来我们就得到了Huffman code tree。得到了最后的这个二叉树之后，我们就能从根节点出发去访问（traverse）最后的character了。如果我们规定：遇到了一个节点之后，选择了它的左孩子节点，那么这一步就是0，而如果选择了它的右节点，那么这一步就是1。这样一来，每一个character就对应着一种编码：</p>
-<p><img src="C:\csrookie.github.io\docs\Data_Structure_and_Algorithm\img\121.jpg" alt="image" style="zoom: 50%;" /></p>
+<p><img src="img\121.jpg" alt="image" style="zoom: 50%;" /></p>
 <p>这样我们就能够通过上述的编码规则，重新编码这句话：</p>
-<p><img src="C:\csrookie.github.io\docs\Data_Structure_and_Algorithm\img\122.png" alt="image" style="zoom: 50%;" /></p>
+<p><img src="img\122.png" alt="image" style="zoom: 50%;" /></p>
 <p>这样我们就只是了73个bit去表示句子了，而如果正常使用ASCII进行编码，需要使用208个bit。为什么对于任意两个任意两个code之间，我们不需要加分隔符？<strong><em>因为这些code没有一个是另一个code的前缀！</em></strong></p>
 <p><strong><em>重要！</em></strong>如何判断一个code set是不是一个valid Huffman code，需要判断两个条件：<strong><em>第一，是否没有一个code是另外一个code的前缀；第二，根据code set画树，树上的每一个节点要么是叶节点要么是满节点。</em></strong>两个条件都满足了，就说明code set是valid Huffman code。</p>
 <p>那么在对方收到了这个码之后，我们再发给对方这个Huffman code tree。这样decode的时候，只需要按照0是left，1是right的traverse规则就能够成功地找到一个个character，从而实现信息的传递。</p>
