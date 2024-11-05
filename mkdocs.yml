@@ -137,6 +137,8 @@ nav:
       - Lec3: 概率论/L3.pdf
       - Lec3-handwriting: 概率论/L3-handwriting.pdf
       - Lec4: 概率论/L4.pdf
+      - Lec4-handwriting: 概率论/L4-handwriting.pdf
+      - Lec5: 概率论/L5.pdf
     - CS100(C&C++):
       - 课件:
         - L0: CS100(C&C++)/slides/l0/l0.md
@@ -180,6 +182,7 @@ nav:
       - Chapter1: 信号与系统/Chapter 1.pdf
       - Chapter2: 信号与系统/Chapter 2.pdf
       - Chapter3: 信号与系统/Chapter 3.pdf
+      - Chapter4: 信号与系统/Chapter 4.pdf
     - 普通物理:
       - Lec2: 普通物理/Lect2_Kinematics 质点运动学.pdf
       - Lec3: 普通物理/Lect3_Dynamics 质点动力学-1.pdf
@@ -187,6 +190,10 @@ nav:
       - Lec5: 普通物理/Lect5_Work_energy 功和能.pdf
       - Lec6: 普通物理/Lect6_Potential Energy_势能.pdf
       - Lec7: 普通物理/Lect7_Momentum_动量-预习.pdf
+      - Lec8: 普通物理/Lect8_Collision and elasticity 碰撞和弹性.pdf
+      - Lec9: 普通物理/Lect9 刚体.pdf
+      - Lec10: 普通物理/Lect10 力矩、角动量.pdf
+      - Lec11: 普通物理/Lect11 平衡、流体力学.pdf
   - Course (Extracurriculum):
     - Deep Learning:
       - 'Partition One: Fundamental + Convolution' : deeplearning_note/深度学习自学.md
@@ -208,6 +215,8 @@ nav:
         - 权重衰退: 动手学深度学习/多层感知机/权重衰退.md
       - 注意力机制:
         - 注意力: 动手学深度学习/注意力机制/注意力.md
+        - 多头注意力: 动手学深度学习/注意力机制/多头注意力.md
+        - 自注意力与位置编码: 动手学深度学习/注意力机制/自注意力与位置编码.md
   - Blog: 
     - Datawhale: machine_learning/Datawhale/note.md
     - PointNet: Blog/PointNet/analysis.md
