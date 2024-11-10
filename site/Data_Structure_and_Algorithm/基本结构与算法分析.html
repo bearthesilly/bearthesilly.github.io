@@ -4205,6 +4205,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Monte Carlo Tree Search">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-a-nut-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      In a nut shell
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elaboration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Elaboration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -4404,7 +4428,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#in-a-nut-shell" class="md-nav__link">
+  <a href="#in-a-nut-shell_1" class="md-nav__link">
     <span class="md-ellipsis">
       In a nut shell
     </span>
@@ -4413,7 +4437,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#elaboration" class="md-nav__link">
+  <a href="#elaboration_1" class="md-nav__link">
     <span class="md-ellipsis">
       Elaboration
     </span>
@@ -4689,6 +4713,27 @@
   
   <span class="md-ellipsis">
     搜索与排序
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E6%9C%9F%E4%B8%AD%E5%9B%9E%E9%A1%BE.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    期中回顾
   </span>
   
 
@@ -6586,6 +6631,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Monte Carlo Tree Search">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-a-nut-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      In a nut shell
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elaboration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Elaboration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -6785,7 +6854,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#in-a-nut-shell" class="md-nav__link">
+  <a href="#in-a-nut-shell_1" class="md-nav__link">
     <span class="md-ellipsis">
       In a nut shell
     </span>
@@ -6794,7 +6863,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#elaboration" class="md-nav__link">
+  <a href="#elaboration_1" class="md-nav__link">
     <span class="md-ellipsis">
       Elaboration
     </span>
@@ -7065,7 +7134,7 @@
 
 
 <h1 id="_1">基本结构与算法分析</h1>
-<p>数组，链表，栈，队列</p>
+<p>数组，链表，栈，队列，哈希表，树，堆，平衡二叉树，并查集</p>
 <h2 id="_2">数据结构算法复杂度介绍</h2>
 <h3 id="brief-intro">Brief Intro</h3>
 <p>数据结构: 相互之间存在一种或者多种特定关系的数据元素的集合. 在逻辑上可以分为线性结构, 散列结构, 树形结构, 图形结构等等</p>
@@ -9406,6 +9475,7 @@ int main() {
 <p>关于深度优先的总结如下：</p>
 <p><img src="img/71.png" alt="image" style="zoom:50%;" /></p>
 <h3 id="monte-carlo-tree-search">Monte Carlo Tree Search</h3>
+<h4 id="in-a-nut-shell">In a nut shell</h4>
 <blockquote>
 <p>Reference: ChatGPT o4 model</p>
 </blockquote>
@@ -9463,6 +9533,13 @@ int main() {
 <li><strong>模拟质量依赖于策略</strong>：如果模拟策略过于随机，可能导致模拟效果不准确，从而影响整体算法性能。</li>
 </ol>
 <p>应用领域：MCTS 已广泛应用于各种领域，尤其是在 <strong>游戏AI</strong> 和 <strong>规划问题</strong> 中。它最著名的应用是在 <strong>围棋</strong> 中，比如谷歌的 AlphaGo 使用了基于 MCTS 的搜索算法。此外，MCTS 也被用于机器人控制、自动规划、数据挖掘等多个领域。</p>
+<h4 id="elaboration">Elaboration</h4>
+<p>假设在一个游戏过程建模中，我们把所有的可能的按照顺序发生的情况都用树的结构存储下来，这颗树就叫做game tree。假设玩tic-tac-toe，那么我们按照第一步下在哪里，之后我们就能模拟出一系列的可能场景。更特殊地，我们可以认为，节点就是一种状态，而节点之间的连线就是代表进行了一种操作。我们对数进行深度优先搜索，然后尝试找到最好的操作系列。</p>
+<p><img src="img/156.png" alt="image" style="zoom: 50%;" /></p>
+<p>对于这样一个游戏的game tree来说，节点的数量是<span class="arithmatex">\(O(n!)\)</span>，n很大的时候瞬间爆炸。所以说：DFS is infeasible to search all (leaf) nodes for the game tree in a limited time and computation budget. 那么如何缩减game tree的搜索空间呢？那么蒙特卡洛树搜索应运而生（MCTS）。Selection, Expansion, Simulation, BackPropagation如上文所述。</p>
+<p>我们想要找到好的action，那么什么样的action可能称为好的action呢？An action with high winning rate according to the history；An action rarely searched。We need to balance Exploration and Exploitation! A well-known exploration policy is Upper Confidence Bound (UCB). </p>
+<p><img src="img/157.png" alt="image" style="zoom: 50%;" /></p>
+<p>Selection过程中，一直用UCB策略访问节点，直到访问叶子结点。然后以该叶子结点为根，创建数个孩子节点，扩建树；然后模拟随机的action，最后根据结果进行反向传播，每一个叶子结点到根节点上的数据的分子分母都+1。</p>
 <h3 id="forest">Forest</h3>
 <p>A rooted forest is a data structure that is a collection of disjoint rooted trees. </p>
 <p>Note that:</p>
@@ -9688,11 +9765,11 @@ right_child = left_child | 1;
 <p><strong><em>因此pop push的时间复杂度是O(n)</em></strong>(注意这不是二叉堆的插入的时间复杂度！而是随意一个min-heap！)，而在二叉树高度不平衡的时候，会达到worst case。</p>
 <p>而在二叉树中，我们定义了balance的概念。那么我们如何决定push操作一开始插入的位置，从而保持良好的balance呢？此处我们介绍<strong><em>完全二叉树</em></strong>方式——It has optimal memory characteristics but sub-optimal run-time characteristics。除此之外，完全二叉树还支持array implementation。</p>
 <blockquote>
-<p><strong><em>Complete binary trees</em></strong> defines the actual “binary heap”</p>
+<p>:warning: <strong><em>Complete binary trees</em></strong> defines the actual “binary heap”</p>
 </blockquote>
 <p>如何操作呢？如何maintain the complete-tree shape of a heap？We may store a complete tree using an array, and this array is filled using breadth-first traversal on the tree。那么在push pop的时候，就需要考虑<strong><em>保持完全二叉树的性质</em></strong>！</p>
 <p>在push的时候，<strong><em>在完全二叉树最后一层紧接着插入叶子结点</em></strong>，然后经过percolation即可。</p>
-<p>但是在pop的时候，<strong><em>需要把最后一层的最后一个叶子节点（i.e., array中的最后一个元素）copy到根节点</em></strong>，并且删除这个叶子结点，然后这个元素从根节点开始下沉：下沉的过程中，遇到两个子节点，如果它们都小于自己，则和相对更小的子节点交换；如果它们一个大于自己一个小于自己，那么和小于自己的节点元素交换；如果两个子节点元素都比自己大，那么就停止下沉。</p>
+<p>:warning: 但是在pop的时候，<strong><em>需要把最后一层的最后一个叶子节点（i.e., array中的最后一个元素）copy到根节点</em></strong>，并且删除这个叶子结点，然后这个元素从根节点开始下沉：下沉的过程中，遇到两个子节点，如果它们都小于自己，则和相对更小的子节点交换；如果它们一个大于自己一个小于自己，那么和小于自己的节点元素交换；如果两个子节点元素都比自己大，那么就停止下沉。</p>
 <h4 id="analysis">Analysis</h4>
 <p>通过以上的操作规则，我们总是能保持二叉堆是完全二叉树。对于这种操作来说，<em><strong>top时间复杂度是<span class="arithmatex">\(O(1\)</span>)，Pop操作是<span class="arithmatex">\(O(ln(n))\)</span>，而push时间复杂度是<span class="arithmatex">\(O(ln(n))\)</span></strong>，</em>而且非常好的是，空间复杂度是<span class="arithmatex">\(O(n)\)</span>。所以说二叉堆是一个相比于优先队列来说更好的实现。</p>
 <blockquote>
@@ -9752,9 +9829,9 @@ int left = 2*i + 1;
 int right = 2*i + 2;
 </code></pre>
 <p>最后，还有一个小疑问：如果array中有相同的元素怎么办？那么一个非常好的解决方法就是采用混合优先级：Hybrid Priority。例如<span class="arithmatex">\((n1, k1) &lt; (n2, k2)\)</span> if <span class="arithmatex">\(n1 &lt; n2\)</span> or <span class="arithmatex">\((n1 = n2\)</span> and <span class="arithmatex">\(k1 &lt; k2)\)</span>。这样的话，关于相同元素内部的次优先级问题就能迎刃而解了。</p>
-<p><strong><em>重要！堆排序的最好情况和最坏情况的时间复杂度都是<span class="arithmatex">\(\Theta(n)\)</span>，而且堆排序是一个不稳定的算法。</em></strong></p>
+<p><strong><em>重要！堆排序的最好情况和最坏情况的时间复杂度都是<span class="arithmatex">\(\Theta(logn)\)</span>，而且堆排序是一个不稳定的算法。</em></strong></p>
 <h3 id="applicationhuffman-coding">Application——Huffman Coding</h3>
-<h4 id="in-a-nut-shell">In a nut shell</h4>
+<h4 id="in-a-nut-shell_1">In a nut shell</h4>
 <p>Huffman Coding（霍夫曼编码）是一种常用于数据压缩的算法，由David A. Huffman于1952年提出。它是一种无损压缩技术，可以高效地编码数据，使得常用的数据（比如字母、字符）占用较少的比特位，从而减少总体存储或传输的数据量。霍夫曼编码在文件压缩、传输等领域应用广泛，尤其是图像压缩（如JPEG）和文本压缩。</p>
 <p><strong><em>霍夫曼编码的核心思想</em></strong></p>
 <p>霍夫曼编码的主要目标是使用更短的编码表示高频出现的数据，而低频数据则用较长的编码表示。通过这样的方式，可以实现数据压缩，因为总编码长度被大大减少。</p>
@@ -9833,7 +9910,7 @@ int right = 2*i + 2;
 <li>每次构建树需要额外的存储和计算，复杂度较高。</li>
 </ul>
 <p>霍夫曼编码是一个经典的贪心算法的应用，它在数据压缩、文件传输等场景下非常有效，是数据压缩技术中的基础算法之一。</p>
-<h4 id="elaboration">Elaboration</h4>
+<h4 id="elaboration_1">Elaboration</h4>
 <p>在in a nut shell中介绍到，霍夫曼编码是用来压缩数据的。那么首先我们就要定义什么是压缩：压缩就是<strong><em>reduce the size of data, more specifically, the number of bits needed to represent data</em></strong>。压缩好处多多，能够减少内存，能够减少传输成本、带宽等等。</p>
 <p>霍夫曼编码的核心idea是：不是所有的字符都有着相同的出现频率的！但是所有的字符却都占用着相同的byte！所以基本的idea就是：能不能越频繁的字符，我就用越少的bits表示；而频率越低的字符，我就用更多的bits表示。</p>
 <p>就随便举一个例子就能生动的展示上述的思想，以及思想所带来的好处：</p>
@@ -9869,12 +9946,13 @@ int right = 2*i + 2;
 <p>那么在对方收到了这个码之后，我们再发给对方这个Huffman code tree。这样decode的时候，只需要按照0是left，1是right的traverse规则就能够成功地找到一个个character，从而实现信息的传递。</p>
 <blockquote>
 <p>Tip: 霍夫曼编码出来的code set<strong><em>可以做到</em></strong>所有的character的code length都一样</p>
-<p>Tip:  For the same character set, if their frequencies differ, then the Huffman coding trees generated by them will always be different. For example, two characters of frequency 10 and 20, and two characters of frequency 100 and 200, will have the same Huffman Coding Trees</p>
+<p>Tip:  <strong><em>For the same character set, if their frequencies differ, then the Huffman coding trees generated by them may be the same</em></strong>. For example, two characters of frequency 10 and 20, and two characters of frequency 100 and 200, will have the same Huffman Coding Trees</p>
 </blockquote>
 <h3 id="summary">Summary</h3>
 <p>对于Binary Heap的push pop access三种情况操作的时间复杂度如下：</p>
 <p><img src="img/90.png" alt="image" style="zoom: 67%;" /></p>
-<p>二叉堆的操作的时间复杂度（其中build method是Floyd'd Method）以及堆排序的时间和空间复杂度：（注意Push是<span class="arithmatex">\(O(ln(n))\)</span>，更具体的说是worst case <span class="arithmatex">\(\Theta(ln(n))\)</span>，average <span class="arithmatex">\(\Theta(1)\)</span>）</p>
+<p>二叉堆的操作的时间复杂度（其中build method是Floyd'd Method）以及堆排序的时间和空间复杂度：（注意Push是<span class="arithmatex">\(O(ln(n))\)</span>，更具体的说是worst case <span class="arithmatex">\(\Theta(ln(n))\)</span>，average <span class="arithmatex">\(\Theta(1)\)</span>）。</p>
+<p>:warning:堆排序的最好情况和最坏情况的时间复杂度都是<span class="arithmatex">\(\Theta(logn)\)</span>，而且堆排序是一个不稳定的算法。</p>
 <p><img src="img/98.png" alt="image" style="zoom: 67%;" /></p>
 <h2 id="avl-tree">平衡二叉树（AVL Tree）</h2>
 <h3 id="balance-matters">Balance Matters</h3>
@@ -9893,6 +9971,11 @@ int right = 2*i + 2;
 <p><img src="img/126.png" alt="image" style="zoom:67%;" /></p>
 <p><img src="img/127.png" alt="image" style="zoom:67%;" /></p>
 <p><img src="img/128.png" alt="image" style="zoom:67%;" /></p>
+<p>:label: 对于一个高度为n的AVL树，最少的节点数量为：
+<script type="math/tex; mode=display">
+f_{n}=\frac{5+2\sqrt{5}}{5}\left(\frac{1+\sqrt{5}}{2}\right)^{n}+\frac{5-2\sqrt{5}}{5}\left(\frac{1-\sqrt{5}}{2}\right)^{n}-1
+</script>
+</p>
 <h3 id="maintaining-balance">Maintaining Balance</h3>
 <p>注意到：插入节点可以让树的高度增加1，同时删除一个节点能够让树的高度减少1。这两种操作都会导致某些节点产生不平衡现象，我们需要在插入或者删除之后rebalance。</p>
 <p>为了记录高度上的变化，Node成员函数<code>height()</code>时间复杂度必须O（1），因此最好所有的Node成员维护一个变量叫做<code>int tree_height;</code>，然后在我们插入和删除的过程中对这个变量进行更新。</p>
