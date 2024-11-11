@@ -3453,27 +3453,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../CS100%28C%26C%2B%2B%29/cheatsheet.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    cheatsheet
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../CS100%28C%26C%2B%2B%29/core.html" class="md-nav__link">
         
   
@@ -6790,6 +6769,9 @@ T(n)=2T(\frac{n}{2})+\Theta(n), while\ T(1)=\Theta(1)\rightarrow T(n)=\Theta(nln
 <li><strong>感性理解</strong>：就像你让很多人帮忙做一些很小的工作，但最终你需要花大量时间把所有的结果合并在一起。此时，递归产生的子任务虽然很多，但它们各自所需的时间比较少，主要耗时集中在合并过程。</li>
 <li><strong>结论</strong>：合并部分占主导地位，复杂度由非递归部分决定</li>
 </ul>
+<blockquote>
+<p>:warning:重要结论：<span class="arithmatex">\(T(n)=T(\alpha n)+T(\beta n)+\Theta(n)\)</span>，如果<span class="arithmatex">\(\alpha + \beta=1\)</span>，则时间复杂度为<span class="arithmatex">\(\Theta(nlogn)\)</span>，而如果<span class="arithmatex">\(\alpha + \beta&lt;1\)</span>，那么时间复杂度为<span class="arithmatex">\(\Theta(n)\)</span></p>
+</blockquote>
 <h3 id="example">Example</h3>
 <h4 id="integer-multiplication">Integer Multiplication</h4>
 <p>我们知道给两个二进制的数字x y，计算加减都是一位一位进行操作的。那么乘法的时候使用的是Grade-school算法，通常称为“小学算术算法”，是一种用于手算乘法的算法，它利用了乘法对加法的分配律来简化计算过程。如下图：那么我们能够直观发现，这个算法的复杂度是<span class="arithmatex">\(\Theta(n^2)\)</span></p>
