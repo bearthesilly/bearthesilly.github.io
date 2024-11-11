@@ -5004,6 +5004,7 @@
 <ul>
 <li><span class="arithmatex">\(O(n!)\)</span>是最大的，而<span class="arithmatex">\(O(nlogn) &lt; O(n^i)\)</span>如果<span class="arithmatex">\(i&gt;1\)</span></li>
 <li>选择题中关于时间复杂度表述，格外需要注意使用的是那个符号！比如：节点数量为n的完美二叉树的高度是<span class="arithmatex">\(O(n)\)</span>那么这个结论就是正确的，因为<span class="arithmatex">\(logn = O(n)\)</span></li>
+<li><span class="arithmatex">\(T(n)=T(\alpha n)+T(\beta n)+\Theta(n)\)</span>，如果<span class="arithmatex">\(\alpha + \beta=1\)</span>，则时间复杂度为<span class="arithmatex">\(\Theta(nlogn)\)</span>，而如果<span class="arithmatex">\(\alpha + \beta&lt;1\)</span>，那么时间复杂度为<span class="arithmatex">\(\Theta(n)\)</span></li>
 <li>对于一个算法来说，可能做到最好情况时间复杂度是<span class="arithmatex">\(O(n)\)</span>而最坏是<span class="arithmatex">\(\Omega(n)\)</span>——算法时间复杂度稳定为<span class="arithmatex">\(\Theta(n)\)</span></li>
 </ul>
 <p><img src="img/48.png" alt="image" style="zoom: 50%;" /></p>
