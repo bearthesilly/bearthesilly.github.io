@@ -5014,16 +5014,16 @@
 <p>if <span class="arithmatex">\(a &gt; b^k\)</span>, then <span class="arithmatex">\(T(n) = θ(n^{log_ba})\)</span></p>
 </li>
 <li>
-<p>if $ a = b^k$, then :</p>
+<p>if <span class="arithmatex">\(a = b^k\)</span>, then :</p>
 </li>
 </ol>
-<p>(a) if p &gt; -1, then $T(n) = θ(n^{log_ba} log^{p+1}n) $</p>
-<p>(b) if p = -1, then $T(n) = θ(n^{log_ba} log(logn) $</p>
-<p>(c) if p &lt; -1, then $T(n) = θ(n^{log_ba}) $</p>
+<p>(a) if p &gt; -1, then <span class="arithmatex">\(T(n) = θ(n^{log_ba} log^{p+1}n)\)</span></p>
+<p>(b) if p = -1, then <span class="arithmatex">\(T(n) = θ(n^{log_ba} log(logn)\)</span></p>
+<p>(c) if p &lt; -1, then <span class="arithmatex">\(T(n) = θ(n^{log_ba})\)</span></p>
 <ol>
 <li>if <span class="arithmatex">\(a &lt; b^k\)</span>, then 
-   (a) if p &gt;= 0, then $T(n) = θ(n^k log^pn) $
-   (b) if p &lt; 0, then $T(n) = θ(n^k) $</li>
+   (a) if p &gt;= 0, then <span class="arithmatex">\(T(n) = θ(n^k log^pn)\)</span>
+   (b) if p &lt; 0, then <span class="arithmatex">\(T(n) = θ(n^k)\)</span></li>
 </ol>
 <h2 id="_3">数据结构</h2>
 <ul>
@@ -5049,7 +5049,7 @@
 <li><strong>第一哈希函数</strong> <span class="arithmatex">\(h_1(x)\)</span>：用于将元素映射到哈希表中的一个初始位置。</li>
 <li><strong>第二哈希函数</strong>(secondary hashing function) <span class="arithmatex">\(h_2(x)\)</span>：用于计算步长，即在发生冲突时从该位置跳转多少个位置。</li>
 </ol>
-<p>散列函数为：<span class="arithmatex">\(h(k,i)=(h_1(k)+ih_2(k))modm\)</span>。所以说：线性探测可以认为是第二哈希函数为1的double hashing，线性探测可以认为是第二哈希函数为<span class="arithmatex">\((c_1+c_2i)\)</span>的double hashing。</p>
+<p>散列函数为：<span class="arithmatex">\(h(k,i)=(h_1(k)+ih_2(k))modm\)</span>。所以说：线性探测可以认为是第二哈希函数为1的double hashing，二次探测可以认为是第二哈希函数为<span class="arithmatex">\((c_1+c_2i)\)</span>的double hashing。</p>
 <ul>
 <li>
 <p>树中一些概念的细节：</p>
@@ -5084,6 +5084,7 @@
 <ul>
 <li>如果一颗完全二叉树的后序遍历是递减序列，那么这颗完全二叉树就是min-heap<strong><em>；</em></strong>但是反之不然，如果一个二叉树是min-heap，它的后序遍历不一定是递减序列。</li>
 <li>If the pre-order traversal of a tree is an ascending sequence, then the tree is a heap</li>
+<li>二叉树中如果每一个节点的descendants（包括自己）的数量都是奇数，那么每一个节点要么是满节点要么叶子结点</li>
 <li>以下为二叉堆的操作的时间复杂度分析：</li>
 </ul>
 <p><img src="img/90.png" alt="image" style="zoom: 67%;" /></p>

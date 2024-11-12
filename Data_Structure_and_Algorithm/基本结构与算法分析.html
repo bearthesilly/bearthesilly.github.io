@@ -8020,6 +8020,7 @@ void Joseph(Node* head, int k, int m){
 <li>每一个节点除了数据域，还有next指针域指向下一个节点，pre指针域指向前一个节点</li>
 <li>头结点的pre是NULL，末尾节点的next是NULL</li>
 </ul>
+<p><strong><em>注意！当然是可以在class里面加入tail节点的设计的，类似于头部的哑结点（CS101）；而下面的实现中并没有设计tail节点。</em></strong></p>
 <p>注：做题时要判断，题目给出的结构体定义究竟是单向还是双向（因为双向确实是方便）</p>
 <pre><code class="language-c++">// doublelink.cpp
 #include &lt;iostream&gt;
@@ -8804,6 +8805,7 @@ for ( int k = 0; k &lt; M; ++k ) {
 </code></pre>
 <p>散列函数为：<span class="arithmatex">\(h(k,i)=(h_1(k)+c_1i+c_2i^2)modm\)</span>。更具体地：</p>
 <p><img alt="image" src="img/20.png" /></p>
+<p>:warning:上面图片中最后一句话的结论，<strong>只有<em>在M为2的多少次幂的时候，才能够成立</em></strong>；否则，是<strong>有可<em>能一个哈希函数无法遍历所有的元素！</em></strong></p>
 <p><img alt="image" src="img/21.jpg" /></p>
 <p>关于“This guarantees that all M entries are visited before the pattern repeats”的结论，证明如下（核心思想：证明任意两次的probing的hash value值都不一样，利用数论知识和<span class="arithmatex">\(M=2^m\)</span>条件予以证明）：</p>
 <p><img src="img/35.png" alt="image" style="zoom:50%;" /></p>
@@ -8819,7 +8821,7 @@ for ( int k = 0; k &lt; M; ++k ) {
 <li><strong>第一哈希函数</strong> <span class="arithmatex">\(h_1(x)\)</span>：用于将元素映射到哈希表中的一个初始位置。</li>
 <li><strong>第二哈希函数</strong>(secondary hashing function) <span class="arithmatex">\(h_2(x)\)</span>：用于计算步长，即在发生冲突时从该位置跳转多少个位置。</li>
 </ol>
-<p>散列函数为：<span class="arithmatex">\(h(k,i)=(h_1(k)+ih_2(k))modm\)</span>。所以说：线性探测可以认为是第二哈希函数为1的double hashing，线性探测可以认为是第二哈希函数为<span class="arithmatex">\((c_1+c_2i)\)</span>的double hashing。</p>
+<p>散列函数为：<span class="arithmatex">\(h(k,i)=(h_1(k)+ih_2(k))modm\)</span>。所以说：线性探测可以认为是第二哈希函数为1的double hashing，二次探测可以认为是第二哈希函数为<span class="arithmatex">\((c_1+c_2i)\)</span>的double hashing。</p>
 <h3 id="linear-probe">Linear Probe下的哈希实现</h3>
 <p>使用<code>STATE_UNUSE; STATE_USING; STATE_DEL</code>三个参数来代表bin(bucket)的状态。</p>
 <p>增加：通过哈希函数计算数据存放的地方：如果该位置空闲，那么直接储存元素，完成；而如果该位置被占用，从当前位置向后找空闲的位置，存放该元素。</p>
@@ -9756,7 +9758,7 @@ right_child = left_child | 1;
 <p>More specifically, if we are inserting an object less than the root (at the front), then the run time will be <span class="arithmatex">\(O(ln(n))\)</span>; if we insert at the back (greater than any object) then the run time will be <span class="arithmatex">\(O(1)\)</span>.</p>
 </blockquote>
 <p>关于push操作，如果我们插入任意元素呢？那么平均时间复杂度是多少呢？</p>
-<p>With each percolation, it will mo ve an object past half of the remaining entries in the tree. Therefore, after one percolation, it will probably be past half of the entries, and therefore on average will require no more percolations. 则平均时间时间复杂度如下：
+<p>With each percolation, it will move an object past half of the remaining entries in the tree. Therefore, after one percolation, it will probably be past half of the entries, and therefore on average will require no more percolations. 则平均时间时间复杂度如下：
 <script type="math/tex; mode=display">
 \begin{align*}
 \frac{1}{n}\sum_{k=0}^{h}(h-k) 2^{k} &= \frac{2^{h+1}-h-2}{n} \\
