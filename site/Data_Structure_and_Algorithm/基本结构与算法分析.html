@@ -4666,6 +4666,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#painpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Painpoint
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4807,8 +4816,26 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#painpoint_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Painpoint
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-both-the-time-complexity-of-dfs-and-that-of-bfs-are-thetav-e-visited" class="md-nav__link">
+    <span class="md-ellipsis">
+      - Both the time complexity of DFS and that of BFS are \(\Theta(|V| + |E|)\). 这是因为每一个顶点都遍历过，而每一条边都检查过（检查体现在：一个点的邻居是否是visited）
+    </span>
+  </a>
   
 </li>
       
@@ -5255,6 +5282,48 @@
   
   <span class="md-ellipsis">
     Lec11
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect12%20%E4%B8%87%E6%9C%89%E5%BC%95%E5%8A%9B.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect13_Oscillation%20%E6%8C%AF%E5%8A%A8.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec13
   </span>
   
 
@@ -7233,6 +7302,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#painpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Painpoint
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -7374,8 +7452,26 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#painpoint_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Painpoint
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-both-the-time-complexity-of-dfs-and-that-of-bfs-are-thetav-e-visited" class="md-nav__link">
+    <span class="md-ellipsis">
+      - Both the time complexity of DFS and that of BFS are \(\Theta(|V| + |E|)\). 这是因为每一个顶点都遍历过，而每一条边都检查过（检查体现在：一个点的邻居是否是visited）
+    </span>
+  </a>
   
 </li>
       
@@ -10328,14 +10424,14 @@ f_{n}=\frac{5+2\sqrt{5}}{5}\left(\frac{1+\sqrt{5}}{2}\right)^{n}+\frac{5-2\sqrt{
 <p>什么意思呢？假如说进行find操作，那么就会从叶子节点一直走到根节点，path上面的节点其实都是以根节点为代表元素，但是除了紧接着根节点的那个在path上的节点，其他的节点其实都没有直接指向根节点，这造成了高度的增加。所以说我们可以考虑将path上面的节点（除了根节点）的父亲节点指针都设置成最后的这个根节点，从而有效降低并查集树的高度。示意图如下：</p>
 <p><img src="img/148.png" alt="image" style="zoom: 50%;" /></p>
 <h4 id="analysis_1">Analysis</h4>
-<p>有了上述的两种优化策略，那么时间复杂度有没有可能优于<span class="arithmatex">\(O(ln(n))\)</span>？事实证明，在同时使用路径压缩和启发式合并之后，并查集的每个操作平均时间仅为<span class="arithmatex">\(O(\alpha n)\)</span>，其中<span class="arithmatex">\(\alpha\)</span>为阿克曼函数的反函数，其增长极其缓慢，也就是说其单次操作的平均运行时间可以认为是一个很小的常数。</p>
+<p>有了上述的两种优化策略，那么时间复杂度有没有可能优于<span class="arithmatex">\(O(ln(n))\)</span>？事实证明，在同时使用路径压缩和启发式合并之后，并查集的每个操作平均时间仅为<span class="arithmatex">\(O(\alpha (n))\)</span>，其中<span class="arithmatex">\(\alpha\)</span>为阿克曼函数的反函数，其增长极其缓慢，也就是说其单次操作的平均运行时间可以认为是一个很小的常数。</p>
 <blockquote>
 <p>Reference: oi.wiki</p>
 </blockquote>
 <p>总结图如下：
 <img src="img/149.png" alt="image" style="zoom: 50%;" /></p>
 <p>那么这个<span class="arithmatex">\(A(i,i)\)</span>多大就是一个非常关键的问题了。好消息是：<span class="arithmatex">\(A(4,4)\)</span>是一个19729位的正整数，因此我们可以在实践中认为：</p>
-<p>:warning: 在同时使用了路径压缩和启发式合并之后，并查集每个操作的平均时间为<span class="arithmatex">\(O(\alpha n)\)</span>，其中<span class="arithmatex">\(\alpha\)</span>一般不超过4，时间复杂度依然可以视为n的函数。</p>
+<p>:warning: 在同时使用了路径压缩和启发式合并之后，并查集每个操作的平均时间为<span class="arithmatex">\(O(\alpha (n))\)</span>，其中<span class="arithmatex">\(\alpha\)</span>一般不超过4，时间复杂度依然可以视为n的函数。</p>
 <h3 id="application">Application</h3>
 <h4 id="lotto-649-problem">Lotto 6/49 Problem</h4>
 <p>如何在1-49个数字中随机选取6个数字，而且不会选出相同的数字？可以考虑先在1-49中随机选取一个数字，然后把最后一个元素，即49，复制到被选中的这个数字的位置上面。之后再从1-48中随机选取数字。上述的操作重复六次。</p>
@@ -10431,6 +10527,10 @@ void find_adjacent_rooms(int room[2], int wall, int n) {
     // 实现查找逻辑
 }
 </code></pre>
+<h3 id="painpoint">Painpoint</h3>
+<ul>
+<li>he combination of path compression and union by rank ensures that both the time complexity of the Find and Union operations is nearly constant in practice.</li>
+</ul>
 <h2 id="graph">Graph 图</h2>
 <p>什么是图？这个概念在离散数学中学习过，总的来说：<strong><em>A graph is an abstract data type for storing adjacency relations</em></strong>。图中两点之间的连线，就能够代表一种相邻关联。关于图，有很多的专业术语来描述它的组成部分，图的组成部分经典的有：Vertices, edges, degree and sub-graph, etc（顶点、边、度、子树）。同时我们也可以描述图中的路径：它们大致分为simple paths and cycles。</p>
 <h3 id="undirected-graph">Undirected Graph</h3>
@@ -10706,6 +10806,16 @@ void insert( int i, int j, double w ) {
 <p>二分图，bipartite graph的定义：A bipartite graph is a graph where the vertices V can be divided into two disjoint sets V1 and V2 such that every edge has one vertex in V1 and the other in V2 . 肉眼判断一个图是不是二分图其实是一件困难的事情，那么有没有算法能够帮助我们实现二分图的判断呢？在离散数学中，介绍了两种颜色标色的方式来判断一张图是不是二分图，那么能不能类似地设计流程呢？流程如下：</p>
 <p><img src="img/179.png" alt="image" style="zoom: 80%;" /></p>
 <p>也就是说第一次入栈的用红色，第二次的是蓝色，第三次的是红色，以此类推；然后弹栈的过程中，这个元素周围的元素，应该要么是unvisited，要么是另外一个颜色的，i.e.，不能和自己的颜色相同；一旦发现了反例，那么立马直到这个元素不是二分图。</p>
+<h3 id="painpoint_1">Painpoint</h3>
+<ul>
+<li>Any tree is a bipartite graph.</li>
+<li>DAG(Directed Acyclic Graphs) must have at least one vertex with no incoming edges (source) and at least one vertex to be the sink.</li>
+<li>Undirected Graph <span class="arithmatex">\(G = (V, E)\)</span> is stored in an adjacency matrix <span class="arithmatex">\(A\)</span>. We let <span class="arithmatex">\(A_{i, j}=1\)</span> if and only if there is an edge between <span class="arithmatex">\(V_i\)</span> and <span class="arithmatex">\(V_j\)</span> in G, otherwise <span class="arithmatex">\(A_{i,j}=0\)</span>. We want to know whether there is a path \textbf{with length <span class="arithmatex">\(m\)</span>} between <span class="arithmatex">\(V_i\)</span> and <span class="arithmatex">\(V_j\)</span> by visiting <span class="arithmatex">\(P_{i,j}\)</span>; if <span class="arithmatex">\(P_{i,j}\)</span>=0, then there is no such path. Then P is <span class="arithmatex">\(A^m\)</span>. </li>
+</ul>
+<blockquote>
+<p>这在离散数学中学过</p>
+</blockquote>
+<h2 id="-both-the-time-complexity-of-dfs-and-that-of-bfs-are-thetav-e-visited">- Both the time complexity of DFS and that of BFS are <span class="arithmatex">\(\Theta(|V| + |E|)\)</span>. 这是因为每一个顶点都遍历过，而每一条边都检查过（检查体现在：一个点的邻居是否是visited）</h2>
 
 
 
