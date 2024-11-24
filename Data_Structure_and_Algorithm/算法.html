@@ -3697,6 +3697,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#painpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Painpoint
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5172,6 +5181,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#painpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Painpoint
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5332,6 +5350,46 @@
 <p>上面是经典的贪心交换论证。假设有两个最小的生成树，那么将至少会有两条边，它仅存在于其中的一棵树而不会存在于另外一颗树中。那么假设对于两棵树来说，满足上述条件的边中，权重最小的分别是e e'边。此时将e并到T'树中注意到由于这里是树结构，任意两点之间加边都会形成一条环，因此在加上了e这条边之后，会包含一个环。这个环除了e'还有至少另外一条边e''，而这条边大于等于e'。那么构建T'+e-e''的树，那么权重不大于T'，表明T'不会是最小生成树，形成了矛盾。</p>
 <p>这种<strong><em>贪心思想和贪心论证方式</em></strong>如下图所示：非常的重要！</p>
 <p><img src="img/200.png" alt="image" style="zoom: 67%;" /></p>
+<h3 id="painpoint">Painpoint</h3>
+<ol>
+<li>
+<p>Using <strong>Cayley's formula</strong>, the number of spanning trees for a complete graph <span class="arithmatex">\(K_n\)</span> is <span class="arithmatex">\(n^{n-2}\)</span></p>
+</li>
+<li>
+<p>Kruskal and Prim都能够处理multi-edge的情况</p>
+</li>
+<li>
+<p>After Kruskal's algorithm, we choose <span class="arithmatex">\(m\)</span> edges, then the number of connected components of <span class="arithmatex">\(G\)</span> is <span class="arithmatex">\(|V|-m\)</span>.</p>
+</li>
+<li>
+<p>Kirchhoff's Matrix-Tree Theorem: Algorithm Workflow</p>
+</li>
+</ol>
+<p><strong>Input:</strong>A graph <span class="arithmatex">\( G = (V, E) \)</span> with <span class="arithmatex">\( |V| = n \)</span> vertices and <span class="arithmatex">\( |E| \)</span> edges.</p>
+<p><strong>Steps:</strong></p>
+<p>a.<strong>Construct Matrices:</strong></p>
+<ul>
+<li><strong>Degree Matrix (<span class="arithmatex">\( D \)</span>):</strong>
+  A diagonal matrix where <span class="arithmatex">\( $D[i][i] $\)</span> is the degree of vertex <span class="arithmatex">\( i \)</span>.</li>
+<li><strong>Adjacency Matrix (<span class="arithmatex">\( A \)</span>):</strong>
+  A matrix where <span class="arithmatex">\( $A[i][j] = 1 $\)</span> if there is an edge between <span class="arithmatex">\( i \)</span> and <span class="arithmatex">\( j \)</span>, and <span class="arithmatex">\( 0 \)</span> otherwise.</li>
+</ul>
+<p>b.<strong>Compute the Laplacian Matrix (<span class="arithmatex">\( L \)</span>):</strong>
+<script type="math/tex; mode=display">
+L = D - A
+</script>
+c.<strong>Select a Cofactor (<span class="arithmatex">\(( L^* )\)</span>):</strong></p>
+<ul>
+<li>Remove any one row and the corresponding column from <span class="arithmatex">\( L \)</span>.</li>
+</ul>
+<p>d.<strong>Compute the Determinant:</strong></p>
+<ul>
+<li>Calculate the determinant of <span class="arithmatex">\( $L^*$ \)</span>, which gives the number of spanning trees <span class="arithmatex">\( $\tau(G)$ \)</span>.</li>
+</ul>
+<p><strong>Output:</strong>The number of spanning trees <span class="arithmatex">\( $\tau(G) $\)</span>.</p>
+<ol>
+<li>使用二叉堆优化Prim算法并不是任何时候都是更好的方法，因为如果<span class="arithmatex">\(|E| = \Theta(v^2)\)</span>，那么时间复杂度反而更高了。</li>
+</ol>
 <h2 id="_2">贪心算法</h2>
 <h3 id="coin-changing">引子——Coin changing</h3>
 <p>假设我们要找零钱，那么如何用最少的硬币来支付零钱呢？已知硬币的面值有1 2 5 10 20 50（这里举的例子是欧元）。那么假设我们每一种硬币都有很多很多，那么直接总是加尽可能大的面值的硬币，只要最后钱的金额没有超就可以了。这种策略貌似是有用的。</p>
