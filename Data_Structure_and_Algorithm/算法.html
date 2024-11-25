@@ -5370,9 +5370,9 @@
 <p>a.<strong>Construct Matrices:</strong></p>
 <ul>
 <li><strong>Degree Matrix (<span class="arithmatex">\( D \)</span>):</strong>
-  A diagonal matrix where <span class="arithmatex">\( $D[i][i] $\)</span> is the degree of vertex <span class="arithmatex">\( i \)</span>.</li>
+  A diagonal matrix where <span class="arithmatex">\( $D[i][i]$\)</span> is the degree of vertex <span class="arithmatex">\( i \)</span>.</li>
 <li><strong>Adjacency Matrix (<span class="arithmatex">\( A \)</span>):</strong>
-  A matrix where <span class="arithmatex">\( $A[i][j] = 1 $\)</span> if there is an edge between <span class="arithmatex">\( i \)</span> and <span class="arithmatex">\( j \)</span>, and <span class="arithmatex">\( 0 \)</span> otherwise.</li>
+  A matrix where <span class="arithmatex">\( $A[i][j] = 1$\)</span> if there is an edge between <span class="arithmatex">\( i \)</span> and <span class="arithmatex">\( j \)</span>, and <span class="arithmatex">\( 0 \)</span> otherwise.</li>
 </ul>
 <p>b.<strong>Compute the Laplacian Matrix (<span class="arithmatex">\( L \)</span>):</strong>
 <script type="math/tex; mode=display">
@@ -5389,6 +5389,17 @@ c.<strong>Select a Cofactor (<span class="arithmatex">\(( L^* )\)</span>):</stro
 <p><strong>Output:</strong>The number of spanning trees <span class="arithmatex">\( $\tau(G) $\)</span>.</p>
 <ol>
 <li>使用二叉堆优化Prim算法并不是任何时候都是更好的方法，因为如果<span class="arithmatex">\(|E| = \Theta(v^2)\)</span>，那么时间复杂度反而更高了。</li>
+<li><strong><em>Kruskal使用并查集优化的具体细节</em></strong>：</li>
+</ol>
+<pre><code class="language-bash">首先对所有的点进行建堆。然后对所有的边的权重进行sort。
+然后每条出来一个边，有u v两个顶点，如果：
+Find-Set(u) != Find-Set(v):
+那么就把这条边加进answer里面，并且Union(Find-Set(u), Find-Set(v)) 
+// 惨痛的教训。。。
+</code></pre>
+<ol>
+<li>在undirected connected graph里面，最小的边并不一定会出现在所有的最小生成树里面，因为可能权重不是distinct；同时，undirected connected graph中权重最大的边也可能出现在MST里面，因为可能边长数量恰好就是顶点数量-1（树）。</li>
+<li>如何求出修改一个边长的允许范围，从而不改变MST呢？对于MST里面的边长来说，如果删掉，那么MST就会边长两个联通分量，两个联通分量之间的边长的最小值，就是这个边长的最大值；对于不在MST里面的边长来说，如果加上，那么MST中就会有一个环，这个环除开这条边的所有的边长的最大值，就是这个边长的最小值。</li>
 </ol>
 <h2 id="_2">贪心算法</h2>
 <h3 id="coin-changing">引子——Coin changing</h3>
