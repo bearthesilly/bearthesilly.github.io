@@ -3771,6 +3771,48 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#topological-sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      Topological Sort
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Topological Sort">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#algorithm_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finding-the-critical-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finding the critical path
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -5255,6 +5297,48 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#topological-sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      Topological Sort
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Topological Sort">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#algorithm_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finding-the-critical-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finding the critical path
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -5467,6 +5551,64 @@ Find-Set(u) != Find-Set(v):
 <p><span class="arithmatex">\(Theorem:\)</span> Given any unreduced schedule S, can transform it into a reduced schedule S′ with no more evictions.</p>
 <p><img src="img/220.png" alt="image" style="zoom: 67%;" /></p>
 <p>$Theorem: $ Farthest in Future algorithm is optimal eviction algorithm.</p>
+<h2 id="topological-sort">Topological Sort</h2>
+<h3 id="definition">Definition</h3>
+<p>考虑一种实际情况的任务场景：不同的task之间存在的dependency relationship，即对于一个任务来说，必须要先完成另外一个任务，才能进而完成这个任务。这种依赖关系可以形成一个部分的排序：A partial ordering on a finite number of objects can be represented as a directed acyclic graph (DAG)</p>
+<p>同时，dependency中的环也可能造成问题，比如说完成一个任务的前提任务就是这个任务本身，那么这种关系其实就是不可取的。</p>
+<p>Topological sorting 定义如下：</p>
+<p><img src="img/221.png" alt="image" style="zoom: 67%;" /></p>
+<p>对于任意两个连通的点，那么topological order中的相关子序列，会呈现和path中一样的dependency关系顺序。简化一下就是：如果两个点之间是连通的，那么这两个点在topological order中谁在前，谁就是被依赖的，也就是上图中的定义。下面是一个例子：</p>
+<p><img src="img/222.png" alt="image" style="zoom: 67%;" /></p>
+<blockquote>
+<p>重要！Topological sorting的结果并不是唯一的！</p>
+</blockquote>
+<p><span class="arithmatex">\(Theorem:\)</span> <em>A graph is a DAG if and only if it has a topological sorting</em></p>
+<blockquote>
+<p>这一点直觉上很容易认同，given that：如果一个有向图有topo sorting，但是里面有环，那么将会产生自己依赖于自己的问题，而这种关系是不可取的</p>
+<p>但是实际的证明比较复杂：</p>
+<p><em>lemma1: A DAG always has at least one vertex with in-degree zero (source)</em></p>
+<p><em>lemma2: Any sub-graph of a DAG is a DAG</em></p>
+<p>然后利用两个引理1，按照if and only if的证明逻辑去进行证明</p>
+</blockquote>
+<p><img src="img/223.png" alt="image" style="zoom: 67%;" /></p>
+<p><img src="img/224.png" alt="image" style="zoom: 67%;" /></p>
+<h3 id="algorithm_1">Algorithm</h3>
+<p>算法的idea非常的简单：找到图中的任意一个in-degree为0的节点（source），然后放入topological sorting里面，然后删除掉这个点和与这个点相关的所有的边。这个步骤重复<span class="arithmatex">\(|V|\)</span>次。</p>
+<blockquote>
+<p>从上面的算法就能看出来：topo sorting的顺序当然不是唯一的，因为source可能不止一个</p>
+</blockquote>
+<p>idea is cheap，那么implementation中仍然有许多的细节：为了支持上述的算法，我们应该存储什么信息？以什么方式存储？如何更新信息？这些都是问题：</p>
+<p><img src="img/225.png" alt="image" style="zoom: 67%;" /></p>
+<p>同时，为了找到当前图中哪一个点是source，每一次sort的时候，都要遍历存储了入度的列表来发现谁可以是source，那么这样的话时间复杂的将会是<span class="arithmatex">\(O(|V|^2)\)</span>级别。当然有更好的实现方式：用一个队列来暂时储存那些source点，然后每一次有点的入度降为0那么就将它Push进队列里面。那么关于队列的时间复杂度：最开始遍历入度列表，需要<span class="arithmatex">\(\Theta(|V|)\)</span>；然后对于图中的每一个顶点来说，它们都会被push进队列一次，且被pop off一次，因此所有点的Push pop需要<span class="arithmatex">\(\Theta(|V|)\)</span>。</p>
+<p>最后，关于全部的‘删除顶点及其对应边，从而更新入度信息的时间复杂度’还未进行分析：</p>
+<p><img src="img/226.png" alt="image" style="zoom: 67%;" /></p>
+<p>最后综合一下：Topological sort的算法复杂度为：</p>
+<blockquote>
+<p><span class="arithmatex">\(\Theta(|V|+|E|)\)</span> if we use an adjacency list
+<span class="arithmatex">\(\Theta(|V|^2)\)</span> if we use an adjacency matrix
+Memory requirement: <span class="arithmatex">\(\Theta(|V|)\)</span></p>
+<p>可以看出：如果是稠密图，那么使用adjacency matrix or list都是无所谓；但是如果是稀疏图，那么就是adjacency list更好。</p>
+</blockquote>
+<p>同时值得注意的是：如果在算法运行的过程中，发现所有剩余的顶点，它们的入度都不是0，那么就说明一定有环的出现，就可以停止topo sorting了。换而言之，<strong><em>我们拥有一个<span class="arithmatex">\(\Theta(|V|+|E|)\)</span>的算法来判断图里面是否有环！</em></strong></p>
+<p>总而言之，implementation如下：</p>
+<p><img src="img/228.png" alt="image" style="zoom: 67%;" /></p>
+<blockquote>
+<p>更好的是：如果使用的是数组实现的queue而非STL中的队列，那么最后这个数组储存的就是topological sorting的顺序！</p>
+</blockquote>
+<h2 id="finding-the-critical-path">Finding the critical path</h2>
+<p>考虑一种实际的情景：假如说每一个任务的完成都需要对应的时间呢？如果同一时间段只能干一个任务，毫无疑问，最后的总用时就是所有任务的要求时间总和，而实现任务的顺序是任意的一个topological order。但是如果我们能够同时做多个任务呢？（注意依赖性）首先我们定义：</p>
+<p><em>The critical time of each task is the earliest time that it could be completed after the start of execution</em>
+<em>The critical path is the sequence of tasks determining the minimum time needed to complete the project</em></p>
+<blockquote>
+<p>If a task on the critical path is delayed, the entire project will be delayed</p>
+</blockquote>
+<p>具体如何找到critical path从而求出完成所有任务的最小时间要求如下图：</p>
+<p><img src="img/229.png" alt="image" style="zoom: 67%;" /></p>
+<p><img src="img/230.png" alt="image" style="zoom: 67%;" /></p>
+<p><img src="img/231.png" alt="image" style="zoom: 67%;" /></p>
+<p>逻辑顺序：弹出一个顶点之后，首先更新顶点自己的critical time += task time；然后对于这个顶点的所有的邻居来说，Previous Task指针更新为这个顶点，然后更新入度，最后更新critical time = max{critical time, 顶点的critical time}，并且如果有入度为0的就Push进队列。</p>
+<p>最后根据表格中的task and previous task信息，我们能够创建一个森林来表示平行作业的顺序：</p>
+<p><img src="img/232.png" alt="image" style="zoom: 67%;" /></p>
 
 
 
