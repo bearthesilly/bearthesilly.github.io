@@ -3799,17 +3799,83 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#finding-the-critical-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finding the critical path
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#finding-the-critical-path" class="md-nav__link">
+  <a href="#shortest-path-dijkstra-and-bellman-ford" class="md-nav__link">
     <span class="md-ellipsis">
-      Finding the critical path
+      Shortest Path - Dijkstra and Bellman-Ford
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Shortest Path - Dijkstra and Bellman-Ford">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dijkstras-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dijkstra's Algorithm
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dijkstra's Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strategy_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-and-analysis_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      implementation and analysis
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bellman-ford-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bellman-Ford Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -5325,17 +5391,83 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#finding-the-critical-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finding the critical path
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#finding-the-critical-path" class="md-nav__link">
+  <a href="#shortest-path-dijkstra-and-bellman-ford" class="md-nav__link">
     <span class="md-ellipsis">
-      Finding the critical path
+      Shortest Path - Dijkstra and Bellman-Ford
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Shortest Path - Dijkstra and Bellman-Ford">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dijkstras-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dijkstra's Algorithm
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dijkstra's Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strategy_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-and-analysis_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      implementation and analysis
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bellman-ford-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bellman-Ford Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -5595,7 +5727,7 @@ Memory requirement: <span class="arithmatex">\(\Theta(|V|)\)</span></p>
 <blockquote>
 <p>更好的是：如果使用的是数组实现的queue而非STL中的队列，那么最后这个数组储存的就是topological sorting的顺序！</p>
 </blockquote>
-<h2 id="finding-the-critical-path">Finding the critical path</h2>
+<h3 id="finding-the-critical-path">Finding the critical path</h3>
 <p>考虑一种实际的情景：假如说每一个任务的完成都需要对应的时间呢？如果同一时间段只能干一个任务，毫无疑问，最后的总用时就是所有任务的要求时间总和，而实现任务的顺序是任意的一个topological order。但是如果我们能够同时做多个任务呢？（注意依赖性）首先我们定义：</p>
 <p><em>The critical time of each task is the earliest time that it could be completed after the start of execution</em>
 <em>The critical path is the sequence of tasks determining the minimum time needed to complete the project</em></p>
@@ -5609,6 +5741,53 @@ Memory requirement: <span class="arithmatex">\(\Theta(|V|)\)</span></p>
 <p>逻辑顺序：弹出一个顶点之后，首先更新顶点自己的critical time += task time；然后对于这个顶点的所有的邻居来说，Previous Task指针更新为这个顶点，然后更新入度，最后更新critical time = max{critical time, 顶点的critical time}，并且如果有入度为0的就Push进队列。</p>
 <p>最后根据表格中的task and previous task信息，我们能够创建一个森林来表示平行作业的顺序：</p>
 <p><img src="img/232.png" alt="image" style="zoom: 67%;" /></p>
+<h2 id="shortest-path-dijkstra-and-bellman-ford">Shortest Path - Dijkstra and Bellman-Ford</h2>
+<h3 id="definition_1">Definition</h3>
+<p>给出一个有权有向图，一个经典的问题就是找到两点之间shortest path。</p>
+<blockquote>
+<p>In a weighted graph, the <strong><em>length</em></strong> of a path is the sum of the weights of each of the edges in that path</p>
+</blockquote>
+<p>我们的目标就是找到shortest path并找到它的length。<strong><em>我们将假设所有边长的权重都是一个正数</em></strong>。能够实现这个目标的算法有很多种，如A星算法、Floyd-Warshall等等，但是这里将介绍的是Dijkstra and Bellman-Ford算法</p>
+<h3 id="dijkstras-algorithm">Dijkstra's Algorithm</h3>
+<h4 id="strategy_1">strategy</h4>
+<p>Dijkstra’s algorithm solves the <strong><em>single-source shortest path problem</em></strong>. 这个思维和Prim算法很相似。
+核心策略是：假设你现在在A顶点，我们能够知道所有的adjacent的点（这个信息是adjacency list or matrix给出来的）。假设遇到了下图的情景（只截取了A顶点相关的顶点），那么：</p>
+<ol>
+<li>我们能够断言从A出发到达B的最短的path就是边长AB吗？是可以的，因为假设是通过C D这两个顶点之后再到达B，那么15 and 9 &gt; 5</li>
+<li>但是我们断言从A出发到达C的path最短的就是AC边长吗？当然不可以。因为有可能走B D会遇到权重更短的边，从而实现shortest。如第二章图中的反例</li>
+</ol>
+<p><img src="img/233.png" alt="image" style="zoom: 67%;" /></p>
+<p><img src="img/234.png" alt="image" style="zoom: 67%;" /></p>
+<p>可以看出：我们对于部分的顶点来说，我们能够知道最短的路径（如上图的B），但是还有很多是无法断言的，因此我们规定：前者marked as visited；后者marked as unvisited。能够注意到：我们也可以通过visited vertices知道the shortest distance to each unvisited vertex。</p>
+<p><img src="img/235.png" alt="image" style="zoom: 67%;" /></p>
+<p>因此：</p>
+<p><img src="img/236.png" alt="image" style="zoom: 67%;" /></p>
+<p><img src="img/237.png" alt="image" style="zoom: 67%;" /></p>
+<p>如下图是一个寻找每一个顶点到K点的shortest path：</p>
+<p><img src="img/237.png" alt="image" style="zoom: 67%;" /></p>
+<p><img src="img/238.png" alt="image" style="zoom: 67%;" /></p>
+<p>流程：每一次的操作是从一个点开始，找到所有的邻居，用这个点的distance和邻居们边的数据计算startnode到这些<strong><em>unvisited</em></strong>邻居的距离，然后更新表格中的distance；如果这个数据更小，那么更新distance并且previous改成这次操作的点，否则就distance previous都不修改；最后在表格visited为false的点中找到distance最小的点，作为下一个操作的点。重复操作，直到所有的点是visited。</p>
+<blockquote>
+<p>注意：修改数据的点一定unvisited的。如果一个点最终被定为了visited，它的数据不再修改</p>
+</blockquote>
+<p>利用表格中的previous信息，就能够找到每一个顶点到startnode最短的路径，进而可以生成一颗树。如下图所示。<strong><em>值得注意的是：Dijkstra算法产生的生成树不一定是最小生成树！</em></strong></p>
+<p><img src="img/239.png" alt="image" style="zoom: 67%;" /></p>
+<p>在算法的过程中，如果出现了所有unvisited vertices的距离都是正无穷的情况，那就说明这个图并不是连通的，而目前状态找到是连通分量里面所有的点到起始点的最短路径。而如果只想找到两个点之间的最短路径，那么就选择其中的一个点进行算法，然后当另外一个点被标记为visited的时候，算法停止。而且如果图是有向图，那么这个算法依然是合理的。</p>
+<h4 id="implementation-and-analysis_1">implementation and analysis</h4>
+<p><img src="img/240.png" alt="image" style="zoom: 67%;" /></p>
+<p><img src="img/241.png" alt="image" style="zoom: 67%;" /></p>
+<p><img src="img/242.png" alt="image" style="zoom: 80%;" /></p>
+<blockquote>
+<p>Reference: oi.wiki</p>
+</blockquote>
+<p>值得注意的是，如果是稠密图，即<span class="arithmatex">\(|E| = \Theta(V^2)\)</span>，则暴力算法反而是更优的。这一点在最小生成树的时间复杂度分析中也是如此。但是斐波那契堆的使用可以保证无论是稠密图还是稀疏图，时间复杂度<span class="arithmatex">\(\Theta(|E|+|V|ln(|V|))\)</span>都不是更差的。</p>
+<h3 id="bellman-ford-algorithm">Bellman-Ford Algorithm</h3>
+<p>如果有些边长是负数的话，而且只要图里面的环都不含负数边，那么Bellman-Ford就可以找到最短的距离。值得注意的是，这个算法比Dijkstra's Alrogithm更慢，但是这个算法可以处理负数权重的边长，但是Dijkstra做不到。</p>
+<p><img src="img/243.png" alt="image" style="zoom: 80%;" /></p>
+<blockquote>
+<p>Reference:oi.wiki</p>
+</blockquote>
+<p><img src="img/244.jpg" alt="image" style="zoom: 80%;" /></p>
 
 
 
