@@ -10511,7 +10511,7 @@ void find_adjacent_rooms(int room[2], int wall, int n) {
 </code></pre>
 <h3 id="painpoint">Painpoint</h3>
 <ul>
-<li>he combination of path compression and union by rank ensures that both the time complexity of the Find and Union operations is nearly constant in practice.</li>
+<li>The combination of path compression and union by rank ensures that both the time complexity of the Find and Union operations is nearly constant in practice.</li>
 </ul>
 <h2 id="graph">Graph 图</h2>
 <p>什么是图？这个概念在离散数学中学习过，总的来说：<strong><em>A graph is an abstract data type for storing adjacency relations</em></strong>。图中两点之间的连线，就能够代表一种相邻关联。关于图，有很多的专业术语来描述它的组成部分，图的组成部分经典的有：Vertices, edges, degree and sub-graph, etc（顶点、边、度、子树）。同时我们也可以描述图中的路径：它们大致分为simple paths and cycles。</p>
@@ -10758,7 +10758,10 @@ void insert( int i, int j, double w ) {
 <h4 id="depth-first-traversal">Depth First Traversal</h4>
 <p><img src="img/171.png" alt="image" style="zoom: 80%;" /></p>
 <p><img src="img/172.png" alt="image" style="zoom: 80%;" /></p>
-<p>选择一个顶点入栈并标记为visited；然后如果栈不是空的话，那么如果栈顶的顶点有unvisited邻居，那么这个邻居定点入栈，并被标记为visited；而如果栈顶顶点的所有邻居都是visited的话，那么这个元素就会被弹出。顶点依次入栈的顺序，就是DFT的顺序。</p>
+<p>选择一个顶点入栈并标记为visited；然后如果栈不是空的话，那么如果栈顶的顶点有unvisited邻居，那么<strong><em>一个</em></strong>这样的邻居顶点入栈，并被标记为visited；而如果栈顶顶点的所有邻居都是visited的话，那么这个元素就会被弹出。顶点依次入栈的顺序，就是DFT的顺序。</p>
+<blockquote>
+<p>之前在介绍<em>树</em>的时候，里面提到的DFT是将栈顶节点的所有孩子都放入栈中。树的DFT和任意一张图的DFT一定要分开来！！</p>
+</blockquote>
 <h4 id="applications">Applications</h4>
 <h5 id="connectedness">Connectedness</h5>
 <p>我们可以使用图的遍历来帮助我们判断两个顶点之间是否是相连的（i.e.，是否两点之间有路径），以及帮助我们把顶点都分成connected sub-graphs。</p>

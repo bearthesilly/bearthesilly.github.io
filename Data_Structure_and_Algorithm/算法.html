@@ -3808,6 +3808,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#painpoint_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Painpoint
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3869,6 +3878,15 @@
   <a href="#bellman-ford-algorithm" class="md-nav__link">
     <span class="md-ellipsis">
       Bellman-Ford Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#painpoint_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Painpoint
     </span>
   </a>
   
@@ -5400,6 +5418,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#painpoint_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Painpoint
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5461,6 +5488,15 @@
   <a href="#bellman-ford-algorithm" class="md-nav__link">
     <span class="md-ellipsis">
       Bellman-Ford Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#painpoint_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Painpoint
     </span>
   </a>
   
@@ -5618,6 +5654,9 @@ Find-Set(u) != Find-Set(v):
 <li>如何求出修改一个边长的允许范围，从而不改变MST呢？对于MST里面的边长来说，如果删掉，那么MST就会边长两个联通分量，两个联通分量之间的边长的最小值，就是这个边长的最大值；对于不在MST里面的边长来说，如果加上，那么MST中就会有一个环，这个环除开这条边的所有的边长的最大值，就是这个边长的最小值。</li>
 </ol>
 <h2 id="_2">贪心算法</h2>
+<blockquote>
+<p>Greedy algorithms select the locally optimal choice at each step, hoping that these local choices will lead to a global optimum.</p>
+</blockquote>
 <h3 id="coin-changing">引子——Coin changing</h3>
 <p>假设我们要找零钱，那么如何用最少的硬币来支付零钱呢？已知硬币的面值有1 2 5 10 20 50（这里举的例子是欧元）。那么假设我们每一种硬币都有很多很多，那么直接总是加尽可能大的面值的硬币，只要最后钱的金额没有超就可以了。这种策略貌似是有用的。</p>
 <p>但是这种策略并不是任何情况都奏效：假如说硬币的面值为1 4 9 16 25 36 49呢（平方关系）。假如说要找72块钱，那么直接两个36不就好了吗？但是按照之前的策略，<span class="arithmatex">\(72=49+16+4+1+1+1\)</span>，而这显然不是最优解。很明显，我们的算法并没有那么的简单，这里我们需要使用到<strong><em>贪心算法</em></strong>：</p>
@@ -5716,9 +5755,7 @@ Find-Set(u) != Find-Set(v):
 <p><img src="img/226.png" alt="image" style="zoom: 67%;" /></p>
 <p>最后综合一下：Topological sort的算法复杂度为：</p>
 <blockquote>
-<p><span class="arithmatex">\(\Theta(|V|+|E|)\)</span> if we use an adjacency list
-<span class="arithmatex">\(\Theta(|V|^2)\)</span> if we use an adjacency matrix
-Memory requirement: <span class="arithmatex">\(\Theta(|V|)\)</span></p>
+<p><span class="arithmatex">\(\Theta(|V|+|E|)\)</span> if we use an adjacency list; <span class="arithmatex">\(\Theta(|V|^2)\)</span> if we use an adjacency matrix; Memory requirement: <span class="arithmatex">\(\Theta(|V|)\)</span></p>
 <p>可以看出：如果是稠密图，那么使用adjacency matrix or list都是无所谓；但是如果是稀疏图，那么就是adjacency list更好。</p>
 </blockquote>
 <p>同时值得注意的是：如果在算法运行的过程中，发现所有剩余的顶点，它们的入度都不是0，那么就说明一定有环的出现，就可以停止topo sorting了。换而言之，<strong><em>我们拥有一个<span class="arithmatex">\(\Theta(|V|+|E|)\)</span>的算法来判断图里面是否有环！</em></strong></p>
@@ -5738,9 +5775,17 @@ Memory requirement: <span class="arithmatex">\(\Theta(|V|)\)</span></p>
 <p><img src="img/229.png" alt="image" style="zoom: 67%;" /></p>
 <p><img src="img/230.png" alt="image" style="zoom: 67%;" /></p>
 <p><img src="img/231.png" alt="image" style="zoom: 67%;" /></p>
-<p>逻辑顺序：弹出一个顶点之后，首先更新顶点自己的critical time += task time；然后对于这个顶点的所有的邻居来说，Previous Task指针更新为这个顶点，然后更新入度，最后更新critical time = max{critical time, 顶点的critical time}，并且如果有入度为0的就Push进队列。</p>
+<p>逻辑顺序：弹出一个顶点之后，首先更新顶点自己的critical time += task time；然后对于这个顶点的所有的邻居来说，更新入度，如果这个邻居的critical time比这个顶点的critical time<strong><em>小</em></strong>，那么Previous Task指针更新为这个顶点，更新critical time = 顶点的critical time，并且如果有入度为0的就Push进队列。</p>
+<p>该算法的时间复杂度和topological sort一样，都是<span class="arithmatex">\(\Theta(|V|+|E|)\)</span>!</p>
 <p>最后根据表格中的task and previous task信息，我们能够创建一个森林来表示平行作业的顺序：</p>
 <p><img src="img/232.png" alt="image" style="zoom: 67%;" /></p>
+<h3 id="painpoint_1">Painpoint</h3>
+<ol>
+<li>A critical path in a DAG is a path from the source to the sink with the maximum total weights</li>
+<li>Any directed tree has a topological sorting, because they are DAG as well. </li>
+<li>A DAG with all different weighted edges <strong><em>may have more than one</em></strong> critical path.</li>
+<li>A directed graph with n vertices and n-1 edges <strong><em>may not</em></strong> have a topological sorting. Consider a traingle plus one edge, with 5 nodes in total and 4 edges in total. </li>
+</ol>
 <h2 id="shortest-path-dijkstra-and-bellman-ford">Shortest Path - Dijkstra and Bellman-Ford</h2>
 <h3 id="definition_1">Definition</h3>
 <p>给出一个有权有向图，一个经典的问题就是找到两点之间shortest path。</p>
@@ -5788,6 +5833,22 @@ Memory requirement: <span class="arithmatex">\(\Theta(|V|)\)</span></p>
 <p>Reference:oi.wiki</p>
 </blockquote>
 <p><img src="img/244.jpg" alt="image" style="zoom: 80%;" /></p>
+<h3 id="painpoint_2">Painpoint</h3>
+<ol>
+<li>Dijkstra算法产生的生成树不一定是最小生成树</li>
+<li>暴力Dijkstra使用adjacency list or matrix不影响最终的时间复杂度，都是<span class="arithmatex">\(\Theta(n^2)\)</span></li>
+<li>如果是稠密图，暴力Dijkstra反而比使用二叉堆或优先队列的<span class="arithmatex">\(\Theta(|E|log|V|)\)</span>更好；斐波那契堆方法是最优的</li>
+<li>如果是有向图，那么算法依然不需要改变</li>
+<li>Bellman-Ford算法比Dijkstra慢</li>
+<li>Dijkstra不是在所有的DAG中都是万能的，如果有负数边长的存在就用不了</li>
+<li>Dijkstra暴力+使用adjacency list的时间复杂度为: <span class="arithmatex">\(O(|V|^2+|E|)\)</span></li>
+<li>Dijkstra’s algorithm could only find the shortest path on non-negative weighted graph</li>
+<li>通过修改 Dijkstra 算法，在所有最短路径中选择边数最少的路径：给所有的边长都加上<span class="arithmatex">\(\epsilon\)</span>，其中<span class="arithmatex">\(\epsilon &lt; \delta/|E|\)</span>，然后运行Dijkstra算法。这是因为在两条路径拥有相同权重的同时，边长数量较少的路径将有较小的<span class="arithmatex">\(\epsilon\)</span>综合。</li>
+<li>If we add a constraint that each edge can only appear at most once in the shortest path, Dijkstra’s algorithm still works for positive-weighted graphs.</li>
+<li>‘Dijkstra’s algorithm cannot work for graph with both positive and negative weights but can work for graph whose weights are all negative’ 这个说法是错误的！</li>
+<li>Bellman-Ford algorithm can be extended to find the negative circle for directed / undirected graphs with negative weights.</li>
+<li>Dijkstra算法可以处理有环的有向图，只不过是不能处理包含了负数权重边长的图。</li>
+</ol>
 
 
 
