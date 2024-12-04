@@ -3823,13 +3823,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#shortest-path-dijkstra-and-bellman-ford" class="md-nav__link">
+  <a href="#shortest-path" class="md-nav__link">
     <span class="md-ellipsis">
-      Shortest Path - Dijkstra and Bellman-Ford
+      Shortest Path
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Shortest Path - Dijkstra and Bellman-Ford">
+    <nav class="md-nav" aria-label="Shortest Path">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3880,6 +3880,57 @@
       Bellman-Ford Algorithm
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      A* search
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A* search">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#background" class="md-nav__link">
+    <span class="md-ellipsis">
+      Background
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strategy_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Time Complexity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-for-n-puzzle-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      A* for N puzzle problem
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -5433,13 +5484,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#shortest-path-dijkstra-and-bellman-ford" class="md-nav__link">
+  <a href="#shortest-path" class="md-nav__link">
     <span class="md-ellipsis">
-      Shortest Path - Dijkstra and Bellman-Ford
+      Shortest Path
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Shortest Path - Dijkstra and Bellman-Ford">
+    <nav class="md-nav" aria-label="Shortest Path">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -5490,6 +5541,57 @@
       Bellman-Ford Algorithm
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      A* search
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A* search">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#background" class="md-nav__link">
+    <span class="md-ellipsis">
+      Background
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strategy_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Time Complexity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-for-n-puzzle-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      A* for N puzzle problem
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -5786,13 +5888,13 @@ Find-Set(u) != Find-Set(v):
 <li>A DAG with all different weighted edges <strong><em>may have more than one</em></strong> critical path.</li>
 <li>A directed graph with n vertices and n-1 edges <strong><em>may not</em></strong> have a topological sorting. Consider a traingle plus one edge, with 5 nodes in total and 4 edges in total. </li>
 </ol>
-<h2 id="shortest-path-dijkstra-and-bellman-ford">Shortest Path - Dijkstra and Bellman-Ford</h2>
+<h2 id="shortest-path">Shortest Path</h2>
 <h3 id="definition_1">Definition</h3>
 <p>给出一个有权有向图，一个经典的问题就是找到两点之间shortest path。</p>
 <blockquote>
 <p>In a weighted graph, the <strong><em>length</em></strong> of a path is the sum of the weights of each of the edges in that path</p>
 </blockquote>
-<p>我们的目标就是找到shortest path并找到它的length。<strong><em>我们将假设所有边长的权重都是一个正数</em></strong>。能够实现这个目标的算法有很多种，如A星算法、Floyd-Warshall等等，但是这里将介绍的是Dijkstra and Bellman-Ford算法</p>
+<p>我们的目标就是找到shortest path并找到它的length。<strong><em>我们将假设所有边长的权重都是一个正数</em></strong>。能够实现这个目标的算法有很多种，如A星算法、Dijkstra、Bellman-Ford、backtracking算法。</p>
 <h3 id="dijkstras-algorithm">Dijkstra's Algorithm</h3>
 <h4 id="strategy_1">strategy</h4>
 <p>Dijkstra’s algorithm solves the <strong><em>single-source shortest path problem</em></strong>. 这个思维和Prim算法很相似。
@@ -5833,6 +5935,59 @@ Find-Set(u) != Find-Set(v):
 <p>Reference:oi.wiki</p>
 </blockquote>
 <p><img src="img/244.jpg" alt="image" style="zoom: 80%;" /></p>
+<h3 id="a-search">A* search</h3>
+<h4 id="background">Background</h4>
+<p>A星算法解决的是<strong><em>single-source</em></strong>图中的最短路径问题，和Dijkstra算法较为类似。假设我们对于任意两个顶点之间的路径的距离都能有一个<strong><em>heuristic lower bound distance</em></strong>，这就和地图上直接两点之间肯定直线最短，因此路径肯定至少比这条两点间的线段长。</p>
+<p>考虑从A出发到达B的情景：假设A B两点之间的直线距离是53，那么说明AB路径至少是53；又假设我们已知A地到C地的<em>最短路径</em>是28，而C B两点之间的直线距离是32，那么就说明：延长A C路径从而抵达B的路径的距离至少是60。我们用<span class="arithmatex">\(w(C)\)</span>记号来表示：在‘从A出发沿着某条路径到达C点，并且将继续延伸从而达到B点’的情境约束下，A B两点之间的可能的最小路径距离。即：
+<script type="math/tex; mode=display">
+w(A) = d(A, A) + h(A, B) = 0+53 = 53; \\
+w(C) = d(A, C) + h(C, B) = 28 + 32 = 60; \\
+\mbox{where d stands for distance and h stands for heuristic}
+</script>
+</p>
+<h4 id="strategy_2">Strategy</h4>
+<p><img alt="image" src="img/244.png" /></p>
+<p>接着，再迭代的过程中，可以考虑Tree Search的角度：</p>
+<p><img alt="image" src="img/245.png" /></p>
+<p>也可以考虑Graph Search的角度：</p>
+<p><img alt="image" src="img/246.png" /></p>
+<p>在实现的过程中：<strong><em>The A star search algorithm directs its search towards the destination, whereas Dijkstra’s algorithm radiates out from the initial vertex.</em></strong> </p>
+<p>但是在上述的实现过程中，我们发现：这个heuristic lower bound信息保不保熟？如果是地图上面寻找最短路径，尚可保熟，<strong><em>因为Euclidean距离不会骗人</em></strong>。</p>
+<blockquote>
+<p>The path the crow flies is always shorter than the road the wolf runs.</p>
+</blockquote>
+<p>但是如果是更为广泛的情景呢？ A星算法真的能总是给出最优解吗？考虑下面的场景：</p>
+<p><img alt="image" src="img/247.png" /></p>
+<blockquote>
+<p>Reference: Andrew Moore, Carnegie Mellon University</p>
+</blockquote>
+<p>在上面的场景中，<span class="arithmatex">\(h(B,C)\)</span>过度预计了BC两节点之间的真实距离，从而导致最终算法没有倾向于ABC的路径。那么什么样的heuristics是非常合适的呢？</p>
+<p>第一种：<span class="arithmatex">\(d(u,v)\)</span>代表u v两点之间的最短路径距离，那么如果<span class="arithmatex">\(h(u,v) \leq d(u,v)\)</span>，那么<span class="arithmatex">\(h(u,v)\)</span>就称为admissible。换而言之，这样的heuristic is optimistic or a lower bound on the distance。从这个观点重新看Euclidean distance：地图上两点之间的欧几里得距离一定是最短的，明显<span class="arithmatex">\(h(u,v) \leq d(u,v)\)</span>。那么这样的heuristic表现如何呢？这些条件表现很好！有以下的定理：</p>
+<p><span class="arithmatex">\(Theorem:\)</span> <strong>If h(n) is admissible, A star algorithm using TREE-SEARCH is optimal.</strong> </p>
+<p>第二种：我们定义：A heuristic is consistent if for every node n, every successor n' of n generated by any action a, we have: <span class="arithmatex">\(h(n) \leq c(n,a,n') + h(n')\)</span>。那么因此：<span class="arithmatex">\(w(n')\geq w(n)\)</span>，i.e.，w(n)沿着路径不会下降。这样的heuristic也表现的很好，有以下的定理：</p>
+<p><span class="arithmatex">\(Theorem:\)</span> <strong>If h(n) is consistent, A star algorithm using GRAPH-SEARCH is optimal</strong>.</p>
+<p><img alt="image" src="img/248.png" /></p>
+<h4 id="time-complexity">Time Complexity</h4>
+<p><img alt="image" src="img/249.png" /></p>
+<h4 id="a-for-n-puzzle-problem">A* for N puzzle problem</h4>
+<p><img src="img/250.png" alt="image" style="zoom:50%;" /></p>
+<p><img src="img/251.png" alt="image" style="zoom:50%;" /></p>
+<p>对于3×3和4×4的puzzle，分别共有9！和16！种状态，每走一步就会完成一次状态的转化。因此可以用下面的状态节点关系图来表示solution：</p>
+<blockquote>
+<p>注意，这个图不是树，因为可以通过一系列的操作回到原来的状态</p>
+</blockquote>
+<p><img src="img/252.png" alt="image" style="zoom: 67%;" /></p>
+<p><img src="img/253.png" alt="image" style="zoom: 67%;" /></p>
+<p>那么问题就转化成了：在上述的状态节点关系图中找到固定两个状态之间的最短路径（所有边的权重都是1）。那么可想而知的是，散发式的Dijkstra算法将会非常的慢。那么倘若使用A星算法，那么这个heuristic lower bound应该如何定义呢？
+我们可以考虑三种距离：Discrete Distance, Hamming Distance and Manhattan Distance。</p>
+<p><img src="img/254.png" alt="image" style="zoom: 80%;" /></p>
+<blockquote>
+<p>Hamming heuristic是一种简单的启发式函数，它通过计算当前状态中方块位置与目标状态中相应方块位置不匹配的数量来评估当前状态与目标状态的距离。这种启发式函数对于指导A星算法在搜索树中选择最有希望的路径非常有效。</p>
+<p>曼哈顿距离（Manhattan Distance）启发式函数是一种常用的估计函数。它通过计算每个方块从当前位置到目标位置在水平和垂直方向上的距离之和来评估当前状态与目标状态之间的距离。具体来说，对于每个方块，曼哈顿距离是其当前位置与目标位置在行和列上差异的绝对值之和。</p>
+<p>Reference: wiki.moonshot.cn</p>
+</blockquote>
+<p><img src="img/255.png" alt="image" style="zoom: 80%;" /></p>
+<p>如果使用的是discrete distance，那么相当于是Dijkstra算法，表现依然很差；如果使用的是Hamming Distance，那么表现也并没有改善很多（only a small change），仅仅只在当前状态和目标状态已经十分接近的时候才会表现良好；<strong><em>而Manhattan Distance能够使得A星算法拥有很好的表现</em></strong>。上述的内容很好地、感性地解释了'heuristic,启发式'的真正含义是什么。</p>
 <h3 id="painpoint_2">Painpoint</h3>
 <ol>
 <li>Dijkstra算法产生的生成树不一定是最小生成树</li>
