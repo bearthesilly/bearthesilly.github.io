@@ -3935,6 +3935,48 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#floyd-warshall" class="md-nav__link">
+    <span class="md-ellipsis">
+      Floyd-Warshall
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Floyd-Warshall">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strategy_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-the-shortest-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is the shortest path?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#which-vertices-are-connected" class="md-nav__link">
+    <span class="md-ellipsis">
+      Which vertices are connected?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#painpoint_2" class="md-nav__link">
     <span class="md-ellipsis">
       Painpoint
@@ -5596,6 +5638,48 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#floyd-warshall" class="md-nav__link">
+    <span class="md-ellipsis">
+      Floyd-Warshall
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Floyd-Warshall">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strategy_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-the-shortest-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is the shortest path?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#which-vertices-are-connected" class="md-nav__link">
+    <span class="md-ellipsis">
+      Which vertices are connected?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#painpoint_2" class="md-nav__link">
     <span class="md-ellipsis">
       Painpoint
@@ -5894,7 +5978,7 @@ Find-Set(u) != Find-Set(v):
 <blockquote>
 <p>In a weighted graph, the <strong><em>length</em></strong> of a path is the sum of the weights of each of the edges in that path</p>
 </blockquote>
-<p>我们的目标就是找到shortest path并找到它的length。<strong><em>我们将假设所有边长的权重都是一个正数</em></strong>。能够实现这个目标的算法有很多种，如A星算法、Dijkstra、Bellman-Ford、backtracking算法。</p>
+<p>我们的目标就是找到shortest path并找到它的length。<strong><em>我们将假设所有边长的权重都是一个正数</em></strong>。能够实现这个目标的算法有很多种，如A星算法、Dijkstra、Bellman-Ford、Floyd-Warshall算法。</p>
 <h3 id="dijkstras-algorithm">Dijkstra's Algorithm</h3>
 <h4 id="strategy_1">strategy</h4>
 <p>Dijkstra’s algorithm solves the <strong><em>single-source shortest path problem</em></strong>. 这个思维和Prim算法很相似。
@@ -5988,6 +6072,57 @@ w(C) = d(A, C) + h(C, B) = 28 + 32 = 60; \\
 </blockquote>
 <p><img src="img/255.png" alt="image" style="zoom: 80%;" /></p>
 <p>如果使用的是discrete distance，那么相当于是Dijkstra算法，表现依然很差；如果使用的是Hamming Distance，那么表现也并没有改善很多（only a small change），仅仅只在当前状态和目标状态已经十分接近的时候才会表现良好；<strong><em>而Manhattan Distance能够使得A星算法拥有很好的表现</em></strong>。上述的内容很好地、感性地解释了'heuristic,启发式'的真正含义是什么。</p>
+<h3 id="floyd-warshall">Floyd-Warshall</h3>
+<p>Dijkstra算法找到一个顶点到另外所有顶点的最短路径所需要的时间复杂度是：<span class="arithmatex">\(O(|E|ln|V|)\)</span>。也就也为着，找到所有的顶点对之间的最短路径，需要的时间复杂度是<span class="arithmatex">\(O(|V||E|ln|V|)\)</span>。在稠密图中，最坏的情况便是<span class="arithmatex">\(O(|V|^3ln|V|)\)</span>的时间复杂度。有没有更好的算法呢？Floyd-Warshall算法应运而生：It works with positive or negative weights with no negative cycle. </p>
+<h4 id="strategy_3">Strategy</h4>
+<p>考虑两点之间的距离关系：如果两个点其实是一个点，那么距离就是0；如果两个点不同，而且之间有一条边，那么距离就是这条边长的权重；如果两个不同的点，而且之间没有边长，那么距离就是无穷。明显，在上述的考虑中，我们<strong><em>只考虑了直接连接两个顶点的边长</em></strong>。</p>
+<p><img src="img/256.png" alt="image" style="zoom: 67%;" /></p>
+<p>但是两点之间的最短距离用上述的定义明显是不妥的。如上图所示，虽然我们可能知道67 53两点之间的边长的权重，但是我们也可能会怀疑：经过了其他点的两点之间的路径，会不会比这条边长的权重更短？</p>
+<p>因此在上述的情境中，我们定义<span class="arithmatex">\(d_{i,j}^{(1)}=min\{d_{i,j}^{(0)}, d_{i,1}^{(0)}+ d_{1,j}^{(0)}\}\)</span>. 同时我们定义：<span class="arithmatex">\(d_{i,j}^{(k-1)}\)</span>是只允许中途访问顶点<span class="arithmatex">\(v_1,...,v_{k-1}\)</span>的最短距离。</p>
+<p><img src="img/257.png" alt="image" style="zoom: 67%;" /></p>
+<p>假设现在我们已经知道了所有顶点对的<span class="arithmatex">\(d_{i,j}^{(k-1)}\)</span>，那么对于<span class="arithmatex">\(v_i,v_j\)</span>这两个顶点来说，假如说出现了一个新的定点<span class="arithmatex">\(v_k\)</span>，那么应该如何更新i j两点的<span class="arithmatex">\(d_{i,j}^{(k)}\)</span>？核心的观察是：两点之间的最短路径一定只有两个可能：一种是包含了顶点<span class="arithmatex">\(v_k\)</span>，一种是不包含。如果包含，那么可想而知的是，i到k与k到j的路径的距离都应该是最短的，i.e.，<span class="arithmatex">\(d_{i,k}^{(k-1)} \&amp; d_{k,j}^{(k-1)}\)</span>，而这些信息我们都应该是知道的。因此我们有了更新<span class="arithmatex">\(d_{i,j}^{(k)}\)</span>的逻辑：
+<script type="math/tex; mode=display">
+d_{i,j}^{(k)}=min\{d_{i,j}^{(k-1)}, d_{i,k}^{(k-1)} + d_{k,j}^{(k-1)}\}
+</script>
+而用这种逻辑就能够更新所有的顶点对的<span class="arithmatex">\(d_{i,j}^{(k)}\)</span>。而k可以从0一直遍历到顶点数量。因此c++示意代码如下：</p>
+<pre><code class="language-c++">for ( int k = 0; k &lt; num_vertices; ++k ) {
+    for ( int i = 0; i &lt; num_vertices; ++i ) {
+        for ( int j = 0; j &lt; num_vertices; ++j ) {
+            d[i][j] = std::min( d[i][j], d[i][k] + d[k][j] );
+        }
+    }
+}
+</code></pre>
+<p>可以看出，算法的复杂度是<span class="arithmatex">\(\Theta(|V|^3)\)</span>。可以通过下列的一系列图管中窥豹：</p>
+<p><img src="img/258.png" alt="image" style="zoom: 67%;" /></p>
+<p><img src="img/259.png" alt="image" style="zoom: 67%;" /></p>
+<p><img src="img/260.png" alt="image" style="zoom: 67%;" /></p>
+<p><img src="img/261.png" alt="image" style="zoom: 67%;" /></p>
+<p><img src="img/262.png" alt="image" style="zoom: 67%;" /></p>
+<p>可见，在使用adjacency matrix的时候，在经过的点为矩阵中的第i行第i列的时候，挑出这两条线上的数据；然后意义比对矩阵中其他数据和投影在两条线上的数据的和，如果和更小，那就更新。比如说k=3的时候，对应的是矩阵中第三行第三列的数据，那么例如对1.032来说，位置投影到两条线上得到的数据是0.245,0.656，因此比较1.032与0.245+0.656.</p>
+<h4 id="what-is-the-shortest-path">What is the shortest path?</h4>
+<p>还有一个问题：距离倒是更新了，算法中如何储存路径的节点信息？</p>
+<p><img src="img/263.png" alt="image" style="zoom: 67%;" /></p>
+<pre><code class="language-c++">for ( int k = 0; k &lt; num_vertices; ++k ) {
+    for ( int i = 0; i &lt; num_vertices; ++i ) {
+        for ( int j = 0; j &lt; num_vertices; ++j ) {
+            if ( d[i][j] &gt; d[i][k] + d[k][j] ) {
+                p[i][j] = p[i][k];
+                d[i][j] = d[i][k] + d[k][j];
+            }
+        }
+    }
+}
+</code></pre>
+<p><img src="img/264.png" alt="image" style="zoom: 67%;" /></p>
+<p><img src="img/265.png" alt="image" style="zoom: 67%;" /></p>
+<p>初始化连接顺序矩阵式之后，在distance更新的过程中，如果说这一轮经过的是i顶点，那么在修改distance的连接顺序矩阵中对应位置改成i即可。</p>
+<p><img src="img/266.png" alt="image" style="zoom: 67%;" /></p>
+<p>可以观察到，在最后的结果中，如果<span class="arithmatex">\(p_{i,j}=j\)</span>，那么就说明这条相邻的边就是shortest path的组成部分。那么如何判断路径呢？假设<span class="arithmatex">\(p_{i,j} = v_1,p_{v_1,j} = v_2,...,p_{v_t,j} = j\)</span>，那么路径就是<span class="arithmatex">\((i,v_1,v_2,...,v_t,j)\)</span>。</p>
+<p><img src="img/267.png" alt="image" style="zoom: 67%;" /></p>
+<p><img src="img/268.png" alt="image" style="zoom: 67%;" /></p>
+<h4 id="which-vertices-are-connected">Which vertices are connected?</h4>
+<p>最后，如果我们只关心两点之间是否有路径存在呢？那么我们可以仍然利用Floyd-Warshall算法。维护一个连接信息的矩阵，一开始初始化的时候是<span class="arithmatex">\(tc[i][j]=true\)</span>如果有i指向j的边。那么随着之后的Floyd-Warshall算法，如果对应位置的distance更新，但是tc矩阵中对应的是false，那么就更新为true。通过上述的操作，我们就能找到strong connected component。</p>
 <h3 id="painpoint_2">Painpoint</h3>
 <ol>
 <li>Dijkstra算法产生的生成树不一定是最小生成树</li>
