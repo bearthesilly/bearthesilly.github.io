@@ -6128,24 +6128,23 @@ d_{i,j}^{(k)}=min\{d_{i,j}^{(k-1)}, d_{i,k}^{(k-1)} + d_{k,j}^{(k-1)}\}
 <li>Dijkstra算法产生的生成树不一定是最小生成树</li>
 <li>暴力Dijkstra使用adjacency list or matrix不影响最终的时间复杂度，都是<span class="arithmatex">\(\Theta(n^2)\)</span></li>
 <li>如果是稠密图，暴力Dijkstra反而比使用二叉堆或优先队列的<span class="arithmatex">\(\Theta(|E|log|V|)\)</span>更好；斐波那契堆方法是最优的</li>
-<li>如果是有向图，那么算法依然不需要改变</li>
+<li>如果是有向图，那么Dijkstra算法依然不需要改变</li>
 <li>Bellman-Ford算法比Dijkstra慢</li>
 <li>Dijkstra不是在所有的DAG中都是万能的，如果有负数边长的存在就用不了</li>
 <li>Dijkstra暴力+使用adjacency list的时间复杂度为: <span class="arithmatex">\(O(|V|^2+|E|)\)</span>(注意Dijkstra时间复杂度的分析都是O而不是<span class="arithmatex">\(\Theta\)</span>)</li>
 <li>Dijkstra’s algorithm could only find the shortest path on non-negative weighted graph</li>
-<li>通过修改 Dijkstra 算法，在所有最短路径中选择边数最少的路径：给所有的边长都加上<span class="arithmatex">\(\epsilon\)</span>，其中<span class="arithmatex">\(\epsilon &lt; \delta/|E|\)</span>，然后运行Dijkstra算法。这是因为在两条路径拥有相同权重的同时，边长数量较少的路径将有较小的<span class="arithmatex">\(\epsilon\)</span>综合。</li>
+<li>通过修改 Dijkstra 算法，在所有最短路径中选择边数最少的路径：给所有的边长都加上<span class="arithmatex">\(\epsilon\)</span>，其中<span class="arithmatex">\(\epsilon &lt; \delta/|E|\)</span>，然后运行Dijkstra算法。这是因为在两条路径拥有相同权重的同时，边长数量较少的路径将有较小的<span class="arithmatex">\(\epsilon\)</span>综合。其中<span class="arithmatex">\(\delta\)</span>代表的是所有边长的最小值。</li>
 <li>If we add a constraint that each edge can only appear at most once in the shortest path, Dijkstra’s algorithm still works for positive-weighted graphs.</li>
 <li>‘Dijkstra’s algorithm cannot work for graph with both positive and negative weights but can work for graph whose weights are all negative’ 这个说法是错误的！</li>
 <li>Bellman-Ford algorithm can be extended to find the negative circle for directed / undirected graphs with negative weights.</li>
 <li>Dijkstra算法可以处理有环的有向图，只不过是不能处理包含了负数权重边长的图。</li>
-<li>Dijkstra algorithm can be viewed as a special case of the A<em> Graph Search algorithm where the heuristic function from any vertex <span class="arithmatex">\(u\)</span> to the terminal <span class="arithmatex">\(z\)</span> is <span class="arithmatex">\(h(u, z)=0\)</span>. Furthermore, if we use heuristic function <span class="arithmatex">\(h(u) = c\)</span> for any <span class="arithmatex">\(u \in V\)</span> where c is a pos itive constant, then the A</em> search algorithm will be the same with Dijkstra’s algorithm.</li>
+<li>Dijkstra algorithm can be viewed as a special case of the A<em> Graph Search algorithm where the heuristic function from any vertex <span class="arithmatex">\(u\)</span> to the terminal <span class="arithmatex">\(z\)</span> is <span class="arithmatex">\(h(u, z)=0\)</span>. Furthermore, if we use heuristic function <span class="arithmatex">\(h(u) = c\)</span> for any <span class="arithmatex">\(u \in V\)</span> where c is a positive constant, then the A</em> search algorithm will be the same with Dijkstra’s algorithm.</li>
 <li>Floyd-Warshall and Bellman-Ford算法都是需要图中没有负环</li>
 <li>Puzzle问题中的discrete hamminng and mahattan距离都是admissible heuristics。</li>
-<li>'Suppose the unique shortest path from source s to a vertex t has l edges. It is <em>impossible</em> that we find this shortest path from s to t in <em>less than</em> l iterations.' 这句话是错误的，因为事实上一次迭代是<strong><em>至少</em></strong>松弛一条边</li>
+<li>'Suppose the unique shortest path from source s to a vertex t has <span class="arithmatex">\(l\)</span> edges. It is <em>impossible</em> that we find this shortest path from s to t in <em>less than</em> <span class="arithmatex">\(l\)</span> iterations.' 这句话是错误的，因为事实上一次迭代是<strong><em>至少</em></strong>会使最短路的边数至少+1.</li>
 <li>Dijkstra算法和Bellman-Ford算法都是用于找到图中从一个起点到所有其他顶点的最短路径的算法。然而，它们找到的最短路径所组成的树并不一定是最小生成树（MST）</li>
 <li>Dijkstra中，If vertex u is marked visited before v, then dist[u] ≤ dist[v]；但是在A星算法中，‘if vertex u is marked visited before v, then dist[u] ≤ dist[v], where dist[u] represents the real distance from start vertex to u’这个说法就是错误的，这是因为其实判断依据是启发式距离，而不是真实距离.</li>
 <li>For A* search algorithm with admissible and consistent heuristic, heuristic ha(x) is always better than <span class="arithmatex">\(h_b(x)\)</span> if <span class="arithmatex">\(∀x : h_a(x) ≥ h_b(x)\)</span>.</li>
-<li></li>
 </ol>
 
 
