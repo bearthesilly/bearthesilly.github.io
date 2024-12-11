@@ -3990,6 +3990,48 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#dynamic-programming" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dynamic Programming
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dynamic Programming">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weighted-interval-scheduling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Weighted Interval Scheduling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#more-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      More Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -5693,6 +5735,48 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#dynamic-programming" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dynamic Programming
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dynamic Programming">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weighted-interval-scheduling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Weighted Interval Scheduling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#more-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      More Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -6007,6 +6091,9 @@ Find-Set(u) != Find-Set(v):
 <h4 id="implementation-and-analysis_1">implementation and analysis</h4>
 <p><img src="img/240.png" alt="image" style="zoom: 67%;" /></p>
 <p><img src="img/241.png" alt="image" style="zoom: 67%;" /></p>
+<blockquote>
+<p>(注意上图中Dijkstra时间复杂度的分析哪些是O哪些是<span class="arithmatex">\(\Theta\)</span>)(下图中全都是O，但是这并不是准确的；以上图为准！)</p>
+</blockquote>
 <p><img src="img/242.png" alt="image" style="zoom: 80%;" /></p>
 <blockquote>
 <p>Reference: oi.wiki</p>
@@ -6131,7 +6218,7 @@ d_{i,j}^{(k)}=min\{d_{i,j}^{(k-1)}, d_{i,k}^{(k-1)} + d_{k,j}^{(k-1)}\}
 <li>如果是有向图，那么Dijkstra算法依然不需要改变</li>
 <li>Bellman-Ford算法比Dijkstra慢</li>
 <li>Dijkstra不是在所有的DAG中都是万能的，如果有负数边长的存在就用不了</li>
-<li>Dijkstra暴力+使用adjacency list的时间复杂度为: <span class="arithmatex">\(O(|V|^2+|E|)\)</span>(注意Dijkstra时间复杂度的分析都是O而不是<span class="arithmatex">\(\Theta\)</span>)</li>
+<li>Dijkstra暴力+使用adjacency list的时间复杂度为: <span class="arithmatex">\(O(|V|^2+|E|)\)</span></li>
 <li>Dijkstra’s algorithm could only find the shortest path on non-negative weighted graph</li>
 <li>通过修改 Dijkstra 算法，在所有最短路径中选择边数最少的路径：给所有的边长都加上<span class="arithmatex">\(\epsilon\)</span>，其中<span class="arithmatex">\(\epsilon &lt; \delta/|E|\)</span>，然后运行Dijkstra算法。这是因为在两条路径拥有相同权重的同时，边长数量较少的路径将有较小的<span class="arithmatex">\(\epsilon\)</span>综合。其中<span class="arithmatex">\(\delta\)</span>代表的是所有边长的最小值。</li>
 <li>If we add a constraint that each edge can only appear at most once in the shortest path, Dijkstra’s algorithm still works for positive-weighted graphs.</li>
@@ -6144,8 +6231,72 @@ d_{i,j}^{(k)}=min\{d_{i,j}^{(k-1)}, d_{i,k}^{(k-1)} + d_{k,j}^{(k-1)}\}
 <li>'Suppose the unique shortest path from source s to a vertex t has <span class="arithmatex">\(l\)</span> edges. It is <em>impossible</em> that we find this shortest path from s to t in <em>less than</em> <span class="arithmatex">\(l\)</span> iterations.' 这句话是错误的，因为事实上一次迭代是<strong><em>至少</em></strong>会使最短路的边数至少+1.</li>
 <li>Dijkstra算法和Bellman-Ford算法都是用于找到图中从一个起点到所有其他顶点的最短路径的算法。然而，它们找到的最短路径所组成的树并不一定是最小生成树（MST）</li>
 <li>Dijkstra中，If vertex u is marked visited before v, then dist[u] ≤ dist[v]；但是在A星算法中，‘if vertex u is marked visited before v, then dist[u] ≤ dist[v], where dist[u] represents the real distance from start vertex to u’这个说法就是错误的，这是因为其实判断依据是启发式距离，而不是真实距离.</li>
-<li>For A* search algorithm with admissible and consistent heuristic, heuristic ha(x) is always better than <span class="arithmatex">\(h_b(x)\)</span> if <span class="arithmatex">\(∀x : h_a(x) ≥ h_b(x)\)</span>.</li>
+<li>For A* search algorithm with admissible and consistent heuristic, heuristic <span class="arithmatex">\(h_a(x)\)</span> is always better than <span class="arithmatex">\(h_b(x)\)</span> if <span class="arithmatex">\(∀x : h_a(x) ≥ h_b(x)\)</span>.</li>
+<li>如果heuristic是consistent的，那么也必然是admissible，但是反过来不成立</li>
 </ol>
+<h2 id="dynamic-programming">Dynamic Programming</h2>
+<h3 id="introduction">Introduction</h3>
+<p>考虑如下函数：</p>
+<pre><code class="language-c++">double F( int n ) {
+    return ( n &lt;= 1 ) ? 1.0 : F(n - 1) + F(n - 2);
+}
+</code></pre>
+<p>它的运行时间复杂度应该和斐波那契数列非常接近：<span class="arithmatex">\(T(n) = O(2^n)\)</span>。问题在于，为了计算，比如说，F(44)的时候，我们需要计算得到F(43)F(42)，但是F(43)的计算过程中又包含了F(42)。事实上这个问题十分严重，比如说这个例子中，F(10)被计算了9227465次。这完全是不必要的。</p>
+<p>一种解决方法是将所有的中间计算过程都储存在表格中。把中间结果储存起来的过程叫做<strong><em>memorization</em></strong>。把中间计算结果储存起来是为了后续可能的使用，这样就在需要这个数据的时候不需要重新计算了。</p>
+<blockquote>
+<p>因此：Dynamic programming is actually a fancy name for caching intermediate results in a table for later use.</p>
+</blockquote>
+<p>In solving optimization problems, the top-down approach may require repeatedly obtaining optimal solutions for the same sub-problem</p>
+<p>动态规划和分治是不同的，分支中子问题都实际上应该是unique的，但是在动态规划中发生的是：一个问题被分解成多个小问题（子问题），这些子问题可能会被多次遇到。如果子问题再次发生，那么这个问题就称为重叠子问题。</p>
+<p>因此如下总结贪心、分治和动态规划三者的概念：</p>
+<p>Greedy.  Process the input in some order, myopically making irrevocable decisions.
+Divide-and-conquer.  Break up a problem into independent subproblems;solve each subproblem; combine solutions to subproblems to form solution to original problem. 
+Dynamic programming.  Break up a problem into a series of overlapping subproblems; combine solutions to smaller subproblems to form solution to large subproblem.</p>
+<h3 id="weighted-interval-scheduling">Weighted Interval Scheduling</h3>
+<p>考虑如下的任务：</p>
+<p><img src="img/269.png" alt="image" style="zoom: 80%;" /></p>
+<p>注意到这个任务貌似和贪心中介绍的任务很像，换而言之，上述图片的任务中如果所有的task权重都是一样的，那么贪心就应该是最优的。</p>
+<blockquote>
+<p>Earliest finish-time first: Consider jobs in ascending order of finish time. Add job to subset if it is compatible with previously chosen jobs.</p>
+</blockquote>
+<p>但是能够观察到，如果权重不相同呢？那么贪心算法就不是最优的。下面是一个非常简单的反例：</p>
+<p><img src="img/270.png" alt="image"  /></p>
+<p>接下来介绍一种新的解决方式，首先定义一些内容：</p>
+<p><img src="img/271.png" alt="image"  /></p>
+<p><img src="img/272.png" alt="image"  /></p>
+<p>首先定义的是<span class="arithmatex">\(p(j)\)</span>代表的是j任务之前第一个能和j兼容的任务的index，然后定义了<span class="arithmatex">\(OPT(j)\)</span>代表使用<span class="arithmatex">\(1,2,\dots ,j\)</span>号任务的所获得的权重最大值。因此顺势展开分类：如果j号任务是需要的，那么就说明之前所有任务中能够兼容的任务的最大编号为<span class="arithmatex">\(p(j)\)</span>，i.e.，<span class="arithmatex">\(p(j)+1, \dots, j-1\)</span>这些编号的任务都是用不上了的，相当于是子问题是<span class="arithmatex">\(OPT(p(j))\)</span>；而如果j没用到，那么就说明子问题是<span class="arithmatex">\(OPT(j-1)\)</span>。因此对于<span class="arithmatex">\(OPT(j)\)</span>来说，有两种可能性，那么因此它的值应该是两种scenario中的最大值，因此Bellman Equation如上图所示。</p>
+<p>因此可以设计如下伪代码：</p>
+<pre><code class="language-pseudocode">Brute-Force (n, s1, …, sn, f1, …, fn, w1, …, wn)                     
+Sort jobs by finish time and renumber so that  f1  ≤   f2   ≤  …  ≤   fn.
+Compute  p[1], p[2], …, p[n] via binary search.
+Return  Compute-Opt(n).
+
+Compute-Opt( j )                          
+If (j = 0)
+    return  0.
+Else
+    Return  max {Compute-Opt( j – 1),  wj  + Compute-Opt(p[ j ])  }.
+</code></pre>
+<p>对于上面这个recursive algorithm来说很慢，因为有overlapping problem，因此时间复杂度成指数增长趋势。但是我们可以利用memoriation来避免重复的计算。考虑用数组来储存子问题的结果：</p>
+<p><img src="img/273.png" alt="image"  /></p>
+<p>在函数中判断如果M[j]没有被初始化过，说明是递归的底层开始第一次真正计算了这个值，那么这个值就储存起来，而且不会再更改。之后遇到浅层的递归需要这个值的时候，直接访问数组即可。那么现在时间复杂度是多少呢？sort by finish time的时间复杂度是<span class="arithmatex">\(\Theta(nlogn)\)</span>，计算p[j]，<span class="arithmatex">\(j \in [1, n]\)</span>的时间复杂度是<span class="arithmatex">\(O(nlogn)\)</span>（使用二分搜索），然后在M-COMPUTE-OPT中，实际上只有第一次常数时间内计算M[j]的时候才纳入时间，储存起来后能够常数时间内被调出然后使用，<span class="arithmatex">\(j \in [1, n]\)</span>，所以时间复杂度是<span class="arithmatex">\(O(n)\)</span>。综上所述，总的时间复杂度是<span class="arithmatex">\(O(nlogn)\)</span></p>
+<p>那么在最终求出最优解的时候，实现下列的函数即可，因为实际上就是找出一系列的任务编号：</p>
+<p><img src="img/274.png" alt="image"  /></p>
+<p>由于每一次判断时间是常数，而最多判断n次，所以时间复杂度是<span class="arithmatex">\(O(n)\)</span>。在上述的实现中，M-COMPUTE-OPT采用了top-down递归的形式。但是其实也可以采用bottom-up的方式来实现：</p>
+<p><img src="img/275.png" alt="image"  /></p>
+<p>上述算法的时间复杂度依然是<span class="arithmatex">\(O(nlogn)\)</span>。因此这个任务成功完成了。非常好的是，我们不需要证明这个DP算法的正确性，因为<strong><em>top-down就是一个合理的算法解释</em></strong>，而bottom-up是一个实现方法，而top-down and bottom-up是等效的。</p>
+<h3 id="more-examples">More Examples</h3>
+<p><strong><em>House Coloring Problem</em></strong></p>
+<p><img src="img/276.png" alt="image"  /></p>
+<p><img src="img/277.png" alt="image"  /></p>
+<p><strong><em>Maximum Subarray Problem</em></strong></p>
+<p>Goal: Given an array x of n integer (positive or negative), find a contiguous subarray whose sum is maximum. </p>
+<p>定义：OPT(i) = max sum of any subarray of x whose rightmost index is i.</p>
+<p><img src="img/278.png" alt="image"  /></p>
+<p>对于OPT(i)来说，如果OPT(i-1)是一个正数，那么将x_i加入这个subarray中非常nice；但是如果是负数呢？那么还不如不加这个subarray，因为x_i这个数字根据OPT(i)的定义是不得不加的，那么还不如这个负数不要加上。</p>
+<p><strong><em>Maximum Rectangle Problem</em></strong></p>
+<p><img src="img/279.png" alt="image"  /></p>
+<p><img src="img/280.png" alt="image"  /></p>
 
 
 
