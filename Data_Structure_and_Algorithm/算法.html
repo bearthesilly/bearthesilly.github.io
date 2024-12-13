@@ -4019,6 +4019,24 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#segmented-least-squares" class="md-nav__link">
+    <span class="md-ellipsis">
+      Segmented Least Squares
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#knapsack-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Knapsack Problem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#more-examples" class="md-nav__link">
     <span class="md-ellipsis">
       More Examples
@@ -5764,6 +5782,24 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#segmented-least-squares" class="md-nav__link">
+    <span class="md-ellipsis">
+      Segmented Least Squares
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#knapsack-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Knapsack Problem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#more-examples" class="md-nav__link">
     <span class="md-ellipsis">
       More Examples
@@ -6285,6 +6321,31 @@ Else
 <p>由于每一次判断时间是常数，而最多判断n次，所以时间复杂度是<span class="arithmatex">\(O(n)\)</span>。在上述的实现中，M-COMPUTE-OPT采用了top-down递归的形式。但是其实也可以采用bottom-up的方式来实现：</p>
 <p><img src="img/275.png" alt="image"  /></p>
 <p>上述算法的时间复杂度依然是<span class="arithmatex">\(O(nlogn)\)</span>。因此这个任务成功完成了。非常好的是，我们不需要证明这个DP算法的正确性，因为<strong><em>top-down就是一个合理的算法解释</em></strong>，而bottom-up是一个实现方法，而top-down and bottom-up是等效的。</p>
+<h3 id="segmented-least-squares">Segmented Least Squares</h3>
+<p>Least Squares是什么意思呢？假设平面上有n个点，然后拟合一条直线，计算MSELoss，换而言之就是：
+<script type="math/tex; mode=display">
+SSE=\sum_{i=1}^n(y_i-ax_i-b)^2
+</script>
+数学中有公式能求出使得SSE最少的参数a，b。但是上述内容的假设是点的分布十分接近于一条直线的。那么如果：Points lie roughly on a sequence of several line segments，任务是find a sequence of lines that minimize f(x)。</p>
+<p><img src="img/281.png" alt="image"  /></p>
+<p>那么如何设计DP呢？假设OPT（j）代表的是对于1-j个点的最小的cost，那么如果考虑<span class="arithmatex">\(i \leq j\)</span>，<span class="arithmatex">\(p_i, \dots, p_j\)</span>是最后一条线段拟合的点，因此就能够计算cost之间的关系了：
+<script type="math/tex; mode=display">
+OPT(j)=e_{ij}+c+OPT(i-1), i \leq j \\
+where\ e_{ij}=SSE(p_i, \dots, p_j)
+</script>
+那么在设计Bellman equation的时候，i可以任取[1, j]里面的数字，因此方程设计如下：</p>
+<p><img src="img/282.png" alt="image"  /></p>
+<p><img src="img/283.png" alt="image"  /></p>
+<h3 id="knapsack-problem">Knapsack Problem</h3>
+<p>考虑下述的问题：</p>
+<p><img src="img/284.png" alt="image"  /></p>
+<p><img src="img/285.png" alt="image"  /></p>
+<p>但是此处有限重的要求，因此设计的OPT应该带上weight信息：</p>
+<p><img src="img/286.png" alt="image"  /></p>
+<p>首先考虑的是在OPT(i,w)中，i物品是否选入，这可以分为两种情况：如果选入，那么<span class="arithmatex">\(OPT(i, w) = OPT(i-1, w-w_i) =v_i\)</span>；如果不选入，那么<span class="arithmatex">\(OPT(i,w)=OPT(i-1, w)\)</span>；至于是两种情况中的哪一种，那么就是直接考虑max了。当然还需要考虑：如果<span class="arithmatex">\(w_i &gt; w\)</span>，那么显然<span class="arithmatex">\(OPT(i,w) = OPT(i-1, w)\)</span></p>
+<p>可见，这里储存的结果应该是和两个变量有关，因此应该储存在二维数组中；同时从代码实现上，外面的循环从subset of items从小到大开始，每一次循环中进行w的从小到大的一次for循环。</p>
+<p><img src="img/287.png" alt="image"  /></p>
+<p>那么时间复杂度和空间复杂度都显然是：<span class="arithmatex">\(\Theta(nw)\)</span></p>
 <h3 id="more-examples">More Examples</h3>
 <p><strong><em>House Coloring Problem</em></strong></p>
 <p><img src="img/276.png" alt="image"  /></p>
@@ -6297,6 +6358,9 @@ Else
 <p><strong><em>Maximum Rectangle Problem</em></strong></p>
 <p><img src="img/279.png" alt="image"  /></p>
 <p><img src="img/280.png" alt="image"  /></p>
+<p><strong><em>Coin Changing Problem</em></strong></p>
+<p>Problem.  Given n coin denominations <span class="arithmatex">\({ c_1, c_2, …, c_n }\)</span>  and a target value V, find the fewest coins needed to make change for V (or report impossible).</p>
+<p><img src="img/288.png" alt="image"  /></p>
 
 
 
