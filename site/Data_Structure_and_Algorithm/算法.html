@@ -6269,7 +6269,26 @@ d_{i,j}^{(k)}=min\{d_{i,j}^{(k-1)}, d_{i,k}^{(k-1)} + d_{k,j}^{(k-1)}\}
 <li>Dijkstra中，If vertex u is marked visited before v, then dist[u] ≤ dist[v]；但是在A星算法中，‘if vertex u is marked visited before v, then dist[u] ≤ dist[v], where dist[u] represents the real distance from start vertex to u’这个说法就是错误的，这是因为其实判断依据是启发式距离，而不是真实距离.</li>
 <li>For A* search algorithm with admissible and consistent heuristic, heuristic <span class="arithmatex">\(h_a(x)\)</span> is always better than <span class="arithmatex">\(h_b(x)\)</span> if <span class="arithmatex">\(∀x : h_a(x) ≥ h_b(x)\)</span>.</li>
 <li>如果heuristic是consistent的，那么也必然是admissible，但是反过来不成立</li>
+<li>Floyd-Warshall使用的不是贪心算法，而是动态规划</li>
+<li>Dijkstra, Bellman, A*都是只能求出从一个点出发的到所有点的最短路径，而Floyd可以是任意两点之间</li>
+<li>如何用Floyd判断是否存在负环？运行完算法后，对于矩阵中对角元素<span class="arithmatex">\(dist[i][i],i\in [0, |V|-1]\)</span>，如果存在负数，那么就说明有负环</li>
+<li>With a simple optimization, applying Floyd-Warshall algorithm to an undirected graph of N nodes just needs to take about half of the time of applying it to a directed graph of N nodes. （Do not need to be strictly 1/2）</li>
+<li>Floyd算法所消耗的时间仅与顶点数量有关</li>
+<li>Floyd寻找path的操作中，如果初始化是<span class="arithmatex">\(p[i][j]=j,i \neq j\)</span>，且在k outer loop过程内，<span class="arithmatex">\(p[i][j]=p[i][k]\)</span>，那么路径的确定就如之前note中所示；但是如果初始化是<span class="arithmatex">\(p[i][j]=-1\)</span>，且更新过程中<span class="arithmatex">\(p[i][j]=k\)</span>，那么SOLUTION(u,v,p)，代表寻找u点到v点的最短路径，设计如下：</li>
 </ol>
+<pre><code class="language-pseudocode"># SOLUTION(u,v,p)
+if u==v then
+    return {u}
+end if
+return {u} + FIND-PATH(u,v,p) + {v}
+
+# FIND-PATH(u,v,p)
+if p[u][v] == -1
+    return ∅
+end if
+k = p[u][v]
+return FIND-PATH(u,k,p) + {k} + FIND-PATH(k,v,p)
+</code></pre>
 <h2 id="dynamic-programming">Dynamic Programming</h2>
 <h3 id="introduction">Introduction</h3>
 <p>考虑如下函数：</p>
