@@ -4045,6 +4045,72 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#cs101" class="md-nav__link">
+    <span class="md-ellipsis">
+      CS101常见题型
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reductions-p-and-np" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reductions, P and NP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reductions, P and NP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reductions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reductions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reductions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5808,6 +5874,72 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#cs101" class="md-nav__link">
+    <span class="md-ellipsis">
+      CS101常见题型
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reductions-p-and-np" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reductions, P and NP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reductions, P and NP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reductions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reductions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reductions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -6380,6 +6512,73 @@ where\ e_{ij}=SSE(p_i, \dots, p_j)
 <p><strong><em>Coin Changing Problem</em></strong></p>
 <p>Problem.  Given n coin denominations <span class="arithmatex">\({ c_1, c_2, …, c_n }\)</span>  and a target value V, find the fewest coins needed to make change for V (or report impossible).</p>
 <p><img src="img/288.png" alt="image"  /></p>
+<h3 id="cs101">CS101常见题型</h3>
+<p>CS101会设计三类DP设计模型：</p>
+<ul>
+<li>前缀：<span class="arithmatex">\(f(i)\)</span>表示前i个东西/以第i个东西结尾的...</li>
+<li>背包：<span class="arithmatex">\(f(i,j)\)</span>表示前i个东西，某属性之和...j</li>
+<li>区间：<span class="arithmatex">\(f(l,r)\)</span>表示下标区间为<span class="arithmatex">\([l,r]\)</span>中的这几样东西...</li>
+</ul>
+<h2 id="reductions-p-and-np">Reductions, P and NP</h2>
+<h3 id="reductions">Reductions</h3>
+<p>在实践中什么样的问题我们认为是“可解决的”呢 ？在工程中一般认为：能够在多项式时间内实现，那么认为问题是“可解决的”。因此将问题按照能否在多项式时间内解决为标准进行分类。可惜的是，当今大量的基础问题时间复杂度都超出了多项式时间范畴内。</p>
+<p>那么假设我们可以在多项式时间内解决Y问题，那么根据这个信息，还有哪些问题能够在多项式时间内结局？因此就有Reduction Theorem：</p>
+<p><img src="img/289.png" alt="image"  /></p>
+<p>如果X问题的标准计算步骤是多项式时间级别的，而且调用Y算法的次数也是多项式级别的，那么问题X也是多项式级别的。Notation记为：
+<script type="math/tex; mode=display">
+X \leq_p Y
+</script>
+值得注意的是：<span class="arithmatex">\(X \leq_p Y\)</span>和<span class="arithmatex">\(Y \leq_p X\)</span>是不一样的东西。该记号可以这么理解：X可以在多项式时间内规约到问题Y。</p>
+<blockquote>
+<p>Reference: kimi.moonshot.cn</p>
+</blockquote>
+<p>那么因此对于XY两个问题：如果<span class="arithmatex">\(X \leq_p Y\)</span>，Y可以多项式时间内解决，那么X也能多项式时间内解决，但是<strong>反之不亦然</strong>；同时，如果X无法在多项式时间内解决，那么Y也无法在多项式时间内解决。那么如果<span class="arithmatex">\(X \leq_p Y\)</span>，且<span class="arithmatex">\(Y \leq_p X\)</span>，那么记为：
+<script type="math/tex; mode=display">
+X \equiv _p Y
+</script>
+那么这种情况下：：X可以在多项式时间内解决当且仅当Y能够在多项式时间内解决。从上述的一系列Reduction相关定义可以看出：Reductions classify problems according to relative difficulty.</p>
+<h4 id="example1">Example1</h4>
+<p>对于一个图来说，给定一个规定的正整数k，能不能找到顶点集合的一个含k个（或者更多）顶点的子集，使得子集中的每两个点之间都是不相连的？这个问题称为<strong><em>Independent-Set</em></strong>问题。</p>
+<p>对于一个图来说，给定一个规定的正整数k，能不能找到顶点集合的一个含有k个（或者更少）顶点的子集，使得图中每一条边的两个顶点中至少有一个在子集里面。这个问题称为<strong><em>Vertex-Cover</em></strong>问题。</p>
+<p>那么就有如下的定理：
+<script type="math/tex; mode=display">
+Theorem:Independent-Set \equiv_p Vertex-Cover
+</script>
+<img src="img/290、.png" alt="image"  /></p>
+<p><img src="img/291.png" alt="image"  /></p>
+<p>考虑另一个新问题：给定一个含有U个元素的集合，且给定S个U的子集，和一个正整数k，是否有<span class="arithmatex">\(\leq k\)</span>个子集的Union等于U？则有如下定理：
+<script type="math/tex; mode=display">
+Theorem:Vertex-Cover \leq _p Set-Cover
+</script>
+<img src="img/292.png" alt="image"  /></p>
+<p><img src="img/293.png" alt="image"  /></p>
+<p><img src="img/294.png" alt="image"  /></p>
+<h4 id="example2">Example2</h4>
+<p>现在将介绍一类新的问题：3-SAT问题。一个布尔变量和它的否定（negation）为：<span class="arithmatex">\(x_i\ \overline{x_i}\)</span>。同时定义命题的合取范式（CNF: Conjunctive Normal Form）：
+<script type="math/tex; mode=display">
+\Phi = C_1 \land C_2 \dots \land C_n \\
+C \mbox{ is called a clause: } C_j = x_1 \lor \overline{x_2} \lor \dots \lor x_n
+</script>
+那么考虑一个CNF，是否存在一组clause，i.e.，存在一组boolean variable使得这个CNF为真？这就称为SAT问题。那么<strong><em>3-SAT</em></strong>问题就是在SAT的基础之上加上条件：each clause contains exactly 3 literals。那么对于3-SAT问题找到一组使CNF为真的布尔变量，时间复杂度是多少？很可惜的是：</p>
+<p><strong><em>Scientific hypothesis: There does not exists a poly-time algorithm for 3-SAT.</em></strong></p>
+<p><span class="arithmatex">\(Theorem:\ 3-SAT \leq_p \ Independent-Set\)</span></p>
+<p><img src="img/295.png" alt="image"  /></p>
+<p>那么假设有一组assignment使得CNF为真，那么这些布尔变量带入到上图中所构建的graph中，所有的true顶点就构成了一个independent set。可见这个set的元素数量至少是<span class="arithmatex">\(|\Phi|\)</span>。同时考虑构建size为k的independent set，如果两个顶点都选在了一个三角形里面，那么就不符合，可见每一个clause其实都只有一项能够为true，那么这个assignment其实就是一种分配。通过上述的说明，我们其实说明了：</p>
+<p>Lemma: <span class="arithmatex">\(\Phi\)</span> is satisfiable iff G contains an independent set of size <span class="arithmatex">\(k = |\Phi|\)</span></p>
+<p>通过example 1 and 2，利用reduction的transitivity性质，其实我们能够得知：</p>
+<p><span class="arithmatex">\(Theorem:\ 3-SAT \leq_p \ Independent-Set \equiv_p Vertex-Cover \leq_p Set-Cover\)</span></p>
+<h4 id="example3">Example3</h4>
+<p>还是考虑<em>Vertex-Cover</em>问题：原问题中说的是是否存在一个vertex cover of size less than k。那么如果对于以下问题呢：</p>
+<ul>
+<li><strong>Search Problem</strong>(<em>Find-Vertex-Cover</em>): Find a vertex cover of size less than k</li>
+<li><strong>Optimization Problem</strong>(<em>Find-Min-Vertex-Cover</em>): Find a vertex cover of minimum size</li>
+</ul>
+<p>同时，原本的问题定义为Decision Problem。那么有如下的定律：
+<script type="math/tex; mode=display">
+Vertex-Cover \equiv_p Find-Vertex-Cover \equiv_p Find-Min-Vertex-Cover
+</script>
+<img src="img/296.png" alt="image"  /></p>
+<p><img src="img/297.png" alt="image"  /></p>
 
 
 
