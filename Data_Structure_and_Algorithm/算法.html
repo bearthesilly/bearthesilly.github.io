@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#algorithm" class="md-skip">
           Skip to content
         </a>
       
@@ -3588,6 +3588,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -3615,6 +3617,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -3787,7 +3791,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#algorithm" class="md-nav__link">
+  <a href="#algorithm_1" class="md-nav__link">
     <span class="md-ellipsis">
       Algorithm
     </span>
@@ -4076,6 +4080,24 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#cook-turing-reduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cook (Turing) Reduction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#karp-many-one-reduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Karp (Many-One) Reduction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#example1" class="md-nav__link">
     <span class="md-ellipsis">
       Example1
@@ -4217,6 +4239,24 @@
   <a href="#npc-map" class="md-nav__link">
     <span class="md-ellipsis">
       NPC map
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-solvable-and-unsolvable-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common solvable and unsolvable problem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#p-vs-np-vs-npc-relationship" class="md-nav__link">
+    <span class="md-ellipsis">
+      P vs NP vs NPC relationship
     </span>
   </a>
   
@@ -5563,6 +5603,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -5734,7 +5776,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#algorithm" class="md-nav__link">
+  <a href="#algorithm_1" class="md-nav__link">
     <span class="md-ellipsis">
       Algorithm
     </span>
@@ -6023,6 +6065,24 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#cook-turing-reduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cook (Turing) Reduction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#karp-many-one-reduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Karp (Many-One) Reduction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#example1" class="md-nav__link">
     <span class="md-ellipsis">
       Example1
@@ -6169,6 +6229,24 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#common-solvable-and-unsolvable-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common solvable and unsolvable problem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#p-vs-np-vs-npc-relationship" class="md-nav__link">
+    <span class="md-ellipsis">
+      P vs NP vs NPC relationship
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -6194,9 +6272,7 @@
                   
 
 
-  <h1>算法</h1>
-
-<p>!算法 Algorithm</p>
+<h1 id="algorithm">算法 Algorithm</h1>
 <h2 id="_1">最小生成树</h2>
 <h3 id="spanning-trees">Spanning trees</h3>
 <p>什么是spanning trees最小生成树？ 首先，生成树的定义如下：</p>
@@ -6417,7 +6493,7 @@ Find-Set(u) != Find-Set(v):
 </blockquote>
 <p><img src="img/223.png" alt="image" style="zoom: 67%;" /></p>
 <p><img src="img/224.png" alt="image" style="zoom: 67%;" /></p>
-<h3 id="algorithm">Algorithm</h3>
+<h3 id="algorithm_1">Algorithm</h3>
 <p>算法的idea非常的简单：找到图中的任意一个in-degree为0的节点（source），然后放入topological sorting里面，然后删除掉这个点和与这个点相关的所有的边。这个步骤重复<span class="arithmatex">\(|V|\)</span>次。</p>
 <blockquote>
 <p>从上面的算法就能看出来：topo sorting的顺序当然不是唯一的，因为source可能不止一个</p>
@@ -6757,22 +6833,26 @@ where\ e_{ij}=SSE(p_i, \dots, p_j)
 </ul>
 <h2 id="reductions-p-and-np">Reductions, P and NP</h2>
 <h3 id="reductions">Reductions</h3>
+<h4 id="cook-turing-reduction">Cook (Turing) Reduction</h4>
 <p>在实践中什么样的问题我们认为是“可解决的”呢 ？在工程中一般认为：能够在多项式时间内实现，那么认为问题是“可解决的”。因此将问题按照能否在多项式时间内解决为标准进行分类。可惜的是，当今大量的基础问题时间复杂度都超出了多项式时间范畴内。</p>
 <p>那么假设我们可以在多项式时间内解决Y问题，那么根据这个信息，还有哪些问题能够在多项式时间内结局？因此就有Reduction Theorem：</p>
 <p><img src="img/289.png" alt="image"  /></p>
-<p>如果X问题的标准计算步骤是多项式时间级别的，而且调用Y算法的次数也是多项式级别的，那么问题X也是多项式级别的。Notation记为：
+<p><strong><em>如果X问题的标准计算步骤是多项式时间级别的，而且调用Y算法的次数也是多项式级别的，那么问题X也是多项式级别的</em></strong>。这个就是Cook Reduction。Notation记为：
 <script type="math/tex; mode=display">
-X \leq_p Y
+X \leq_T ^P Y
 </script>
-值得注意的是：<span class="arithmatex">\(X \leq_p Y\)</span>和<span class="arithmatex">\(Y \leq_p X\)</span>是不一样的东西。该记号可以这么理解：X可以在多项式时间内规约到问题Y。</p>
-<blockquote>
-<p>Reference: kimi.moonshot.cn</p>
-</blockquote>
+</p>
+<h4 id="karp-many-one-reduction">Karp (Many-One) Reduction</h4>
+<p>除了Cook Reduction，还有一种说明Reduction的方法：Karp Reduction。其实Karp更像是一种<em>Transform</em>：</p>
+<p>Problem X polynomial transforms (Karp) (polynomial-time many-one reduces) to problem Y if we can construct a mapping function <strong><em>f</em></strong> that maps instances of X to instances of Y such that given any instance x of X, the instance <strong><em>y = f (x)</em></strong> of Y is a yes instance <strong><em>iff</em></strong> x is a yes instance of X.</p>
+<p>Notation为：<span class="arithmatex">\(X \leq_m^P Y\)</span>，或者是<strong><em>简化版本</em></strong>的：<span class="arithmatex">\(X \leq_P Y\)</span>。根据上述的定义，我们可以得知如何证明X可以Karp归约到Y：设计mapping，说明如果x是X的yes，则f(x)是Y的yes；如果f(x)是Y的yes，则x是X的yes。</p>
+<p>值得注意的是：<span class="arithmatex">\(X \leq_p Y\)</span>和<span class="arithmatex">\(Y \leq_p X\)</span>是不一样的东西。该记号可以这么理解：<strong><em>X is no harder than Y</em></strong>。</p>
 <p>那么因此对于XY两个问题：如果<span class="arithmatex">\(X \leq_p Y\)</span>，Y可以多项式时间内解决，那么X也能多项式时间内解决，但是<strong>反之不亦然</strong>；同时，如果X无法在多项式时间内解决，那么Y也无法在多项式时间内解决。那么如果<span class="arithmatex">\(X \leq_p Y\)</span>，且<span class="arithmatex">\(Y \leq_p X\)</span>，那么记为：
 <script type="math/tex; mode=display">
 X \equiv _p Y
 </script>
-那么这种情况下：：X可以在多项式时间内解决当且仅当Y能够在多项式时间内解决。从上述的一系列Reduction相关定义可以看出：Reductions classify problems according to relative difficulty.</p>
+那么这种情况下：：X可以在多项式时间内解决<strong><em>当且仅当</em></strong>Y能够在多项式时间内解决。从上述的一系列Reduction相关定义可以看出：Reductions classify problems according to <strong><em>relative</em></strong> difficulty.</p>
+<p>在本章的内容中，几乎所有的归约都指的是Karp归约。</p>
 <h4 id="example1">Example1</h4>
 <p>对于一个图来说，给定一个规定的正整数k，能不能找到顶点集合的一个含k个（或者更多）顶点的子集，使得子集中的每两个点之间都是不相连的？这个问题称为<strong><em>Independent-Set</em></strong>问题。</p>
 <p>对于一个图来说，给定一个规定的正整数k，能不能找到顶点集合的一个含有k个（或者更少）顶点的子集，使得图中每一条边的两个顶点中至少有一个在子集里面。这个问题称为<strong><em>Vertex-Cover</em></strong>问题。</p>
@@ -6894,6 +6974,7 @@ Vertex-Cover \equiv_p Find-Vertex-Cover \equiv_p Find-Min-Vertex-Cover
 P \subseteq NP, NP \subseteq EXP
 </script>
 对于第一个结论来说非常好说明：对于P中的任何一个问题，根据定义应该有一个算法<span class="arithmatex">\(A(s)\)</span>，则相当于是构建了一个证书<span class="arithmatex">\(C(s, t)\)</span>，其中t是empty string。而对于第二个结论的证明不予以要求。</p>
+<p><strong><em>这个定理说明：任何的NP问题其实都能在指数复杂度的时间内解决！</em></strong></p>
 <p>那么P和NP最大的不同，其实就是在寻找解的时间复杂度上，因为给定一个instance and certificate，两种问题在判断输出是不是1这方面都是多项式时间。比如说3-SAT问题判断一个instance中的一个certificate解，只需要多项式时间就能够判断，但是如果对于任何一个含有n个literal的instance来说，找到一个满足要求的解需要<span class="arithmatex">\(2^n\)</span>次尝试组合。因此，3-SAT是NP的，但不是P。</p>
 <p>那么<span class="arithmatex">\(P = NP\)</span>吗？问题早在1971年就被提出来了，但是至今没有解决，而广泛认同的观点是：Probably no。</p>
 <h4 id="np-complete">NP-Complete</h4>
@@ -6909,7 +6990,10 @@ P \subseteq NP, NP \subseteq EXP
 </ul>
 <p><strong><em>Def</em></strong>:  Problem X polynomial (Karp) <strong><em>transforms</em></strong> to problem Y if given any instance x of X, we can construct an instance y of Y such that x is a yes instance of X <strong><em>iff</em></strong> y is a yes instance of Y. </p>
 <p>通过上述的定义可见：转化其实就是指调用一次Y算法的归约，而上一节的reduction更指的是这里的transformation。那么对于NP问题来说，这两个概念其实是同一个概念吗？这仍然是一个开放的问题。</p>
-<p>那么NP-Complete定义如下：A problem Y <span class="arithmatex">\(\in\)</span> NP with the property that for every problem X <span class="arithmatex">\(\in\)</span> NP, <span class="arithmatex">\(X \leq _p Y\)</span>。这个定义看起来十分的怪：什么叫所有的NP问题都能归约到Y问题？真的有这样的问题吗？Are there any natural NP-complete problems？答案，当然是有：Circuit-SAT！</p>
+<p>那么NP-Complete定义如下：A problem Y <span class="arithmatex">\(\in\)</span> NP with the property that for every problem X <span class="arithmatex">\(\in\)</span> NP, <span class="arithmatex">\(X \leq _p Y\)</span>。这个定义看起来十分的怪：什么叫所有的NP问题都能归约到Y问题？真的有这样的问题吗？Are there any natural NP-complete problems？答案，当然是有：Circuit-SAT！（<strong><em>According to the Cook-Levin Theorem</em></strong>）</p>
+<blockquote>
+<p>Proposition: Suppose <span class="arithmatex">\(Y \in NP-Complete\)</span>. Then, <span class="arithmatex">\(Y \in P\)</span> iff <span class="arithmatex">\(P=NP\)</span></p>
+</blockquote>
 <p><strong><em>CIRCUIT-SAT：Given a combinational circuit built from AND, OR, and NOT gates,  is there a way to set the circuit inputs so that the output is 1？</em></strong></p>
 <p><img src="img/303.png" alt="image" style="zoom:50%;" /></p>
 <p>例如上图：有一个由逻辑门构成的circuit然后能不能找到variable inputs solution从而使得最终的输出是1。对于这个circuit-sat问题，很明显是NP的：考虑任何一个含有n个逻辑门的circuit，然后给出随便一组certificate解，那么只需要n次操作就能够求出最后的输出是1还是0。那么是否所有的NP问题都能够归约到Circuit-SAT问题，换而言之，是否所有的NP问题A都能够在<strong><em>多项式时间内映射</em></strong>到一个combinational circuit K，从而使得：If A is ture, then K is satisfiable; If A is false, then K is not satisfiable。关于这个结论的证明不予以要求。</p>
@@ -6921,6 +7005,9 @@ P \subseteq NP, NP \subseteq EXP
 <h4 id="conclusion_1">Conclusion</h4>
 <p><img src="img/304.png" alt="image" style="zoom:50%;" /></p>
 <p>计算机科学家Karp +Cook + Levin的研究显示：上图中所有显示的问题，其实都是<strong><em>相互</em></strong>归约的，而且全部都是NP完全问题。</p>
+<blockquote>
+<p>Knapsack是NPC问题？对于n个物品，W的总重量，DP的时间复杂度是<span class="arithmatex">\(O(nW)\)</span>。这看似是n的多项式时间算法，<em>但是W的取值可能导致这个算法的复杂度不是多项式时间的</em>！事实上，这个算法被认为是：<strong><em>runs in pseudo-polynomial time</em></strong>.</p>
+</blockquote>
 <h3 id="summary-of-introduced-npc">Summary of Introduced NPC</h3>
 <p><strong><em>Independent-Set</em></strong>：对于一个图来说，给定一个规定的正整数k，能不能找到顶点集合的一个含k个（或者更多）顶点的子集，使得子集中的每两个点之间都是不相连的？这个问题称为<strong><em>Independent-Set</em></strong>问题。</p>
 <p><strong><em>Vertex-Cover</em></strong>：对于一个图来说，给定一个规定的正整数k，能不能找到顶点集合的一个含有k个（或者更少）顶点的子集，使得图中每一条边的两个顶点中至少有一个在子集里面。这个问题称为<strong><em>Vertex-Cover</em></strong>问题。</p>
@@ -6943,6 +7030,14 @@ C \mbox{ is called a clause: } C_j = x_1 \lor \overline{x_2} \lor \dots \lor x_n
 <p><img alt="" src="img/307.jpg" /></p>
 <blockquote>
 <p>Reference: <strong><em>Computational Complexity: A Modern Approach by Sanjeev Arora and Boaz Barak.</em></strong></p>
+</blockquote>
+<h4 id="common-solvable-and-unsolvable-problem">Common solvable and unsolvable problem</h4>
+<p><img src="img/307.png" style="zoom:67%;" /></p>
+<h4 id="p-vs-np-vs-npc-relationship">P vs NP vs NPC relationship</h4>
+<p><img src="img/308.png" style="zoom:67%;" /></p>
+<blockquote>
+<p><span class="arithmatex">\(P \neq NP\)</span> if and only if <span class="arithmatex">\(P \cap NP-Complete = \empty\)</span></p>
+<p><span class="arithmatex">\(P=NP\)</span> if and only if <span class="arithmatex">\(NP = NP-Complete\)</span></p>
 </blockquote>
 
 
