@@ -4767,6 +4767,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Depth First Traversal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recursive-dfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recursive DFS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iterative-dfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Iterative DFS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -7394,6 +7418,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Depth First Traversal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recursive-dfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recursive DFS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iterative-dfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Iterative DFS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -9579,7 +9627,7 @@ int lengthOfLongestSubstring(string s) {
 <li>descendent/后代节点：any node y for which n is an ancestor of y. </li>
 </ol>
 <blockquote>
-<p>Thus, a node is both an ancestor and a descendant of itself.</p>
+<p><strong><em>Thus, a node is both an ancestor and a descendant of itself.</em></strong></p>
 <p>We can add the adjective strict to exclude equality: a is a strict descendant of b if a is a descendant of b but a ≠ b</p>
 <p>The root node is an ancestor of all nodes</p>
 </blockquote>
@@ -9990,6 +10038,7 @@ int main() {
 <p>一个<strong><em>full binary tree</em></strong>（完整二叉树）是每个节点<strong><em>要么是满节点（左右子树均非空），要么是叶子节点的二叉树。</em></strong></p>
 <blockquote>
 <p>注意！一个完整二叉树如果有n个非叶子节点，那么这个完整二叉树一共有2n+1个节点</p>
+<p>A binary tree is a full binary tree if and only if every node has an odd number of descendants. (True! Because the descendants include the node itself! )</p>
 </blockquote>
 <p>而在二叉树上的一些操作的时间复杂度的总结如下图：</p>
 <p><img alt="image" src="img/74.png" /></p>
@@ -10106,7 +10155,8 @@ right_child = left_child | 1;
 <p><strong><em>因此pop push的时间复杂度是O(n)</em></strong>(注意这不是二叉堆的插入的时间复杂度！而是随意一个min-heap！)，而在二叉树高度不平衡的时候，会达到worst case。</p>
 <p>而在二叉树中，我们定义了balance的概念。那么我们如何决定push操作一开始插入的位置，从而保持良好的balance呢？此处我们介绍<strong><em>完全二叉树</em></strong>方式——It has optimal memory characteristics but sub-optimal run-time characteristics。除此之外，完全二叉树还支持array implementation。</p>
 <blockquote>
-<p>:warning: <strong><em>Complete binary trees</em></strong> defines the actual “binary heap”</p>
+<p>:warning: <strong><em>Complete binary trees</em></strong> defines the actual “binary heap”；而之前展示的图片是<strong>naive</strong> heap</p>
+<p>Binary max-heap中（n &gt; 3），倒数第二小的节点一定是叶子结点吗？不一定！如果总节点数量是奇数，那么意味着所有的非叶子结点将拥有两个孩子，而每一个孩子都是比自己小的，说明如果倒数第二小不是叶子结点，那么将有两个孩子都比它小，矛盾，故结论正确；但是奇数就不一定了，一位有一个非叶子结点有一个孩子，可以做到这个父节点是倒数第二小的，叶子孩子是最小的。</p>
 </blockquote>
 <p>如何操作呢？如何maintain the complete-tree shape of a heap？We may store a complete tree using an array, and this array is filled using breadth-first traversal on the tree。那么在push pop的时候，就需要考虑<strong><em>保持完全二叉树的性质</em></strong>！</p>
 <p>在push的时候，<strong><em>在完全二叉树最后一层紧接着插入叶子结点</em></strong>，然后经过percolation即可。</p>
@@ -10317,6 +10367,9 @@ int right = 2*i + 2;
 f_{n}=\frac{5+2\sqrt{5}}{5}\left(\frac{1+\sqrt{5}}{2}\right)^{n}+\frac{5-2\sqrt{5}}{5}\left(\frac{1-\sqrt{5}}{2}\right)^{n}-1
 </script>
 </p>
+<blockquote>
+<p>Considering an AVL tree whose height is h, then this tree contains <span class="arithmatex">\(\Omega(\alpha ^h)\)</span> nodes, where <span class="arithmatex">\(\alpha = \frac{\sqrt{5}-1}{2}\)</span></p>
+</blockquote>
 <h3 id="maintaining-balance">Maintaining Balance</h3>
 <p>注意到：插入节点可以让树的高度增加1，同时删除一个节点能够让树的高度减少1。这两种操作都会导致某些节点产生不平衡现象，我们需要在插入或者删除之后rebalance。</p>
 <p>为了记录高度上的变化，Node成员函数<code>height()</code>时间复杂度必须O（1），因此最好所有的Node成员维护一个变量叫做<code>int tree_height;</code>，然后在我们插入和删除的过程中对这个变量进行更新。</p>
@@ -10344,7 +10397,10 @@ f_{n}=\frac{5+2\sqrt{5}}{5}\left(\frac{1+\sqrt{5}}{2}\right)^{n}+\frac{5-2\sqrt{
 <p>而删除一个节点在破坏平衡性上来看，可以类似于另一个地方插入节点，所以说很多情况还是左右旋操作，但是特殊的情况如下：但依然，可以视为插入的Case 1。在删除了节点之后，该节点到根节点一路上的节点<strong><em>都要</em></strong>（不是第一个！）检查是否有不平衡现象！</p>
 <p><img src="img/136.png" alt="image" style="zoom: 67%;" /></p>
 <h4 id="time-complexity">Time Complexity</h4>
-<p>插入可能只需要一次correction就能再次维持平衡，而每次平衡只需要O(1)的时间。但是删除可能需要O(h)次correction，每次都是O(1)时间，而h就是高度，所以对于删除来说时间复杂度是<span class="arithmatex">\(O(ln(n))\)</span>。</p>
+<p><strong>插入</strong>可能只需要一次correction就能再次维持平衡，而每次平衡<strong>只需要O(1)的时间</strong></p>
+<p>但是<strong>删除</strong>可能需要O(h)次correction，每次都是O(1)时间，而h就是高度，所以对于删除来说时间复杂度是<span class="arithmatex">\(O(ln(n))\)</span>。</p>
+<p>题外话：这三个选项都是正确的。</p>
+<p><img alt="image" src="img/313.png" /></p>
 <h3 id="avl-tree-as-arrays">AVL Tree as Arrays</h3>
 <p>之前我们见到，完整二叉树（complete）可以用O(n)的内存去在数列上进行储存，而任意一个n个节点的树也可以通过<span class="arithmatex">\(O(2^n)\)</span>的内存去在内存中储存。那么是否可能用数组来储存AVL树并且不用需要指数级别的内存空间呢？</p>
 <p><img src="img/137.png" alt="image" style="zoom: 67%;" /></p>
@@ -10512,7 +10568,10 @@ void find_adjacent_rooms(int room[2], int wall, int n) {
 <h3 id="painpoint">Painpoint</h3>
 <ul>
 <li>The combination of path compression and union by rank ensures that both the time complexity of the Find and Union operations is nearly constant in practice.</li>
+<li>Joint Set的伪代码：</li>
 </ul>
+<p><img alt="" src="img/309.png" /></p>
+<p><img alt="" src="img/310.png" /></p>
 <h2 id="graph">Graph 图</h2>
 <p>什么是图？这个概念在离散数学中学习过，总的来说：<strong><em>A graph is an abstract data type for storing adjacency relations</em></strong>。图中两点之间的连线，就能够代表一种相邻关联。关于图，有很多的专业术语来描述它的组成部分，图的组成部分经典的有：Vertices, edges, degree and sub-graph, etc（顶点、边、度、子树）。同时我们也可以描述图中的路径：它们大致分为simple paths and cycles。</p>
 <h3 id="undirected-graph">Undirected Graph</h3>
@@ -10756,11 +10815,32 @@ void insert( int i, int j, double w ) {
 }
 </code></pre>
 <h4 id="depth-first-traversal">Depth First Traversal</h4>
-<p><img src="img/171.png" alt="image" style="zoom: 80%;" /></p>
+<h5 id="recursive-dfs">Recursive DFS</h5>
 <p><img src="img/172.png" alt="image" style="zoom: 80%;" /></p>
-<p>选择一个顶点入栈并标记为visited；然后如果栈不是空的话，那么如果栈顶的顶点有unvisited邻居，那么<strong><em>一个</em></strong>这样的邻居顶点入栈，并被标记为visited；而如果栈顶顶点的所有邻居都是visited的话，那么这个元素就会被弹出。顶点依次入栈的顺序，就是DFT的顺序。</p>
+<pre><code class="language-pseudocode">procedure DFS(G, v) is
+    label v as discovered
+    for all directed edges from v to w that are in G.adjacentEdges(v) do
+        if vertex w is not labeled as discovered then
+            recursively call DFS(G, w)
+</code></pre>
 <blockquote>
-<p>之前在介绍<em>树</em>的时候，里面提到的DFT是将栈顶节点的所有孩子都放入栈中。树的DFT和任意一张图的DFT一定要分开来！！</p>
+<p>虽然伪代码中有for all，但是因为是函数迭代，所以结果上来看，仅仅是考虑一个邻居中的不是visited的点，然后关注这个新的点</p>
+</blockquote>
+<p>可以使用栈来协助实现：选择一个顶点入栈并标记为visited；然后如果栈不是空的话，那么如果栈顶的顶点有unvisited邻居，那么<strong><em>一个</em></strong>这样的邻居顶点入栈，并被标记为visited；而如果栈顶顶点的所有邻居都是visited的话，那么这个元素就会被弹出。顶点依次入栈的顺序，就是DFT的顺序。这种栈叫做路径栈</p>
+<h5 id="iterative-dfs">Iterative DFS</h5>
+<p>这种DFS有点类似树那一节中介绍的DFS：将一个顶点的所有的unlabeled邻居都放进栈中，然后<strong><em>弹出的时候</em></strong>才标记为labeled：这样的栈使用方法称为前沿栈。</p>
+<pre><code class="language-pseudocode">procedure DFS_iterative(G, v) is
+    let S be a stack
+    S.push(v)
+    while S is not empty do
+        v = S.pop()
+        if v is not labeled as discovered then
+            label v as discovered
+            for all edges from v to w in G.adjacentEdges(v) do 
+                S.push(w)
+</code></pre>
+<blockquote>
+<p>之前在介绍<em>树</em>的时候，里面提到的DFT是将栈顶节点的所有孩子都放入栈中。树的DFT使用的就是前沿栈。</p>
 </blockquote>
 <h4 id="applications">Applications</h4>
 <h5 id="connectedness">Connectedness</h5>

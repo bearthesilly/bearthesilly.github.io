@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#algorithm" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -3588,8 +3588,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -3617,8 +3615,6 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
-  
-    
   
   
     <label class="md-nav__title" for="__toc">
@@ -3791,7 +3787,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#algorithm_1" class="md-nav__link">
+  <a href="#algorithm" class="md-nav__link">
     <span class="md-ellipsis">
       Algorithm
     </span>
@@ -4208,6 +4204,30 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#classical-reduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classical Reduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Classical Reduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#k-color-to-3-color" class="md-nav__link">
+    <span class="md-ellipsis">
+      k-color to 3-color
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#appendix" class="md-nav__link">
     <span class="md-ellipsis">
       Appendix
@@ -4257,6 +4277,15 @@
   <a href="#p-vs-np-vs-npc-relationship" class="md-nav__link">
     <span class="md-ellipsis">
       P vs NP vs NPC relationship
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Warning
     </span>
   </a>
   
@@ -5603,8 +5632,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -5776,7 +5803,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#algorithm_1" class="md-nav__link">
+  <a href="#algorithm" class="md-nav__link">
     <span class="md-ellipsis">
       Algorithm
     </span>
@@ -6193,6 +6220,30 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#classical-reduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classical Reduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Classical Reduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#k-color-to-3-color" class="md-nav__link">
+    <span class="md-ellipsis">
+      k-color to 3-color
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#appendix" class="md-nav__link">
     <span class="md-ellipsis">
       Appendix
@@ -6247,6 +6298,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Warning
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -6272,7 +6332,9 @@
                   
 
 
-<h1 id="algorithm">算法 Algorithm</h1>
+  <h1>算法</h1>
+
+<p>算法 Algorithm</p>
 <h2 id="_1">最小生成树</h2>
 <h3 id="spanning-trees">Spanning trees</h3>
 <p>什么是spanning trees最小生成树？ 首先，生成树的定义如下：</p>
@@ -6493,7 +6555,7 @@ Find-Set(u) != Find-Set(v):
 </blockquote>
 <p><img src="img/223.png" alt="image" style="zoom: 67%;" /></p>
 <p><img src="img/224.png" alt="image" style="zoom: 67%;" /></p>
-<h3 id="algorithm_1">Algorithm</h3>
+<h3 id="algorithm">Algorithm</h3>
 <p>算法的idea非常的简单：找到图中的任意一个in-degree为0的节点（source），然后放入topological sorting里面，然后删除掉这个点和与这个点相关的所有的边。这个步骤重复<span class="arithmatex">\(|V|\)</span>次。</p>
 <blockquote>
 <p>从上面的算法就能看出来：topo sorting的顺序当然不是唯一的，因为source可能不止一个</p>
@@ -6535,6 +6597,7 @@ Find-Set(u) != Find-Set(v):
 <li>Any directed tree has a topological sorting, because they are DAG as well. </li>
 <li>A DAG with all different weighted edges <strong><em>may have more than one</em></strong> critical path.</li>
 <li>A directed graph with n vertices and n-1 edges <strong><em>may not</em></strong> have a topological sorting. Consider a traingle plus one edge, with 5 nodes in total and 4 edges in total. </li>
+<li>Given a directed acyclic graph G. If u appears before v in a topological sort, there <strong>won't</strong> be any path from v to u in G. </li>
 </ol>
 <h2 id="shortest-path">Shortest Path</h2>
 <h3 id="definition_1">Definition</h3>
@@ -6544,6 +6607,7 @@ Find-Set(u) != Find-Set(v):
 </blockquote>
 <p>我们的目标就是找到shortest path并找到它的length。<strong><em>我们将假设所有边长的权重都是一个正数</em></strong>。能够实现这个目标的算法有很多种，如A星算法、Dijkstra、Bellman-Ford、Floyd-Warshall算法。</p>
 <h3 id="dijkstras-algorithm">Dijkstra's Algorithm</h3>
+<p>该算法只能找到一个source的最短路径。（single-source）</p>
 <h4 id="strategy_1">strategy</h4>
 <p>Dijkstra’s algorithm solves the <strong><em>single-source shortest path problem</em></strong>. 这个思维和Prim算法很相似。
 核心策略是：假设你现在在A顶点，我们能够知道所有的adjacent的点（这个信息是adjacency list or matrix给出来的）。假设遇到了下图的情景（只截取了A顶点相关的顶点），那么：</p>
@@ -6580,7 +6644,7 @@ Find-Set(u) != Find-Set(v):
 </blockquote>
 <p>值得注意的是，如果是稠密图，即<span class="arithmatex">\(|E| = \Theta(V^2)\)</span>，则暴力算法反而是更优的。这一点在最小生成树的时间复杂度分析中也是如此。但是斐波那契堆的使用可以保证无论是稠密图还是稀疏图，时间复杂度<span class="arithmatex">\(\Theta(|E|+|V|ln(|V|))\)</span>都不是更差的。</p>
 <h3 id="bellman-ford-algorithm">Bellman-Ford Algorithm</h3>
-<p>如果有些边长是负数的话，而且只要图里面的环都不含负数边，那么Bellman-Ford就可以找到最短的距离。值得注意的是，这个算法比Dijkstra's Alrogithm更慢，但是这个算法可以处理负数权重的边长，但是Dijkstra做不到。</p>
+<p>如果有些边长是负数的话，而且只要图里面的环都不含负数边，那么Bellman-Ford就可以找到最短的距离。值得注意的是，这个算法比Dijkstra's Alrogithm更慢，但是这个算法可以处理负数权重的边长，但是Dijkstra做不到。该算法只能找到一个source的最短路径。（single-source）</p>
 <p><img src="img/243.png" alt="image" style="zoom: 80%;" /></p>
 <blockquote>
 <p>Reference:oi.wiki</p>
@@ -6640,7 +6704,7 @@ w(C) = d(A, C) + h(C, B) = 28 + 32 = 60; \\
 <p><img src="img/255.png" alt="image" style="zoom: 80%;" /></p>
 <p>如果使用的是discrete distance，那么相当于是Dijkstra算法，表现依然很差；如果使用的是Hamming Distance，那么表现也并没有改善很多（only a small change），仅仅只在当前状态和目标状态已经十分接近的时候才会表现良好；<strong><em>而Manhattan Distance能够使得A星算法拥有很好的表现</em></strong>。上述的内容很好地、感性地解释了'heuristic,启发式'的真正含义是什么。</p>
 <h3 id="floyd-warshall">Floyd-Warshall</h3>
-<p>Dijkstra算法找到一个顶点到另外所有顶点的最短路径所需要的时间复杂度是：<span class="arithmatex">\(O(|E|ln|V|)\)</span>。也就也为着，找到所有的顶点对之间的最短路径，需要的时间复杂度是<span class="arithmatex">\(O(|V||E|ln|V|)\)</span>。在稠密图中，最坏的情况便是<span class="arithmatex">\(O(|V|^3ln|V|)\)</span>的时间复杂度。有没有更好的算法呢？Floyd-Warshall算法应运而生：It works with positive or negative weights with no negative cycle. </p>
+<p>Dijkstra算法找到一个顶点到另外所有顶点的最短路径所需要的时间复杂度是：<span class="arithmatex">\(O(|E|ln|V|)\)</span>。也就也为着，找到所有的顶点对之间的最短路径，需要的时间复杂度是<span class="arithmatex">\(O(|V||E|ln|V|)\)</span>。在稠密图中，最坏的情况便是<span class="arithmatex">\(O(|V|^3ln|V|)\)</span>的时间复杂度。有没有更好的算法呢？Floyd-Warshall算法应运而生：It works with positive or negative weights with no negative cycle. 这个算法能够找到任意一个source的最短距离。</p>
 <h4 id="strategy_3">Strategy</h4>
 <p>考虑两点之间的距离关系：如果两个点其实是一个点，那么距离就是0；如果两个点不同，而且之间有一条边，那么距离就是这条边长的权重；如果两个不同的点，而且之间没有边长，那么距离就是无穷。明显，在上述的考虑中，我们<strong><em>只考虑了直接连接两个顶点的边长</em></strong>。</p>
 <p><img src="img/256.png" alt="image" style="zoom: 67%;" /></p>
@@ -6733,6 +6797,15 @@ end if
 k = p[u][v]
 return FIND-PATH(u,k,p) + {k} + FIND-PATH(k,v,p)
 </code></pre>
+<ol>
+<li>Dijkstra &amp; A* pseudocode:</li>
+</ol>
+<p><img alt="" src="img/311.jpg" /></p>
+<p><img alt="" src="img/311.png" /></p>
+<p>Dijkstra:</p>
+<p><img alt="" src="img/312.png" /></p>
+<p>A*:</p>
+<p><img alt="" src="img/313.jpg" /></p>
 <h2 id="dynamic-programming">Dynamic Programming</h2>
 <h3 id="introduction">Introduction</h3>
 <p>考虑如下函数：</p>
@@ -7021,6 +7094,9 @@ C \mbox{ is called a clause: } C_j = x_1 \lor \overline{x_2} \lor \dots \lor x_n
 <p><strong><em>3-Color Problem</em></strong>: 有一个无向图G，能够找到一种给所有顶点的染色安排，使得任意两个相邻的顶点都没有相同的颜色？</p>
 <p><strong><em>CIRCUIT-SAT</em></strong>：Given a combinational circuit built from AND, OR, and NOT gates,  is there a way to set the circuit inputs so that the output is 1？</p>
 <p><img src="img/303.png" alt="image" style="zoom: 33%;" /></p>
+<h3 id="classical-reduction">Classical Reduction</h3>
+<h4 id="k-color-to-3-color">k-color to 3-color</h4>
+<p><img src="img/314.png" alt="image"  /></p>
 <h3 id="appendix">Appendix</h3>
 <h4 id="how-to-prove-one-problem-is-npc">How to prove one problem is NPC</h4>
 <p><img src="img/305.png" alt="image"  /></p>
@@ -7039,6 +7115,8 @@ C \mbox{ is called a clause: } C_j = x_1 \lor \overline{x_2} \lor \dots \lor x_n
 <p><span class="arithmatex">\(P \neq NP\)</span> if and only if <span class="arithmatex">\(P \cap NP-Complete = \empty\)</span></p>
 <p><span class="arithmatex">\(P=NP\)</span> if and only if <span class="arithmatex">\(NP = NP-Complete\)</span></p>
 </blockquote>
+<h4 id="warning">Warning</h4>
+<p>在CS101考试和作业中，如果没有说P= OR <span class="arithmatex">\(\neq\)</span> NP的大前提，那么在判断一个选项的时候就需要考虑两种情况；同时，NP-Hard的情况也需要予以考虑，虽然课堂内容没有cover到。NP-Hard与其他三种问题的关系如上图所示。</p>
 
 
 
