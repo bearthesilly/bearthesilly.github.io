@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#algorithm" class="md-skip">
           Skip to content
         </a>
       
@@ -3588,6 +3588,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -3615,6 +3617,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -3787,7 +3791,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#algorithm" class="md-nav__link">
+  <a href="#algorithm_1" class="md-nav__link">
     <span class="md-ellipsis">
       Algorithm
     </span>
@@ -5632,6 +5636,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -5803,7 +5809,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#algorithm" class="md-nav__link">
+  <a href="#algorithm_1" class="md-nav__link">
     <span class="md-ellipsis">
       Algorithm
     </span>
@@ -6332,9 +6338,7 @@
                   
 
 
-  <h1>算法</h1>
-
-<p>算法 Algorithm</p>
+<h1 id="algorithm">算法 Algorithm</h1>
 <h2 id="_1">最小生成树</h2>
 <h3 id="spanning-trees">Spanning trees</h3>
 <p>什么是spanning trees最小生成树？ 首先，生成树的定义如下：</p>
@@ -6346,7 +6350,7 @@
 <p><img src="img/180.png" alt="image" style="zoom:50%;" /></p>
 <p>下图又展示了：一个图的生成树并不唯一！可能有多种生成树，都满足定义的要求；同时也展示了为什么这个子图的称呼可以是“树”：</p>
 <p><img src="img/181.png" alt="image" style="zoom:50%;" /></p>
-<p>同时，生成树的定义支持权重的概念（weight）：一个生成树的权重是所有生成树上的变成的权重总和。因此引入了权重的概念之后，我们发现：生成树可以有很多种，但是其中最特殊的便是权重最小的生成树。因此，我们引申出了最小生成树的概念：拥有着最小权重的生成树。</p>
+<p>同时，生成树的定义支持权重的概念（weight）：一个生成树的权重是所有生成树上的边长的权重总和。因此引入了权重的概念之后，我们发现：生成树可以有很多种，但是其中最特殊的便是权重最小的生成树。因此，我们引申出了最小生成树的概念：拥有着最小权重的生成树。</p>
 <blockquote>
 <p>另外，生成树的概念存在于连通图中，那么如果不是连通图，而是一个个连通分量组成的呢？可想而知，每一个单独的连通分量都能生成自己的生成树，那么一个个生成树在一起就是spanning forest:</p>
 <p>Suppose that a graph is composed of N connected vertex-induced sub-graphs. In this case, we may define a spanning forest as a collection of N spanning trees, one for each connected vertex-induced sub-graph.</p>
@@ -6357,16 +6361,16 @@
 <p>那么接下来将介绍两种寻找最小生成树的算法。在不特别说明的情况下，默认有权连通图的每一条边长权重都是不一样的，从而确保最终只有一个最小生成树。</p>
 <h3 id="prims-algorithm">Prim's Algorithm</h3>
 <h4 id="strategy">Strategy</h4>
-<p>思想：假如说我们对于这个图的一部分顶点k&lt;n，已经知道了一个最小生成树，那么我们如何让这个k个顶点的最小生成树进行扩张呢？我们的策略是：对于每一个可能得顶点<span class="arithmatex">\(V_{k+1}\)</span>来说，我们可以遍历这个顶点到k个点的所有可能存在的边长的权重，然后找到权重最小的边，在这些对一个可能新顶点的最小权重边中再找到拥有最小权重值的顶点，然后进行连接。<strong><em>当然，这个流程也可以换个方式：对于最小生成树里面的所有的顶点，列出所有的和非最小生成树顶点连接的边的权重，然后找到最小值，并且连接这两个顶点。</em></strong>这样我们就拥有了这k+1个顶点的最小生成树了。这个扩张思路有一个专门的属于叫做cut property，来说明这种扩张策略的合理性：</p>
+<p>思想：假如说我们对于这个图的一部分顶点k&lt;n，已经知道了一个最小生成树，那么我们如何让这个k个顶点的最小生成树进行扩张呢？我们的策略是：对于每一个可能的顶点<span class="arithmatex">\(V_{k+1}\)</span>来说，我们可以遍历这个顶点到k个点的所有可能存在的边长的权重，然后找到权重最小的边，在这些对一个可能新顶点的最小权重边中再找到拥有最小权重值的顶点，然后进行连接。<strong><em>当然，这个流程也可以换个方式：对于最小生成树里面的所有的顶点，列出所有的和非最小生成树顶点连接的边的权重，然后找到最小值，并且连接这两个顶点。</em></strong>这样我们就拥有了这k+1个顶点的最小生成树了。这个扩张思路有一个专门的属于叫做cut property，来说明这种扩张策略的合理性：</p>
 <p><img src="img/182.png" alt="image" style="zoom: 67%;" /></p>
 <blockquote>
-<p>直觉上来说，如果这种性质是错的话，那么这个顶点只能通过其他的方式和这k个顶点的最小生成树进行连接，那么对于另外一条线路来说，一定有一个另外的顶点和这个最小的生成树进行连接，而这条边长的权重就至少那个<span class="arithmatex">\(V_{k+1}\)</span>的对应的边长的权重高，这就是矛盾点</p>
+<p>直觉上来说，如果这种性质是错的话，那么这个顶点只能通过其他的方式和这k个顶点的最小生成树进行连接，那么对于另外一条线路来说，一定有一个另外的顶点和这个最小的生成树进行连接，而这条边长的权重就至少比那个<span class="arithmatex">\(V_{k+1}\)</span>的对应的边长的权重高，这就是矛盾点</p>
 </blockquote>
 <p>那么在之前的流程中都是默认知道了k个顶点的最小生成树，那么这个k从1遍历到n不就找到了最小生成树吗？对于k=1的情况，认为一个顶点的最小生成树就是一个顶点本身。因此我们得到了<strong>Prim's algorithm</strong>:</p>
 <p><img src="img/183.png" alt="image" style="zoom: 67%;" /></p>
 <p>有更多的细节值得探讨：</p>
 <ul>
-<li>对于每一个顶点来说，在结构体里面可以设置一个Boolean Flag，来记录这个订单是否已经被访问，i.e.，是否以及在k个顶点的最小生成树里面了</li>
+<li>对于每一个顶点来说，在结构体里面可以设置一个Boolean Flag，来记录这个订单是否已经被访问，i.e.，是否已经在k个顶点的最小生成树里面了</li>
 <li>记录每一个顶点到最小生成树任意一个节点的最小的distance</li>
 <li>同时要记录父节点的指针</li>
 </ul>
@@ -6381,7 +6385,7 @@
 <p><img src="img/186.png" alt="image" style="zoom: 67%;" /></p>
 <p>第二步，遍历1 4节点和其他非最小生成树里面的节点的边长的权重，然后更新2 5 7 8四个节点的数据。当然，从数据上来看，5节点的信息不更新。更新完成之后，把4这个节点放进最小生成树里面。同时根据剩下的2 5 7 8四个节点的distance，我们知道下一步将访问2号节点。</p>
 <p><img src="img/187.png" alt="image" style="zoom: 67%;" /></p>
-<p>第三步，访问2号节点，然后更新3 5 6 7 8节点的信息，当然从数据的角度上来看，3 5 6节点的数据进行了更新。更新之后，把2号节点放进最小生成树里面。并且我们知道即将访问6号节点。</p>
+<p>第三步，访问2号节点，然后更新3 5 6节点的信息，当然从数据的角度上来看，3 5 6节点的数据进行了更新。更新之后，把2号节点放进最小生成树里面。并且我们知道即将访问6号节点。</p>
 <p><img src="img/188.png" alt="image" style="zoom: 67%;" /></p>
 <p>不断重复操作，最后我们将会得到如下的结果：</p>
 <p><img src="img/189.png" alt="image" style="zoom: 67%;" /></p>
@@ -6473,7 +6477,7 @@ Find-Set(u) != Find-Set(v):
 <p>假设我们要找零钱，那么如何用最少的硬币来支付零钱呢？已知硬币的面值有1 2 5 10 20 50（这里举的例子是欧元）。那么假设我们每一种硬币都有很多很多，那么直接总是加尽可能大的面值的硬币，只要最后钱的金额没有超就可以了。这种策略貌似是有用的。</p>
 <p>但是这种策略并不是任何情况都奏效：假如说硬币的面值为1 4 9 16 25 36 49呢（平方关系）。假如说要找72块钱，那么直接两个36不就好了吗？但是按照之前的策略，<span class="arithmatex">\(72=49+16+4+1+1+1\)</span>，而这显然不是最优解。很明显，我们的算法并没有那么的简单，这里我们需要使用到<strong><em>贪心算法</em></strong>：</p>
 <p><img src="img/201.png" alt="image" style="zoom: 67%;" /></p>
-<p>例如Prim算法就是一个贪心算法：在策略中考虑的是已经知道k个点的最小生成树，然后尝试不断expand这棵树。同样在找零钱的例子中也是用了贪心算法：在欧元的例子中，任何一个k个硬币的子集都是一种partial solution，在我们拥有一个partial solutionzhihou1，我们尝试将一个最大化零钱面额增长且不超过总金额的硬币加入到子集中。这种算法在欧元的情况能够奏效，但是在quadratic面额的硬币中却不奏效。</p>
+<p>例如Prim算法就是一个贪心算法：在策略中考虑的是已经知道k个点的最小生成树，然后尝试不断expand这棵树。同样在找零钱的例子中也是用了贪心算法：在欧元的例子中，任何一个k个硬币的子集都是一种partial solution，在我们拥有一个partial solution之后，我们尝试将一个最大化零钱面额增长且不超过总金额的硬币加入到子集中。这种算法在欧元的情况能够奏效，但是在quadratic面额的硬币中却不奏效。</p>
 <p>下面将举一些贪心算法最优的例子：</p>
 <h3 id="interval-scheduling">Interval scheduling</h3>
 <p>考虑如下图所示的任务：</p>
@@ -6555,7 +6559,7 @@ Find-Set(u) != Find-Set(v):
 </blockquote>
 <p><img src="img/223.png" alt="image" style="zoom: 67%;" /></p>
 <p><img src="img/224.png" alt="image" style="zoom: 67%;" /></p>
-<h3 id="algorithm">Algorithm</h3>
+<h3 id="algorithm_1">Algorithm</h3>
 <p>算法的idea非常的简单：找到图中的任意一个in-degree为0的节点（source），然后放入topological sorting里面，然后删除掉这个点和与这个点相关的所有的边。这个步骤重复<span class="arithmatex">\(|V|\)</span>次。</p>
 <blockquote>
 <p>从上面的算法就能看出来：topo sorting的顺序当然不是唯一的，因为source可能不止一个</p>
@@ -6771,7 +6775,7 @@ d_{i,j}^{(k)}=min\{d_{i,j}^{(k-1)}, d_{i,k}^{(k-1)} + d_{k,j}^{(k-1)}\}
 <li>Dijkstra算法可以处理有环的有向图，只不过是不能处理包含了负数权重边长的图。</li>
 <li>Dijkstra algorithm can be viewed as a special case of the A<em> Graph Search algorithm where the heuristic function from any vertex <span class="arithmatex">\(u\)</span> to the terminal <span class="arithmatex">\(z\)</span> is <span class="arithmatex">\(h(u, z)=0\)</span>. Furthermore, if we use heuristic function <span class="arithmatex">\(h(u) = c\)</span> for any <span class="arithmatex">\(u \in V\)</span> where c is a positive constant, then the A</em> search algorithm will be the same with Dijkstra’s algorithm.</li>
 <li>Floyd-Warshall and Bellman-Ford算法都是需要图中没有负环</li>
-<li>Puzzle问题中的discrete hamminng and mahattan距离都是admissible heuristics。</li>
+<li>Puzzle问题中的hamminng and mahattan距离，以及距离最终状态的真实移动最少步数距离，都是admissible heuristics。（注意：discrete距离并不是admissible的！）</li>
 <li>'Suppose the unique shortest path from source s to a vertex t has <span class="arithmatex">\(l\)</span> edges. It is <em>impossible</em> that we find this shortest path from s to t in <em>less than</em> <span class="arithmatex">\(l\)</span> iterations.' 这句话是错误的，因为事实上一次迭代是<strong><em>至少</em></strong>会使最短路的边数至少+1.</li>
 <li>Dijkstra算法和Bellman-Ford算法都是用于找到图中从一个起点到所有其他顶点的最短路径的算法。然而，它们找到的最短路径所组成的树并不一定是最小生成树（MST）</li>
 <li>Dijkstra中，If vertex u is marked visited before v, then dist[u] ≤ dist[v]；但是在A星算法中，‘if vertex u is marked visited before v, then dist[u] ≤ dist[v], where dist[u] represents the real distance from start vertex to u’这个说法就是错误的，这是因为其实判断依据是启发式距离，而不是真实距离.</li>
@@ -6782,6 +6786,7 @@ d_{i,j}^{(k)}=min\{d_{i,j}^{(k-1)}, d_{i,k}^{(k-1)} + d_{k,j}^{(k-1)}\}
 <li>如何用Floyd判断是否存在负环？运行完算法后，对于矩阵中对角元素<span class="arithmatex">\(dist[i][i],i\in [0, |V|-1]\)</span>，如果存在负数，那么就说明有负环</li>
 <li>With a simple optimization, applying Floyd-Warshall algorithm to an undirected graph of N nodes just needs to take about half of the time of applying it to a directed graph of N nodes. （Do not need to be strictly 1/2）</li>
 <li>Floyd算法所消耗的时间仅与顶点数量有关</li>
+<li>Bellman-Ford算法中，经过k次最外面的循环，则v1到vn的包含至多k条边的最短路径会被计算。</li>
 <li>Floyd寻找path的操作中，如果初始化是<span class="arithmatex">\(p[i][j]=j,i \neq j\)</span>，且在k outer loop过程内，<span class="arithmatex">\(p[i][j]=p[i][k]\)</span>，那么路径的确定就如之前note中所示；但是如果初始化是<span class="arithmatex">\(p[i][j]=-1\)</span>，且更新过程中<span class="arithmatex">\(p[i][j]=k\)</span>，那么SOLUTION(u,v,p)，代表寻找u点到v点的最短路径，设计如下：</li>
 </ol>
 <pre><code class="language-pseudocode"># SOLUTION(u,v,p)
@@ -6806,6 +6811,12 @@ return FIND-PATH(u,k,p) + {k} + FIND-PATH(k,v,p)
 <p><img alt="" src="img/312.png" /></p>
 <p>A*:</p>
 <p><img alt="" src="img/313.jpg" /></p>
+<ol>
+<li>If we modify the outer loop of Dijkstra's algorithm to execute <span class="arithmatex">\( |V| - 1 \)</span> iterations instead of <span class="arithmatex">\( |V| \)</span> iterations (i.e., only pop <span class="arithmatex">\( |V| - 1 \)</span> times from the heap), the algorithm can still find the shortest path on a positive-weighted graph.</li>
+<li>We can modify Bellman-Ford algorithm to detect whether there exists a negative cycle or not in a directed graph.</li>
+<li>If we modify the outer loop of Bellman-Ford algorithm to execute <span class="arithmatex">\( |V| \)</span> iterations instead of <span class="arithmatex">\( |V| - 1 \)</span> iterations (i.e., apply update rule to each edge for <span class="arithmatex">\( |V| \)</span> times), the algorithm can still find the shortest path on a positive-weighted graph.</li>
+<li>We can modify Floyd-Warshall algorithm to detect whether there exists a negative cycle or not in a directed graph.</li>
+</ol>
 <h2 id="dynamic-programming">Dynamic Programming</h2>
 <h3 id="introduction">Introduction</h3>
 <p>考虑如下函数：</p>

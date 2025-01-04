@@ -10871,6 +10871,9 @@ void insert( int i, int j, double w ) {
 <p>二分图，bipartite graph的定义：A bipartite graph is a graph where the vertices V can be divided into two disjoint sets V1 and V2 such that every edge has one vertex in V1 and the other in V2 . 肉眼判断一个图是不是二分图其实是一件困难的事情，那么有没有算法能够帮助我们实现二分图的判断呢？在离散数学中，介绍了两种颜色标色的方式来判断一张图是不是二分图，那么能不能类似地设计流程呢？流程如下：</p>
 <p><img src="img/179.png" alt="image" style="zoom: 80%;" /></p>
 <p>也就是说第一次入栈的用红色，第二次的是蓝色，第三次的是红色，以此类推；然后弹栈的过程中，这个元素周围的元素，应该要么是unvisited，要么是另外一个颜色的，i.e.，不能和自己的颜色相同；一旦发现了反例，那么立马直到这个元素不是二分图。</p>
+<blockquote>
+<p>DFS and BFS都可以用来实现这个任务</p>
+</blockquote>
 <h3 id="painpoint_1">Painpoint</h3>
 <ul>
 <li>Any tree is a bipartite graph.</li>
@@ -10882,7 +10885,7 @@ void insert( int i, int j, double w ) {
 </blockquote>
 <ul>
 <li>Both the time complexity of DFS and that of BFS are <span class="arithmatex">\(\Theta(|V| + |E|)\)</span>. 这是因为每一个顶点都遍历过，而每一条边都检查过（检查体现在：一个点的邻居是否是visited）</li>
-<li>In a simple undirected graph with 3n vertices and 3 connected components, the maximum number of edges in the graph is <span class="arithmatex">\(\frac{(3n-1)(3n-2)}{2}\)</span>, 而不是<span class="arithmatex">\(\frac{3(n-1)n}{2}\)</span></li>
+<li>In a simple undirected graph with 3n vertices and 3 connected components, the maximum number of edges in the graph is <span class="arithmatex">\(\frac{(3n-3)(3n-2)}{2}\)</span>, 而不是<span class="arithmatex">\(\frac{3(n-1)n}{2}\)</span></li>
 <li>A directed graph with n vertices has n edges may be strongly connected.</li>
 <li>Adjacency matrix <strong><em>is not</em></strong> better than adjacency list when inserting a new vertex.</li>
 </ul>
