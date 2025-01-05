@@ -4226,6 +4226,24 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#subset-sum-to-partition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subset-Sum to Partition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partition-to-carpenter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partition to Carpenter
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -6244,6 +6262,24 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#subset-sum-to-partition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subset-Sum to Partition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partition-to-carpenter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partition to Carpenter
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -6468,6 +6504,9 @@ Find-Set(u) != Find-Set(v):
 <ol>
 <li>在undirected connected graph里面，最小的边并不一定会出现在所有的最小生成树里面，因为可能权重不是distinct；同时，undirected connected graph中权重最大的边也可能出现在MST里面，因为可能边长数量恰好就是顶点数量-1（树）。</li>
 <li>如何求出修改一个边长的允许范围，从而不改变MST呢？对于MST里面的边长来说，如果删掉，那么MST就会边长两个联通分量，两个联通分量之间的边长的最小值，就是这个边长的最大值；对于不在MST里面的边长来说，如果加上，那么MST中就会有一个环，这个环除开这条边的所有的边长的最大值，就是这个边长的最小值。</li>
+<li>如果G是一个无向图，<span class="arithmatex">\(f(\cdot)\)</span>是一个严格单增的函数，<span class="arithmatex">\(F(G)\)</span>是G图中所有边长权重w换成<span class="arithmatex">\(f(w)\)</span>后的图。那么如果T1 T2是G的生成树，且<span class="arithmatex">\(W(T_1) &gt; W(T_2)\)</span>，那么<span class="arithmatex">\(W(F(T_1)) &gt; W(F(T_2))\)</span>这个结论看似是正确的，<strong>但<em>是实则是不一定成立的</em></strong>！可以通过举反例说明。</li>
+<li>If G is connected, then <span class="arithmatex">\(|E| \geq |V|-1\)</span>; If G is acyclic, then <span class="arithmatex">\(|E| \leq |V|-1\)</span></li>
+<li>G = (V, E)'s adjacency matrix is A, where <span class="arithmatex">\(A_{uv} = 1\)</span> if <span class="arithmatex">\({u,v} \in E\)</span>, and 0 otherwise. Then: <span class="arithmatex">\(\sum_{u,v \in V}A_{uv} = 2|E|\)</span>, and <span class="arithmatex">\((A_{uu})^2 = degree(u)\)</span></li>
 </ol>
 <h2 id="_2">贪心算法</h2>
 <blockquote>
@@ -6602,6 +6641,7 @@ Find-Set(u) != Find-Set(v):
 <li>A DAG with all different weighted edges <strong><em>may have more than one</em></strong> critical path.</li>
 <li>A directed graph with n vertices and n-1 edges <strong><em>may not</em></strong> have a topological sorting. Consider a traingle plus one edge, with 5 nodes in total and 4 edges in total. </li>
 <li>Given a directed acyclic graph G. If u appears before v in a topological sort, there <strong>won't</strong> be any path from v to u in G. </li>
+<li>Topological Sort的核心是：任何一条路径上的点，在拓扑排序中这些点的顺序应该保持一样的order</li>
 </ol>
 <h2 id="shortest-path">Shortest Path</h2>
 <h3 id="definition_1">Definition</h3>
@@ -6778,7 +6818,7 @@ d_{i,j}^{(k)}=min\{d_{i,j}^{(k-1)}, d_{i,k}^{(k-1)} + d_{k,j}^{(k-1)}\}
 <li>Puzzle问题中的hamminng and mahattan距离，以及距离最终状态的真实移动最少步数距离，都是admissible heuristics。（注意：discrete距离并不是admissible的！）</li>
 <li>'Suppose the unique shortest path from source s to a vertex t has <span class="arithmatex">\(l\)</span> edges. It is <em>impossible</em> that we find this shortest path from s to t in <em>less than</em> <span class="arithmatex">\(l\)</span> iterations.' 这句话是错误的，因为事实上一次迭代是<strong><em>至少</em></strong>会使最短路的边数至少+1.</li>
 <li>Dijkstra算法和Bellman-Ford算法都是用于找到图中从一个起点到所有其他顶点的最短路径的算法。然而，它们找到的最短路径所组成的树并不一定是最小生成树（MST）</li>
-<li>Dijkstra中，If vertex u is marked visited before v, then dist[u] ≤ dist[v]；但是在A星算法中，‘if vertex u is marked visited before v, then dist[u] ≤ dist[v], where dist[u] represents the real distance from start vertex to u’这个说法就是错误的，这是因为其实判断依据是启发式距离，而不是真实距离.</li>
+<li>Dijkstra中，If vertex u is marked visited before v, then dist[u] ≤ dist[v]；但是在A星算法中，‘if vertex u is marked visited before v, then dist[u] ≤ dist[v], where dist[u] represents the real distance from start vertex to u’这个说法就是错误的，这是因为其实判断依据是启发式距离，而不是真实距离. 换而言之：A*算法中使用consistent heuristic function，如果u点在v之前被标记，那么一定说明：<span class="arithmatex">\(d(u)+h(u) \leq d(v) + h(v)\)</span></li>
 <li>For A* search algorithm with admissible and consistent heuristic, heuristic <span class="arithmatex">\(h_a(x)\)</span> is always better than <span class="arithmatex">\(h_b(x)\)</span> if <span class="arithmatex">\(∀x : h_a(x) ≥ h_b(x)\)</span>.</li>
 <li>如果heuristic是consistent的，那么也必然是admissible，但是反过来不成立</li>
 <li>Floyd-Warshall使用的不是贪心算法，而是动态规划</li>
@@ -6816,6 +6856,7 @@ return FIND-PATH(u,k,p) + {k} + FIND-PATH(k,v,p)
 <li>We can modify Bellman-Ford algorithm to detect whether there exists a negative cycle or not in a directed graph.</li>
 <li>If we modify the outer loop of Bellman-Ford algorithm to execute <span class="arithmatex">\( |V| \)</span> iterations instead of <span class="arithmatex">\( |V| - 1 \)</span> iterations (i.e., apply update rule to each edge for <span class="arithmatex">\( |V| \)</span> times), the algorithm can still find the shortest path on a positive-weighted graph.</li>
 <li>We can modify Floyd-Warshall algorithm to detect whether there exists a negative cycle or not in a directed graph.</li>
+<li>Floyd-Warshall算法如果被用来只求出single source最短路径，那么依然需要<span class="arithmatex">\(\Theta(V^3)\)</span>的时间复杂度，因为这个算法是绑定产出所有点的最短路径的。</li>
 </ol>
 <h2 id="dynamic-programming">Dynamic Programming</h2>
 <h3 id="introduction">Introduction</h3>
@@ -6893,6 +6934,9 @@ where\ e_{ij}=SSE(p_i, \dots, p_j)
 <p>可见，这里储存的结果应该是和两个变量有关，因此应该储存在二维数组中；同时从代码实现上，外面的循环从subset of items从小到大开始，每一次循环中进行w的从小到大的一次for循环。</p>
 <p><img src="img/287.png" alt="image"  /></p>
 <p>那么时间复杂度和空间复杂度都显然是：<span class="arithmatex">\(\Theta(nw)\)</span></p>
+<blockquote>
+<p>一定要注意背包问题中，物品是否无限？还是每件只能拿一个？或者是重量是正整数吗？还是正实数！（正实数就是NPC问题了）</p>
+</blockquote>
 <h3 id="more-examples">More Examples</h3>
 <p><strong><em>House Coloring Problem</em></strong></p>
 <p><img src="img/276.png" alt="image"  /></p>
@@ -7077,6 +7121,7 @@ P \subseteq NP, NP \subseteq EXP
 <p>那么NP-Complete定义如下：A problem Y <span class="arithmatex">\(\in\)</span> NP with the property that for every problem X <span class="arithmatex">\(\in\)</span> NP, <span class="arithmatex">\(X \leq _p Y\)</span>。这个定义看起来十分的怪：什么叫所有的NP问题都能归约到Y问题？真的有这样的问题吗？Are there any natural NP-complete problems？答案，当然是有：Circuit-SAT！（<strong><em>According to the Cook-Levin Theorem</em></strong>）</p>
 <blockquote>
 <p>Proposition: Suppose <span class="arithmatex">\(Y \in NP-Complete\)</span>. Then, <span class="arithmatex">\(Y \in P\)</span> iff <span class="arithmatex">\(P=NP\)</span></p>
+<p>注意！！上面定义中：<span class="arithmatex">\(Y \in NP\)</span>是相当必要的！换而言之，如果上述的描述中去除了这个信息，那么这句话就是错误的，因为Y都可能不在NP问题的范畴内！</p>
 </blockquote>
 <p><strong><em>CIRCUIT-SAT：Given a combinational circuit built from AND, OR, and NOT gates,  is there a way to set the circuit inputs so that the output is 1？</em></strong></p>
 <p><img src="img/303.png" alt="image" style="zoom:50%;" /></p>
@@ -7108,6 +7153,13 @@ C \mbox{ is called a clause: } C_j = x_1 \lor \overline{x_2} \lor \dots \lor x_n
 <h3 id="classical-reduction">Classical Reduction</h3>
 <h4 id="k-color-to-3-color">k-color to 3-color</h4>
 <p><img src="img/314.png" alt="image"  /></p>
+<h4 id="subset-sum-to-partition">Subset-Sum to Partition</h4>
+<p><img src="img/315.png" alt="image"  /></p>
+<p><img src="img/316.png" alt="image"  /></p>
+<p><img src="img/317.png" alt="image"  /></p>
+<h4 id="partition-to-carpenter">Partition to Carpenter</h4>
+<p><img src="img/318.png" alt="image"  /></p>
+<p><img src="img/319.png" alt="image"  /></p>
 <h3 id="appendix">Appendix</h3>
 <h4 id="how-to-prove-one-problem-is-npc">How to prove one problem is NPC</h4>
 <p><img src="img/305.png" alt="image"  /></p>
