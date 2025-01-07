@@ -10469,7 +10469,7 @@ f_{n}=\frac{5+2\sqrt{5}}{5}\left(\frac{1+\sqrt{5}}{2}\right)^{n}+\frac{5-2\sqrt{
 <p>总结图如下：
 <img src="img/149.png" alt="image" style="zoom: 50%;" /></p>
 <p>那么这个<span class="arithmatex">\(A(i,i)\)</span>多大就是一个非常关键的问题了。好消息是：<span class="arithmatex">\(A(4,4)\)</span>是一个19729位的正整数，因此我们可以在实践中认为：</p>
-<p>:warning: 在同时使用了路径压缩和启发式合并之后，并查集每个操作的平均时间为<span class="arithmatex">\(O(\alpha (n))\)</span>，其中<span class="arithmatex">\(\alpha\)</span>一般不超过4，时间复杂度依然可以视为n的函数。</p>
+<p>:warning: 在同时使用了路径压缩和启发式合并之后，并查集每个操作的平均时间为<span class="arithmatex">\(O(\alpha (n))\)</span>，<strong>实践中</strong>认为<span class="arithmatex">\(\alpha(n)\)</span>一般不超过4，而<strong>理论上</strong>时间复杂度依然视为n的函数。</p>
 <h3 id="application">Application</h3>
 <h4 id="lotto-649-problem">Lotto 6/49 Problem</h4>
 <p>如何在1-49个数字中随机选取6个数字，而且不会选出相同的数字？可以考虑先在1-49中随机选取一个数字，然后把最后一个元素，即49，复制到被选中的这个数字的位置上面。之后再从1-48中随机选取数字。上述的操作重复六次。</p>
