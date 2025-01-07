@@ -4054,21 +4054,6 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reductions-p-and-np" class="md-nav__link">
-    <span class="md-ellipsis">
-      Reductions, P and NP
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Reductions, P and NP">
-      <ul class="md-nav__list">
-        
           <li class="md-nav__item">
   <a href="#reductions" class="md-nav__link">
     <span class="md-ellipsis">
@@ -6090,21 +6075,6 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reductions-p-and-np" class="md-nav__link">
-    <span class="md-ellipsis">
-      Reductions, P and NP
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Reductions, P and NP">
-      <ul class="md-nav__list">
-        
           <li class="md-nav__item">
   <a href="#reductions" class="md-nav__link">
     <span class="md-ellipsis">
@@ -6507,6 +6477,7 @@ Find-Set(u) != Find-Set(v):
 <li>如果G是一个无向图，<span class="arithmatex">\(f(\cdot)\)</span>是一个严格单增的函数，<span class="arithmatex">\(F(G)\)</span>是G图中所有边长权重w换成<span class="arithmatex">\(f(w)\)</span>后的图。那么如果T1 T2是G的生成树，且<span class="arithmatex">\(W(T_1) &gt; W(T_2)\)</span>，那么<span class="arithmatex">\(W(F(T_1)) &gt; W(F(T_2))\)</span>这个结论看似是正确的，<strong>但<em>是实则是不一定成立的</em></strong>！可以通过举反例说明。</li>
 <li>If G is connected, then <span class="arithmatex">\(|E| \geq |V|-1\)</span>; If G is acyclic, then <span class="arithmatex">\(|E| \leq |V|-1\)</span></li>
 <li>G = (V, E)'s adjacency matrix is A, where <span class="arithmatex">\(A_{uv} = 1\)</span> if <span class="arithmatex">\({u,v} \in E\)</span>, and 0 otherwise. Then: <span class="arithmatex">\(\sum_{u,v \in V}A_{uv} = 2|E|\)</span>, and <span class="arithmatex">\((A_{uu})^2 = degree(u)\)</span></li>
+<li>If we add a new edge <span class="arithmatex">\(e = (u, v)\)</span> into a graph<span class="arithmatex">\(G = (V, E)\)</span> with unique MST to get a new graph <span class="arithmatex">\(( G' = (V, E \cup \{e\}) )\)</span>. There is at most 1 edge difference between the MST of <span class="arithmatex">\(G\)</span> and <span class="arithmatex">\(G'\)</span>.</li>
 </ol>
 <h2 id="_2">贪心算法</h2>
 <blockquote>
@@ -6642,6 +6613,7 @@ Find-Set(u) != Find-Set(v):
 <li>A directed graph with n vertices and n-1 edges <strong><em>may not</em></strong> have a topological sorting. Consider a traingle plus one edge, with 5 nodes in total and 4 edges in total. </li>
 <li>Given a directed acyclic graph G. If u appears before v in a topological sort, there <strong>won't</strong> be any path from v to u in G. </li>
 <li>Topological Sort的核心是：任何一条路径上的点，在拓扑排序中这些点的顺序应该保持一样的order</li>
+<li>Given a DAG with probably negative edge weight and a source vertex s, we want to find the shortest path from s to every vertex. 对于这个任务，可以使用基于拓扑循环的松弛方法。给出拓扑排序后的order，然后类似于bellman ford方法，按照topological order对顶点们依次松弛。（注意将s的距离标为0，然后其他的顶点距离都标记为无穷）这个算法比Bellman-Ford时间复杂度较低。</li>
 </ol>
 <h2 id="shortest-path">Shortest Path</h2>
 <h3 id="definition_1">Definition</h3>
@@ -6823,10 +6795,10 @@ d_{i,j}^{(k)}=min\{d_{i,j}^{(k-1)}, d_{i,k}^{(k-1)} + d_{k,j}^{(k-1)}\}
 <li>如果heuristic是consistent的，那么也必然是admissible，但是反过来不成立</li>
 <li>Floyd-Warshall使用的不是贪心算法，而是动态规划</li>
 <li>Dijkstra, Bellman, A*都是只能求出从一个点出发的到所有点的最短路径，而Floyd可以是任意两点之间</li>
-<li>如何用Floyd判断是否存在负环？运行完算法后，对于矩阵中对角元素<span class="arithmatex">\(dist[i][i],i\in [0, |V|-1]\)</span>，如果存在负数，那么就说明有负环</li>
+<li>如何用Floyd判断是否存在负环？运行完算法后，对于矩阵中对角元素<span class="arithmatex">\(dist[i][i],i\in [0, |V|-1]\)</span>，如果存在负数，那么就说明有负环；同时Floyd也能判断有向图中任意两个点是否是强连通的：<span class="arithmatex">\(u,v,d_{u,v} \neq \infty,d_{v,u} \neq \infty\)</span></li>
 <li>With a simple optimization, applying Floyd-Warshall algorithm to an undirected graph of N nodes just needs to take about half of the time of applying it to a directed graph of N nodes. （Do not need to be strictly 1/2）</li>
 <li>Floyd算法所消耗的时间仅与顶点数量有关</li>
-<li>Bellman-Ford算法中，经过k次最外面的循环，则v1到vn的包含至多k条边的最短路径会被计算。</li>
+<li>Bellman-Ford算法中，经过k次最外面的循环，则v1到vn的包含至多k条边的最短路径会被计算。这是因为算法经过k次循环，那么从source到每一个点的所有最多含k条边的路径中最短的一条就会被找到。但是其实依次循环使得最短路径长度是至少+1。</li>
 <li>Floyd寻找path的操作中，如果初始化是<span class="arithmatex">\(p[i][j]=j,i \neq j\)</span>，且在k outer loop过程内，<span class="arithmatex">\(p[i][j]=p[i][k]\)</span>，那么路径的确定就如之前note中所示；但是如果初始化是<span class="arithmatex">\(p[i][j]=-1\)</span>，且更新过程中<span class="arithmatex">\(p[i][j]=k\)</span>，那么SOLUTION(u,v,p)，代表寻找u点到v点的最短路径，设计如下：</li>
 </ol>
 <pre><code class="language-pseudocode"># SOLUTION(u,v,p)
@@ -6857,6 +6829,8 @@ return FIND-PATH(u,k,p) + {k} + FIND-PATH(k,v,p)
 <li>If we modify the outer loop of Bellman-Ford algorithm to execute <span class="arithmatex">\( |V| \)</span> iterations instead of <span class="arithmatex">\( |V| - 1 \)</span> iterations (i.e., apply update rule to each edge for <span class="arithmatex">\( |V| \)</span> times), the algorithm can still find the shortest path on a positive-weighted graph.</li>
 <li>We can modify Floyd-Warshall algorithm to detect whether there exists a negative cycle or not in a directed graph.</li>
 <li>Floyd-Warshall算法如果被用来只求出single source最短路径，那么依然需要<span class="arithmatex">\(\Theta(V^3)\)</span>的时间复杂度，因为这个算法是绑定产出所有点的最短路径的。</li>
+<li>Bellman-Ford算法每次循环操作实际上是对相邻节点的访问，<strong><em>第n次循环操作保证了所有深度为n的路径最短</em></strong>。由于图的最短路径最长不会经过超过<span class="arithmatex">\(|V|-1\)</span>条边，所以可知贝尔曼-福特算法所得为最短路径。加黑斜体的内容是十分关键的！</li>
+<li>‘超级源点’思想十分重要！‘双生顶点’手法很重要！在很多的时候有奇效。</li>
 </ol>
 <h2 id="dynamic-programming">Dynamic Programming</h2>
 <h3 id="introduction">Introduction</h3>
@@ -6959,7 +6933,10 @@ where\ e_{ij}=SSE(p_i, \dots, p_j)
 <li>背包：<span class="arithmatex">\(f(i,j)\)</span>表示前i个东西，某属性之和...j</li>
 <li>区间：<span class="arithmatex">\(f(l,r)\)</span>表示下标区间为<span class="arithmatex">\([l,r]\)</span>中的这几样东西...</li>
 </ul>
-<h2 id="reductions-p-and-np">Reductions, P and NP</h2>
+<p>值得注意的是，后缀也是可能考的！如21年Fall-Final的题：</p>
+<p><img src="img/320.png" alt="image"  /></p>
+<p>如果考虑的是<span class="arithmatex">\(dp[i]\)</span>代表前i节课所花的最多的时间，那么由于考虑的是<span class="arithmatex">\(j&lt;i\)</span>如果上的话，将会有<span class="arithmatex">\(y_j\)</span>的疲劳，因此<span class="arithmatex">\(j + y_j &lt; i\)</span>，符合这个条件的j将会是转移的状态，而且要对所有的可能状态取max。这样太麻烦了。</p>
+<p>由于疲劳时间是作用向后的，因此可以考虑倒过来考虑：<span class="arithmatex">\(dp[i]\)</span>代表从i到n这些课程所花的最长时间，那么考虑第i节课，如果上的话，那么转移的状态是<span class="arithmatex">\(dp[i+y_i+1]\)</span>，而且不需要什么取max操作，非常的方便。时间复杂度是O(n)。 </p>
 <h3 id="reductions">Reductions</h3>
 <h4 id="cook-turing-reduction">Cook (Turing) Reduction</h4>
 <p>在实践中什么样的问题我们认为是“可解决的”呢 ？在工程中一般认为：能够在多项式时间内实现，那么认为问题是“可解决的”。因此将问题按照能否在多项式时间内解决为标准进行分类。可惜的是，当今大量的基础问题时间复杂度都超出了多项式时间范畴内。</p>
