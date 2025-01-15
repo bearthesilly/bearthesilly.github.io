@@ -192,7 +192,6 @@ nav:
       - core: CS100(C&C++)/core.md
       - 课堂note: CS100(C&C++)/课堂.md
     - 数据结构与算法:
-      - 写在最前面: Data_Structure_and_Algorithm/写在最前面.md
       - 基本结构与算法分析: Data_Structure_and_Algorithm/基本结构与算法分析.md
       - 搜索与排序: Data_Structure_and_Algorithm/搜索与排序.md
       - 算法: Data_Structure_and_Algorithm/算法.md
