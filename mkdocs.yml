@@ -130,15 +130,32 @@ nav:
       - 章节回顾: 线性代数/章节回顾/note.md
       - 总复习: 线性代数/总复习/note.md
     - 概率论:
-      - Lec1: 概率论/L1.pdf
-      - Lec1-handwriting: 概率论/L1-handwriting.pdf
-      - Lec2: 概率论/L2.pdf
-      - Lec2-handwriting: 概率论/L2-handwriting.pdf
-      - Lec3: 概率论/L3.pdf
-      - Lec3-handwriting: 概率论/L3-handwriting.pdf
-      - Lec4: 概率论/L4.pdf
-      - Lec4-handwriting: 概率论/L4-handwriting.pdf
-      - Lec5: 概率论/L5.pdf
+      - Lec-handwriting:
+        - Lec1-handwriting: 概率论/L1-handwriting.pdf
+        - Lec2-handwriting: 概率论/L2-handwriting.pdf
+        - Lec3-handwriting: 概率论/L3-handwriting.pdf
+        - Lec4-handwriting: 概率论/L4-handwriting.pdf
+        - Lec5-handwriting: 概率论/L5-handwriting.pdf
+        - Lec6-handwriting: 概率论/L6-handwriting.pdf
+        - Lec7-handwriting: 概率论/L7-handwriting.pdf
+        - Lec8-handwriting: 概率论/L8-handwriting.pdf
+        - Lec9-handwriting: 概率论/L9-handwriting.pdf
+        - Lec10-handwriting: 概率论/L10-handwriting.pdf
+      - Note:
+        - Lec1: 概率论/SI140-note/Lec1.pdf
+        - Lec2-3: 概率论/SI140-note/Lec2-3.pdf
+        - Lec4-5-6: 概率论/SI140-note/Lec4-5-6.pdf
+        - Lec7-8: 概率论/SI140-note/Lec7-8.pdf
+        - Lec9-10-11: 概率论/SI140-note/Lec9-10-11.pdf
+        - 期中部分总结: 概率论/SI140-note/期中部分总结.pdf
+        - Chapter4: 概率论/SI140-note/Chapter4.pdf
+        - Chapter5: 概率论/SI140-note/Chapter5.pdf
+        - Chapter6: 概率论/SI140-note/Chapter6.pdf
+        - Chapter7-8: 概率论/SI140-note/Chapter7-8.pdf
+        - Chapter9: 概率论/SI140-note/Chapter9.pdf
+        - Chapter10: 概率论/SI140-note/Chapter10.pdf
+        - 期末总复习: 概率论/SI140-note/期末总复习.pdf
+        - Skill: 概率论/SI140-note/Skill.pdf
     - CS100(C&C++):
       - 课件:
         - L0: CS100(C&C++)/slides/l0/l0.md
