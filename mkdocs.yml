@@ -130,6 +130,7 @@ nav:
       - 章节回顾: 线性代数/章节回顾/note.md
       - 总复习: 线性代数/总复习/note.md
     - 概率论:
+      - 写在最前面: 概率论/写在最前面.md
       - Lec-handwriting:
         - Lec1-handwriting: 概率论/L1-handwriting.pdf
         - Lec2-handwriting: 概率论/L2-handwriting.pdf
@@ -191,11 +192,13 @@ nav:
       - core: CS100(C&C++)/core.md
       - 课堂note: CS100(C&C++)/课堂.md
     - 数据结构与算法:
+      - 写在最前面: Data_Structure_and_Algorithm/写在最前面.md
       - 基本结构与算法分析: Data_Structure_and_Algorithm/基本结构与算法分析.md
       - 搜索与排序: Data_Structure_and_Algorithm/搜索与排序.md
       - 算法: Data_Structure_and_Algorithm/算法.md
       - 进阶与拓展: Data_Structure_and_Algorithm/进阶与拓展misc.md
     - 信号与系统:
+      - 写在最前面: 信号与系统/写在最前面.md
       - slides: 
         - Chapter1: 信号与系统/Chapter 1.pdf
         - Chapter2: 信号与系统/Chapter 2.pdf
@@ -219,31 +222,32 @@ nav:
         - Chapter10Review: 信号与系统/Note/Chapter10Review.pdf
         - 期中cheatsheet: 信号与系统/Note/期中cheatsheet.pdf
         - 期末cheatsheet: 信号与系统/Note/期末cheatsheet.pdf
-      - 普通物理:
-        - slides: 
-          - Lec2: 普通物理/Lect2_Kinematics 质点运动学.pdf
-          - Lec3: 普通物理/Lect3_Dynamics 质点动力学-1.pdf
-          - Lec4: 普通物理/Lect4_Dynamics 质点动力学-2.pdf
-          - Lec5: 普通物理/Lect5_Work_energy 功和能.pdf
-          - Lec6: 普通物理/Lect6_Potential Energy_势能.pdf
-          - Lec7: 普通物理/Lect7_Momentum_动量-预习.pdf
-          - Lec8: 普通物理/Lect8_Collision and elasticity 碰撞和弹性.pdf
-          - Lec9: 普通物理/Lect9 刚体.pdf
-          - Lec10: 普通物理/Lect10 力矩、角动量.pdf
-          - Lec11: 普通物理/Lect11 平衡、流体力学.pdf
-          - Lec12: 普通物理/Lect12 万有引力.pdf
-          - Lec13: 普通物理/Lect13_Oscillation 振动.pdf
-          - Lec14: 普通物理/Lect14_MechanicalWave-2024.pdf
-          - Lec15: 普通物理/Lect15-Mechanical Wave-2-2024更新版.pdf
-          - Lec16: 普通物理/Lect16_Sound and Hearing-2024(1).pdf
-          - Lec17: 普通物理/Lect17_Temperature+and+Heat 2024(1).pdf
-          - Lec18: 普通物理/Lect18_Thermal+Properties_2024.pdf
-          - Lec19: 普通物理/Lect19_First+Thermodynamics+Law_2024-更正版2.pdf
-          - 热学复习: 普通物理/热学复习.pdf
-          - 振动和波动复习: 普通物理/振动和波动复习.pdf
-        - Review:
-          - 期中总结: 普通物理/期中总结.pdf
-          - 期末总结: 普通物理/期末总结.pdf
+    - 普通物理:
+      - 写在最前面: 普通物理/写在最前面.md
+      - slides: 
+        - Lec2: 普通物理/Lect2_Kinematics 质点运动学.pdf
+        - Lec3: 普通物理/Lect3_Dynamics 质点动力学-1.pdf
+        - Lec4: 普通物理/Lect4_Dynamics 质点动力学-2.pdf
+        - Lec5: 普通物理/Lect5_Work_energy 功和能.pdf
+        - Lec6: 普通物理/Lect6_Potential Energy_势能.pdf
+        - Lec7: 普通物理/Lect7_Momentum_动量-预习.pdf
+        - Lec8: 普通物理/Lect8_Collision and elasticity 碰撞和弹性.pdf
+        - Lec9: 普通物理/Lect9 刚体.pdf
+        - Lec10: 普通物理/Lect10 力矩、角动量.pdf
+        - Lec11: 普通物理/Lect11 平衡、流体力学.pdf
+        - Lec12: 普通物理/Lect12 万有引力.pdf
+        - Lec13: 普通物理/Lect13_Oscillation 振动.pdf
+        - Lec14: 普通物理/Lect14_MechanicalWave-2024.pdf
+        - Lec15: 普通物理/Lect15-Mechanical Wave-2-2024更新版.pdf
+        - Lec16: 普通物理/Lect16_Sound and Hearing-2024(1).pdf
+        - Lec17: 普通物理/Lect17_Temperature+and+Heat 2024(1).pdf
+        - Lec18: 普通物理/Lect18_Thermal+Properties_2024.pdf
+        - Lec19: 普通物理/Lect19_First+Thermodynamics+Law_2024-更正版2.pdf
+        - 热学复习: 普通物理/热学复习.pdf
+        - 振动和波动复习: 普通物理/振动和波动复习.pdf
+      - Review:
+        - 期中总结: 普通物理/期中总结.pdf
+        - 期末总结: 普通物理/期末总结.pdf
   - Course (Extracurriculum):
     - Deep Learning:
       - 'Partition One: Fundamental + Convolution' : deeplearning_note/深度学习自学.md
