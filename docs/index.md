@@ -5,7 +5,8 @@ Welcome to csrookie's website! This is the personal website of csrookie, dedicat
 I'm currently a student studying computer science in Shanghaitech University(上海科技大学), Sophomore. I name my github repository 'csrookie' for, literally, I'm still a rookie in the field of cs. 
 
 ## Introduction
-Currently interested in computer vision(Point Cloud) and computer graphics(Neural Radiance Field). I am also a little bit interested into the interpretability in Deep Learning. 
+
+My interests lie in multiple aspects, like computer vision, natural language processing and time series. I'm also a little bit interested into the interpretability of deep learning. 
 
 I finished the internship in [4DVLab](https://4dvlab.github.io/index.html) in September, 2024, proudly under the instruction and guidance of [Prof.Yuexin Ma](https://yuexinma.me/aboutme.html) and senior [Yiteng Xu](https://yiteng-xu.github.io/). Currently, with great honor, I am working with [Prof.Kewei Tu](https://faculty.sist.shanghaitech.edu.cn/faculty/tukw/) and [Prof.Kan Ren](https://sist.shanghaitech.edu.cn/rk/list.htm).  
 
