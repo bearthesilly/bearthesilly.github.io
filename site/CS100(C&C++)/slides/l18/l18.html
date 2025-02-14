@@ -1,0 +1,6862 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../l17/l17.html">
+      
+      
+        <link rel="next" href="../l19/l19.html">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.25">
+    
+    
+      
+        <title>L18 - csrookie's website</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cs100-lecture-18" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../index.html" title="csrookie&#39;s website" class="md-header__button md-logo" aria-label="csrookie's website" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            csrookie's website
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              L18
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../index.html" title="csrookie&#39;s website" class="md-nav__button md-logo" aria-label="csrookie's website" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    csrookie's website
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Course (Curriculum)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Course (Curriculum)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    高等数学上
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            高等数学上
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    写在最前面
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    第一&二章 函数 极限与连续
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            第一&二章 函数 极限与连续
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%27%E8%AF%81%E6%98%8E%27%E6%80%BB%E7%BB%93/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第一章证明总结
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E9%80%92%E6%8E%A8%E6%95%B0%E5%88%97%E7%9A%84%E6%9E%81%E9%99%90/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    递推数列的极限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%9E%81%E9%99%90%E4%B8%AD%E7%9A%84%E6%A6%82%E5%BF%B5%E9%A2%98/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    极限中的概念题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E8%BF%9E%E7%BB%AD%E6%80%A7%20%E9%97%B4%E6%96%AD%E7%82%B9%20%E6%B8%90%E8%BF%91%E7%BA%BF/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    连续性 间断点 渐近线
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%A4%B9%E9%80%BC%E5%87%86%E5%88%99%E6%B1%82%E6%9E%81%E9%99%90/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    夹逼准则求极限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%B1%82%E5%87%BD%E6%95%B0%E6%9E%81%E9%99%90/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    求函数极限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%9E%81%E9%99%90%E4%B8%8E%E8%BF%9E%E7%BB%AD%E9%9A%8F%E7%AC%94/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    极限与连续随笔
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_3" id="__nav_2_1_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    第三&四章 导数与微分 微分中值与导数应用
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            第三&四章 导数与微分 微分中值与导数应用
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%AF%BC%E6%95%B0%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%A6%82%E5%BF%B5%E4%B8%93%E9%A2%98/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    导数定义与概念专题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%AC%AC%E4%BA%8C%E4%B8%89%E5%9B%9B%E7%AB%A0%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第二&三&四章好题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_4" id="__nav_2_1_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    第五章 积分
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            第五章 积分
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86%E4%B8%8E%E5%AE%9A%E7%A7%AF%E5%88%86%E6%A6%82%E5%BF%B5/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    不定积分与定积分概念
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86%E4%B8%93%E9%A2%98/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    不定积分专题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%AE%9A%E7%A7%AF%E5%88%86%E5%AE%9A%E4%B9%89%E6%B1%82%E6%9E%81%E9%99%90/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    定积分定义求极限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%8F%8D%E5%B8%B8%E7%A7%AF%E5%88%86%E6%95%9B%E6%95%A3%E6%80%A7/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    反常积分敛散性
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%A7%AF%E5%88%86%E4%B8%8D%E7%AD%89%E5%BC%8F/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    积分不等式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%A7%AF%E5%88%86%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    积分及其应用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%A7%AF%E5%88%86%E7%9A%84%E5%BA%94%E7%94%A8%26%E5%87%BD%E6%95%B0%E5%BD%A2%E6%80%81/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    积分的应用&函数形态
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%A7%AF%E5%88%86%E9%80%92%E6%8E%A8%E5%85%AC%E5%BC%8F/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    积分递推公式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%89%8B%E6%B3%95%26painpoint/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手法&painpoint
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_6" id="__nav_2_1_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    第六章 微分方程
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            第六章 微分方程
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    微分方程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E7%AF%87/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    期末复习篇
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E4%B8%80%E5%85%83%E7%A7%AF%E5%88%86%E5%AD%A6%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一元积分学好题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    高等数学下
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            高等数学下
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%90%91%E9%87%8F%E4%BB%A3%E6%95%B0%E4%B8%8E%E7%A9%BA%E9%97%B4%E6%80%BB%E7%BB%93/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第七章 向量空间与空间解析几何
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    第八章 多元函数的微分学
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            第八章 多元函数的微分学
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    多元函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%81%8F%E5%AF%BC%E6%95%B0%E8%AE%A1%E7%AE%97/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    偏导数计算
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%B7%B2%E7%9F%A5%E5%81%8F%E5%AF%BC%E5%8F%8D%E6%B1%82%E5%87%BD%E6%95%B0/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    已知偏导反求函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%85%A8%E5%BE%AE%E5%88%86%E7%9A%84%E5%88%A4%E5%AE%9A%E4%B8%8E%E8%AE%A1%E7%AE%97/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    全微分的判定与计算
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E9%9A%90%E5%87%BD%E6%95%B0%E5%AD%98%E5%9C%A8%E5%AE%9A%E7%90%86/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    隐函数存在定理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E6%9E%81%E5%80%BC/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    多元函数极值
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_3" id="__nav_2_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    第九章 重积分
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            第九章 重积分
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    二重积分
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    二重积分中值定理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    二重积分好题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%9C%9F%E4%B8%AD%E6%80%BB%E7%BB%93/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    期中总结
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E9%AB%98%E6%95%B0%E5%A5%BD%E9%A2%98%E4%B8%8A/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    高数好题上
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_6" id="__nav_2_2_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    第十章 曲线积分和曲面积分
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            第十章 曲线积分和曲面积分
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%9B%B2%E7%BA%BF%E4%B8%8E%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    曲线与曲面积分
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%9B%B2%E7%BA%BF%E4%B8%8E%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86%E6%80%BB%E7%BB%93/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    曲线与曲面积分总结
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%9B%B2%E7%BA%BF%E4%B8%8E%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86%E8%8D%9F%E8%90%83/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    曲线与曲面积分荟萃
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_7" id="__nav_2_2_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    第十一章 级数
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            第十一章 级数
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%97%A0%E7%A9%B7%E7%BA%A7%E6%95%B0%E5%92%8C%E5%88%A4%E5%88%AB%E6%B3%95/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    无穷级数和判别法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%97%A0%E7%A9%B7%E7%BA%A7%E6%95%B0%E9%80%89%E6%8B%A9%E9%A2%98%E4%B8%8E%E5%8F%8D%E4%BE%8B/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    无穷级数选择题与反例
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%B9%82%E5%87%BD%E6%95%B0/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    幂函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%82%85%E9%87%8C%E5%8F%B6%E7%BA%A7%E6%95%B0/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    傅里叶级数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E9%AB%98%E6%95%B0%E5%A5%BD%E9%A2%98%E4%B8%8B/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    高数好题下
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    离散数学
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            离散数学
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    写在最前面
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_2" id="__nav_2_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    上半部分
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            上半部分
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec1/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec2%263/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec2&3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec4/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec5/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec6/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec6
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec7/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec7
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec8/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec8
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec9/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec9
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec10/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec10
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec11/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec11
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec12/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec13%2614/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec13&14
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec15/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec15
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/%E9%9A%8F%E7%AC%94%26%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    随笔&好题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_3" id="__nav_2_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    下半部分
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            下半部分
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec1/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec2/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec3/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec4/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec5/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec6/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec6
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec7/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec7
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec8/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec8
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec9/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec9
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec10/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec10
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec11/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec11
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec12/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec13/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec13
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec14/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec14
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    线性代数
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            线性代数
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    写在最前面
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    课堂笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E8%A1%8C%E5%88%97%E5%BC%8F%E4%B8%8E%E4%BC%B4%E9%9A%8F%E7%9F%A9%E9%98%B5/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    行列式与伴随矩阵
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E6%89%8B%E6%B3%95%E4%B8%8E%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手法与好题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E7%AB%A0%E8%8A%82%E5%9B%9E%E9%A1%BE/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    章节回顾
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E6%80%BB%E5%A4%8D%E4%B9%A0/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    总复习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    概率论
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            概率论
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    写在最前面
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5_2" id="__nav_2_5_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lec-handwriting
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            Lec-handwriting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/L1-handwriting.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec1-handwriting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/L2-handwriting.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec2-handwriting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/L3-handwriting.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec3-handwriting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/L4-handwriting.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec4-handwriting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/L5-handwriting.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec5-handwriting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/L6-handwriting.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec6-handwriting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/L7-handwriting.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec7-handwriting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/L8-handwriting.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec8-handwriting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/L9-handwriting.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec9-handwriting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/L10-handwriting.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec10-handwriting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5_3" id="__nav_2_5_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Note
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Note
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Lec1.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Lec2-3.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec2-3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Lec4-5-6.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec4-5-6
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Lec7-8.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec7-8
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Lec9-10-11.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec9-10-11
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/%E6%9C%9F%E4%B8%AD%E9%83%A8%E5%88%86%E6%80%BB%E7%BB%93.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    期中部分总结
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Chapter4.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Chapter5.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Chapter6.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter6
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Chapter7-8.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter7-8
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Chapter9.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter9
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Chapter10.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter10
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/%E6%9C%9F%E6%9C%AB%E6%80%BB%E5%A4%8D%E4%B9%A0.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    期末总复习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Skill.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Skill
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    CS100(C&C++)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            CS100(C&C++)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_6_1" id="__nav_2_6_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    课件
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_6_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            课件
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l0/l0.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l1/l1.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l2/l2.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l3/l3.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l4/l4.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l5/l5.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l6/l6.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L6
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l7/l7.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L7
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l8/l8.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L8
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l9/l9.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L9
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l10/l10.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L10
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l11/l11.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L11
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l12/l12.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l13/l13.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L13
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l14/l14.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L14
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l15/l15.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L15
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l16/l16.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L16
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l17/l17.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L17
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    L18
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="l18.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    L18
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contents
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l19/l19.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L19
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l20/l20.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L20
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l21/l21.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L21
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l22/l22.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L22
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l23/l23.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L23
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l24/l24.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L24
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l25/l25.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L25
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l26/l26.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L26
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l27/l27.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L27
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l28/l28.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L28
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C%2B%2B%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C++自学note
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    core
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AF%BE%E5%A0%82.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    课堂note
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    数据结构与算法
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            数据结构与算法
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Data_Structure_and_Algorithm/%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基本结构与算法分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Data_Structure_and_Algorithm/%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%8E%92%E5%BA%8F.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    搜索与排序
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Data_Structure_and_Algorithm/%E7%AE%97%E6%B3%95.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    算法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Data_Structure_and_Algorithm/%E8%BF%9B%E9%98%B6%E4%B8%8E%E6%8B%93%E5%B1%95misc.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    进阶与拓展
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    信号与系统
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            信号与系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    写在最前面
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8_2" id="__nav_2_8_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    slides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            slides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%201.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%202.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%203.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%204.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%205.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%206.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter6
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%207.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter7
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%209.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter9
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%2010.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter10
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8_3" id="__nav_2_8_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Note
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_8_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            Note
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter1LecNote.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter1LecNote
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter2LecNote.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter2LecNote
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter3LecNote.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter3LecNote
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter3Review.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter3Review
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter4Review.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter4Review
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter5Review.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter5Review
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter6Review.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter6Review
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter8Review.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter8Review
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter9Review.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter9Review
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter10Review.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter10Review
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/%E6%9C%9F%E4%B8%ADcheatsheet.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    期中cheatsheet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/%E6%9C%9F%E6%9C%ABcheatsheet.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    期末cheatsheet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    普通物理
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
+            <span class="md-nav__icon md-icon"></span>
+            普通物理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    写在最前面
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_9_2" id="__nav_2_9_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    slides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_9_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            slides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect2_Kinematics%20%E8%B4%A8%E7%82%B9%E8%BF%90%E5%8A%A8%E5%AD%A6.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect3_Dynamics%20%E8%B4%A8%E7%82%B9%E5%8A%A8%E5%8A%9B%E5%AD%A6-1.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect4_Dynamics%20%E8%B4%A8%E7%82%B9%E5%8A%A8%E5%8A%9B%E5%AD%A6-2.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect5_Work_energy%20%E5%8A%9F%E5%92%8C%E8%83%BD.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect6_Potential%20Energy_%E5%8A%BF%E8%83%BD.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec6
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect7_Momentum_%E5%8A%A8%E9%87%8F-%E9%A2%84%E4%B9%A0.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec7
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect8_Collision%20and%20elasticity%20%E7%A2%B0%E6%92%9E%E5%92%8C%E5%BC%B9%E6%80%A7.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec8
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect9%20%E5%88%9A%E4%BD%93.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec9
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect10%20%E5%8A%9B%E7%9F%A9%E3%80%81%E8%A7%92%E5%8A%A8%E9%87%8F.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec10
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect11%20%E5%B9%B3%E8%A1%A1%E3%80%81%E6%B5%81%E4%BD%93%E5%8A%9B%E5%AD%A6.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec11
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect12%20%E4%B8%87%E6%9C%89%E5%BC%95%E5%8A%9B.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect13_Oscillation%20%E6%8C%AF%E5%8A%A8.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec13
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect14_MechanicalWave-2024.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec14
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect15-Mechanical%20Wave-2-2024%E6%9B%B4%E6%96%B0%E7%89%88.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec15
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect16_Sound%20and%20Hearing-2024%281%29.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec16
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect17_Temperature%2Band%2BHeat%202024%281%29.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec17
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect18_Thermal%2BProperties_2024.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec18
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect19_First%2BThermodynamics%2BLaw_2024-%E6%9B%B4%E6%AD%A3%E7%89%882.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lec19
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/%E7%83%AD%E5%AD%A6%E5%A4%8D%E4%B9%A0.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    热学复习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/%E6%8C%AF%E5%8A%A8%E5%92%8C%E6%B3%A2%E5%8A%A8%E5%A4%8D%E4%B9%A0.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    振动和波动复习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_9_3" id="__nav_2_9_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Review
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_9_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9_3">
+            <span class="md-nav__icon md-icon"></span>
+            Review
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/%E6%9C%9F%E4%B8%AD%E6%80%BB%E7%BB%93.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    期中总结
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/%E6%9C%9F%E6%9C%AB%E6%80%BB%E7%BB%93.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    期末总结
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Course (Extracurriculum)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Course (Extracurriculum)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Deep Learning
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Deep Learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deeplearning_note/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%87%AA%E5%AD%A6.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Partition One: Fundamental + Convolution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sequence%20model/sequence_model.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Partition Two: Sequence Model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../transformer_note/transformer_note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transformer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    GAMES101
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            GAMES101
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../GAMES101/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Note
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../GAMES101/note_hw.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homework
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    动手学深度学习
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            动手学深度学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_1" id="__nav_3_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    预备知识
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            预备知识
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E4%B8%8E%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    数据操作与数据预处理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    矩阵计算与自动求导
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_2" id="__nav_3_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    线性神经网络
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            线性神经网络
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    线性回归
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/softmax.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    softmax
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_3" id="__nav_3_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    多层感知机
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            多层感知机
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA/%E6%84%9F%E7%9F%A5%E6%9C%BA.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    感知机
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9_%E6%AC%A0%E6%8B%9F%E5%90%88_%E8%BF%87%E6%8B%9F%E5%90%88.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    模型选择&欠/过拟合
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA/%E6%9D%83%E9%87%8D%E8%A1%B0%E9%80%80.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    权重衰退
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_4" id="__nav_3_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    注意力机制
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            注意力机制
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/%E6%B3%A8%E6%84%8F%E5%8A%9B.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    注意力
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/%E5%A4%9A%E5%A4%B4%E6%B3%A8%E6%84%8F%E5%8A%9B.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    多头注意力
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E4%B8%8E%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    自注意力与位置编码
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/Transformer.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transformer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../machine_learning/Datawhale/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Datawhale
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Blog/PointNet/analysis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PointNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Blog/PointMAE/analysis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PointMAE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Blog/NeRF%26Instant_NGP/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NeRF&Instant_NGP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Blog/3DGS/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3DGS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Blog/3DGS_reproduction/note.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3DGS_reproduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Blog/AAAI2025/log.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Intern_Blog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contents
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="cs100-lecture-18">CS100 Lecture 18</h1>
+<p>Smart Pointers</p>
+<hr />
+<h2 id="contents">Contents</h2>
+<ul>
+<li>Ideas</li>
+<li><code>std::unique_ptr</code></li>
+<li><code>std::shared_ptr</code></li>
+</ul>
+<hr />
+<h1 id="ideas">Ideas</h1>
+<hr />
+<h2 id="memory-management-is-difficult">Memory management is difficult!</h2>
+<p>For raw pointers obtained from <code>new</code> / <code>new[]</code> expressions, a manual <code>delete</code> / <code>delete[]</code> is required.</p>
+<pre><code class="language-cpp">void runGame(const std::vector&lt;Option&gt; &amp;options, const Settings &amp;settings) {
+  auto pWindow = new Window(settings.width, settings.height, settings.mode);
+  auto pGame = new Game(options, settings, pWindow);
+  // Run the game ...
+  while (true) {
+    auto key = getUserKeyAction();
+    // ...
+  }
+  delete pGame;   // You must not forget this.
+  delete pWindow; // You must not forget this.
+}
+</code></pre>
+<p>Will you always remember to <code>delete</code>?</p>
+<hr />
+<h2 id="will-you-always-remember-to-delete">Will you always remember to <code>delete</code>?</h2>
+<pre><code class="language-cpp">void runGame(const std::vector&lt;Option&gt; &amp;options, const Settings &amp;settings) {
+  auto pWindow = new Window(settings.width, settings.height, settings.mode);
+  auto pGame = new Game(options, settings, pWindow);
+  if (/* condition1 */) {
+    // ...
+    return; // `pWindow` and `pGame` should also be `delete`d here!
+  }
+  // Run the game ...
+  while (true) {
+    auto key = getUserKeyAction();
+    // ...
+    if (/* condition2 */) {
+      // ...
+      return; // `pWindow` and `pGame` should also be `delete`d here!
+    }
+  }
+  delete pGame;
+  delete pWindow;
+}
+</code></pre>
+<hr />
+<h2 id="idea-make-use-of-destructors">Idea: Make use of destructors.</h2>
+<pre><code class="language-cpp">struct WindowPtr { // A &quot;smart pointer&quot;.
+  Window *ptr;
+  WindowPtr(Window *p) : ptr(p) {}
+  ~WindowPtr() { delete ptr; } // The destructor will `delete` the object.
+};
+</code></pre>
+<p>When the control reaches the end of the scope in which the <code>WindowPtr</code> lives, the destructor of <code>WindowPtr</code> will be called automatically.</p>
+<pre><code class="language-cpp">void runGame(const std::vector&lt;Option&gt; &amp;options, const Settings &amp;settings) {
+  WindowPtr pWindow(new Window(settings.width, settings.height, settings.mode));
+  if (/* condition1 */) {
+    // ...
+    return; // `pWindow` is destroyed automatically, with its destructor called.
+  }
+  // ...
+  // `pWindow` is destroyed automatically, with its destructor called.
+}
+</code></pre>
+<hr />
+<h2 id="what-if-windowptr-is-copied">What if <code>WindowPtr</code> is copied?</h2>
+<p>Now <code>WindowPtr</code> only has a compiler-generated copy constructor, which copies the value of <code>ptr</code>.</p>
+<pre><code class="language-cpp">{
+  WindowPtr pWindow(new Window(settings.width, settings.height, settings.mode));
+  auto copy = pWindow; // `copy.ptr` and `pWindow.ptr` point to the same object!
+} // The object is deleted twice! Disaster!
+</code></pre>
+<p>What should be the behavior of <code>auto copy = pWindow;</code>? Possible designs are:</p>
+<ol>
+<li>Copy the object, as if <code>WindowPtr copy(new Window(*pWindow.ptr));</code>.</li>
+<li>Copy the pointer, as if <code>WindowPtr copy(pWindow.ptr);</code>.</li>
+<li>To avoid disasters caused by multiple <code>delete</code>s, some special design is needed.</li>
+<li>Disable it. If there is no unique reasonable design, disable that operation.</li>
+</ol>
+<hr />
+<h2 id="what-if-windowptr-is-copied_1">What if <code>WindowPtr</code> is copied?</h2>
+<p>What should be the behavior of <code>auto copy = pWindow;</code>? Possible designs are:</p>
+<ol>
+<li>Copy the object, as if <code>WindowPtr copy(new Window(*pWindow.ptr));</code>.</li>
+<li><strong>"Value semantics"</strong></li>
+<li>Typical example: Standard library containers. When you copy a <code>std::string</code>, a new string is created, with the <strong>contents</strong> copied.</li>
+<li>May be referred to as "deep copy" in some other languages.</li>
+<li>Copy the pointer, as if <code>WindowPtr copy(pWindow.ptr);</code>.</li>
+<li>To avoid disasters caused by multiple <code>delete</code>s, some special design is needed.</li>
+<li><strong>"Pointer semantics"</strong>, or <strong>"Reference semantics"</strong></li>
+<li>"shallow copy" in some other languages.</li>
+<li>Disable it. If there is no unique reasonable design, disable that operation.</li>
+<li>In this case, <code>pWindow</code> <strong>exclusively owns</strong> the <code>Window</code> object.</li>
+</ol>
+<hr />
+<h2 id="overview-of-smart-pointers">Overview of smart pointers</h2>
+<p>A "smart pointer" is a pointer that manages its resources.</p>
+<p>Possible behaviors of copy of a smart pointer:</p>
+<ol>
+<li>Copy the object. (Value semantics)</li>
+<li><strong>Standard library containers.</strong> e.g. <code>std::string</code>, <code>std::vector</code>, <code>std::set</code>, ...</li>
+<li>Copy the pointer, but with some special design. (Pointer semantics)</li>
+<li><strong><code>std::shared_ptr&lt;T&gt;</code>.</strong> Defined in standard library file <code>&lt;memory&gt;</code>.</li>
+<li>Disable it. (Unique ownership)</li>
+<li><strong><code>std::unique_ptr&lt;T&gt;</code>.</strong> Defined in standard library file <code>&lt;memory&gt;</code>.</li>
+</ol>
+<p>The smart pointers <code>std::shared_ptr&lt;T&gt;</code>, <code>std::unique_ptr&lt;T&gt;</code> and <code>std::weak_ptr&lt;T&gt;</code> are <strong>the C++'s answer to garbage collection</strong>.</p>
+<ul>
+<li><code>std::weak_ptr</code> is not covered in CS100.</li>
+</ul>
+<hr />
+<h2 id="overview-of-smart-pointers_1">Overview of smart pointers</h2>
+<p>The smart pointers <code>std::shared_ptr&lt;T&gt;</code>, <code>std::unique_ptr&lt;T&gt;</code> and <code>std::weak_ptr&lt;T&gt;</code> are <strong>the C++'s answer to garbage collection</strong>.</p>
+<p>Smart pointers support the similar operations as raw pointers:
+- <code>*sp</code> returns reference to the pointed-to object.
+- <code>sp-&gt;mem</code> is equivalent to <code>(*sp).mem</code>.
+- <code>sp</code> is <em>contextually convertible</em> to <code>bool</code>: It can be treated as a "condition".
+  - It can be placed at the "condition" part of <code>if</code>, <code>for</code>, <code>while</code>, <code>do</code> statements.
+  - It can be used as operands of <code>&amp;&amp;</code>, <code>||</code>, <code>!</code> or the first operand of <code>?:</code>.
+  - In all cases, the conversion result is <code>true</code> <strong>iff</strong> <code>sp</code> holds an object (not "null").</p>
+<p><strong>[Best practice]</strong> <u>In modern C++, prefer smart pointers to raw pointers.</u></p>
+<hr />
+<h1 id="stdunique_ptr"><code>std::unique_ptr</code></h1>
+<hr />
+<h2 id="design-unique-ownership-of-the-object">Design: Unique ownership of the object</h2>
+<pre><code class="language-cpp">class WindowPtr {
+  Window *ptr;
+public:
+  WindowPtr(Window *p = nullptr) : ptr(p) {}
+  ~WindowPtr() { delete ptr; }
+
+
+
+};
+</code></pre>
+<p>A "unique-pointer" saves a raw pointer internally, pointing to the object it owns.</p>
+<p>When the unique-pointer is destroyed, it disposes of the object it owns.</p>
+<hr />
+<h2 id="design-unique-ownership-of-the-object_1">Design: Unique ownership of the object</h2>
+<pre><code class="language-cpp">class WindowPtr {
+  Window *ptr;
+public:
+  WindowPtr(Window *p = nullptr) : ptr(p) {}
+  ~WindowPtr() { delete ptr; }
+  WindowPtr(const WindowPtr &amp;) = delete;
+  WindowPtr &amp;operator=(const WindowPtr &amp;) = delete;
+
+
+};
+</code></pre>
+<p>The unique-pointer <strong>exclusively</strong> owns the object. Copying a unique-pointer is not allowed.</p>
+<hr />
+<h2 id="design-unique-ownership-of-the-object_2">Design: Unique ownership of the object</h2>
+<pre><code class="language-cpp">class WindowPtr {
+  Window *ptr;
+public:
+  WindowPtr(Window *p = nullptr) : ptr(p) {}
+  ~WindowPtr() { delete ptr; }
+  WindowPtr(const WindowPtr &amp;) = delete;
+  WindowPtr &amp;operator=(const WindowPtr &amp;) = delete;
+  WindowPtr(WindowPtr &amp;&amp;other) noexcept : ptr(other.ptr) { other.ptr = nullptr; }
+  WindowPtr &amp;operator=(WindowPtr &amp;&amp;other) noexcept {
+    if (&amp;other != this) {
+      delete ptr; ptr = other.ptr; other.ptr = nullptr;
+    }
+    return *this;
+  }
+};
+</code></pre>
+<p><strong>Move</strong> of a unique-pointer: <strong>transfer of ownership</strong>.</p>
+<ul>
+<li><strong>Move-only type</strong></li>
+</ul>
+<hr />
+<h2 id="stdunique_ptr_1"><code>std::unique_ptr</code></h2>
+<p>Like <code>std::vector</code>, <code>std::unique_ptr</code> is also a class template. It is not a type itself.</p>
+<ul>
+<li><code>std::unique_ptr&lt;PointeeType&gt;</code> is the complete type name, where <code>PointeeType</code> is the type of the object that it points to.</li>
+<li>For <code>T</code> <span class="arithmatex">\(\neq\)</span> <code>U</code>, <code>std::unique_ptr&lt;T&gt;</code> and <code>std::unique_ptr&lt;U&gt;</code> are <strong>two different and independent types</strong>.</li>
+</ul>
+<p>Same for <code>std::shared_ptr</code>, which we will talk about later.</p>
+<hr />
+<h2 id="creating-a-stdunique_ptr-two-common-ways">Creating a <code>std::unique_ptr</code>: Two common ways</h2>
+<ul>
+<li>Pass a pointer created by <code>new</code> to the constructor:</li>
+</ul>
+<p><code>cpp
+  std::unique_ptr&lt;Student&gt; p(new Student("Bob", 2020123123));</code></p>
+<ul>
+<li>Here <code>&lt;Student&gt;</code> can be omitted. The compiler is able to deduce it.</li>
+<li>
+<p>Use <code>std::make_unique&lt;T&gt;</code>, and pass the initializers to it.
+  <code>cpp
+  std::unique_ptr&lt;Student&gt; p1 = std::make_unique&lt;Student&gt;("Bob", 2020123123);
+  auto p2 = std::make_unique&lt;Student&gt;("Alice", 2020321321);</code></p>
+</li>
+<li>
+<p><code>std::make_unique&lt;T&gt;(args...)</code> <em>perfectly forwards</em> the arguments <code>args...</code> to the constructor of <code>T</code>, as if the object were created by <code>new T(args...)</code>.</p>
+</li>
+<li><code>std::make_unique&lt;T&gt;</code> returns a <code>std::unique_ptr&lt;T&gt;</code> to the created object.</li>
+</ul>
+<hr />
+<h2 id="default-initialization-of-a-stdunique_ptr">Default initialization of a <code>std::unique_ptr</code></h2>
+<pre><code class="language-cpp">std::unique_ptr&lt;T&gt; up;
+</code></pre>
+<p>The default constructor of <code>std::unique_ptr&lt;T&gt;</code> initializes <code>up</code> to be a "null pointer".</p>
+<p><code>up</code> is in the state that does not own any object.</p>
+<ul>
+<li>This is a defined and deterministic behavior! It is <strong>not</strong> holding some indeterminate value.</li>
+<li>The standard library hates indeterminate values, just as we do.</li>
+</ul>
+<hr />
+<h2 id="stdunique_ptr-automatic-memory-management"><code>std::unique_ptr</code>: Automatic memory management</h2>
+<pre><code class="language-cpp">void foo() {
+  auto pAlice = std::make_unique&lt;Student&gt;(&quot;Alice&quot;, 2020321321);
+  // Do something...
+  if (some_condition()) {
+    auto pBob = std::make_unique&lt;Studnet&gt;(&quot;Bob&quot;, 2020123123);
+    // ...
+  } // `Student::~Student()` is called for Bob,
+    // because the lifetime of `pBob` ends.
+} // `Student::~Student()` is called for Alice,
+  // because the lifetime of `pAlice` ends.
+</code></pre>
+<p>A <code>std::unique_ptr</code> automatically calls the destructor once it gets destroyed or assigned a new value.
+- No manual <code>delete</code> needed!</p>
+<hr />
+<h2 id="stdunique_ptr-move-only"><code>std::unique_ptr</code>: Move-only</h2>
+<pre><code class="language-cpp">auto p = std::make_unique&lt;std::string&gt;(5, 'c');
+std::cout &lt;&lt; *p &lt;&lt; std::endl;                  // Prints &quot;ccccc&quot;.
+auto q = p;                                    // Error. Copy is not allowed.
+auto r = std::move(p);                         // Correct.
+// Now the ownership of this string has been transferred to `r`.
+std::cout &lt;&lt; *r &lt;&lt; std::endl; // Prints &quot;ccccc&quot;.
+if (!p) // true
+  std::cout &lt;&lt; &quot;p is \&quot;null\&quot; now.&quot; &lt;&lt; std::endl;
+</code></pre>
+<p><code>std::unique_ptr</code> is not copyable, but only movable.
+- Remember, only one <code>std::unique_ptr</code> can point to the managed object.
+- Move of a <code>std::unique_ptr</code> is the transfer of ownership of the managed object.</p>
+<hr />
+<h2 id="stdunique_ptr-move-only_1"><code>std::unique_ptr</code>: Move-only</h2>
+<pre><code class="language-cpp">auto p = std::make_unique&lt;std::string&gt;(5, 'c');
+std::cout &lt;&lt; *p &lt;&lt; std::endl;                  // Prints &quot;ccccc&quot;.
+auto q = p;                                    // Error. Copy is not allowed.
+auto r = std::move(p);                         // Correct.
+// Now the ownership of this string has been transferred to `r`.
+std::cout &lt;&lt; *r &lt;&lt; std::endl; // Prints &quot;ccccc&quot;.
+if (!p) // true
+  std::cout &lt;&lt; &quot;p is \&quot;null\&quot; now.&quot; &lt;&lt; std::endl;
+</code></pre>
+<p>After <code>auto up2 = std::move(up1);</code>, <code>up1</code> becomes "null". The object that <code>up1</code> used to manage now belongs to <code>up2</code>.</p>
+<p>The assignment <code>up2 = std::move(up1)</code> destroys the object that <code>up2</code> used to manage, and lets <code>up2</code> take over the object managed by <code>up1</code>. After that, <code>up1</code> becomes "null".</p>
+<hr />
+<h2 id="express-your-intent-precisely">Express your intent precisely.</h2>
+<p>You may accidentally write the following code:</p>
+<pre><code class="language-cpp">// Given that `pWindow` is a `std::unique_ptr&lt;Window&gt;`.
+auto p = pWindow; // Oops, attempting to copy a `std::unique_ptr`.
+</code></pre>
+<p>The compiler gives an error, complaining about the use of deleted copy constructor.</p>
+<p>What are you going to do?</p>
+<p>A. Change it to <code>auto p = std::move(pWindow);</code>.
+B. Give up on smart pointers, and switch back to raw pointers.
+C. Copy-and-paste the compiler output and ask ChatGPT.</p>
+<hr />
+<h2 id="express-your-intent-precisely_1">Express your intent precisely.</h2>
+<p>You may accidentally write the following code:</p>
+<pre><code class="language-cpp">// Given that `pWindow` is a `std::unique_ptr&lt;Window&gt;`.
+auto p = pWindow; // Oops, attempting to copy a `std::unique_ptr`.
+</code></pre>
+<p>The compiler gives an error, complaining about the use of deleted copy constructor.</p>
+<ol>
+<li>Syntactically, a <code>std::unique_ptr</code> is not copyable, but you are copying it. <strong>(Direct cause of the error)</strong></li>
+<li>Logically, a <code>std::unique_ptr</code> must exclusively manage the pointed-to object. Why would you copy a <code>std::unique_ptr</code>?</li>
+<li>The <strong>root cause of the error</strong> is related to your intent: What are you going to do with <code>p</code>?</li>
+</ol>
+<hr />
+<h2 id="express-your-intent-precisely_2">Express your intent precisely.</h2>
+<pre><code class="language-cpp">// Given that `pWindow` is a `std::unique_ptr&lt;Window&gt;`.
+auto p = pWindow; // Oops, attempting to copy a `std::unique_ptr`.
+</code></pre>
+<p>What are you going to do with <code>p</code>?</p>
+<ul>
+<li>If you want to copy the pointed-to object, change it to <code>auto p = std::make_unique&lt;Window&gt;(*pWindow);</code>.</li>
+<li>If you want <code>p</code> to be just an <strong><em>observer</em></strong>, write <code>auto p = pWindow.get();</code>.</li>
+<li><code>pWindow.get()</code> returns a <strong>raw pointer</strong> to the object, which is of type <code>Window *</code>.</li>
+<li>Be careful! As an observer, <code>p</code> should never interfere in the lifetime of the object. A simple <code>delete p;</code> will cause disaster.</li>
+</ul>
+<hr />
+<h2 id="express-your-intent-precisely_3">Express your intent precisely.</h2>
+<pre><code class="language-cpp">// Given that `pWindow` is a `std::unique_ptr&lt;Window&gt;`.
+auto p = pWindow; // Oops, attempting to copy a `std::unique_ptr`.
+</code></pre>
+<p>What are you going to do with <code>p</code>?</p>
+<ul>
+<li>If you want <code>p</code> to take over the object managed by <code>pWindow</code>, change it to <code>auto p = std::move(pWindow);</code>.</li>
+<li>Be careful! <code>pWindow</code> will no longer own that object.</li>
+<li>If you want to <code>p</code> to be another smart pointer that <strong><em>shares</em></strong> the ownership with <code>pWindow</code>, <code>std::unique_ptr</code> is not suitable here. <span class="arithmatex">\(\Rightarrow\)</span> See <code>std::shared_ptr</code> later.</li>
+</ul>
+<hr />
+<h2 id="returning-a-stdunique_ptr">Returning a <code>std::unique_ptr</code></h2>
+<pre><code class="language-cpp">struct Window {
+  // A typical &quot;factory&quot; function.
+  static std::unique_ptr&lt;Window&gt; create(const Settings &amp;settings) {
+    auto pW = std::make_unique&lt;Window&gt;(/* some arguments */);
+    logWindowCreation(pW);
+    // ...
+    return pW;
+  }
+};
+auto state = Window::create(my_settings);
+</code></pre>
+<p>A temporary is move-constructed from <code>pW</code>, and then is used to move-construct <code>state</code>.</p>
+<ul>
+<li>These two moves can be optimized out by NRVO.</li>
+</ul>
+<hr />
+<h2 id="other-operations-on-stdunique_ptr">Other operations on <code>std::unique_ptr</code></h2>
+<p><code>up.reset()</code>, <code>up.release()</code>, <code>up1.swap(up2)</code>, <code>up1 == up2</code>, etc.</p>
+<p><a href="https://en.cppreference.com/w/cpp/memory/unique_ptr">Full list</a> of operations supported on a <code>std::unique_ptr</code>.</p>
+<hr />
+<h2 id="stdunique_ptr-for-array-type"><code>std::unique_ptr</code> for array type</h2>
+<p>By default, the destructor of <code>std::unique_ptr&lt;T&gt;</code> uses a <code>delete</code> expression to destroy the object it holds.</p>
+<p>What happens if <code>std::unique_ptr&lt;T&gt; up(new T[n]);</code>?</p>
+<hr />
+<h2 id="stdunique_ptr-for-array-type_1"><code>std::unique_ptr</code> for array type</h2>
+<p>By default, the destructor of <code>std::unique_ptr&lt;T&gt;</code> uses a <code>delete</code> expression to destroy the object it holds.</p>
+<p>What happens if <code>std::unique_ptr&lt;T&gt; up(new T[n]);</code>?</p>
+<ul>
+<li>The memory is obtained using <code>new[]</code>, but deallocated by <code>delete</code>! <strong>Undefined behavior.</strong></li>
+</ul>
+<hr />
+<h2 id="stdunique_ptr-for-array-type_2"><code>std::unique_ptr</code> for array type</h2>
+<p>A <em>template specialization</em>: <code>std::unique_ptr&lt;T[]&gt;</code>.</p>
+<ul>
+<li>Specially designed to represent pointers that point to a "dynamic array" of objects.</li>
+<li>It has some array-specific operators, e.g. <code>operator[]</code>. In contrast, it does not support <code>operator*</code> and <code>operator-&gt;</code>.</li>
+<li>It uses <code>delete[]</code> instead of <code>delete</code> to destroy the objects.</li>
+</ul>
+<pre><code class="language-cpp">auto up = std::make_unique&lt;int[]&gt;(n);
+std::unique_ptr&lt;int[]&gt; up2(new int[n]{}); // equivalent
+for (auto i = 0; i != n; ++i)
+  std::cout &lt;&lt; up[i] &lt;&lt; ' ';
+</code></pre>
+<hr />
+<h2 id="stdunique_ptr-for-array-type_3">~~<code>std::unique_ptr</code> for array type~~</h2>
+<p>~~A <em>template specialization</em>: <code>std::unique_ptr&lt;T[]&gt;</code>.~~</p>
+<p>~~- Specially designed to represent pointers that point to a "dynamic array" of objects.~~
+~~- It has some array-specific operators, e.g. <code>operator[]</code>. In contrast, it does not support <code>operator*</code> and <code>operator-&gt;</code>.~~
+~~- It uses <code>delete[]</code> instead of <code>delete</code> to destroy the objects.~~</p>
+<h2 id="use-standard-library-containers-instead">Use standard library containers instead!</h2>
+<p>They almost always do a better job. <code>std::unique_ptr&lt;T[]&gt;</code> is seldom needed.</p>
+<hr />
+<h2 id="stdunique_ptr-is-zero-overhead"><code>std::unique_ptr</code> is zero-overhead.</h2>
+<p><code>std::unique_ptr</code> stores nothing more than a raw pointer. <span class="arithmatex">\({}^{\textcolor{red}{1}}\)</span></p>
+<p>It does nothing more than better copy / move control and automatic object destruction.</p>
+<p><strong>Zero-overhead</strong>: Using a <code>std::unique_ptr</code> does not cost more time or space than using raw pointers.</p>
+<p><strong>[Best practice]</strong> <u>Use <code>std::unique_ptr</code> for exclusive-ownership resource management.</u></p>
+<hr />
+<h1 id="stdshared_ptr"><code>std::shared_ptr</code></h1>
+<hr />
+<h2 id="motivation">Motivation</h2>
+<p>A <code>std::unique_ptr</code> exclusively owns an object, but sometimes this is not convenient.</p>
+<pre><code class="language-cpp">struct WindowManager {
+  void addWindow(const std::unique_ptr&lt;Window&gt; &amp;pW) {
+    mWindows.push_back(pW); // Error. Attempts to copy a `std::unique_ptr`.
+  }
+private:
+  std::vector&lt;std::unique_ptr&lt;Window&gt;&gt; mWindows;
+};
+
+struct Window {
+  static std::unique_ptr&lt;Window&gt; create(const Settings &amp;settings) {
+    auto pW = std::make_unique&lt;Window&gt;(/* some arguments */);
+    logWindowCreation(pW);
+    settings.getWindowManager().addWindow(pW);
+    return pW;
+  }
+};
+</code></pre>
+<hr />
+<h2 id="motivation_1">Motivation</h2>
+<p>Design a "shared-pointer" that allows the object it manages to be <strong><em>shared</em></strong>.</p>
+<p>When should the object be destroyed?</p>
+<ul>
+<li>A <code>std::unique_ptr</code> destroys the object it manages when the pointer itself is destroyed.</li>
+<li>If we allow many shared-pointers to point to the same object, how can we know when to destroy that object?</li>
+</ul>
+<hr />
+<h2 id="idea-reference-counting">Idea: Reference counting</h2>
+<p>Set a <strong>counter</strong> that counts how many <code>WindowPtr</code>s are pointing to it:</p>
+<pre><code class="language-cpp">struct WindowWithCounter {
+  Window theWindow;
+  int refCount = 1;
+};
+</code></pre>
+<p>When a new object is created by a <code>WindowPtr</code>, set the <code>refCount</code> to <code>1</code>.</p>
+<hr />
+<h2 id="idea-reference-counting_1">Idea: Reference counting</h2>
+<p>When a <code>WindowPtr</code> is copied, let it point to the same object, and increment the counter.</p>
+<pre><code class="language-cpp">class WindowPtr {
+  WindowWithCounter *ptr;
+public:
+  WindowPtr(const WindowPtr &amp;other) : ptr(other.ptr) { ++ptr-&gt;refCount; }
+
+
+
+
+
+
+
+
+};
+</code></pre>
+<hr />
+<h2 id="idea-reference-counting_2">Idea: Reference counting</h2>
+<p>For copy assignment: the counter of the old object should be decremented.</p>
+<ul>
+<li>If it reaches zero, destroy that object!</li>
+</ul>
+<pre><code class="language-cpp">class WindowPtr {
+  WindowWithCounter *ptr;
+public:
+  WindowPtr(const WindowPtr &amp;other) : ptr(other.ptr) { ++ptr-&gt;refCount; }
+  WindowPtr &amp;operator=(const WindowPtr &amp;other) {
+    if (--ptr-&gt;refCount == 0)
+      delete ptr;
+    ptr = other.ptr;
+    ++ptr-&gt;refCount;
+    return *this;
+  }
+};
+</code></pre>
+<p><strong>* Is this correct?</strong></p>
+<hr />
+<h2 id="idea-reference-counting_3">Idea: Reference counting</h2>
+<p>Self-assignment safe!!!</p>
+<pre><code class="language-cpp">class WindowPtr {
+  WindowWithCounter *ptr;
+public:
+  WindowPtr(const WindowPtr &amp;other) : ptr(other.ptr) { ++ptr-&gt;refCount; }
+  WindowPtr &amp;operator=(const WindowPtr &amp;other) {
+    ++other.ptr-&gt;refCount;
+    if (--ptr-&gt;refCount == 0)
+      delete ptr;
+    ptr = other.ptr;
+    return *this;
+  }
+};
+</code></pre>
+<hr />
+<h2 id="idea-reference-counting_4">Idea: Reference counting</h2>
+<p>Destructor: decrement the counter, and destroy the object if the counter reaches zero.</p>
+<pre><code class="language-cpp">class WindowPtr {
+  WindowWithCounter *ptr;
+public:
+  WindowPtr(const WindowPtr &amp;other) : ptr(other.ptr) { ++ptr-&gt;refCount; }
+  WindowPtr &amp;operator=(const WindowPtr &amp;other) {
+    ++other.ptr-&gt;refCount;
+    if (--ptr-&gt;refCount == 0)
+      delete ptr;
+    ptr = other.ptr;
+    return *this;
+  }
+  ~WindowPtr() {
+    if (--ptr-&gt;refCount == 0)
+      delete ptr;
+  }
+};
+</code></pre>
+<hr />
+<h2 id="idea-reference-counting_5">Idea: Reference counting</h2>
+<p>Move: Just "steal" the object. It is also the transfer of ownership.</p>
+<pre><code class="language-cpp">class WindowPtr {
+  WindowWithCounter *ptr;
+public:
+  WindowPtr(WindowPtr &amp;&amp;other) noexcept : ptr(other.ptr) { other.ptr = nullptr; }
+  WindowPtr &amp;operator=(WindowPtr &amp;&amp;other) noexcept {
+    if (this != &amp;other) {
+      if (--ptr-&gt;refCount == 0)
+        delete ptr;
+      ptr = other.ptr; other.ptr = nullptr;
+    }
+    return *this;
+  }
+};
+</code></pre>
+<hr />
+<h2 id="reference-counting">Reference counting</h2>
+<p>By maintaining a variable that counts how many shared-pointers are pointing to the object, we can know when to destroy the object.</p>
+<p>This strategy is adopted by Python.</p>
+<p>It can prevent memory leak in many cases, but not all cases! <span class="arithmatex">\(\Rightarrow\)</span> See the question in the end of this lecture's slides.</p>
+<hr />
+<h2 id="stdshared_ptr_1"><code>std::shared_ptr</code></h2>
+<p>A smart pointer that uses <strong>reference counting</strong> to manage shared objects.</p>
+<p>Create a <code>shared_ptr</code>:</p>
+<pre><code class="language-cpp">std::shared_ptr&lt;Type&gt; sp2(new Type(args));
+auto sp = std::make_shared&lt;Type&gt;(args); // equivalent, but better
+</code></pre>
+<p>For example:</p>
+<pre><code class="language-cpp">// sp points to a string &quot;cccccccccc&quot;.
+auto sp = std::make_shared&lt;std::string&gt;(10, 'c');
+
+auto pWindow = std::make_shared&lt;Window&gt;(80, 24, my_settings.mode);
+</code></pre>
+<hr />
+<h2 id="create-a-shared_ptr">Create a <code>shared_ptr</code></h2>
+<p>Note: For <code>std::unique_ptr</code>, both of the following ways are ok (since C++17):</p>
+<pre><code class="language-cpp">auto up = std::make_unique&lt;Type&gt;(args);
+std::unique_ptr&lt;Type&gt; up2(new Type(args));
+</code></pre>
+<p>For <code>std::shared_ptr</code>, <strong><code>std::make_shared</code> is preferable to directly using <code>new</code></strong>.</p>
+<pre><code class="language-cpp">auto sp = std::make_shared&lt;Type&gt;(args);    // preferred
+std::shared_ptr&lt;Type&gt; sp2(new Type(args)); // ok, but less preferred
+</code></pre>
+<p>Read <em>Effective Modern C++</em> Item 21. (Note that this book is based on C++14.)</p>
+<p><strong>[Best practice]</strong> <u>Prefer <code>std::make_shared</code> to directly using <code>new</code> when creating a <code>std::shared_ptr</code>.</u></p>
+<hr />
+<h2 id="operations">Operations</h2>
+<p><code>*</code> and <code>-&gt;</code> can be used as if it is a raw pointer:</p>
+<pre><code class="language-cpp">auto sp = std::make_shared&lt;std::string&gt;(10, 'c');
+std::cout &lt;&lt; *sp &lt;&lt; std::endl;        // &quot;cccccccccc&quot;
+std::cout &lt;&lt; sp-&gt;size() &lt;&lt; std::endl; // &quot;10&quot;
+</code></pre>
+<p><code>sp.use_count()</code>: The value of the reference counter.</p>
+<pre><code class="language-cpp">auto sp = std::make_shared&lt;std::string&gt;(10, 'c');
+{
+  auto sp2 = sp;
+  std::cout &lt;&lt; sp.use_count() &lt;&lt; std::endl; // 2
+} // `sp2` is destroyed, but the managed object is not destroyed.
+std::cout &lt;&lt; sp.use_count() &lt;&lt; std::endl;   // 1
+</code></pre>
+<hr />
+<h2 id="operations_1">Operations</h2>
+<p><a href="https://en.cppreference.com/w/cpp/memory/shared_ptr">Full list of supported operations on <code>std::shared_ptr</code>.</a></p>
+<p><code>std::shared_ptr</code> is relatively easy to use, since you are free to create many <code>std::shared_ptr</code>s pointing to one object.</p>
+<p>However, <code>std::shared_ptr</code> <strong>has time and space overhead</strong>. Copy of a <code>std::shared_ptr</code> requires maintenance of reference counter.</p>
+<hr />
+<h2 id="summary">Summary</h2>
+<p><code>std::unique_ptr</code>
+- Exclusive-ownership.
+- Move-only. Move is the transfer of ownership.
+- Zero-overhead.</p>
+<p><code>std::shared_ptr</code>
+- Shared-ownership.
+- Uses reference counting.
+  - Copy increments the reference counter.
+  - When the counter is decremented to zero, the object is destroyed.</p>
+<hr />
+<h2 id="question">Question</h2>
+<p>Does <code>std::shared_ptr</code> prevent memory leak in all cases? Think about what happens in the following code.</p>
+<pre><code class="language-cpp">struct Node {
+  int value;
+  std::shared_ptr&lt;Node&gt; next;
+  Node(int x, std::shared_ptr&lt;Node&gt; p) : value{x}, next{std::move(p)} {}
+};
+void foo() {
+  auto p = std::make_shared&lt;Node&gt;(1, nullptr);
+  p-&gt;next = std::make_shared&lt;Node&gt;(2, p);
+  p.reset();
+}
+</code></pre>
+<hr />
+<h2 id="notes">Notes</h2>
+<p><span class="arithmatex">\({}^{\textcolor{red}{1}}\)</span> The <strong>deleter</strong> that a <code>std::unique_ptr</code> uses is customizable, which also has to be stored in a <code>std::unique_ptr</code>. By default, <code>std::default_delete</code> is used that performs <code>delete ptr;</code> to destroy the object and release the memory. <code>std::unique_ptr</code> often uses some space-saving tricks to store the deleter. If the deleter is "stateless" (e.g. an object with no non-<code>static</code> data members), it may be stored with no unique address so that no extra space is required. <code>std::default_delete</code> belongs to this kind. Therefore, <code>sizeof(std::unique_ptr&lt;T&gt;)</code> is often reasonably equal to <code>sizeof(T *)</code>.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.081f42fc.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+        <script src="../../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
