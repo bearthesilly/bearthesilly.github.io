@@ -247,6 +247,8 @@ nav:
       - Review:
         - 期中总结: 普通物理/期中总结.pdf
         - 期末总结: 普通物理/期末总结.pdf
+    - 人工智能:
+      - Search: 人工智能/Search.md
   - Course (Extracurriculum):
     - Deep Learning:
       - 'Partition One: Fundamental + Convolution' : deeplearning_note/深度学习自学.md
