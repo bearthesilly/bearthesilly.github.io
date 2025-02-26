@@ -150,3 +150,17 @@ A*算法非常的奈斯，但是关键核心是启发式距离的设计。我们
 ## Graph Search
 
 状态图空间每一个节点只出现一次，这是一个大大的好处！如何利用这个好处？那就是图搜索。但是之前提及过：状态图中可能会出现循环，那岂不是不能搜索了？实际上，如果加上一些约束和技巧，这个问题是能够迎刃而解的。
+
+核心是：never expand a state twice!那么如何实现这一点呢？
+
+![image](img/21.png)
+
+图搜索A星并不是任何情况下都能找到最优的解！如果optimal，那么heuristic距离应该是consistent的！
+
+![image](img/22.jpg)
+
+## Optimality
+
+Tree search：A星算法是最优的，如果启发式距离admissible；UCS是启发式距离为0的特殊A星算法，并不一定是最优的
+
+Graph Search：A星算法是最优的，如果启发式距离consistent；UCS是启发式距离为0的特殊A星算法，是最优的，因为h=0天生为consistent
