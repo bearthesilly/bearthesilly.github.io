@@ -249,6 +249,9 @@ nav:
         - 期末总结: 普通物理/期末总结.pdf
     - 人工智能:
       - Search: 人工智能/Search.md
+      - CSP: 人工智能/CSP.md
+    - CA:
+      - Info-Representation: CA/Info-Representation.md
   - Course (Extracurriculum):
     - Deep Learning:
       - 'Partition One: Fundamental + Convolution' : deeplearning_note/深度学习自学.md
