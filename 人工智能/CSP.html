@@ -5383,6 +5383,48 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Solving CSPs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filtering-and-arc-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering and Arc Consistency
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orderingmrv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ordering：MRV
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problem Structure
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local Search
+    </span>
+  </a>
+  
 </li>
       
     </ul>
@@ -6392,6 +6434,48 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Solving CSPs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filtering-and-arc-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering and Arc Consistency
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orderingmrv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ordering：MRV
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problem Structure
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local Search
+    </span>
+  </a>
+  
 </li>
       
     </ul>
@@ -6460,6 +6544,36 @@ O+O=R+10\cdot X_1
 <p>因此介绍常用的搜索策略：路径回溯（Backtracking Search）。核心思想有两条：第一是一次只处理一个变量，因为考虑到变量的赋值其实是具有可交换性的，所以每一步主需要考虑给一个变量进行赋值即可；第二是在行动的过程中需要检查约束关系，意味着赋值的时候只考虑不会打破约束关系的值。那么<strong><em>采取了上述两个策略的DFS</em></strong>就称为回溯路径算法。两个思想，前者称为variable-ordering，后者称为fail-on-violation.</p>
 <p><img alt="image" src="img/28.png" /></p>
 <p>上述的伪代码中：首先是初始化；然后选择未赋值的变量，列出可以为该变量附的值，然后选一个进行赋值；程序递归地进行，直到最终所有的变量都赋值成功而且不违反约束条件，那么就结束递归，返回solution。</p>
+<h3 id="filtering-and-arc-consistency">Filtering and Arc Consistency</h3>
+<p>那么能不能进一步的改进？这里介绍一种方式：filtering。我们能不能提前的检测到不可避免的失败呢？过滤的核心思想是通过分析已有的约束条件和已分配的变量，来减少未分配变量的取值范围。同时搭配forward checking：在将一个赋值加入的时候，将会去除掉所有的打破规则的赋值；同时如果发现这样一来无值可赋，那么就回溯。</p>
+<blockquote>
+<p>Keep track of domains for unassigned variables and cross off bad options</p>
+</blockquote>
+<p><img alt="image" src="img/29.png" /></p>
+<p>例如上面图片，在赋值SA的时候，发现任何值都会打破规则，因此将会回溯至V节点，换成绿色。</p>
+<p>但是如果有的时候错误发生的非常早呢？那么在后期赋值变量的时候，将会回溯很久才能回溯到这个早期的一开始就是行不通的变量赋值。因此这里引入<strong>consistency of arc</strong>。其定义是：An arc X<span class="arithmatex">\(\rightarrow\)</span>Y is consistent iff for every x in the tail there is some y in the head which  could be assigned without violating a constraint. 对于一个约束网络中的弧 ⟨<em>X</em>,<em>c</em>(<em>X</em>,<em>Y</em>)⟩，如果对于变量 <em>X</em> 的每一个可能值 <em>x</em>，在变量 <em>Y</em> 的取值域中都存在至少一个值 <em>y</em>，使得约束 <em>c</em>(<em>X</em>,<em>Y</em>) 成立，那么这个弧就是<strong>弧一致的</strong>。那么有了弧的存在，那么forward checking就是在确保所有的弧是一致的。</p>
+<p>需要注意的是：如果Y的域失去了一个值，那么X<span class="arithmatex">\(\rightarrow\)</span>Y的弧需要被重新检查！弧的一致性检查将会比forward checking更早地检测到失败。</p>
+<p><img alt="image" src="img/30.png" /></p>
+<p>After enforcing arc  consistency:要么没有解，要么有多组解，要么没有解。但是我们不能从弧的一致性推测出解！所以归根到底，弧一致性只是回溯算法中的滤波策略。</p>
+<h3 id="orderingmrv">Ordering：MRV</h3>
+<p>回溯算法中考虑变量赋值的顺序是DFS，但是能不能选一个更好的ordeing？因此介绍一种变量排序：MRV： Minimum remaining values。我们选择在domain中有着最少合法取值的变量！换而言之：优先考虑最受限的变量。需要注意的是：需要一定的计算资源来决定选哪一个变量！</p>
+<h3 id="problem-structure">Problem Structure</h3>
+<p>一个变量会和身边的数个变量有限制关系，那么表示这种关系的最好数据结构就是树！比如说涂色问题，那么两个点之间如果是接壤的，那么就加一条边，表示这两个节点不能是一样的颜色。</p>
+<p>Theorem:  if the constraint graph has no loops, the CSP can be solved in <span class="arithmatex">\(O(nd^2)\)</span> time。</p>
+<p><img alt="image" src="img/31.png" /></p>
+<p><img alt="image" src="img/33.png" /></p>
+<blockquote>
+<p>Reference: https://zhuanlan.zhihu.com/p/64368643</p>
+</blockquote>
+<p>同时也可以引入cutset的技巧：</p>
+<p><img alt="image" src="img/34.png" /></p>
+<blockquote>
+<p>Reference: https://zhuanlan.zhihu.com/p/64368643</p>
+</blockquote>
+<h2 id="local-search">Local Search</h2>
+<p>回溯算法并不是唯一的解决办法！从一些随机的变量赋值开始，反复选择违反约束最多的变量并将其重置为违反约束最少的值，这样也能解决CSP。这一策略称为<strong>最小冲突启发式（min-conflicts heuristic）</strong>。</p>
+<p>这种算法的表现很不错！</p>
+<p><img alt="image" src="img/35.png" /></p>
 
 
 
