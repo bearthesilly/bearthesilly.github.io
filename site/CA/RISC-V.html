@@ -16,7 +16,7 @@
     
     
       
-        <title>C_Language - csrookie's website</title>
+        <title>RISC-V - csrookie's website</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#c_language" class="md-skip">
+        <a href="#risc-v" class="md-skip">
           Skip to content
         </a>
       
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              C_Language
+              RISC-V
             
           </span>
         </div>
@@ -6293,54 +6293,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-c-works" class="md-nav__link">
+  <a href="#risc-v_1" class="md-nav__link">
     <span class="md-ellipsis">
-      How C works
+      RISC-V
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#c-review" class="md-nav__link">
+  <a href="#r-type" class="md-nav__link">
     <span class="md-ellipsis">
-      C Review
+      R-type（寄存器类型）
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#pointer" class="md-nav__link">
+  <a href="#i-type" class="md-nav__link">
     <span class="md-ellipsis">
-      Pointer
+      I-type（立即数类型）
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#array" class="md-nav__link">
+  <a href="#s-type" class="md-nav__link">
     <span class="md-ellipsis">
-      Array
+      S-type（存储类型）
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#pointer-arithmetic" class="md-nav__link">
+  <a href="#b-type" class="md-nav__link">
     <span class="md-ellipsis">
-      Pointer Arithmetic
+      B-type（分支类型）
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#memory-management" class="md-nav__link">
+  <a href="#u-type" class="md-nav__link">
     <span class="md-ellipsis">
-      Memory Management
+      U-type（无符号立即数类型）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#j-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      J-type（跳转类型）
     </span>
   </a>
   
@@ -6361,91 +6370,115 @@
                   
 
 
-<h1 id="c_language">C_Language</h1>
-<h2 id="how-c-works">How C works</h2>
-<p><img alt="image" src="img/14.png" /></p>
-<p>一个高级语言的程序首先会经过编译器，然后变成汇编语言，其核心是任何内容都可以用数字进行表达；然后汇编语言将会转化为机器看得懂的二进制语言，输送给机器；机器解读之后，将会转化为硬件结构表述语言，最后由计算机结构执行。</p>
+<h1 id="risc-v">RISC-V</h1>
+<h2 id="risc-v_1">RISC-V</h2>
+<p>现在讲的这个RISC-V是干什么的？其实解决的就是如何将C语言代码，<strong><em>转化为汇编语言程序，进而转化为机器语言（二进制）</em></strong>！CPU的基本任务是执行一系列的指示，而指示都是一些较为基础的操作，而这些指示最最基本的其实就是改变计算机的状态。</p>
 <blockquote>
-<p>C compilers map C programs into architecture (OS &amp; ISA)-specific  machine code (strings of 1s and 0s)</p>
+<p>注意：ARM是基于RISC（精简指令集计算机）架构，而x86是基于CISC（复杂指令集计算机）架构；这意味着ARM汇编代码中的指令和寄存器在x86 CPU上无法直接识别和执行</p>
 </blockquote>
-<p>C编译器将会把.c文件转化为.o文件，然后将所有的.o文件进行linking，变成可执行文件。更完整的流程如下图：首先.c文件将会被预加工，如宏定义、头文件的引入；然后会进行程序语法解析，生成抽象语法树（AST）；然后AST将会被转化为中间表达，然后生成汇编语言；之后，将汇编语言转化为机器看得懂的二进制语言，然后生成.o文件，最后根据linker将.o文件汇编为一个可执行文件。</p>
-<p><img alt="image" src="img/15.png" /></p>
-<p>需要注意的是：宏定义的预处理就是完完全全原封不动地将程序中的东西替换为另一个东西。如：<code>\#define MAG(x, y) (sqrt(x*x + y*y))</code>，那么程序中如果有：<code>MAG(1+2, 1+2)</code>，那么实际上执行的是<code>sqrt(1+2*1+2+1+2*1+2)</code>；而如果希望是正常的平方和，那么需要修改宏定义：<code>#define MAG(x, y) (sqrt((x)*(x) + (y)*(y)))</code>。可见宏定义并不是百分之百可靠的，因为编程者可能会碰到各种各样的corner case，所以应该尽可能避免写宏定义</p>
+<ol>
+<li><strong>与C或Java不同，汇编语言不能使用变量</strong></li>
+<li>高级编程语言如C或Java允许使用变量来存储数据和指令。变量可以是任何数据类型，如整数、浮点数、字符等，并且可以在程序中多次赋值和使用。</li>
+<li>汇编语言则不同，它是一种低级语言，直接对应于计算机的硬件指令。在汇编语言中，没有传统意义上的“变量”概念，而是使用寄存器（registers）来存储和操作数据。</li>
+<li><strong>保持汇编/计算机硬件抽象简单</strong></li>
+<li>汇编语言提供了一种相对简单的硬件抽象。它比机器语言（直接用二进制或十六进制表示的指令）更易于理解和编写，但仍然非常接近硬件操作。</li>
+<li>这种简单的抽象使得程序员能够更直接地控制硬件，但同时也需要对硬件有一定的了解。</li>
+<li><strong>汇编操作数是寄存器</strong></li>
+<li>在汇编语言中，操作数（operands）通常指的是参与运算的数据。与高级语言不同，汇编语言中的操作数通常是寄存器。</li>
+<li>寄存器是CPU内部的高速存储单元，用于存储指令和数据，以便快速访问和处理。</li>
+<li><strong>有限数量的特殊位置/内存直接内置于CPU中</strong></li>
+<li>寄存器的数量是有限的，因为它们是CPU硬件的一部分。与内存相比，寄存器的数量较少，但访问速度更快。</li>
+<li>在RISC-V架构中，操作只能在这些寄存器上执行，这进一步强调了寄存器的重要性和高效性。</li>
+</ol>
+<p><img alt="image" src="img/23.png" /></p>
+<p>程序计数器（PC）寄存器用于存储当前正在执行的指令的地址，它在指令执行过程中自动更新，指向下一条指令。RISC-V架构中有32个通用寄存器，编号从x0到x31。x0通常用作零寄存器，其值永远是0。</p>
+<p><strong>为什么选择32个寄存器？较小的寄存器集更快，但太小也不好</strong>：寄存器的数量需要在速度和灵活性之间取得平衡。32个寄存器是一个折中选择，既保证了较快的访问速度，又提供了足够的灵活性来支持复杂的程序。每个RV32寄存器是32位宽。</p>
+<p>在C语言中，声明一个变量的时候必须要声明类型，而且变量将会只能代表它所被声明的数值类型。但是在汇编语言中，寄存器没有类型，只是简单地储存0和1，而operation将会决定寄存器中的内容如何被对待。</p>
+<p>在汇编语言中，每一条指示都会恰好执行a short list of simple commands，而assembly code中的每一行至多一个instruction. </p>
+<p>RISC-V指令集基于对立即数的处理，主要有四种核心指令类型（R-type, I-type, S-type, U-type）以及两种分支/跳转指令类型（B-type, J-type）。</p>
+<h2 id="r-type">R-type（寄存器类型）</h2>
+<ul>
+<li><strong>格式</strong>：<code>funct7 | rs2 | rs1 | funct3 | rd | opcode</code></li>
+<li><strong>特点</strong>：这种类型的指令不包含立即数，操作数完全来自寄存器。</li>
+<li><strong>用途</strong>：主要用于寄存器之间的算术和逻辑运算。</li>
+</ul>
+<p>有两个操作数rs2 rs1，并且指定了输出存储的目标寄存器rd。且无法接触main memory。例如<code>add x5, x2, x1</code>就是将寄存器x5 x2中的两个数字进行相加然后放在x1。这里的函数不仅仅可以是<code>add</code>，也可以是<code>sub</code> 。<code>and or xor</code>是位运算，<code>and/or/xor rd, rs1, rs2</code>，Logically bit-wise <code>and/or/xor</code> the value stored in register <code>rs1</code> and that of  <code>rs2</code> and stores the result into register rd。</p>
 <blockquote>
-<p>一个很好的传统就是：如果要写宏定义，尽量把括号补上</p>
+<p><code>xor</code>一个全是1的二进制数字可以对另一个数字进行negation！</p>
 </blockquote>
-<p>在构建AST的时候，将会将代码中的每一个单词都视作一个token，并且将会记住所有token的位置；然后组织这些token组件AST树，并且如果发现错误将会报告。</p>
-<p>To wrap up:</p>
-<p><img alt="image" src="img/16.png" /></p>
-<h2 id="c-review">C Review</h2>
-<p>在声明变量的时候提前加上一个const，那么将会确保在程序执行的过程中，这个变量将不会发生改变；任何C语言中的变量类型，在前面都可以加上const。</p>
-<p>在C语言中，什么等于FALSE呢？首先是0，一个整数；其次是NULL，这是一种十分特殊的指针。值得注意的是，C里面是没有显性的布尔类型，除非加上<code>#include &lt;stdbool.h&gt;</code>；而什么等于TRUE呢？其实，只要是任何不等于FALSE的就是TRUE！</p>
-<p>一类特殊的C运算符是位运算符：&amp;是‘与’逻辑，将两个二进制数字每一位进行比较，只有当两位都是1，结果才为1；|是‘或’逻辑；^是‘异或’逻辑，只有两位不同的时候才为1；~是对一个二进制每一位取反；&lt;&lt; &gt;&gt; 分别为左移和右移，注意溢出的时候会直接空位用0填补。</p>
-<pre><code class="language-c">int a = 0b1011; // 二进制表示：11（十进制）
-int b = 0b1100; // 二进制表示：12（十进制）
-int result = a &amp; b; // 结果为 0b1000，即 8（十进制）
-
-int a = 0b1011; // 二进制表示：11（十进制）
-int b = 0b1100; // 二进制表示：12（十进制）
-int result = a | b; // 结果为 0b1111，即 15（十进制）
-
-int a = 0b1011; // 二进制表示：11（十进制）
-int b = 0b1100; // 二进制表示：12（十进制）
-int result = a ^ b; // 结果为 0b0111，即 7（十进制）
-
-int a = 0b1011; // 二进制表示：11（十进制）
-int result = ~a; // 结果为 0b0100（假设是4位系统）
-
-int a = 0b0001; // 二进制表示：1（十进制）
-int result = a &lt;&lt; 2; // 结果为 0b0100，即 4（十进制）
-
-int a = 0b1000; // 二进制表示：8（十进制）
-int result = a &gt;&gt; 2; // 结果为 0b0010，即 2（十进制）
-</code></pre>
-<h2 id="pointer">Pointer</h2>
-<p>计算机的内存其实一个巨大的字节矩阵。以32位计算机为例，一块内存矩阵的每一行有四个字节，一个字节8位，所以说一行是32位；每一个小字节都有一个地址。重要的是，地址的范围是0-<span class="arithmatex">\((111...111)_2\)</span>，其中1一共有32个。</p>
-<p><img alt="image" src="img/17.png" /></p>
-<p>地址是一个指定的内存地址，而Pointer就是一个变量，它储存的是一个地址。<strong><em>可见，指针的内存大小应该和地址的range高度相关</em></strong>。在C程序中，比如说函数，那么传递参数其实是值传递；传递完一个参数之后，其实是新建一个变量，然后用传进来的变量进行赋值。因此十分重要的是指针传递。</p>
-<p>指针的类型有很多种，一般来说一种指针只能指向一个type；其中void*指针是一种能够指向任何东西的指针，但是需要对它十分的小心。</p>
-<p>之前提到指针其实是一个变量，存的是一个地址；那么加入说我声明一个指针，但是却没给他传地址，而是传值呢？那么这就是undefined behavior，甚至有时无法编译。如下图：</p>
-<pre><code class="language-c"> void f(void)
- {
-    int *ptr;
-    *ptr = 5;
- }
-</code></pre>
-<p>那么最后，之前提到指针的大小和计算机的range，i.e.，32位还是64位，十分相关，可见下面各种类型的变量的内存大小：</p>
-<p><img alt="image" src="img/18.png" /></p>
-<p><img alt="image" src="img/19.png" /></p>
-<p>值得探的是：首先，在数据类型上面，唯一的不同是long int的内存大小不同；其次，size_t，NULL and void*内存大小不同，本质上是它们其实都是指针，然后指针的地址范围不同。最后，struct的大小并不是int and short两个大小的和！这其实是因为alignment rule，马上就会提及</p>
-<h2 id="array">Array</h2>
-<p><code>int arr[2];</code> <code>int arr[] = {533, 146}</code>，通过这样的语句就能够声明一个含有两个整数的数组，并且在内存中留出位置。值得注意的是：必须要声明大小！通过刚刚关于内存的介绍，这一点也能够理解。而C中的字符串其实就是一系列的字符，而非常重要的是：内存上这一传字符的结尾，将会有一个‘\0’占位符。这其实也合理，不然的话内存如何知道什么时候读取字符串结束。</p>
-<p>Array/Pointer Duality：数组变量其实是一个指向第一个元素的指针，所以数组变量几乎和指针是相同的，指针运算也是可以用在它身上的。</p>
-<p>但是指针和数组又不是完全不一样的，也就是：数组能当指针用，但是指针不能当数组用。如下面的例子：可以用string1[x]修改字符串内容，可以用string2[x]访问字符，但是不能进行修改。</p>
-<pre><code class="language-c">char string1[] = &quot;abc&quot;;
-char *string2 = &quot;abc&quot;;
-</code></pre>
-<p>需要注意的是，定义函数中，如果希望对指针指向的地址进行修改，那么应该传入指针的指针。</p>
-<p><img src="img/20.png" alt="image" style="zoom: 67%;" /></p>
-<p>C语言中一个数组的长度并不知道，而且它的边界并不会被检查！因此需要十分小心，避免越界访问数组。有一些良好的习惯如下：</p>
-<p><img alt="image" src="img/22.png" /></p>
-<p>最后，拓展对main传入命令行参数：<code>int main(int argc, char *argv[])</code>对于这样一行的代码，那么argc将会代表命令行字符串的数量，而后面是一个数组的指针，指向这些字符串。</p>
-<p><img alt="image" src="img/21.png" /></p>
-<h2 id="pointer-arithmetic">Pointer Arithmetic</h2>
-<p>在内存中如何储存不同数据类型的数据？（下面所有情景为32为机器）正如之前所介绍的：不同数据类型，内存占用大小不同，有的是4个字节，有的是1个字节，有的是两个，但是一行只有四个字节！因此可想而知地，内部数据的安放将会有alignment rule。</p>
-<p>可以设想，如果一个int数据需要存放，那么如果第一个字节没有顶着放，那么四个字节将会占两行，这非常的memory unfriendly！</p>
-<p>可以用sizeof() <strong><em>operator</em></strong>（不是函数！）来获得一种数据类型或者一个变量的内存占用大小.</p>
-<p>concise strlen()</p>
-<pre><code class="language-c">int strlen(char *s){
-    char *p = s;
-    while (*p++){
-        ...
-    }
-    return (p-s-1)
-}
-</code></pre>
-<p>同时在遍历array的时候，假如说是10个元素的array <code>int arr[10] = {}</code>，那么可以创建一个<code>p = &amp;arr[0];q = &amp;arr[10]</code>，遍历的条件就是<code>while(p != q)</code>。上述的两个例子全都在说一个核心思想：array bounds are not checked, we must check them ourselves!</p>
-<h2 id="memory-management">Memory Management</h2>
+<p>非常特殊地，还可以是：<code>sll srl sra</code>，代表位运算的<code>&lt;&lt; &gt;&gt; &gt;&gt;&gt;</code>，其中<code>&lt;&lt; &gt;&gt;</code>的位移是<code>rs2</code>寄存器中二进制后五位所代表的数字。注意：<code>sra</code>和<code>srl</code>最大的区别是<code>srl</code>总是用0 padding，而sra使用符号位的数字padding！</p>
+<p><code>slt/sltu rd, rs1, rs2</code> equivalent to a = b &lt; c ? 1 : 0, a ⇔ rd, b ⇔ rs1, c ⇔ rs2. Treat the numbers as signed/unsigned with  <code>slt/sltu</code>。</p>
+<blockquote>
+<p>Store if Less Than</p>
+</blockquote>
+<h2 id="i-type">I-type（立即数类型）</h2>
+<ul>
+<li><strong>格式</strong>：<code>imm[11:0] | rs1 | funct3 | rd | opcode</code></li>
+<li><strong>特点</strong>：包含一个12位的立即数，用于需要立即数参与的运算，如加载、存储和算术运算。</li>
+<li><strong>用途</strong>：适用于需要立即数的操作，如加法、减法等。</li>
+</ul>
+<p>例如<code>addi x5, x4, 10</code>就是给x4寄存器中的数字加上10然后放进x5寄存器中。注意，imm是signed number，因此如果是负数的话需要补码操作再相加。<code>slli/srli/srai</code> shift rs1 by the lower  5-bits of imm, <code>srai</code> is distinguished by  using one of the higher bit of the imm (or  funct7 field).</p>
+<p>特殊的是：<strong>无操作指令（no-op）</strong>：RISC-V有一个特定的无操作指令 <code>addi x0, x0, 0</code>，它不改变任何寄存器的值。这种指令可以用于填充空间、对齐数据或在跳转和链接操作中使用。</p>
+<p>I-type还负责load的操作。处理器首先从内存中读取数据，然后将这些数据加载到寄存器中，以便快速访问和进一步处理。这是计算机执行程序时的一个基本步骤，因为程序中的指令和操作通常需要访问和操作存储在内存中的数据。下面介绍一些常见的命令：</p>
+<p><strong><code>lw rd, imm(rs1)</code></strong>：这条指令表示从地址<code>rs1 + imm</code>处加载一个字（32位，四字节）到寄存器<code>rd</code>中。</p>
+<p><code>lh/lhu rd, imm(rs1)</code>: Load signed/unsigned halfword at addr. to register rd(similar to lb/lbu)。（可见这三条命令的区别是load的大小不一样）</p>
+<p><code>lb/lbu</code> <code>rd, imm(rs1)</code>: Load signed/unsigned byte at <code>addr.</code> to  register <code>rd</code></p>
+<p><img alt="image" src="img/25.png" /></p>
+<p>小例子：x0永远是0，所以x1是-1；然后x2和x1取或，因为x1是-1，也就是二进制全是-1，所以x2也全是-1；然后x3是-2，x4是1因为x3&lt;x1；其次，x3右移一位，且补码为1，结果为二进制全是1，即-1，存放在x5；最后0-（-1）结果为1放在x4.</p>
+<h2 id="s-type">S-type（存储类型）</h2>
+<ul>
+<li><strong>格式</strong>：<code>imm[12|11:5] | rs2 | rs1 | funct3 | imm[4:0] | opcode</code></li>
+<li><strong>特点</strong>：包含一个12位的立即数，用于存储操作（如加载和存储指令）。</li>
+<li><strong>用途</strong>：用于加载和存储数据到内存。</li>
+</ul>
+<p><code>sw rs2, imm(rs1)</code>: Store word at <code>rs2</code> to memory <code>addr.= (number in rs1) + imm</code>。</p>
+<blockquote>
+<p>注意这里的imm的单位是字节，八位！而不是四位！</p>
+</blockquote>
+<p><code>sh</code>:Store lower 16 bits at <code>rs2</code>        <code>sb</code>:Store lower 8 bits at <code>rs2</code></p>
+<p><img alt="image" src="img/26.png" /></p>
+<p>上面这个例子中：x12是取byte，地址是x5+1，因此是跳过了F6，剩下的数字是85，但是因为是load signed byte，作为一个8位的byte，最前面是符号位，10001001这个byte第一位是1，因此认为是负数，所以放入寄存器的时候符号位扩展是用1进行padding的，因此x12最终内容是0xFFFFFF85！</p>
+<h2 id="b-type">B-type（分支类型）</h2>
+<ul>
+<li><strong>格式</strong>：<code>imm[12] | imm[10:5] | rs2 | rs1 | funct3 | imm[4:1] | imm[11] | opcode</code></li>
+<li><strong>特点</strong>：包含一个分支目标地址的立即数，用于条件分支指令。</li>
+<li><strong>用途</strong>：用于实现条件跳转。</li>
+</ul>
+<p>原来正常的操作是命令一条一条执行，但是在C语言中有if while等特殊的语句，因此B-type就是用来支持这种conditional branch的。</p>
+<p><code>beq rs1, rs2, L(imm/label</code>)，如果rs1中的值等于rs2中的，那么就跳转到L语句。类似地，有<code>bne(not equal) bge(greater or equal)</code>等。如下图中的例子：第三行是‘如果x2中的数不等于x3中的数，那么跳转到L1语句’；第四行是‘如果x2中的数等于x3中的数’。</p>
+<p><img src="img/27.png" alt="image" style="zoom:50%;" /></p>
+<p>接下来看一个实战中的汇编语言程序和C语言程序的对应：</p>
+<p><img src="img/28.png" alt="image" style="zoom:50%;" /></p>
+<p>首先假设A数列的首元素地址储存在了x8中，那么接下来一行一行来解释发生了什么：</p>
+<ol>
+<li>将x0 x8的值相加存到x9中，因为x0的值永远是零，所以相当于是x9里面也存了数列地址</li>
+<li>因为x0的值永远是零，所以相当于是将0储存到了x10的位置。这个值之后将会充当sum的角色</li>
+<li>在for循环中，i也是一个需要track的变量，所以和第二行类似，x11代表i</li>
+<li>遍历访问数组不能越界，因此需要记录下数组的长度，因此是I类型命令，将20储存在了x13，记录数组长度</li>
+<li>接下来进入了Loop: 首先判断x11数字是否大于等于x13，如果是那么就转到Done</li>
+<li>需要获取数组中对应位置的元素，因此需要lw命令，将x9地址的数据load过来存到x12里面</li>
+<li>然后x10（sum）数字和x12（数列元素）相加然后放进x10。</li>
+<li>之后x9储存的地址加4！这是因为一个int大小是32位四字节，内存中一个字节一个地址，因此是+4；这里是使用立即数类型命令</li>
+<li>最后，x11（i）需要加1，代表i，也代表循环的次数</li>
+<li>j Loop，跳转会Loop</li>
+<li>如果<code>bge</code>命令那一行判断通过，那么会进入Done部分，里面的ret代表程序结束</li>
+</ol>
+<h2 id="u-type">U-type（无符号立即数类型）</h2>
+<ul>
+<li><strong>格式</strong>：<code>imm[31:12] | rd | opcode</code></li>
+<li><strong>特点</strong>：包含一个20位的无符号立即数，用于需要大立即数的操作。</li>
+<li><strong>用途</strong>：适用于需要大立即数的操作，如加载大立即数到寄存器。</li>
+</ul>
+<h2 id="j-type">J-type（跳转类型）</h2>
+<ul>
+<li><strong>格式</strong>：<code>imm[20] | imm[10:1] | imm[11] | imm[19:12] | rd | opcode</code></li>
+<li><strong>特点</strong>：包含一个21位的立即数，用于跳转指令。</li>
+<li><strong>用途</strong>：用于实现无条件跳转。</li>
+</ul>
+<p>指令格式的共同点</p>
+<ul>
+<li><strong>rs1, rs2 和 rd 的位置</strong>：尽管不同类型的指令格式不同，但源寄存器（rs1, rs2）和目标寄存器（rd）的位置是固定的。这种设计对硬件实现是友好的，因为它简化了硬件的解码逻辑。</li>
+</ul>
 
 
 

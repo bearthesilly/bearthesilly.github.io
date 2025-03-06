@@ -112,4 +112,21 @@ C语言中一个数组的长度并不知道，而且它的边界并不会被检�
 
 可以设想，如果一个int数据需要存放，那么如果第一个字节没有顶着放，那么四个字节将会占两行，这非常的memory unfriendly！
 
-可以用sizeof() ***operator***（不是函数！）来获得一种数据类型或者一个变量的内存占用大小
+可以用sizeof() ***operator***（不是函数！）来获得一种数据类型或者一个变量的内存占用大小.
+
+concise strlen()
+
+````c
+int strlen(char *s){
+    char *p = s;
+    while (*p++){
+        ...
+    }
+    return (p-s-1)
+}
+````
+
+同时在遍历array的时候，假如说是10个元素的array `int arr[10] = {}`，那么可以创建一个`p = &arr[0];q = &arr[10]`，遍历的条件就是`while(p != q)`。上述的两个例子全都在说一个核心思想：array bounds are not checked, we must check them ourselves!
+
+## Memory Management
+
