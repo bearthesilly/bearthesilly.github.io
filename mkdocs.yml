@@ -250,8 +250,18 @@ nav:
     - 人工智能:
       - Search: 人工智能/Search.md
       - CSP: 人工智能/CSP.md
+      - Adversial_Search: 人工智能/Adversial_Search.md
     - CA:
       - Info-Representation: CA/Info-Representation.md
+      - C_Language: CA/C_Language.md
+      - RISC-V: CA/RISC-V.md
+    - 论证与写作:
+      - 中国社会科学引文规定: 论证与写作/中国社会科学引文规定.pdf
+      - 反思性写作练习要求: 论证与写作/反思性写作练习要求.pdf
+      - 02第二讲 如何写作学术论文（一）: 论证与写作/02第二讲 如何写作学术论文（一）.pdf
+      - 03第三讲 如何写作学术论文（二）: 论证与写作/03第三讲 如何写作学术论文（二）.pdf
+      - 04第四讲 认识论证: 论证与写作/04第四讲 认识论证.pdf
+
   - Course (Extracurriculum):
     - Deep Learning:
       - 'Partition One: Fundamental + Convolution' : deeplearning_note/深度学习自学.md
