@@ -127,6 +127,35 @@ I-type还负责load的操作。处理器首先从内存中读取数据，然后�
 - **特点**：包含一个21位的立即数，用于跳转指令。
 - **用途**：用于实现无条件跳转。
 
-指令格式的共同点
+`jal rd label` 将会跳转至`label(imm+PC)`，并且返回地址`(PC+4)`给rd寄存器。如果rd是x0，那么就相当于是无条件跳转，且不会记录`(PC+4)`。
 
-- **rs1, rs2 和 rd 的位置**：尽管不同类型的指令格式不同，但源寄存器（rs1, rs2）和目标寄存器（rd）的位置是固定的。这种设计对硬件实现是友好的，因为它简化了硬件的解码逻辑。
+>  If you don’t want to record where you jump to: `jr rs == jalr x0 rs`
+
+` jalr rd rs1 label`跳转到label `(imm+rs1)&~1` 并且返回地址`(PC+4)`给rd寄存器。如果rd是x0，那么就相当于是无条件跳转，且不会记录`(PC+4)`。
+
+上述两条指令总结如下：
+
+![image](img/31.png)
+
+## Register
+
+在之前情境中，都认为除了x0永远是0之外，其他都是一视同仁的；但是实际上，give names to registers and **conventions** on how to use them：
+
+![image](img/30.png)
+
+-  `a0–a7 (x10-x17)`: eight argument registers to pass parameters `(a0-a7)` (例如给函数的传参就可以放在这七个寄存器中) and return values `(a0-a1) `（例如函数的返回值，那么就可以放在这两个寄存器中）
+
+- `ra`: one return address register to return to the point of origin `(x1)` ，例如0x100c地址的指令是跳转到0x2000 (call another function)，运行完那个函数之后，将会返回0x1010(移动四位)，但是CPU是如何知道呢？就是因为，在跳转之前就会把0x1010这个指令地址储存在`ra`寄存器中
+
+-  Also `s0-s1 (x8-x9)` and `s2-s11 (x18-x27)`: saved registers 
+
+值得注意的是：caller callee指的是什么呢？caller指的是调用其他函数的函数，负责保存和恢复某系寄存器的内容，**这些寄存器通常用于临时存储数据，调用结束后这些数据不再需要**；callee是被调用的函数，接受caller传递的参数，然后指定相应的操作，它们需要保存和恢复另一组寄存器的内容，**确保在函数调用过程中这些数据不会被破坏**。
+
+## Function Call
+
+无条件跳转最重要的就是实现function call的功能：在PC中储存着32位的指令地址（instruction address），每一次执行指令的时候，根据地址在memory中读入指令，然后送到controller；然后地址自动加4，因为是4个字节32位。但是如果读到branch/jump/function call的指令，那么下一条地址将会是这个跳转指令中的function address。
+
+![image](img/29.png)
+
+如上图所示，前面的指令地址都是自动加四，但是到含有printf的函数地址的指令的时候，将会跳转到这个函数的地址。
+

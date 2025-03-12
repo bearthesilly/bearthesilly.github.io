@@ -5346,6 +5346,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Propositional_Logic.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Propositional_Logic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -5543,6 +5564,24 @@
   <a href="#j-type" class="md-nav__link">
     <span class="md-ellipsis">
       J-type（跳转类型）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#register" class="md-nav__link">
+    <span class="md-ellipsis">
+      Register
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#function-call" class="md-nav__link">
+    <span class="md-ellipsis">
+      Function Call
     </span>
   </a>
   
@@ -6677,6 +6716,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#register" class="md-nav__link">
+    <span class="md-ellipsis">
+      Register
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#function-call" class="md-nav__link">
+    <span class="md-ellipsis">
+      Function Call
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -6797,10 +6854,32 @@
 <li><strong>特点</strong>：包含一个21位的立即数，用于跳转指令。</li>
 <li><strong>用途</strong>：用于实现无条件跳转。</li>
 </ul>
-<p>指令格式的共同点</p>
+<p><code>jal rd label</code> 将会跳转至<code>label(imm+PC)</code>，并且返回地址<code>(PC+4)</code>给rd寄存器。如果rd是x0，那么就相当于是无条件跳转，且不会记录<code>(PC+4)</code>。</p>
+<blockquote>
+<p>If you don’t want to record where you jump to: <code>jr rs == jalr x0 rs</code></p>
+</blockquote>
+<p><code>jalr rd rs1 label</code>跳转到label <code>(imm+rs1)&amp;~1</code> 并且返回地址<code>(PC+4)</code>给rd寄存器。如果rd是x0，那么就相当于是无条件跳转，且不会记录<code>(PC+4)</code>。</p>
+<p>上述两条指令总结如下：</p>
+<p><img alt="image" src="img/31.png" /></p>
+<h2 id="register">Register</h2>
+<p>在之前情境中，都认为除了x0永远是0之外，其他都是一视同仁的；但是实际上，give names to registers and <strong>conventions</strong> on how to use them：</p>
+<p><img alt="image" src="img/30.png" /></p>
 <ul>
-<li><strong>rs1, rs2 和 rd 的位置</strong>：尽管不同类型的指令格式不同，但源寄存器（rs1, rs2）和目标寄存器（rd）的位置是固定的。这种设计对硬件实现是友好的，因为它简化了硬件的解码逻辑。</li>
+<li>
+<p><code>a0–a7 (x10-x17)</code>: eight argument registers to pass parameters <code>(a0-a7)</code> (例如给函数的传参就可以放在这七个寄存器中) and return values <code>(a0-a1)</code>（例如函数的返回值，那么就可以放在这两个寄存器中）</p>
+</li>
+<li>
+<p><code>ra</code>: one return address register to return to the point of origin <code>(x1)</code> ，例如0x100c地址的指令是跳转到0x2000 (call another function)，运行完那个函数之后，将会返回0x1010(移动四位)，但是CPU是如何知道呢？就是因为，在跳转之前就会把0x1010这个指令地址储存在<code>ra</code>寄存器中</p>
+</li>
+<li>
+<p>Also <code>s0-s1 (x8-x9)</code> and <code>s2-s11 (x18-x27)</code>: saved registers </p>
+</li>
 </ul>
+<p>值得注意的是：caller callee指的是什么呢？caller指的是调用其他函数的函数，负责保存和恢复某系寄存器的内容，<strong>这些寄存器通常用于临时存储数据，调用结束后这些数据不再需要</strong>；callee是被调用的函数，接受caller传递的参数，然后指定相应的操作，它们需要保存和恢复另一组寄存器的内容，<strong>确保在函数调用过程中这些数据不会被破坏</strong>。</p>
+<h2 id="function-call">Function Call</h2>
+<p>无条件跳转最重要的就是实现function call的功能：在PC中储存着32位的指令地址（instruction address），每一次执行指令的时候，根据地址在memory中读入指令，然后送到controller；然后地址自动加4，因为是4个字节32位。但是如果读到branch/jump/function call的指令，那么下一条地址将会是这个跳转指令中的function address。</p>
+<p><img alt="image" src="img/29.png" /></p>
+<p>如上图所示，前面的指令地址都是自动加四，但是到含有printf的函数地址的指令的时候，将会跳转到这个函数的地址。</p>
 
 
 
