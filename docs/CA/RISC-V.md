@@ -153,9 +153,106 @@ I-type还负责load的操作。处理器首先从内存中读取数据，然后�
 
 ## Function Call
 
+### Jump
+
 无条件跳转最重要的就是实现function call的功能：在PC中储存着32位的指令地址（instruction address），每一次执行指令的时候，根据地址在memory中读入指令，然后送到controller；然后地址自动加4，因为是4个字节32位。但是如果读到branch/jump/function call的指令，那么下一条地址将会是这个跳转指令中的function address。
 
 ![image](img/29.png)
 
 如上图所示，前面的指令地址都是自动加四，但是到含有printf的函数地址的指令的时候，将会跳转到这个函数的地址。
 
+如果调用一个函数，那么按照时间顺序，需要做哪些准备的or会发生什么呢？
+
+- 将需要传入的参数都在寄存器中都放好，方便函数中能够调用它们
+- PC跳转至函数所在的地址
+- 获得（局部）的储存，方便函数使用
+- 执行函数中的操作
+- 将结果放在一个地方，方便后续程序对这个值的使用；并且将其他函数中占用的寄存器都进行恢复
+- 执行return control，返回PC原来的地址并且继续按照顺序执行下一个指令
+
+寄存器比内存快得多，因此要物尽其用；而寄存器有着一些使用的convention如下图：
+
+![image](img/30.png)
+
+可以注意到，有一个对于函数调用的非常重要的寄存器，那就是ra：return address。这里面专门储存的就是当初跳转至函数的地址位置。这是很容易认同的，不然的话跳转至函数，那么函数结束了之后，返回哪里呢？下图演示了ra的重要意义：
+
+![image](img/34.png)
+
+调用函数的命令，那就是jal：jump & link, jump to function。`jal rd label`跳转至label，并且将PC+4这个地址返回给rd。而按照寄存器的使用传统，最常见的rd就是x1(ra)。同样，十分特殊的是：如果rd是x0，那么它将会是简单地跳转至label***并且不会储存PC+4的地址***。
+
+调用函数，函数结束后还需要进行返回，而返回的命令那就是：jalr：jump & link register。`jalr rd rs1 label`这个命令将会跳转至rs1的地址，并且将会把当前+4地址（PC+4）返回给rd。同样，rs1就可以是ra，因为它储存着跳转至函数的命令的下一个命令的地址；而特殊地，如果rd是x0，那么就意味着***PC+4不会进行储存***， 因为x0寄存器十分特殊，***永远是0***，不会被修改。
+
+对于上述介绍的两个命令，有一个特殊的点：label位置的参数，可以换成offset（数字）。这样的话，Add the immediate value to the current address in the program (the  “program counter”), go to that location。与此同时，PC+4依然会返回给rd。同时，配有两个伪指令：
+
+- `jal offset == jal x1 offset`，其中x1就是ra
+- `j offset == jal x0 offset`
+
+而返回的命令也有一个伪指令：`jr rs == jalr x0 rs`，这个命令返回原来的地方，并且不会储存当前地址。
+
+### Stack Pointer
+
+上面介绍了函数的跳转，那么函数中还会声明变量，需要额外的内存，那么这一部分是如何实现的呢？换而言之，register空间有限，不可避免的要和memory中的内容进行交互；在需要额外扩充内存的时候，如何控制内存腾出空间，放入内容呢？一个非常重要的寄存器叫做sp（x2），它就是**stack pointer**。传统规定，内存中存放的顺序是地址高到低，因此需要额外多出内存，那么需要sp储存的地址**下降**，反之释放内容的时候就上升。为什么需要stack pointer？因为存放方式是stack in paradigm，故按照数据结构的习惯，需要指针控制。
+
+<img src="img/35.png" alt="image"  />
+
+
+
+### Calling Convention
+
+结合上述的内容，介绍函数跳转的calling convention。首先，寄存器可以按照被操作对象的行为差异，分为caller callee两种。由于RISC-V寄存器的个数是有限的，而函数是非常多的，调用路径可能非常长，这么多函数共用有限的寄存器，怎么样才能安全的访问寄存器呢？最安全的做法是，每次调用其它的函数前把寄存器值保存到栈中，等从子函数返回后，再将寄存器的值出栈，恢复函数调用前的状态，通过这个办法，各个函数就都可以随意使用所有寄存器了。我们将调用函数称为caller，被调用函数称为callee。
+
+我们将寄存器分为两组：
+
+- caller-saved （调用者保存），这是说调用者可以按照自己的需要来保存这些寄存器，如果自己使用了，那么就保存，如果没有使用，就不需要保存。
+- callee-saved （被调用者保存），被调用者在执行正式的功能前前需要将这些寄存器压栈，在返回前需要将这些寄存器弹栈恢复，从caller的视角看，这些寄存器在调用前后值肯定是一样的。从而叫做保存寄存器。
+
+**caller-saved的使用场景：**
+
+1. **临时数据的存放**：在进行一系列计算时，编译器可能会选择使用caller saved registers来存储临时结果，因为这些结果在当前函数调用结束后不再需要。
+2. **非关键性数据的处理**：对于那些不会被随后的函数调用所需的数据，使用caller saved registers可以在调用后立即丢弃。
+
+**callee-saved的使用场景：**
+
+1. **重要数据的保护**：当函数需要调用另一个函数时，它依赖callee saved registers来保护那些必须跨函数调用保存的关键数据。
+2. **保持状态的连续性**：对于递归调用和多层嵌套调用，callee saved registers可以帮助保持调用链上每个函数的状态。
+
+下面是一个函数的编译例子：
+
+````c
+int Leaf(int g, int h, int i, int j){
+    int f; f = (g+h) - (i+j);
+    return f;
+}
+````
+
+<img src="img/36.jpg" alt="image"  />
+
+通过上述的leef函数的内容，看出：因为需要`int f`，所以需要腾出四个byte，于是stack pointer向下移动四个字节，然后将s1寄存器原来储存的内容放进腾出的新空间，然后s1寄存器就可以被leaf函数使用了；函数的最后，将结果存进了a0，然后s1原本的内容需要进行恢复，并且sp向上移动4个字节。在上述的例子中，调用leaf函数的程序叫做caller，而leaf叫做callee，s1就是callee寄存器，代表着可以给调用的callee函数进行临时的使用，只不过需要通过sp的操作来进行原本caller对应数据的保存和回复。
+
+可见，sp的操作来换取更多的可操作的寄存器，是一种十分重要的范式。对于一个函数，有prologue and epilogue，前者通过sp扩充内存，并且将寄存器里面的值储存进内存；后者通过sp回复原来的内存空间，并且将内存中的值恢复给寄存器；而中间就能够自由地操作了，并且甚至可以中间调用函数（nested call）。
+
+<img src="img/37.jpg" alt="image"  />
+
+
+
+## Instruction 2 Machine Code
+
+C语言代码转化为汇编语言之后，那么汇编语言好需要转化为32位的machine code（然后用8位的十六进制去进行表示）。见下图：编码的方式依赖于命令的类型，不同的类型对于imm register funct3/7的位置摆放都有着各自的要求：
+
+> funct3最多编码8种状态，不足以满足不同操作的区分；因此加入了func7；i.e.，funct7/3 together decide the operation
+
+<img src="img/32.png" alt="image"  />
+
+R type assembly: `operation rd, rs1, rs2`
+
+I type Arithmetic assembly: `operation rd, rs1, imm`；imm是12位的，因此表达的范围最大是`[-2048, 2047]`；需要注意的是，在取十二位的操作的时候，实现需要sign-extend imm。对于特殊的slli srli srai，规定的是取低五位，称之为shamt(shift amount)，**但是在shift不需要sign-extend的**。
+
+I type Load assembly: `lw/lhu/lh/lb/lbu rd, (imm)rs1`，imm如果是负数依然需要2的补码。
+
+S type Store assembly: `sw/sh/sb rs2, imm(rs1)`，其中funct3的最后两位暗示了1是w(10)/h(01)/b(00)，而第一位总是0 。
+
+B type Conditional Branch assembly: `bne/beq/blt/bltu/beg/begu rs1, rs2, label`. 使用PC相对地址。值得注意的是，访问的offset范围除以四，才是访问的instruction offset范围。
+
+> If we move all of code, the branch immediate field does not change. True!
+
+U Format assembly: `lui/auipc/li rd, imm`  ，注意li是伪指令，要拆成两个指令：lui and addi。但是有corner case：如果imm的最后三位单独领出来，二进制的第一位是1，那么addi由于认为是sign-extended，那么就会发生错误；那么对于这样的情况，lui加上的upper会先加1然后移动12位。（其实处理器会自动解决这个问题）
