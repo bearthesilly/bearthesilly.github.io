@@ -31,9 +31,51 @@ implication是一种logic operator：$S1 => S2$ is true iff S1 false or S2 true�
 
 说明上述的命题是不可满足的，那么首先转化为CNF，然后不断利用resolution rule去合并，直到：如果产生了空clause，那么就说明是不可满足的，entailment成立；否则一直合并，直到无法产生新的clause，那么说明entailment不成立。
 
-那么什么是Resolution Rule？给定两个子句 *C*1 和 *C*2，如果存在一个文字 *L* 和它的否定 ¬*L* 分别出现在 *C*1 和 *C*2 中，那么可以通过解析规则从 *C*1 和 *C*2 推导出一个新的子句 *C*，其中 *C* 是 *C*1 和 *C*2 中除去 *L* 和 ¬*L* 后剩余文字的析取。如下图的例子：
+那么什么是Resolution Inference Rule？给定两个子句 *C*1 和 *C*2，如果存在一个文字 *L* 和它的否定 ¬*L* 分别出现在 *C*1 和 *C*2 中，那么可以通过解析规则从 *C*1 和 *C*2 推导出一个新的子句 *C*，其中 *C* 是 *C*1 和 *C*2 中除去 *L* 和 ¬*L* 后剩余文字的析取。如下图的例子：
 
 <img src="img/51.png" alt="image" style="zoom:67%;" />
 
 以第一行的前两个进行resolution为例：注意到$P_{2,1}$在两个clause中都有出现，而且是neg关系（一个中有neg，一个中无neg），于是将两个句子除去$P_{2,1}$的剩余部分放在一起，形成了新的clause。
 
+## Horn Logic
+
+ Inference in propositional logic is in general NP-complete! 但是CS101中介绍到：如果是Horn Logic，那么问题就是P的。Horn Logic: only(strict) Horn clauses are allowed:
+$$
+P_1 \land P_2 \land P_3 \dots \land P_n \Rightarrow Q
+$$
+
+$$
+\neg P_1 \lor \neg P_2 \lor \dots \lor \neg P_n \lor Q
+$$
+
+那么证明$KB|=Q$，forward chaining是一种很好的inference方法。首先，将所有的蕴含式子都取出来，将所有的已知的fact取出来；然后将蕴含式对应的数字初始化为前面条件的数量。同时，将fact语句都放进agenda里面。每一次都pop出一个fact，然后对于那些有这个fact的蕴含式，对应的数字-1；同时还有个规则，那就是一个蕴含式如果对应的式子为0，那么这个蕴含式的结果就可以加进agenda里面了。最终，直到agenda里面没有fact，或者蕴含式数字都为0了，程序结束。
+
+<img src="img/52.png" alt="image"  />
+
+> Reference: https://blog.csdn.net/Suyebiubiu/article/details/103187573
+
+<img src="img/53.png" alt="image" style="zoom:50%;" />
+
+可以使用如上图的内容来辅佐做题时运行forward chaining的效率。其中圆弧代表‘需要同时知道...’；而Backward Chaining就是从目标反过来看，看能不能找到这个目标。
+
+ Idea: work backwards from the query q:– to prove q by BC, 
+
+• check if q is known to be true already, or
+
+• prove by BC all premises of some rule concluding q 
+
+• Avoid loops: check if new subgoal is already on the goal  stack 
+
+• Avoid repeated work: check if new subgoal 
+
+1. has already been proved true, or   2. has already failed
+
+<img src="img/54.png" alt="image"  />
+
+<img src="img/55.png" alt="image"  />
+
+> Reference: https://blog.csdn.net/Suyebiubiu/article/details/103187573
+
+> 值得注意的就是遇见loop的情况，这条路走不通！
+
+FC is data-driven, may do lots of work that is irrelevant to the goal; and BC is goal-driven, the complexity of BC can be **much less** than linear in size of KB. 

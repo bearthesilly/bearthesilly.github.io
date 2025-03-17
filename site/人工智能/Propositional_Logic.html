@@ -12,7 +12,7 @@
         <link rel="prev" href="Adversial_Search.html">
       
       
-        <link rel="next" href="../CA/Info-Representation.html">
+        <link rel="next" href="First_Order_Logic.html">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -5409,10 +5409,40 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#horn-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Horn Logic
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="First_Order_Logic.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    First_Order_Logic
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -6590,6 +6620,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#horn-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Horn Logic
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -6624,9 +6663,40 @@
 <p>那么证明entailment的方式就多了一种：</p>
 <p><img src="img/50.png" alt="image" style="zoom:67%;" /></p>
 <p>说明上述的命题是不可满足的，那么首先转化为CNF，然后不断利用resolution rule去合并，直到：如果产生了空clause，那么就说明是不可满足的，entailment成立；否则一直合并，直到无法产生新的clause，那么说明entailment不成立。</p>
-<p>那么什么是Resolution Rule？给定两个子句 <em>C</em>1 和 <em>C</em>2，如果存在一个文字 <em>L</em> 和它的否定 ¬<em>L</em> 分别出现在 <em>C</em>1 和 <em>C</em>2 中，那么可以通过解析规则从 <em>C</em>1 和 <em>C</em>2 推导出一个新的子句 <em>C</em>，其中 <em>C</em> 是 <em>C</em>1 和 <em>C</em>2 中除去 <em>L</em> 和 ¬<em>L</em> 后剩余文字的析取。如下图的例子：</p>
+<p>那么什么是Resolution Inference Rule？给定两个子句 <em>C</em>1 和 <em>C</em>2，如果存在一个文字 <em>L</em> 和它的否定 ¬<em>L</em> 分别出现在 <em>C</em>1 和 <em>C</em>2 中，那么可以通过解析规则从 <em>C</em>1 和 <em>C</em>2 推导出一个新的子句 <em>C</em>，其中 <em>C</em> 是 <em>C</em>1 和 <em>C</em>2 中除去 <em>L</em> 和 ¬<em>L</em> 后剩余文字的析取。如下图的例子：</p>
 <p><img src="img/51.png" alt="image" style="zoom:67%;" /></p>
 <p>以第一行的前两个进行resolution为例：注意到<span class="arithmatex">\(P_{2,1}\)</span>在两个clause中都有出现，而且是neg关系（一个中有neg，一个中无neg），于是将两个句子除去<span class="arithmatex">\(P_{2,1}\)</span>的剩余部分放在一起，形成了新的clause。</p>
+<h2 id="horn-logic">Horn Logic</h2>
+<p>Inference in propositional logic is in general NP-complete! 但是CS101中介绍到：如果是Horn Logic，那么问题就是P的。Horn Logic: only(strict) Horn clauses are allowed:
+<script type="math/tex; mode=display">
+P_1 \land P_2 \land P_3 \dots \land P_n \Rightarrow Q
+</script>
+</p>
+<div class="arithmatex">\[
+\neg P_1 \lor \neg P_2 \lor \dots \lor \neg P_n \lor Q
+\]</div>
+<p>那么证明<span class="arithmatex">\(KB|=Q\)</span>，forward chaining是一种很好的inference方法。首先，将所有的蕴含式子都取出来，将所有的已知的fact取出来；然后将蕴含式对应的数字初始化为前面条件的数量。同时，将fact语句都放进agenda里面。每一次都pop出一个fact，然后对于那些有这个fact的蕴含式，对应的数字-1；同时还有个规则，那就是一个蕴含式如果对应的式子为0，那么这个蕴含式的结果就可以加进agenda里面了。最终，直到agenda里面没有fact，或者蕴含式数字都为0了，程序结束。</p>
+<p><img src="img/52.png" alt="image"  /></p>
+<blockquote>
+<p>Reference: https://blog.csdn.net/Suyebiubiu/article/details/103187573</p>
+</blockquote>
+<p><img src="img/53.png" alt="image" style="zoom:50%;" /></p>
+<p>可以使用如上图的内容来辅佐做题时运行forward chaining的效率。其中圆弧代表‘需要同时知道...’；而Backward Chaining就是从目标反过来看，看能不能找到这个目标。</p>
+<p>Idea: work backwards from the query q:– to prove q by BC, </p>
+<p>• check if q is known to be true already, or</p>
+<p>• prove by BC all premises of some rule concluding q </p>
+<p>• Avoid loops: check if new subgoal is already on the goal  stack </p>
+<p>• Avoid repeated work: check if new subgoal </p>
+<ol>
+<li>has already been proved true, or   2. has already failed</li>
+</ol>
+<p><img src="img/54.png" alt="image"  /></p>
+<p><img src="img/55.png" alt="image"  /></p>
+<blockquote>
+<p>Reference: https://blog.csdn.net/Suyebiubiu/article/details/103187573</p>
+<p>值得注意的就是遇见loop的情况，这条路走不通！</p>
+</blockquote>
+<p>FC is data-driven, may do lots of work that is irrelevant to the goal; and BC is goal-driven, the complexity of BC can be <strong>much less</strong> than linear in size of KB. </p>
 
 
 
