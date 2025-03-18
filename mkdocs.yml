@@ -257,6 +257,8 @@ nav:
       - Info-Representation: CA/Info-Representation.md
       - C_Language: CA/C_Language.md
       - RISC-V: CA/RISC-V.md
+      - CALL: CA/CALL.md
+      - Digital_Cirtuit: CA/Digital_Circuit.md
     - 论证与写作:
       - 中国社会科学引文规定: 论证与写作/中国社会科学引文规定.pdf
       - 反思性写作练习要求: 论证与写作/反思性写作练习要求.pdf
