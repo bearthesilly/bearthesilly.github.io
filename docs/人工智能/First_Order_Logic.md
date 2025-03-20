@@ -131,9 +131,38 @@ FOL假设这个世界包含三种角色：objects，如人类、房子等具象�
 
 ### Horn Logic(FOL case)
 
+$p_1 \land \dots \land p_n \Rightarrow q$，其中p q都是atomic sentences。
+
 ### General FOL
 
+$$
 
+\frac{p_1', p_2', \ldots, p_n', (p_1 \land p_2 \land \ldots \land p_n \Rightarrow q)}{q\theta} \quad \text{where } p_i'\theta = p_i \theta \text{ for all } i
+$$
+
+- *p*1′,*p*2′,…*p*,*n*′ 是前提。
+- (*p*1∧*p*2∧…∧*pn*⇒*q*) 是一个条件语句，表示如果所有 *pi* 都为真，则 *q* 也为真。
+- *qθ* 是结论，表示在给定的替换 *θ* 下，*q* 为真。
+
+<img src="img/61.png" alt="image" style="zoom:80%;" />
+
+同样，可以考虑将语句转化为CNF（合取范式），利用$p \Rightarrow q \equiv \neg p \lor q$，与quantifier的公式，将原式子转化为CNF。如下面的例子：
+$$
+\neg \exists x P(x) \equiv \forall x \neg P(x) \\
+\neg \forall x P(x) \equiv \exists x \neg P(x)
+$$
+<img src="img/62.png" alt="image" style="zoom:80%;" />
+
+### 示例解释
+
+示例：
+
+- 前提：King(John), Greedy(y), (King(x) ∧ Greedy(x) ⇒ Evil(x))
+- 其中：
+  - *p*1′ 是 King(John)，*p*1 是 King(x)
+  - *p*2′ 是 Greedy(y)，*p*2 是 Greedy(x)
+- 因此，替换 *θ* 是 {*x*/*J**o**hn*,*y*/*J**o**hn*}
+- 结论 q \ 是) Evil(x)，所以 \( q\theta 是 Evil(John)
 
 ## [Unification](https://zhida.zhihu.com/search?content_id=253455625&content_type=Article&match_order=1&q=Unification&zhida_source=entity) and Lifting
 
@@ -209,8 +238,6 @@ This inference process is called **[Generalized Modus Ponens](https://zhida.zhih
 - 合一是逻辑推理中关键步骤，帮助在不同表达式之间进行匹配。
 - 失败的合一通常因为变量无法同时满足多个约束。
 - 标准化变量有助于避免冲突。
-
-## 
 
 
 

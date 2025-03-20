@@ -22,6 +22,8 @@
 
 <img src="img/48.png" alt="image" style="zoom:50%;" />
 
+## Logic gates to Combinational Circuit
+
 那么假如说我拿到了完整的真值表，如何设计布尔逻辑电路呢？转化规则为：如果是最后为1的项，那么相乘（其中为0的单元加上非），这样的一个个项最后相加。
 
 <img src="img/49.png" alt="image" style="zoom:50%;" />
@@ -74,6 +76,68 @@
 
 <img src="img/51.png" alt="image" style="zoom:50%;" />
 
+对于2-bit adder的真值表，我们可以列出如下的布尔逻辑：将真值为1的项目加起来，然后通过布尔逻辑进行合并，得到了最终的简化的布尔逻辑，因此考虑+为或门而×为与门就能够搭建组合电路了。
+
+<img src="img/53.jpg" alt="image" style="zoom: 12%;" />
+
+一下是布尔逻辑定律，非常重要：
+
+<img src="img/54.png" alt="image" style="zoom:50%;" />
+
+同样，如果聚焦于一位的加法，并且考虑上一位到这里的进位，那么逻辑如下：
+
+<img src="img/55.jpg" alt="image" style="zoom: 12%;" />
+
+因此对于这样的一个组合电路，总而言之实现的功能是：接受两个该位上的数字，接受上一位总过来的进位，然后输出给下一位的进位与这一位的sum结果。这样的结果可以成为Forward Adder(FA).
+
+最后再举一个例子：对于一个multiplexer来说，假设电子器件如果select data是0，就输出A，如果是1，则输出B，那么输出的真值逻辑如下：那么组合电路的设计就十分简单了
+$$
+Sel B + \overline{Sel}A
+$$
 这样，就形成了关于组合逻辑的多种表现形式的转化关系：
 
 <img src="img/52.png" alt="image" style="zoom:50%;" />
+
+## State Elements
+
+### Register
+
+寄存器这个电子器件总而言之：输入接口为D，输出接口为Q，也有一个时钟接口；当时钟信号迎来上升阶段时，寄存器将会对D信号进行采样，然后存起来，并且一种通过Q进行输出。如下图：
+
+<img src="img/55.png" alt="image" style="zoom:50%;" />
+
+> 注意采样后Q输出有延时效应，只不过延时的时间很短
+
+如下图的结构演示了一个n位二进制数字的寄存：每一位的寄存用一个寄存器实现，有n个，重要的是都是接在一个时钟上。如图，当C中的时钟信号迎来上升，那么就会采样D信号的值，然后短暂的延时之后将会储存并通过Q输出。
+
+<img src="img/56.png" alt="image" style="zoom:50%;" />
+
+通过使用组合电路和寄存器能够实现一些特殊的功能。比如说我想要对一个数字不断加四，那么就可以这样的逻辑来实现：将adder的输出结果通过寄存器储存起来，并且能够输出会adder；这样在每一个clock signal上升式时，寄存器将会得到adder结果并且返回给adder，adder计算完之后把结果给到D，但是此时寄存器将不会采样D结果，直到迎来下一个上升。如下图所示：
+
+<img src="img/57.png" alt="image" style="zoom:50%;" />
+
+> 注意没有加上寄存器的那个图，这样的电路是不合法的，因为输出值又会瞬间回到adder的输入；这样的信号是''震荡''的
+
+甚至可以用这样的机制创造下面的这一个电路，实现'signal run'：需要注意的是，假如说第二个DFF迎来上升的时候，是接受之前的A信号，还是第一个DFF更新后的信号？应该是之前的，因为延时效应！
+
+<img src="img/58.png" alt="image" style="zoom:50%;" />
+
+可以看出，这种利用寄存器的电路能够很好的实现特殊的功能，这种使用combinational function block与register的电路称为同步电路（synchronous circuits）。
+
+<img src="img/59.png" alt="image" style="zoom:50%;" />
+
+### FSM
+
+Finite State Machine，顾名思义，这个机器的状态数量是有限的，只不过在不同的时间步时状态不同。
+
+<img src="img/60.png" alt="image" style="zoom:50%;" />
+
+如下图是一个地铁闸机的状态图：其中状态的转移情况十分容易理解（其中绿色箭头代表的是初始状态）
+
+<img src="img/61.png" alt="image" style="zoom:50%;" />
+
+可见对于FSM的关键是：当前状态如何？FSM接受的外界的信号如何？通过这两点，将会决定FSM下一个时间步的状态与输出。如下图：
+
+<img src="img/62.png" alt="image" style="zoom:50%;" />
+
+如果默认下一状态和输出是相同的，那么下一状态值可以视为当前状态值和输入的组合逻辑，对应combinational functional block；而输出的下一状态值将作为决定下下一状态的输入之一，因此通过寄存器之后，返回到组合功能block的输入。
