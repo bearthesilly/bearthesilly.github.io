@@ -5485,6 +5485,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例解释
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5520,15 +5529,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-    </span>
-  </a>
   
 </li>
       
@@ -6810,6 +6810,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例解释
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -6845,15 +6854,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-    </span>
-  </a>
   
 </li>
       
@@ -7030,7 +7030,33 @@
 <li><strong>Turing/Church 定理</strong> 则进一步指出，一阶逻辑的蕴含问题是半可判定的，意味着我们无法对所有可能的情况提供一个总是能够正确回答的算法。</li>
 </ul>
 <h3 id="horn-logicfol-case">Horn Logic(FOL case)</h3>
+<p><span class="arithmatex">\(p_1 \land \dots \land p_n \Rightarrow q\)</span>，其中p q都是atomic sentences。</p>
 <h3 id="general-fol">General FOL</h3>
+<p>$$</p>
+<p>\frac{p_1', p_2', \ldots, p_n', (p_1 \land p_2 \land \ldots \land p_n \Rightarrow q)}{q\theta} \quad \text{where } p_i'\theta = p_i \theta \text{ for all } i</p>
+<p>$$</p>
+<ul>
+<li><em>p</em>1′,<em>p</em>2′,…<em>p</em>,<em>n</em>′ 是前提。</li>
+<li>(<em>p</em>1∧<em>p</em>2∧…∧<em>pn</em>⇒<em>q</em>) 是一个条件语句，表示如果所有 <em>pi</em> 都为真，则 <em>q</em> 也为真。</li>
+<li><em>qθ</em> 是结论，表示在给定的替换 <em>θ</em> 下，<em>q</em> 为真。</li>
+</ul>
+<p><img src="img/61.png" alt="image" style="zoom:80%;" /></p>
+<p>同样，可以考虑将语句转化为CNF（合取范式），利用<span class="arithmatex">\(p \Rightarrow q \equiv \neg p \lor q\)</span>，与quantifier的公式，将原式子转化为CNF。如下面的例子：
+<script type="math/tex; mode=display">
+\neg \exists x P(x) \equiv \forall x \neg P(x) \\
+\neg \forall x P(x) \equiv \exists x \neg P(x)
+</script>
+<img src="img/62.png" alt="image" style="zoom:80%;" /></p>
+<h3 id="_1">示例解释</h3>
+<p>示例：</p>
+<ul>
+<li>前提：King(John), Greedy(y), (King(x) ∧ Greedy(x) ⇒ Evil(x))</li>
+<li>其中：</li>
+<li><em>p</em>1′ 是 King(John)，<em>p</em>1 是 King(x)</li>
+<li><em>p</em>2′ 是 Greedy(y)，<em>p</em>2 是 Greedy(x)</li>
+<li>因此，替换 <em>θ</em> 是 {<em>x</em>/<em>J</em><em>o</em><em>hn</em>,<em>y</em>/<em>J</em><em>o</em><em>hn</em>}</li>
+<li>结论 q \ 是) Evil(x)，所以 ( q\theta 是 Evil(John)</li>
+</ul>
 <h2 id="unification-and-lifting"><a href="https://zhida.zhihu.com/search?content_id=253455625&amp;content_type=Article&amp;match_order=1&amp;q=Unification&amp;zhida_source=entity">Unification</a> and Lifting</h2>
 <blockquote>
 <p>https://zhuanlan.zhihu.com/p/22167116100</p>
@@ -7127,7 +7153,6 @@
 <li>失败的合一通常因为变量无法同时满足多个约束。</li>
 <li>标准化变量有助于避免冲突。</li>
 </ul>
-<h2 id="_1"></h2>
 
 
 
