@@ -253,6 +253,10 @@ nav:
       - Adversial_Search: 人工智能/Adversial_Search.md
       - Propositional_Logic: 人工智能/Propositional_Logic.md
       - First_Order_Logic: 人工智能/First_Order_Logic.md
+      - Bayes_Net:
+        - BN1: 人工智能/BN1.md
+        - BN2: 人工智能/BN2.md
+        - BN_lec: 人工智能/BN_lec.md
     - CA:
       - Info-Representation: CA/Info-Representation.md
       - C_Language: CA/C_Language.md

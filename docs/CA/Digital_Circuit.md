@@ -141,3 +141,51 @@ Finite State Machine，顾名思义，这个机器的状态数量是有限的，
 <img src="img/62.png" alt="image" style="zoom:50%;" />
 
 如果默认下一状态和输出是相同的，那么下一状态值可以视为当前状态值和输入的组合逻辑，对应combinational functional block；而输出的下一状态值将作为决定下下一状态的输入之一，因此通过寄存器之后，返回到组合功能block的输入。
+
+<img src="img/63.png" alt="image" style="zoom:50%;" />
+
+通过上述对于案例的分析，我们能够总结出同步电路的特征，如上图：用A和B代表前组合电路的输出和后组合电路的输入，那么不难发现：
+$$
+A_{i} = B_{i+1} \\
+B_{i+1} = f(B_i,input) = A_{i}\\
+$$
+第一个式子是因为i+1时刻寄存器对i时刻的A采样；第二个式子是因为Ai的结果是送回来的Bi和input_i的组合。因此可见：前后两个组合电路的逻辑其实就是$f(B_i,input) = A_{i}$ and $Output = g(B_i)$。在列举出FSM的这张表之后，利用布尔逻辑或者是卡诺图来计算出逻辑电路的逻辑，然后就可以搭建电路了。
+
+另外地，可以将FSM分为两种：
+
+- Moore machine: Output depends ***solely*** on the current state and is controlled by  the clock
+- Mealy machine: Output depends on ***both the current state and input*** and is ***uncontrolled*** by the clock
+
+> Mealy and Moore machines are interchangable. Mealy and Moore outputs can co-exist in one  synchromous circuit 
+
+那么如下总结如何利用FSM来设计电路去进行模拟：
+
+<img src="img/64.png" alt="image" style="zoom:50%;" />
+
+### Timing in synchronous circuits
+
+时钟的频率能无限快吗？如果上升沿趋近于时间上为0，而且采样等等器件操作的时间都是0，那么也许频率可以非常高。但是现实是：它们需要操作时间。
+
+<img src="img/65.png" alt="image" style="zoom:50%;" />
+
+在上升沿前，有一段setup时间，那么就需要信号稳定住了，便于采样稳定；在上升沿之后，有一段时间hold time，依然需要信号稳定。***同时还需要注意到，输出Q在采样之后将会上升至目标信号值***，***但是这也是需要时间的***，而且时间从图片来看可能甚至略微长于hold time。
+
+不仅仅是寄存器，组合电路乃至电子器件都有这样的需求。如下图所示：在Q1改变至目标信号，进入了comb组合电路，那么依然需要一小段时间，才能在D2看到值的变化，而且D值变化也是需要time span的。那么如下图的时钟频率就是合理的，因为在下一次上升沿的time window范围内，D2的值已经完全改变至目标值并且并且稳定。
+
+<img src="img/66.png" alt="image" style="zoom:50%;" />
+
+如下图，这个是时钟频率就不合理了，因为下一次上升沿time window时，D2正在其中发生改变，不稳定；甚至，如果下一次time window期间卡在了Q1进入组合电路和D2开始发生变化之间，那么这时的采样虽然是稳定的，但是相当于采了一遍之前的D2值，这就完全乱套了。
+
+> In summary: Signal $D_2^{(t+1)}$ should  arrive before the setup  time window
+
+<img src="img/67.png" alt="image" style="zoom:50%;" />
+
+**A synchronous circuit may contain multiple stages of combinational block-and-register, while the slowest path decide the max frequency**. The corresponding path is also called critical path. 根据这个定义，那么上图例子中的critical path显而易见，而且应该满足：
+$$
+t_{clk-to-Q}+t_{comb} \leq min\ clock\ period-setup\ time
+$$
+例子：对于下面的这个电路，critical path应该是Reg -> Q -> And1 -> And 2 -> And3->Reg。那么这个所需要的时间是：clock-to-Q+3*AND Delay$\leq$period-setup。
+
+<img src="img/68.png" alt="image" style="zoom:50%;" />
+
+那么最终的结果是：period应该大于等于5ns，所以频率最快是200MHz。
