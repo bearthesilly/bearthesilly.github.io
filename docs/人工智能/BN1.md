@@ -41,13 +41,13 @@ $$
 
 这一点其实更多的是因为CPT中所规定的联合概率分布表所决定的，而直觉上可能认为，影响力是能够传递的，因此可能不是条件独立；但是结算的规则在BN中是和直觉略有不同的。
 
-<img_0 src="img_0/1.png" alt="image" style="zoom: 50%;" />
+<img src="img_0/1.png" alt="image" style="zoom: 50%;" />
 
 这条结论能够进一步推广：
 
 ***Theorem 2:  A variable’s Markov blanket consists of parents, children, children’s other parents; Every variable is conditionally independent of all other variables given its Markov blanket.***
 
-<img_0 src="img_0/2.png" alt="image" style="zoom: 50%;" />
+<img src="img_0/2.png" alt="image" style="zoom: 50%;" />
 
 但是需要注意的是：如上图的例子，在已知$Y_1$的时候，X和$Z_{ij}$是条件独立的吗？不是！因为$Y_1$的发生和二者都有关系，其中一个概率的改变会影响另一个。
 
@@ -94,11 +94,11 @@ Common effect(v-structure)：假设Z的父节点有X Y，在这个简单的结�
 
 用以上的三个单元能够generalize到一个图中的三个顶点之间的（条件）独立关系了：
 
-<img_0 src="img_0/3.png" alt="image" style="zoom: 80%;" />
+<img src="img_0/3.png" alt="image" style="zoom: 80%;" />
 
 如何快速判断两个节点之间是否是条件独立的？我总结如下：两个节点都放出信息流，按照directed graph的directed edge流动，有两种情况：第一种是其中一条流进了另一个节点，另一种是两股信息流汇入了同一节点，然后经过这一节点之后的信道里面都有这两股信息流。如果流动的过程中，出现了堵塞的情况，i.e.，causal chain and common cause的中间节点是条件，那么就是独立的；如果中间没有堵塞，而两股信息流到一起，之后经过节点中如果没有条件节点，那么就是条件独立的。这其实蕴含着一种思想：两个节点何以成为条件不独立？要么是一个节点的信息流会穿过另一个节点，要么是这两股信息流没有同时决定另外一个节点。后者比较难以理解，可以姑且理解为：这两股信息在已知条件下没有发生过任何的被发现的化学反应；如果过化学反应而且被发现了（即：这个节点是已知的），那么这个节点的结果将会***imply两股信息共同作用的效果***，因而不再独立。下图是一个例子，$\perp\perp$代表（条件）独立。
 
-<img_0 src="img_0/4.png" alt="image" style="zoom: 80%;" />
+<img src="img_0/4.png" alt="image" style="zoom: 80%;" />
 
 ### Exact Inference in BN
 
@@ -109,11 +109,11 @@ $$
 P(X|e) = \alpha P(X, e) = \alpha \sum_y P(X, e, y) \\
 \mbox{where } \alpha \mbox{ is the normalization parameter}
 $$
-<img_0 src="img_0/5.png" alt="image" style="zoom: 80%;" />
+<img src="img_0/5.png" alt="image" style="zoom: 80%;" />
 
 但是有着大量的乘积计算，而计算量是指数级别的：$O(nd^n)$。通过moving summations inwards as far as possible in expression可以使得复杂度降到$O(d^n)$。
 
-<img_0 src="img_0/6.png" alt="image" style="zoom: 80%;" />
+<img src="img_0/6.png" alt="image" style="zoom: 80%;" />
 
 同时有一个trick: ***Every node that is not an ancestor of a query variable or evidence variable is irrelevant to the query***。
 
@@ -123,23 +123,23 @@ $$
 
 A factor is a multi-dimensional array to represent $P(Y_1 … Y_N | X_1 … X_M)$。
 
-<img_0 src="img_0/7.png" alt="image" style="zoom: 80%;" />
+<img src="img_0/7.png" alt="image" style="zoom: 80%;" />
 
 对于factors来说，有几种操作：第一种是pointwise products，第二种是eliminate。
 
-<img_0 src="img_0/8.png" alt="image" style="zoom: 80%;" />
+<img src="img_0/8.png" alt="image" style="zoom: 80%;" />
 
-<img_0 src="img_0/9.png" alt="image" style="zoom: 80%;" />
+<img src="img_0/9.png" alt="image" style="zoom: 80%;" />
 
 因此消除变量法的流程如下：首先所有的节点都初始化CPT，然后选中一个hidden variable（not query or evidence），利用pointwise product合并所有涉及到H的factors，然后这个结果需要sum out H。下面是一个例子：
 
-<img_0 src="img_0/10.png" alt="image" style="zoom: 80%;" />
+<img src="img_0/10.png" alt="image" style="zoom: 80%;" />
 
 总而言之，核心是：1. 利用factor高效表示CPT，支持向量化；2. 利用factor间支持的操作，逐渐合并掉hidden node。而且事实上，消除变量的顺序也会影响时间复杂度。VE算法的时间复杂度主要取决于factor最大的形状，而消去hidden node的顺序会影响factor最大的形状。如下图所示：
 
 > 这两个数字是如何得来的？
 
-<img_0 src="img_0/11.png" alt="image" style="zoom: 80%;" />
+<img src="img_0/11.png" alt="image" style="zoom: 80%;" />
 
 > Does there always exist an ordering that only results in small factors? No! The factor size is influenced by the tree-width of the graph
 
@@ -167,18 +167,18 @@ Idea: fix evidence variables, and sample the rest.那么一个样本的权重应
 $$
 w(\mathbf{z}) = \alpha \prod_{i=1}^mP(e_i|parents(E_i))
 $$
-<img_0 src="img_0/12.png" alt="image" style="zoom: 80%;" />
+<img src="img_0/12.png" alt="image" style="zoom: 80%;" />
 
 上面便是Likelihood采样；而它是importance sampling采样的一个instance。
 
-<img_0 src="img_0/13.png" alt="image" style="zoom: 80%;" />
+<img src="img_0/13.png" alt="image" style="zoom: 80%;" />
 
 #### Gibbs Sampling
 
 流程如下：
 
-<img_0 src="img_0/14.png" alt="image" style="zoom: 80%;" />
+<img src="img_0/14.png" alt="image" style="zoom: 80%;" />
 
 这样做是为了让采样能够反映所有网络中的evidence。还有两种特殊的变体：
 
-<img_0 src="img_0/15.png" alt="image" style="zoom: 80%;" />
+<img src="img_0/15.png" alt="image" style="zoom: 80%;" />
