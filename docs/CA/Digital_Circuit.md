@@ -189,3 +189,22 @@ $$
 <img src="img/68.png" alt="image" style="zoom:50%;" />
 
 那么最终的结果是：period应该大于等于5ns，所以频率最快是200MHz。
+
+## From FSM to Circuit Example
+
+考虑一个经典的问题：对于一个含有0 1的序列，检测所有的010子序列（每一个010子序列没有overlap）。如何设计电路呢？在搜寻的状态中，不难发现，可以使用FSM来进行表示：状态就是目前检测010的完成度（比如说，检测出01了，还差一个0），而转移的依据就是下一个输入的数字（如01输入0，就输出1，代表检测出来一个，并且状态转移到no number detected；而如果输入1，那么也会转移到no number detected）。
+
+<img src="img/69.png" alt="image" style="zoom:50%;" />
+
+按照方才的思路，就可以设计上面的状态和转移图了。然后给每一个状态打上一个一个序列号（这个序列号用0 1表示；数字上，与状态没有任何关系），并且给每一个状态规定上output（如detected状态 => 1，代表检测到了）。
+
+<img src="img/70.png" alt="image" style="zoom:50%;" />
+
+现在能够列出真值表了：其中输入的有input number and the previous status numbers，然后输出是output and next status numbers，如下图：
+
+<img src="img/71.png" alt="image" style="zoom:50%;" />
+
+最后根据上面真值表的布尔逻辑设计电路，其中需要设计的电路有两个：一个是input number and the previous status numbers如何得出next status numbers，另一个是next status numbers如何得出output。并且需要注意的是：因为状态序列表示是两位的二进制，因此需要两个寄存器分别储存S[0] S[1]。最终，就能得到如下的结果：
+
+<img src="img/72.png" alt="image" style="zoom:50%;" />
+
