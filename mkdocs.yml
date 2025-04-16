@@ -256,7 +256,7 @@ nav:
       - Bayes_Net:
         - BN1: 人工智能/BN1.md
         - BN2: 人工智能/BN2.md
-        - BN_lec: 人工智能/BN_lec.md
+      - Markov Decision Process: 人工智能/Markov_Decision.md
     - CA:
       - Info-Representation: CA/Info-Representation.md
       - C_Language: CA/C_Language.md
