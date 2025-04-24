@@ -81,3 +81,27 @@ Policy：In ***deterministic*** single-agent search problems,  we wanted an opti
 <img src="img/76.png" alt="image" style="zoom:50%;" />因此有一种算法变体，就是Q-value Iteration：
 
 <img src="img/77.png" alt="image" style="zoom:50%;" />
+
+### Policy Iteration
+
+上述方法好是好，但是复杂度很高：$O(S^2A)$一次循环。而且事实上：policy经常在值很早之前就收敛了。根据上述两个客观事实，我们可以考虑policy iteration：
+
+step1: Policy Evaluation：calculate utilities for some fixed (not optimal) policy
+
+step2: Policy improvement: update policy using one-step look-ahead with resulting  converged (but not optimal!) utilities as future values
+
+> Repeat steps until policy converges
+
+这最终得到的policy最终仍然是最优的。并且在某些情况下能够收敛的非常快！在fixed policy中，do what $\pi$ says to do, not the optimal action. 对于一个fixed policy，utility的计算还是十分直观的：
+
+<img src="img/78.png" alt="image" style="zoom:50%;" />
+
+<img src="img/79.png" alt="image" style="zoom:50%;" />
+
+直到如何计算utility之后，如何根据它来改进Policy呢？
+
+<img src="img/80.png" alt="image" style="zoom:50%;" />
+
+### Summary
+
+<img src="img/81.png" alt="image" style="zoom:50%;" />
