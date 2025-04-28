@@ -257,6 +257,11 @@ nav:
         - BN1: 人工智能/BN1.md
         - BN2: 人工智能/BN2.md
       - Markov Decision Process: 人工智能/Markov_Decision.md
+      - Reinforcement Learning: 人工智能/Reinforcement_learning.md
+    - 机器学习:
+      - 神经网络:
+        - feature_engineering: 机器学习/神经网络部分/feature_engineering.md
+        - CNN: 机器学习/神经网络部分/CNN.md
     - CA:
       - Info-Representation: CA/Info-Representation.md
       - C_Language: CA/C_Language.md
