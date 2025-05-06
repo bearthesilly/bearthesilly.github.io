@@ -262,6 +262,7 @@ nav:
       - 神经网络:
         - feature_engineering: 机器学习/神经网络部分/feature_engineering.md
         - CNN: 机器学习/神经网络部分/CNN.md
+        - practical_aspects: 机器学习/神经网络部分/practical_aspects.md
     - CA:
       - Info-Representation: CA/Info-Representation.md
       - C_Language: CA/C_Language.md
