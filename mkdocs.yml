@@ -272,6 +272,8 @@ nav:
       - CALL: CA/CALL.md
       - Digital_Cirtuit: CA/Digital_Circuit.md
       - Datapath_Controller: CA/Datapath_Controller.md
+      - Parallelism(2): CA/Parallelism(2).md
+      - TLP: CA/TLP.md
     - 论证与写作:
       - 中国社会科学引文规定: 论证与写作/中国社会科学引文规定.pdf
       - 反思性写作练习要求: 论证与写作/反思性写作练习要求.pdf
