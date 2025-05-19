@@ -258,6 +258,7 @@ nav:
         - BN2: 人工智能/BN2.md
       - Markov Decision Process: 人工智能/Markov_Decision.md
       - Reinforcement Learning: 人工智能/Reinforcement_learning.md
+      - Supervised Learning: 人工智能/Supervised_Learning.md
     - 机器学习:
       - 神经网络:
         - feature_engineering: 机器学习/神经网络部分/feature_engineering.md
