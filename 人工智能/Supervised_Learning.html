@@ -9,25 +9,25 @@
       
       
       
-        <link rel="prev" href="../%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/note.html">
+        <link rel="prev" href="Reinforcement_learning.html">
       
       
-        <link rel="next" href="../%E4%B8%80%E5%85%83%E7%A7%AF%E5%88%86%E5%AD%A6%E5%A5%BD%E9%A2%98/note.html">
+        <link rel="next" href="../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E9%83%A8%E5%88%86/feature_engineering.html">
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.25">
     
     
       
-        <title>期末复习篇 - csrookie's website</title>
+        <title>Supervised Learning - csrookie's website</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -46,7 +46,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -71,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#supervised-learning" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -83,7 +88,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../index.html" title="csrookie&#39;s website" class="md-header__button md-logo" aria-label="csrookie's website" data-md-component="logo">
+    <a href="../index.html" title="csrookie&#39;s website" class="md-header__button md-logo" aria-label="csrookie's website" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -103,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              期末复习篇
+              Supervised Learning
             
           </span>
         </div>
@@ -214,7 +219,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../index.html" title="csrookie&#39;s website" class="md-nav__button md-logo" aria-label="csrookie's website" data-md-component="logo">
+    <a href="../index.html" title="csrookie&#39;s website" class="md-nav__button md-logo" aria-label="csrookie's website" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -232,7 +237,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../index.html" class="md-nav__link">
+      <a href="../index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -286,19 +291,17 @@
                 
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
         
           
           <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
@@ -312,7 +315,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_1">
             <span class="md-nav__icon md-icon"></span>
             高等数学上
@@ -326,7 +329,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -382,7 +385,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../%27%E8%AF%81%E6%98%8E%27%E6%80%BB%E7%BB%93/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%27%E8%AF%81%E6%98%8E%27%E6%80%BB%E7%BB%93/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -403,7 +406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../%E9%80%92%E6%8E%A8%E6%95%B0%E5%88%97%E7%9A%84%E6%9E%81%E9%99%90/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E9%80%92%E6%8E%A8%E6%95%B0%E5%88%97%E7%9A%84%E6%9E%81%E9%99%90/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -424,7 +427,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../%E6%9E%81%E9%99%90%E4%B8%AD%E7%9A%84%E6%A6%82%E5%BF%B5%E9%A2%98/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%9E%81%E9%99%90%E4%B8%AD%E7%9A%84%E6%A6%82%E5%BF%B5%E9%A2%98/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -445,7 +448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../%E8%BF%9E%E7%BB%AD%E6%80%A7%20%E9%97%B4%E6%96%AD%E7%82%B9%20%E6%B8%90%E8%BF%91%E7%BA%BF/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E8%BF%9E%E7%BB%AD%E6%80%A7%20%E9%97%B4%E6%96%AD%E7%82%B9%20%E6%B8%90%E8%BF%91%E7%BA%BF/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -466,7 +469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../%E5%A4%B9%E9%80%BC%E5%87%86%E5%88%99%E6%B1%82%E6%9E%81%E9%99%90/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%A4%B9%E9%80%BC%E5%87%86%E5%88%99%E6%B1%82%E6%9E%81%E9%99%90/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -487,7 +490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../%E6%B1%82%E5%87%BD%E6%95%B0%E6%9E%81%E9%99%90/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%B1%82%E5%87%BD%E6%95%B0%E6%9E%81%E9%99%90/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -508,7 +511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../%E6%9E%81%E9%99%90%E4%B8%8E%E8%BF%9E%E7%BB%AD%E9%9A%8F%E7%AC%94/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%9E%81%E9%99%90%E4%B8%8E%E8%BF%9E%E7%BB%AD%E9%9A%8F%E7%AC%94/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -572,7 +575,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../%E5%AF%BC%E6%95%B0%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%A6%82%E5%BF%B5%E4%B8%93%E9%A2%98/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%AF%BC%E6%95%B0%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%A6%82%E5%BF%B5%E4%B8%93%E9%A2%98/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -593,7 +596,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../%E7%AC%AC%E4%BA%8C%E4%B8%89%E5%9B%9B%E7%AB%A0%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%AC%AC%E4%BA%8C%E4%B8%89%E5%9B%9B%E7%AB%A0%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -657,7 +660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86%E4%B8%8E%E5%AE%9A%E7%A7%AF%E5%88%86%E6%A6%82%E5%BF%B5/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86%E4%B8%8E%E5%AE%9A%E7%A7%AF%E5%88%86%E6%A6%82%E5%BF%B5/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -678,7 +681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86%E4%B8%93%E9%A2%98/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86%E4%B8%93%E9%A2%98/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -699,7 +702,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../%E5%AE%9A%E7%A7%AF%E5%88%86%E5%AE%9A%E4%B9%89%E6%B1%82%E6%9E%81%E9%99%90/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%AE%9A%E7%A7%AF%E5%88%86%E5%AE%9A%E4%B9%89%E6%B1%82%E6%9E%81%E9%99%90/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -720,7 +723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../%E5%8F%8D%E5%B8%B8%E7%A7%AF%E5%88%86%E6%95%9B%E6%95%A3%E6%80%A7/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%8F%8D%E5%B8%B8%E7%A7%AF%E5%88%86%E6%95%9B%E6%95%A3%E6%80%A7/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -741,7 +744,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../%E7%A7%AF%E5%88%86%E4%B8%8D%E7%AD%89%E5%BC%8F/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%A7%AF%E5%88%86%E4%B8%8D%E7%AD%89%E5%BC%8F/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -762,7 +765,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../%E7%A7%AF%E5%88%86%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%A7%AF%E5%88%86%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -783,7 +786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../%E7%A7%AF%E5%88%86%E7%9A%84%E5%BA%94%E7%94%A8%26%E5%87%BD%E6%95%B0%E5%BD%A2%E6%80%81/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%A7%AF%E5%88%86%E7%9A%84%E5%BA%94%E7%94%A8%26%E5%87%BD%E6%95%B0%E5%BD%A2%E6%80%81/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -804,7 +807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../%E7%A7%AF%E5%88%86%E9%80%92%E6%8E%A8%E5%85%AC%E5%BC%8F/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E7%A7%AF%E5%88%86%E9%80%92%E6%8E%A8%E5%85%AC%E5%BC%8F/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -833,7 +836,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../%E6%89%8B%E6%B3%95%26painpoint/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%89%8B%E6%B3%95%26painpoint/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -889,7 +892,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -915,17 +918,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="note.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E7%AF%87/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -934,7 +930,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -947,7 +942,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../%E4%B8%80%E5%85%83%E7%A7%AF%E5%88%86%E5%AD%A6%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8A/%E4%B8%80%E5%85%83%E7%A7%AF%E5%88%86%E5%AD%A6%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1011,7 +1006,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%90%91%E9%87%8F%E4%BB%A3%E6%95%B0%E4%B8%8E%E7%A9%BA%E9%97%B4%E6%80%BB%E7%BB%93/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%90%91%E9%87%8F%E4%BB%A3%E6%95%B0%E4%B8%8E%E7%A9%BA%E9%97%B4%E6%80%BB%E7%BB%93/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1067,7 +1062,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1088,7 +1083,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%81%8F%E5%AF%BC%E6%95%B0%E8%AE%A1%E7%AE%97/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%81%8F%E5%AF%BC%E6%95%B0%E8%AE%A1%E7%AE%97/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1109,7 +1104,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%B7%B2%E7%9F%A5%E5%81%8F%E5%AF%BC%E5%8F%8D%E6%B1%82%E5%87%BD%E6%95%B0/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%B7%B2%E7%9F%A5%E5%81%8F%E5%AF%BC%E5%8F%8D%E6%B1%82%E5%87%BD%E6%95%B0/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1130,7 +1125,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%85%A8%E5%BE%AE%E5%88%86%E7%9A%84%E5%88%A4%E5%AE%9A%E4%B8%8E%E8%AE%A1%E7%AE%97/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%85%A8%E5%BE%AE%E5%88%86%E7%9A%84%E5%88%A4%E5%AE%9A%E4%B8%8E%E8%AE%A1%E7%AE%97/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1151,7 +1146,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E9%9A%90%E5%87%BD%E6%95%B0%E5%AD%98%E5%9C%A8%E5%AE%9A%E7%90%86/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E9%9A%90%E5%87%BD%E6%95%B0%E5%AD%98%E5%9C%A8%E5%AE%9A%E7%90%86/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1172,7 +1167,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E6%9E%81%E5%80%BC/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E6%9E%81%E5%80%BC/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1236,7 +1231,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1257,7 +1252,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1278,7 +1273,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1307,7 +1302,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%9C%9F%E4%B8%AD%E6%80%BB%E7%BB%93/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%9C%9F%E4%B8%AD%E6%80%BB%E7%BB%93/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1328,7 +1323,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E9%AB%98%E6%95%B0%E5%A5%BD%E9%A2%98%E4%B8%8A/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E9%AB%98%E6%95%B0%E5%A5%BD%E9%A2%98%E4%B8%8A/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1384,7 +1379,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%9B%B2%E7%BA%BF%E4%B8%8E%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%9B%B2%E7%BA%BF%E4%B8%8E%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1405,7 +1400,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%9B%B2%E7%BA%BF%E4%B8%8E%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86%E6%80%BB%E7%BB%93/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%9B%B2%E7%BA%BF%E4%B8%8E%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86%E6%80%BB%E7%BB%93/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1426,7 +1421,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%9B%B2%E7%BA%BF%E4%B8%8E%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86%E8%8D%9F%E8%90%83/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%9B%B2%E7%BA%BF%E4%B8%8E%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86%E8%8D%9F%E8%90%83/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1490,7 +1485,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%97%A0%E7%A9%B7%E7%BA%A7%E6%95%B0%E5%92%8C%E5%88%A4%E5%88%AB%E6%B3%95/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%97%A0%E7%A9%B7%E7%BA%A7%E6%95%B0%E5%92%8C%E5%88%A4%E5%88%AB%E6%B3%95/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1511,7 +1506,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%97%A0%E7%A9%B7%E7%BA%A7%E6%95%B0%E9%80%89%E6%8B%A9%E9%A2%98%E4%B8%8E%E5%8F%8D%E4%BE%8B/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E6%97%A0%E7%A9%B7%E7%BA%A7%E6%95%B0%E9%80%89%E6%8B%A9%E9%A2%98%E4%B8%8E%E5%8F%8D%E4%BE%8B/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1532,7 +1527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%B9%82%E5%87%BD%E6%95%B0/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%B9%82%E5%87%BD%E6%95%B0/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1553,7 +1548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%82%85%E9%87%8C%E5%8F%B6%E7%BA%A7%E6%95%B0/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E5%82%85%E9%87%8C%E5%8F%B6%E7%BA%A7%E6%95%B0/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1582,7 +1577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E9%AB%98%E6%95%B0%E5%A5%BD%E9%A2%98%E4%B8%8B/note.html" class="md-nav__link">
+      <a href="../%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E4%B8%8B/%E9%AB%98%E6%95%B0%E5%A5%BD%E9%A2%98%E4%B8%8B/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1646,7 +1641,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1702,7 +1697,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec1/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec1/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1723,7 +1718,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec2%263/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec2%263/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1744,7 +1739,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec4/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec4/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1765,7 +1760,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec5/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec5/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1786,7 +1781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec6/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec6/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1807,7 +1802,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec7/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec7/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1828,7 +1823,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec8/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec8/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1849,7 +1844,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec9/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec9/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1870,7 +1865,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec10/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec10/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1891,7 +1886,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec11/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec11/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1912,7 +1907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec12/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec12/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1933,7 +1928,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec13%2614/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec13%2614/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1954,7 +1949,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec15/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/Lec15/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1975,7 +1970,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/%E9%9A%8F%E7%AC%94%26%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86/%E9%9A%8F%E7%AC%94%26%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2039,7 +2034,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec1/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec1/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2060,7 +2055,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec2/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec2/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2081,7 +2076,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec3/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec3/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2102,7 +2097,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec4/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec4/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2123,7 +2118,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec5/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec5/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2144,7 +2139,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec6/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec6/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2165,7 +2160,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec7/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec7/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2186,7 +2181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec8/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec8/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2207,7 +2202,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec9/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec9/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2228,7 +2223,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec10/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec10/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2249,7 +2244,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec11/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec11/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2270,7 +2265,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec12/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec12/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2291,7 +2286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec13/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec13/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2312,7 +2307,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec14/note.html" class="md-nav__link">
+      <a href="../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/%E4%B8%8B%E5%8D%8A%E9%83%A8%E5%88%86/Lec14/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2384,7 +2379,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2.html" class="md-nav__link">
+      <a href="../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2405,7 +2400,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/note.html" class="md-nav__link">
+      <a href="../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2426,7 +2421,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E8%A1%8C%E5%88%97%E5%BC%8F%E4%B8%8E%E4%BC%B4%E9%9A%8F%E7%9F%A9%E9%98%B5/note.html" class="md-nav__link">
+      <a href="../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E8%A1%8C%E5%88%97%E5%BC%8F%E4%B8%8E%E4%BC%B4%E9%9A%8F%E7%9F%A9%E9%98%B5/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2447,7 +2442,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E6%89%8B%E6%B3%95%E4%B8%8E%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
+      <a href="../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E6%89%8B%E6%B3%95%E4%B8%8E%E5%A5%BD%E9%A2%98/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2468,7 +2463,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E7%AB%A0%E8%8A%82%E5%9B%9E%E9%A1%BE/note.html" class="md-nav__link">
+      <a href="../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E7%AB%A0%E8%8A%82%E5%9B%9E%E9%A1%BE/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2489,7 +2484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E6%80%BB%E5%A4%8D%E4%B9%A0/note.html" class="md-nav__link">
+      <a href="../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/%E6%80%BB%E5%A4%8D%E4%B9%A0/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2553,7 +2548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2.html" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2609,7 +2604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/L1-handwriting.pdf" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/L1-handwriting.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2630,7 +2625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/L2-handwriting.pdf" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/L2-handwriting.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2651,7 +2646,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/L3-handwriting.pdf" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/L3-handwriting.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2672,7 +2667,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/L4-handwriting.pdf" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/L4-handwriting.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2693,7 +2688,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/L5-handwriting.pdf" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/L5-handwriting.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2714,7 +2709,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/L6-handwriting.pdf" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/L6-handwriting.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2735,7 +2730,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/L7-handwriting.pdf" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/L7-handwriting.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2756,7 +2751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/L8-handwriting.pdf" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/L8-handwriting.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2777,7 +2772,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/L9-handwriting.pdf" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/L9-handwriting.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2798,7 +2793,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/L10-handwriting.pdf" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/L10-handwriting.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2862,7 +2857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Lec1.pdf" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Lec1.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2883,7 +2878,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Lec2-3.pdf" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Lec2-3.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2904,7 +2899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Lec4-5-6.pdf" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Lec4-5-6.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2925,7 +2920,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Lec7-8.pdf" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Lec7-8.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2946,7 +2941,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Lec9-10-11.pdf" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Lec9-10-11.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2967,7 +2962,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/%E6%9C%9F%E4%B8%AD%E9%83%A8%E5%88%86%E6%80%BB%E7%BB%93.pdf" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/%E6%9C%9F%E4%B8%AD%E9%83%A8%E5%88%86%E6%80%BB%E7%BB%93.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2988,7 +2983,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Chapter4.pdf" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Chapter4.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3009,7 +3004,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Chapter5.pdf" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Chapter5.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3030,7 +3025,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Chapter6.pdf" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Chapter6.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3051,7 +3046,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Chapter7-8.pdf" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Chapter7-8.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3072,7 +3067,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Chapter9.pdf" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Chapter9.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3093,7 +3088,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Chapter10.pdf" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Chapter10.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3114,7 +3109,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/%E6%9C%9F%E6%9C%AB%E6%80%BB%E5%A4%8D%E4%B9%A0.pdf" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/%E6%9C%9F%E6%9C%AB%E6%80%BB%E5%A4%8D%E4%B9%A0.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3135,7 +3130,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Skill.pdf" class="md-nav__link">
+      <a href="../%E6%A6%82%E7%8E%87%E8%AE%BA/SI140-note/Skill.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3242,7 +3237,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l0/l0.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l0/l0.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3263,7 +3258,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l1/l1.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l1/l1.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3284,7 +3279,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l2/l2.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l2/l2.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3305,7 +3300,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l3/l3.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l3/l3.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3326,7 +3321,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l4/l4.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l4/l4.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3347,7 +3342,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l5/l5.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l5/l5.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3368,7 +3363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l6/l6.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l6/l6.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3389,7 +3384,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l7/l7.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l7/l7.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3410,7 +3405,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l8/l8.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l8/l8.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3431,7 +3426,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l9/l9.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l9/l9.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3452,7 +3447,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l10/l10.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l10/l10.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3473,7 +3468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l11/l11.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l11/l11.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3494,7 +3489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l12/l12.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l12/l12.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3515,7 +3510,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l13/l13.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l13/l13.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3536,7 +3531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l14/l14.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l14/l14.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3557,7 +3552,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l15/l15.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l15/l15.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3578,7 +3573,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l16/l16.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l16/l16.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3599,7 +3594,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l17/l17.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l17/l17.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3620,7 +3615,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l18/l18.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l18/l18.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3641,7 +3636,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l19/l19.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l19/l19.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3662,7 +3657,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l20/l20.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l20/l20.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3683,7 +3678,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l21/l21.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l21/l21.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3704,7 +3699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l22/l22.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l22/l22.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3725,7 +3720,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l23/l23.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l23/l23.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3746,7 +3741,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l24/l24.pdf" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l24/l24.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3767,7 +3762,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l25/l25.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l25/l25.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3788,7 +3783,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l26/l26.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l26/l26.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3809,7 +3804,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l27/l27.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l27/l27.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3830,7 +3825,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/slides/l28/l28.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/slides/l28/l28.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3859,7 +3854,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/C%2B%2B%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/C%2B%2B%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3880,7 +3875,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/core.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/core.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3901,7 +3896,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CS100%28C%26C%2B%2B%29/%E8%AF%BE%E5%A0%82.html" class="md-nav__link">
+      <a href="../CS100%28C%26C%2B%2B%29/%E8%AF%BE%E5%A0%82.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3965,7 +3960,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Data_Structure_and_Algorithm/%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90.html" class="md-nav__link">
+      <a href="../Data_Structure_and_Algorithm/%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3986,7 +3981,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Data_Structure_and_Algorithm/%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%8E%92%E5%BA%8F.html" class="md-nav__link">
+      <a href="../Data_Structure_and_Algorithm/%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%8E%92%E5%BA%8F.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4007,7 +4002,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Data_Structure_and_Algorithm/%E7%AE%97%E6%B3%95.html" class="md-nav__link">
+      <a href="../Data_Structure_and_Algorithm/%E7%AE%97%E6%B3%95.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4028,7 +4023,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Data_Structure_and_Algorithm/%E8%BF%9B%E9%98%B6%E4%B8%8E%E6%8B%93%E5%B1%95misc.html" class="md-nav__link">
+      <a href="../Data_Structure_and_Algorithm/%E8%BF%9B%E9%98%B6%E4%B8%8E%E6%8B%93%E5%B1%95misc.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4092,7 +4087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2.html" class="md-nav__link">
+      <a href="../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4148,7 +4143,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%201.pdf" class="md-nav__link">
+      <a href="../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%201.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4169,7 +4164,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%202.pdf" class="md-nav__link">
+      <a href="../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%202.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4190,7 +4185,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%203.pdf" class="md-nav__link">
+      <a href="../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%203.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4211,7 +4206,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%204.pdf" class="md-nav__link">
+      <a href="../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%204.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4232,7 +4227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%205.pdf" class="md-nav__link">
+      <a href="../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%205.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4253,7 +4248,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%206.pdf" class="md-nav__link">
+      <a href="../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%206.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4274,7 +4269,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%207.pdf" class="md-nav__link">
+      <a href="../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%207.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4295,7 +4290,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%209.pdf" class="md-nav__link">
+      <a href="../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%209.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4316,7 +4311,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%2010.pdf" class="md-nav__link">
+      <a href="../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Chapter%2010.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4380,7 +4375,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter1LecNote.pdf" class="md-nav__link">
+      <a href="../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter1LecNote.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4401,7 +4396,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter2LecNote.pdf" class="md-nav__link">
+      <a href="../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter2LecNote.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4422,7 +4417,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter3LecNote.pdf" class="md-nav__link">
+      <a href="../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter3LecNote.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4443,7 +4438,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter3Review.pdf" class="md-nav__link">
+      <a href="../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter3Review.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4464,7 +4459,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter4Review.pdf" class="md-nav__link">
+      <a href="../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter4Review.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4485,7 +4480,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter5Review.pdf" class="md-nav__link">
+      <a href="../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter5Review.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4506,7 +4501,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter6Review.pdf" class="md-nav__link">
+      <a href="../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter6Review.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4527,7 +4522,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter8Review.pdf" class="md-nav__link">
+      <a href="../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter8Review.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4548,7 +4543,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter9Review.pdf" class="md-nav__link">
+      <a href="../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter9Review.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4569,7 +4564,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter10Review.pdf" class="md-nav__link">
+      <a href="../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/Chapter10Review.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4590,7 +4585,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/%E6%9C%9F%E4%B8%ADcheatsheet.pdf" class="md-nav__link">
+      <a href="../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/%E6%9C%9F%E4%B8%ADcheatsheet.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4611,7 +4606,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/%E6%9C%9F%E6%9C%ABcheatsheet.pdf" class="md-nav__link">
+      <a href="../%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/Note/%E6%9C%9F%E6%9C%ABcheatsheet.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4683,7 +4678,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2.html" class="md-nav__link">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4739,7 +4734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect2_Kinematics%20%E8%B4%A8%E7%82%B9%E8%BF%90%E5%8A%A8%E5%AD%A6.pdf" class="md-nav__link">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect2_Kinematics%20%E8%B4%A8%E7%82%B9%E8%BF%90%E5%8A%A8%E5%AD%A6.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4760,7 +4755,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect3_Dynamics%20%E8%B4%A8%E7%82%B9%E5%8A%A8%E5%8A%9B%E5%AD%A6-1.pdf" class="md-nav__link">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect3_Dynamics%20%E8%B4%A8%E7%82%B9%E5%8A%A8%E5%8A%9B%E5%AD%A6-1.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4781,7 +4776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect4_Dynamics%20%E8%B4%A8%E7%82%B9%E5%8A%A8%E5%8A%9B%E5%AD%A6-2.pdf" class="md-nav__link">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect4_Dynamics%20%E8%B4%A8%E7%82%B9%E5%8A%A8%E5%8A%9B%E5%AD%A6-2.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4802,7 +4797,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect5_Work_energy%20%E5%8A%9F%E5%92%8C%E8%83%BD.pdf" class="md-nav__link">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect5_Work_energy%20%E5%8A%9F%E5%92%8C%E8%83%BD.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4823,7 +4818,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect6_Potential%20Energy_%E5%8A%BF%E8%83%BD.pdf" class="md-nav__link">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect6_Potential%20Energy_%E5%8A%BF%E8%83%BD.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4844,7 +4839,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect7_Momentum_%E5%8A%A8%E9%87%8F-%E9%A2%84%E4%B9%A0.pdf" class="md-nav__link">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect7_Momentum_%E5%8A%A8%E9%87%8F-%E9%A2%84%E4%B9%A0.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4865,7 +4860,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect8_Collision%20and%20elasticity%20%E7%A2%B0%E6%92%9E%E5%92%8C%E5%BC%B9%E6%80%A7.pdf" class="md-nav__link">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect8_Collision%20and%20elasticity%20%E7%A2%B0%E6%92%9E%E5%92%8C%E5%BC%B9%E6%80%A7.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4886,7 +4881,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect9%20%E5%88%9A%E4%BD%93.pdf" class="md-nav__link">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect9%20%E5%88%9A%E4%BD%93.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4907,7 +4902,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect10%20%E5%8A%9B%E7%9F%A9%E3%80%81%E8%A7%92%E5%8A%A8%E9%87%8F.pdf" class="md-nav__link">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect10%20%E5%8A%9B%E7%9F%A9%E3%80%81%E8%A7%92%E5%8A%A8%E9%87%8F.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4928,7 +4923,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect11%20%E5%B9%B3%E8%A1%A1%E3%80%81%E6%B5%81%E4%BD%93%E5%8A%9B%E5%AD%A6.pdf" class="md-nav__link">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect11%20%E5%B9%B3%E8%A1%A1%E3%80%81%E6%B5%81%E4%BD%93%E5%8A%9B%E5%AD%A6.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4949,7 +4944,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect12%20%E4%B8%87%E6%9C%89%E5%BC%95%E5%8A%9B.pdf" class="md-nav__link">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect12%20%E4%B8%87%E6%9C%89%E5%BC%95%E5%8A%9B.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4970,7 +4965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect13_Oscillation%20%E6%8C%AF%E5%8A%A8.pdf" class="md-nav__link">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect13_Oscillation%20%E6%8C%AF%E5%8A%A8.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4991,7 +4986,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect14_MechanicalWave-2024.pdf" class="md-nav__link">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect14_MechanicalWave-2024.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5012,7 +5007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect15-Mechanical%20Wave-2-2024%E6%9B%B4%E6%96%B0%E7%89%88.pdf" class="md-nav__link">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect15-Mechanical%20Wave-2-2024%E6%9B%B4%E6%96%B0%E7%89%88.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5033,7 +5028,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect16_Sound%20and%20Hearing-2024%281%29.pdf" class="md-nav__link">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect16_Sound%20and%20Hearing-2024%281%29.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5054,7 +5049,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect17_Temperature%2Band%2BHeat%202024%281%29.pdf" class="md-nav__link">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect17_Temperature%2Band%2BHeat%202024%281%29.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5075,7 +5070,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect18_Thermal%2BProperties_2024.pdf" class="md-nav__link">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect18_Thermal%2BProperties_2024.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5096,7 +5091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect19_First%2BThermodynamics%2BLaw_2024-%E6%9B%B4%E6%AD%A3%E7%89%882.pdf" class="md-nav__link">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/Lect19_First%2BThermodynamics%2BLaw_2024-%E6%9B%B4%E6%AD%A3%E7%89%882.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5117,7 +5112,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/%E7%83%AD%E5%AD%A6%E5%A4%8D%E4%B9%A0.pdf" class="md-nav__link">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/%E7%83%AD%E5%AD%A6%E5%A4%8D%E4%B9%A0.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5138,7 +5133,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/%E6%8C%AF%E5%8A%A8%E5%92%8C%E6%B3%A2%E5%8A%A8%E5%A4%8D%E4%B9%A0.pdf" class="md-nav__link">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/%E6%8C%AF%E5%8A%A8%E5%92%8C%E6%B3%A2%E5%8A%A8%E5%A4%8D%E4%B9%A0.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5202,7 +5197,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/%E6%9C%9F%E4%B8%AD%E6%80%BB%E7%BB%93.pdf" class="md-nav__link">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/%E6%9C%9F%E4%B8%AD%E6%80%BB%E7%BB%93.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5223,7 +5218,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/%E6%9C%9F%E6%9C%AB%E6%80%BB%E7%BB%93.pdf" class="md-nav__link">
+      <a href="../%E6%99%AE%E9%80%9A%E7%89%A9%E7%90%86/%E6%9C%9F%E6%9C%AB%E6%80%BB%E7%BB%93.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5257,17 +5252,19 @@
                 
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_10" checked>
         
           
           <label class="md-nav__link" for="__nav_2_10" id="__nav_2_10_label" tabindex="0">
@@ -5281,7 +5278,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_10">
             <span class="md-nav__icon md-icon"></span>
             人工智能
@@ -5295,7 +5292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Search.html" class="md-nav__link">
+      <a href="Search.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5316,7 +5313,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/CSP.html" class="md-nav__link">
+      <a href="CSP.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5337,7 +5334,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Adversial_Search.html" class="md-nav__link">
+      <a href="Adversial_Search.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5358,7 +5355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Propositional_Logic.html" class="md-nav__link">
+      <a href="Propositional_Logic.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5379,7 +5376,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/First_Order_Logic.html" class="md-nav__link">
+      <a href="First_Order_Logic.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5435,7 +5432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/BN1.html" class="md-nav__link">
+      <a href="BN1.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5456,7 +5453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/BN2.html" class="md-nav__link">
+      <a href="BN2.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5485,7 +5482,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Markov_Decision.html" class="md-nav__link">
+      <a href="Markov_Decision.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5506,7 +5503,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Reinforcement_learning.html" class="md-nav__link">
+      <a href="Reinforcement_learning.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5524,10 +5521,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Supervised_Learning.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Supervised Learning
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="Supervised_Learning.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -5536,6 +5553,44 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laplace-smoothing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Laplace Smoothing
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -5626,7 +5681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E9%83%A8%E5%88%86/feature_engineering.html" class="md-nav__link">
+      <a href="../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E9%83%A8%E5%88%86/feature_engineering.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5647,7 +5702,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E9%83%A8%E5%88%86/CNN.html" class="md-nav__link">
+      <a href="../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E9%83%A8%E5%88%86/CNN.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5668,7 +5723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E9%83%A8%E5%88%86/practical_aspects.html" class="md-nav__link">
+      <a href="../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E9%83%A8%E5%88%86/practical_aspects.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5689,7 +5744,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E9%83%A8%E5%88%86/RNN.html" class="md-nav__link">
+      <a href="../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E9%83%A8%E5%88%86/RNN.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5710,7 +5765,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E9%83%A8%E5%88%86/Transformer.html" class="md-nav__link">
+      <a href="../%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E9%83%A8%E5%88%86/Transformer.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5782,7 +5837,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CA/Info-Representation.html" class="md-nav__link">
+      <a href="../CA/Info-Representation.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5803,7 +5858,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CA/C_Language.html" class="md-nav__link">
+      <a href="../CA/C_Language.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5824,7 +5879,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CA/RISC-V.html" class="md-nav__link">
+      <a href="../CA/RISC-V.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5845,7 +5900,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CA/CALL.html" class="md-nav__link">
+      <a href="../CA/CALL.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5866,7 +5921,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CA/Digital_Circuit.html" class="md-nav__link">
+      <a href="../CA/Digital_Circuit.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5887,7 +5942,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CA/Datapath_Controller.html" class="md-nav__link">
+      <a href="../CA/Datapath_Controller.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5908,7 +5963,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CA/Parallelism%282%29.html" class="md-nav__link">
+      <a href="../CA/Parallelism%282%29.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5929,7 +5984,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CA/TLP.html" class="md-nav__link">
+      <a href="../CA/TLP.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5993,7 +6048,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E8%AE%BA%E8%AF%81%E4%B8%8E%E5%86%99%E4%BD%9C/%E4%B8%AD%E5%9B%BD%E7%A4%BE%E4%BC%9A%E7%A7%91%E5%AD%A6%E5%BC%95%E6%96%87%E8%A7%84%E5%AE%9A.pdf" class="md-nav__link">
+      <a href="../%E8%AE%BA%E8%AF%81%E4%B8%8E%E5%86%99%E4%BD%9C/%E4%B8%AD%E5%9B%BD%E7%A4%BE%E4%BC%9A%E7%A7%91%E5%AD%A6%E5%BC%95%E6%96%87%E8%A7%84%E5%AE%9A.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6014,7 +6069,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E8%AE%BA%E8%AF%81%E4%B8%8E%E5%86%99%E4%BD%9C/%E5%8F%8D%E6%80%9D%E6%80%A7%E5%86%99%E4%BD%9C%E7%BB%83%E4%B9%A0%E8%A6%81%E6%B1%82.pdf" class="md-nav__link">
+      <a href="../%E8%AE%BA%E8%AF%81%E4%B8%8E%E5%86%99%E4%BD%9C/%E5%8F%8D%E6%80%9D%E6%80%A7%E5%86%99%E4%BD%9C%E7%BB%83%E4%B9%A0%E8%A6%81%E6%B1%82.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6035,7 +6090,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E8%AE%BA%E8%AF%81%E4%B8%8E%E5%86%99%E4%BD%9C/02%E7%AC%AC%E4%BA%8C%E8%AE%B2%20%E5%A6%82%E4%BD%95%E5%86%99%E4%BD%9C%E5%AD%A6%E6%9C%AF%E8%AE%BA%E6%96%87%EF%BC%88%E4%B8%80%EF%BC%89.pdf" class="md-nav__link">
+      <a href="../%E8%AE%BA%E8%AF%81%E4%B8%8E%E5%86%99%E4%BD%9C/02%E7%AC%AC%E4%BA%8C%E8%AE%B2%20%E5%A6%82%E4%BD%95%E5%86%99%E4%BD%9C%E5%AD%A6%E6%9C%AF%E8%AE%BA%E6%96%87%EF%BC%88%E4%B8%80%EF%BC%89.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6056,7 +6111,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E8%AE%BA%E8%AF%81%E4%B8%8E%E5%86%99%E4%BD%9C/03%E7%AC%AC%E4%B8%89%E8%AE%B2%20%E5%A6%82%E4%BD%95%E5%86%99%E4%BD%9C%E5%AD%A6%E6%9C%AF%E8%AE%BA%E6%96%87%EF%BC%88%E4%BA%8C%EF%BC%89.pdf" class="md-nav__link">
+      <a href="../%E8%AE%BA%E8%AF%81%E4%B8%8E%E5%86%99%E4%BD%9C/03%E7%AC%AC%E4%B8%89%E8%AE%B2%20%E5%A6%82%E4%BD%95%E5%86%99%E4%BD%9C%E5%AD%A6%E6%9C%AF%E8%AE%BA%E6%96%87%EF%BC%88%E4%BA%8C%EF%BC%89.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6077,7 +6132,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E8%AE%BA%E8%AF%81%E4%B8%8E%E5%86%99%E4%BD%9C/04%E7%AC%AC%E5%9B%9B%E8%AE%B2%20%E8%AE%A4%E8%AF%86%E8%AE%BA%E8%AF%81.pdf" class="md-nav__link">
+      <a href="../%E8%AE%BA%E8%AF%81%E4%B8%8E%E5%86%99%E4%BD%9C/04%E7%AC%AC%E5%9B%9B%E8%AE%B2%20%E8%AE%A4%E8%AF%86%E8%AE%BA%E8%AF%81.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6183,7 +6238,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../deeplearning_note/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%87%AA%E5%AD%A6.html" class="md-nav__link">
+      <a href="../deeplearning_note/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%87%AA%E5%AD%A6.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6204,7 +6259,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sequence%20model/sequence_model.html" class="md-nav__link">
+      <a href="../sequence%20model/sequence_model.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6225,7 +6280,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../transformer_note/transformer_note.html" class="md-nav__link">
+      <a href="../transformer_note/transformer_note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6289,7 +6344,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../GAMES101/note.html" class="md-nav__link">
+      <a href="../GAMES101/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6310,7 +6365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../GAMES101/note_hw.html" class="md-nav__link">
+      <a href="../GAMES101/note_hw.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6409,7 +6464,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E4%B8%8E%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86.html" class="md-nav__link">
+      <a href="../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E4%B8%8E%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6430,7 +6485,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC.html" class="md-nav__link">
+      <a href="../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6494,7 +6549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92.html" class="md-nav__link">
+      <a href="../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6515,7 +6570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/softmax.html" class="md-nav__link">
+      <a href="../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/softmax.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6579,7 +6634,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA/%E6%84%9F%E7%9F%A5%E6%9C%BA.html" class="md-nav__link">
+      <a href="../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA/%E6%84%9F%E7%9F%A5%E6%9C%BA.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6600,7 +6655,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9_%E6%AC%A0%E6%8B%9F%E5%90%88_%E8%BF%87%E6%8B%9F%E5%90%88.html" class="md-nav__link">
+      <a href="../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9_%E6%AC%A0%E6%8B%9F%E5%90%88_%E8%BF%87%E6%8B%9F%E5%90%88.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6621,7 +6676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA/%E6%9D%83%E9%87%8D%E8%A1%B0%E9%80%80.html" class="md-nav__link">
+      <a href="../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA/%E6%9D%83%E9%87%8D%E8%A1%B0%E9%80%80.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6685,7 +6740,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/%E6%B3%A8%E6%84%8F%E5%8A%9B.html" class="md-nav__link">
+      <a href="../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/%E6%B3%A8%E6%84%8F%E5%8A%9B.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6706,7 +6761,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/%E5%A4%9A%E5%A4%B4%E6%B3%A8%E6%84%8F%E5%8A%9B.html" class="md-nav__link">
+      <a href="../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/%E5%A4%9A%E5%A4%B4%E6%B3%A8%E6%84%8F%E5%8A%9B.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6727,7 +6782,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E4%B8%8E%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81.html" class="md-nav__link">
+      <a href="../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E4%B8%8E%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6748,7 +6803,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/Transformer.html" class="md-nav__link">
+      <a href="../%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/Transformer.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6827,7 +6882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../machine_learning/Datawhale/note.html" class="md-nav__link">
+      <a href="../machine_learning/Datawhale/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6848,7 +6903,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Blog/PointNet/analysis.html" class="md-nav__link">
+      <a href="../Blog/PointNet/analysis.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6869,7 +6924,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Blog/PointMAE/analysis.html" class="md-nav__link">
+      <a href="../Blog/PointMAE/analysis.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6890,7 +6945,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Blog/NeRF%26Instant_NGP/note.html" class="md-nav__link">
+      <a href="../Blog/NeRF%26Instant_NGP/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6911,7 +6966,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Blog/3DGS/note.html" class="md-nav__link">
+      <a href="../Blog/3DGS/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6932,7 +6987,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Blog/3DGS_reproduction/note.html" class="md-nav__link">
+      <a href="../Blog/3DGS_reproduction/note.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6953,7 +7008,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Blog/AAAI2025/log.html" class="md-nav__link">
+      <a href="../Blog/AAAI2025/log.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6981,7 +7036,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Zhangzhi_Xiong_CV.pdf" class="md-nav__link">
+      <a href="../Zhangzhi_Xiong_CV.pdf" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -7011,6 +7066,34 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laplace-smoothing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Laplace Smoothing
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -7025,11 +7108,50 @@
                   
 
 
-  <h1>期末复习篇</h1>
-
-<p><img alt="image" src="img/2.jpg" /></p>
-<p><img alt="image" src="img/3.jpg" /></p>
-<p><img alt="image" src="img/1.jpg" /></p>
+<h1 id="supervised-learning">Supervised Learning</h1>
+<p>监督学习已经是十分的熟悉了：要学习一个目标函数，输入的是训练集，最终要求的是输出一个近似拟合的函数，要求尽可能的接近目标函数。监督学习由下游任务的不同而进一步的分类：分类，回归（输出的是实数），以及结构化输出（structured output）</p>
+<p>此处仅介绍naive bayes approach，关于分类任务的perceptron approach，regression及其loss function and regularization在182中有所讲解。</p>
+<blockquote>
+<p>Unsupervised Learning也将略过，因为是182中的K-Means and Gaussian Mixture Model with EM steps</p>
+</blockquote>
+<h2 id="classification">Classification</h2>
+<p>分类任务是非常常见的，比如说span email classifier，比如手写数字识别，比如物体识别分类。那么如何建模一个分类器呢？</p>
+<p><strong><em>Naive Bayes Classifier</em></strong></p>
+<p>一种model-based approach是设计一个模型（比如说贝叶斯网络），数据的label and feature都视作随机变量，然后对每一个观察到的feature进行实例化，最后根据features来query label's distribution。这是经典的建模思想。但是问题在于：如果是这样，贝叶斯网络的结果如何？我们如何学习参数？这几乎是下至传统人工智能上至高级机器学习的终极问题。</p>
+<p>一种非常简单的例子如下：</p>
+<p><img alt="image" src="img/95.png" /></p>
+<p>将图片中的每一个像素都看成是一个feature，进一步地，看成一个随机变量，那么在这些像素组成的那么多随机变量的condition下，我们想知道label random variable Y的条件分布是怎样的。根据贝叶斯，我们知道这个分布是正比于Y的分布和在对应Y下Feature这些随机变量的条件联合分布的乘积的。那么问题就来了：我们应该学什么？我们需要明确：label and feature之间的关系是什么，并且进一步表示这个关系。如果feature之间条件独立（至少在我们认为的inductive bias下是），那么表现形式可以是条件概率分布。</p>
+<p>如果有了这些关系的条件概率，那么inference就十分明确了，流程如下：</p>
+<p><img alt="image" src="img/96.png" /></p>
+<p>如果考虑诈骗邮件分辨的情景，那么核心参数就是label下每一个单词出现的概率了。这样是不是有点奇怪，那岂不是丢失了单词的order信息吗？没错，所以这种方式叫做'bag of words' approach。那么这个条件概率分布应该怎么学到呢？当然是得从数据集里面学了。一种很简单的方法是：在对应label下，该feature是否出现，在数据集上对这个进行统计，那么就能得到一个近似的条件概率。比如说这个情境中，1000个诈骗邮件中有50封出现了money单词，因此我们认为：在是诈骗邮件的背景下，出现money单词的概率是0.05.或者更专业地，可以考虑最大化似然来算出条件概率，而不是简单的看出现频率。</p>
+<h2 id="laplace-smoothing">Laplace Smoothing</h2>
+<p>Laplace Smoothing（拉普拉斯平滑）是一种用于处理概率估计中的零概率问题的技术，特别是在朴素贝叶斯分类器中。当某个特征值在训练数据中没有出现时，直接使用经验频率会导致某些概率估计为零，这可能会影响模型的性能。Laplace Smoothing通过添加一个很小的常数（通常为1）来避免这种情况，从而确保所有概率都是正的。</p>
+<p>原理</p>
+<p>Laplace Smoothing的基本思想是为每个可能的特征值添加一个计数，即使它在训练数据中没有出现。这样做可以确保即使某个特征值在训练集中没有出现，其条件概率也不会是零。</p>
+<p>公式</p>
+<p>对于特征 <em>f</em> 和类别 <em>y</em>，Laplace Smoothing后的条件概率估计为：</p>
+<p><span class="arithmatex">\(P(f∣y)=count(y)+Vcount(f,y)+1\)</span></p>
+<p>其中：</p>
+<ul>
+<li>count(f,y)是特征 <em>f</em> 在类别 <em>y</em> 中出现的次数。</li>
+<li>count(y)是类别 <em>y</em> 在训练数据中出现的次数。</li>
+<li><em>V</em> 是特征 <em>f</em> 可能取值的总数。</li>
+</ul>
+<p>应用</p>
+<p>在朴素贝叶斯分类器中，Laplace Smoothing通常用于计算每个特征在给定类别下的条件概率。例如，如果我们有一个文本分类问题，其中特征是单词，类别是文档的主题，我们可以使用Laplace Smoothing来估计在给定主题下某个单词出现的概率。</p>
+<p>优点</p>
+<ul>
+<li><strong>避免零概率</strong>：通过添加一个小的常数，Laplace Smoothing确保了所有概率都是正的，从而避免了零概率问题。</li>
+<li><strong>简单易用</strong>：实现简单，计算效率高。</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li><strong>平滑参数选择</strong>：虽然通常使用1作为平滑参数，但这个选择可能不是最优的，不同的问题可能需要不同的平滑参数。</li>
+<li><strong>过度平滑</strong>：在某些情况下，添加的计数可能过多，导致模型对训练数据过度敏感，从而影响泛化能力。</li>
+</ul>
+<p>总的来说，Laplace Smoothing是一种简单有效的技术，用于处理概率估计中的零概率问题，特别是在朴素贝叶斯分类器中。然而，它也有其局限性，可能需要根据具体问题进行调整。</p>
+<p>在条件和特征的取值空间都很大的时候，这种方法表现不佳，因此有线性插值这种新的方式：</p>
+<p><img alt="image" src="img/97.png" /></p>
 
 
 
@@ -7076,14 +7198,14 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.081f42fc.min.js"></script>
+      <script src="../assets/javascripts/bundle.081f42fc.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       
-        <script src="../../javascripts/config.js"></script>
+        <script src="../javascripts/config.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
