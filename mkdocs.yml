@@ -275,6 +275,9 @@ nav:
       - Datapath_Controller: CA/Datapath_Controller.md
       - Parallelism(2): CA/Parallelism(2).md
       - TLP: CA/TLP.md
+      - Hardware_Multithreading: CA/Hardware_Multithreading.md
+      - Advanced_Cache: CA/Advanced_Cache.md
+      - OS_IO: CA/OS_IO.md
     - 论证与写作:
       - 中国社会科学引文规定: 论证与写作/中国社会科学引文规定.pdf
       - 反思性写作练习要求: 论证与写作/反思性写作练习要求.pdf
