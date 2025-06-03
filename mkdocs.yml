@@ -278,12 +278,7 @@ nav:
       - Hardware_Multithreading: CA/Hardware_Multithreading.md
       - Advanced_Cache: CA/Advanced_Cache.md
       - OS_IO: CA/OS_IO.md
-    - 论证与写作:
-      - 中国社会科学引文规定: 论证与写作/中国社会科学引文规定.pdf
-      - 反思性写作练习要求: 论证与写作/反思性写作练习要求.pdf
-      - 02第二讲 如何写作学术论文（一）: 论证与写作/02第二讲 如何写作学术论文（一）.pdf
-      - 03第三讲 如何写作学术论文（二）: 论证与写作/03第三讲 如何写作学术论文（二）.pdf
-      - 04第四讲 认识论证: 论证与写作/04第四讲 认识论证.pdf
+      - Virtual_Memory: CA/Virtual_Memory.md
 
   - Course (Extracurriculum):
     - Deep Learning:
