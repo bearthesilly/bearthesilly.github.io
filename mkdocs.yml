@@ -157,7 +157,7 @@ nav:
         - Chapter10: 概率论/SI140-note/Chapter10.pdf
         - 期末总复习: 概率论/SI140-note/期末总复习.pdf
         - Skill: 概率论/SI140-note/Skill.pdf
-    - CS100(C&C++):
+    - C&C++ (CS100):
       - 课件:
         - L0: CS100(C&C++)/slides/l0/l0.md
         - L1: CS100(C&C++)/slides/l1/l1.md
@@ -191,7 +191,7 @@ nav:
       - C++自学note: CS100(C&C++)/C++自学笔记.md
       - core: CS100(C&C++)/core.md
       - 课堂note: CS100(C&C++)/课堂.md
-    - 数据结构与算法:
+    - Data Structure and Algorithm (CS101):
       - 基本结构与算法分析: Data_Structure_and_Algorithm/基本结构与算法分析.md
       - 搜索与排序: Data_Structure_and_Algorithm/搜索与排序.md
       - 算法: Data_Structure_and_Algorithm/算法.md
@@ -247,7 +247,7 @@ nav:
       - Review:
         - 期中总结: 普通物理/期中总结.pdf
         - 期末总结: 普通物理/期末总结.pdf
-    - 人工智能:
+    - Artificial Intelligence (CS181):
       - Search: 人工智能/Search.md
       - CSP: 人工智能/CSP.md
       - Adversial_Search: 人工智能/Adversial_Search.md
@@ -259,26 +259,55 @@ nav:
       - Markov Decision Process: 人工智能/Markov_Decision.md
       - Reinforcement Learning: 人工智能/Reinforcement_learning.md
       - Supervised Learning: 人工智能/Supervised_Learning.md
-    - 机器学习:
+      - Final_Review (Second Half): 人工智能/181_review.pdf
+      - cheatsheet_mid: 人工智能/cheatsheet_mid.pdf
+      - cheatsheet_final: 人工智能/cheatsheet_final.pdf
+    - Introduction to Machine Learning (CS182):
+      - 传统机器学习部分:
+        - Decision_Tree: 机器学习/传统机器学习部分/Decision_Tree.pdf
+        - KNN: 机器学习/传统机器学习部分/KNN.pdf
+        - Perceptron: 机器学习/传统机器学习部分/Perceptron.pdf
+        - SVM: 机器学习/传统机器学习部分/SVM.pdf
+        - Regression: 机器学习/传统机器学习部分/Regression.pdf
+        - Logistics_Regression: 机器学习/传统机器学习部分/Logistics_Regression.pdf
+        - MLE_MAP: 机器学习/传统机器学习部分/MLE_MAP.pdf
+        - Boosting_Factorization: 机器学习/传统机器学习部分/Boosting_Factorization.pdf
+        - Bagging_Random_Forest: 机器学习/传统机器学习部分/Bagging_Random_Forest.pdf
+        - Kmean: 机器学习/传统机器学习部分/Kmean.pdf
+        - GMM_EM: 机器学习/传统机器学习部分/GMM_EM.pdf
+        - Note_All: 机器学习/传统机器学习部分/iml_note_all.pdf
       - 神经网络:
         - feature_engineering: 机器学习/神经网络部分/feature_engineering.md
         - CNN: 机器学习/神经网络部分/CNN.md
         - practical_aspects: 机器学习/神经网络部分/practical_aspects.md
         - RNN: 机器学习/神经网络部分/RNN.md
         - Transformer: 机器学习/神经网络部分/Transformer.md
-    - CA:
+      - Math_Foundation: 机器学习/math_foundation.pdf
+      - Review (First Half): 机器学习/iml_review(first_half).pdf
+      - IML_cheatsheet: 机器学习/iml_chsh.pdf
+    - Computer Architecture (CS110):
       - Info-Representation: CA/Info-Representation.md
+      - Idea_Representation_note: CA/Idea_Representation_note.pdf
       - C_Language: CA/C_Language.md
+      - C_note: CA/C_note.pdf
       - RISC-V: CA/RISC-V.md
+      - RISC-V_note: CA/RISC-V_note.pdf
       - CALL: CA/CALL.md
+      - CALL_note: CA/CALL_note.pdf
       - Digital_Cirtuit: CA/Digital_Circuit.md
+      - Digital_Circuit_note: CA/Digital_Circuit_note.pdf
       - Datapath_Controller: CA/Datapath_Controller.md
+      - Datapath_note: CA/Datapath_note.pdf
+      - Pipeline_note: CA/Pipeline_note.pdf
+      - Paralellism_note(1): CA/Paralellism_note.pdf
       - Parallelism(2): CA/Parallelism(2).md
       - TLP: CA/TLP.md
       - Hardware_Multithreading: CA/Hardware_Multithreading.md
       - Advanced_Cache: CA/Advanced_Cache.md
       - OS_IO: CA/OS_IO.md
       - Virtual_Memory: CA/Virtual_Memory.md
+      - Note_All: CA/ca_note_all.pdf
+      - Cheatsheet: CA/ca_chsh.pdf
 
   - Course (Extracurriculum):
     - Deep Learning:
