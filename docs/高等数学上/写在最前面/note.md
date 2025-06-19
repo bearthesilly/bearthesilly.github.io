@@ -1,6 +1,8 @@
-关于高等数学的学习历程:
+# 高数上
 
-课本是上海交通大学版本的微积分: 
+> Final Grade: A+(first semester)；A+(second semester)
+
+关于高等数学的学习历程：课本是上海交通大学版本的微积分: 
 
 <img src="img/4.png" alt="image" style="zoom:33%;" />
 

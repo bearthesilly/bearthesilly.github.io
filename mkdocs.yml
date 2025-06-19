@@ -158,6 +158,7 @@ nav:
         - 期末总复习: 概率论/SI140-note/期末总复习.pdf
         - Skill: 概率论/SI140-note/Skill.pdf
     - C&C++ (CS100):
+      - 写在最前面: CS100(C&C++)/写在最前面.md
       - 课件:
         - L0: CS100(C&C++)/slides/l0/l0.md
         - L1: CS100(C&C++)/slides/l1/l1.md
@@ -248,6 +249,7 @@ nav:
         - 期中总结: 普通物理/期中总结.pdf
         - 期末总结: 普通物理/期末总结.pdf
     - Artificial Intelligence (CS181):
+      - 写在最前面: 人工智能/写在最前面.md
       - Search: 人工智能/Search.md
       - CSP: 人工智能/CSP.md
       - Adversial_Search: 人工智能/Adversial_Search.md
@@ -263,6 +265,7 @@ nav:
       - cheatsheet_mid: 人工智能/cheatsheet_mid.pdf
       - cheatsheet_final: 人工智能/cheatsheet_final.pdf
     - Introduction to Machine Learning (CS182):
+      - 写在最前面: 机器学习/写在最前面.md
       - 传统机器学习部分:
         - Decision_Tree: 机器学习/传统机器学习部分/Decision_Tree.pdf
         - KNN: 机器学习/传统机器学习部分/KNN.pdf
@@ -286,6 +289,7 @@ nav:
       - Review (First Half): 机器学习/iml_review(first_half).pdf
       - IML_cheatsheet: 机器学习/iml_chsh.pdf
     - Computer Architecture (CS110):
+      - 写在最前面: CA/写在最前面.md
       - Info-Representation: CA/Info-Representation.md
       - Idea_Representation_note: CA/Idea_Representation_note.pdf
       - C_Language: CA/C_Language.md
