@@ -222,32 +222,7 @@ nav:
         - Chapter10Review: 信号与系统/Note/Chapter10Review.pdf
         - 期中cheatsheet: 信号与系统/Note/期中cheatsheet.pdf
         - 期末cheatsheet: 信号与系统/Note/期末cheatsheet.pdf
-    - 普通物理:
-      - 写在最前面: 普通物理/写在最前面.md
-      - slides: 
-        - Lec2: 普通物理/Lect2_Kinematics 质点运动学.pdf
-        - Lec3: 普通物理/Lect3_Dynamics 质点动力学-1.pdf
-        - Lec4: 普通物理/Lect4_Dynamics 质点动力学-2.pdf
-        - Lec5: 普通物理/Lect5_Work_energy 功和能.pdf
-        - Lec6: 普通物理/Lect6_Potential Energy_势能.pdf
-        - Lec7: 普通物理/Lect7_Momentum_动量-预习.pdf
-        - Lec8: 普通物理/Lect8_Collision and elasticity 碰撞和弹性.pdf
-        - Lec9: 普通物理/Lect9 刚体.pdf
-        - Lec10: 普通物理/Lect10 力矩、角动量.pdf
-        - Lec11: 普通物理/Lect11 平衡、流体力学.pdf
-        - Lec12: 普通物理/Lect12 万有引力.pdf
-        - Lec13: 普通物理/Lect13_Oscillation 振动.pdf
-        - Lec14: 普通物理/Lect14_MechanicalWave-2024.pdf
-        - Lec15: 普通物理/Lect15-Mechanical Wave-2-2024更新版.pdf
-        - Lec16: 普通物理/Lect16_Sound and Hearing-2024(1).pdf
-        - Lec17: 普通物理/Lect17_Temperature+and+Heat 2024(1).pdf
-        - Lec18: 普通物理/Lect18_Thermal+Properties_2024.pdf
-        - Lec19: 普通物理/Lect19_First+Thermodynamics+Law_2024-更正版2.pdf
-        - 热学复习: 普通物理/热学复习.pdf
-        - 振动和波动复习: 普通物理/振动和波动复习.pdf
-      - Review:
-        - 期中总结: 普通物理/期中总结.pdf
-        - 期末总结: 普通物理/期末总结.pdf
+
     - Artificial Intelligence (CS181):
       - 写在最前面: 人工智能/写在最前面.md
       - Search: 人工智能/Search.md
@@ -312,7 +287,52 @@ nav:
       - Virtual_Memory: CA/Virtual_Memory.md
       - Note_All: CA/ca_note_all.pdf
       - Cheatsheet: CA/ca_chsh.pdf
-
+  - Course (General Education):
+    - 普通物理:
+      - 写在最前面: 普通物理/写在最前面.md
+      - slides: 
+        - Lec2: 普通物理/Lect2_Kinematics 质点运动学.pdf
+        - Lec3: 普通物理/Lect3_Dynamics 质点动力学-1.pdf
+        - Lec4: 普通物理/Lect4_Dynamics 质点动力学-2.pdf
+        - Lec5: 普通物理/Lect5_Work_energy 功和能.pdf
+        - Lec6: 普通物理/Lect6_Potential Energy_势能.pdf
+        - Lec7: 普通物理/Lect7_Momentum_动量-预习.pdf
+        - Lec8: 普通物理/Lect8_Collision and elasticity 碰撞和弹性.pdf
+        - Lec9: 普通物理/Lect9 刚体.pdf
+        - Lec10: 普通物理/Lect10 力矩、角动量.pdf
+        - Lec11: 普通物理/Lect11 平衡、流体力学.pdf
+        - Lec12: 普通物理/Lect12 万有引力.pdf
+        - Lec13: 普通物理/Lect13_Oscillation 振动.pdf
+        - Lec14: 普通物理/Lect14_MechanicalWave-2024.pdf
+        - Lec15: 普通物理/Lect15-Mechanical Wave-2-2024更新版.pdf
+        - Lec16: 普通物理/Lect16_Sound and Hearing-2024(1).pdf
+        - Lec17: 普通物理/Lect17_Temperature+and+Heat 2024(1).pdf
+        - Lec18: 普通物理/Lect18_Thermal+Properties_2024.pdf
+        - Lec19: 普通物理/Lect19_First+Thermodynamics+Law_2024-更正版2.pdf
+        - 热学复习: 普通物理/热学复习.pdf
+        - 振动和波动复习: 普通物理/振动和波动复习.pdf
+      - Review:
+        - 期中总结: 普通物理/期中总结.pdf
+        - 期末总结: 普通物理/期末总结.pdf
+    - 生命科学导论:
+      - 写在最前面: 生命科学导论/写在最前面.md
+      - slides:
+        - Lec1: 生命科学导论/lecture1.pdf
+        - Lec2: 生命科学导论/lecture2.pdf
+        - Lec3: 生命科学导论/lecture3.pdf
+        - Lec4: 生命科学导论/lecture4.pdf
+        - Lec5: 生命科学导论/lecture5.pdf
+        - Lec6: 生命科学导论/lecture6.pdf
+        - Lec7: 生命科学导论/lecture7.pdf
+        - Lec8: 生命科学导论/lecture8.pdf
+        - Lec9: 生命科学导论/lecture9.pdf
+        - Lec10: 生命科学导论/lecture10.pdf
+        - Lec11: 生命科学导论/lecture11.pdf
+        - Lec12: 生命科学导论/lecture12.pdf
+        - Lec13: 生命科学导论/lecture13.pdf
+        - Lec14: 生命科学导论/lecture14.pdf
+        - Lec15: 生命科学导论/lecture15.pdf
+      - Final_Review: 生命科学导论/final_review.pdf
   - Course (Extracurriculum):
     - Deep Learning:
       - 'Partition One: Fundamental + Convolution' : deeplearning_note/深度学习自学.md
