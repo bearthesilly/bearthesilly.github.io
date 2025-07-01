@@ -359,6 +359,8 @@ nav:
         - Transformer: 动手学深度学习/注意力机制/Transformer.md
     - Reinforcement Learning (CS285, Berkeley):
       - Supervised_Learning_of_Behaviors: RL_CS285/Supervised_Learning_of_Behaviors.md
+      - Introduction_to_Reinforcement_Learning: RL_CS285/Introduction_to_Reinforcement_Learning.md
+      - Policy_Gradient: RL_CS285/Policy_Gradient.md
   - Blog: 
     - Datawhale: machine_learning/Datawhale/note.md
     - PointNet: Blog/PointNet/analysis.md
