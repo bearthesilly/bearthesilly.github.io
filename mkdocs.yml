@@ -361,6 +361,8 @@ nav:
       - Supervised_Learning_of_Behaviors: RL_CS285/Supervised_Learning_of_Behaviors.md
       - Introduction_to_Reinforcement_Learning: RL_CS285/Introduction_to_Reinforcement_Learning.md
       - Policy_Gradient: RL_CS285/Policy_Gradient.md
+      - Actor-Critic: RL_CS285/Actor_Critic.md
+      - Model_Based_RL: RL_CS285/Model_Based_RL.md
   - Blog: 
     - Datawhale: machine_learning/Datawhale/note.md
     - PointNet: Blog/PointNet/analysis.md
