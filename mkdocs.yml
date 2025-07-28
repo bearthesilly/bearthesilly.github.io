@@ -21,6 +21,12 @@ theme:
         icon: material/brightness-4
         name: Switch to system preference
   name: material
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/bearthesilly # <-- 请替换为您的 GitHub 用户名
+    # - icon: fontawesome/solid/envelope
+    #   link: xiongzhzh2023@shanghaitech.edu.cn # <-- 请替换为您的邮箱
 use_directory_urls: false
 plugins:
   - search
