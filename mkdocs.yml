@@ -295,7 +295,8 @@ nav:
       - Cheatsheet: CA/ca_chsh.pdf
     - Intro to Computer Vision and Computational Photography (UCB CS180):
       - Project:
-        - Proj 0: UCB_CS180/project/proj0.md
+        - Intro: UCB_CS180/project/intro.html
+        - Proj 0: UCB_CS180/project/proj0/proj0.md
   - Course (General Education):
     - 普通物理:
       - 写在最前面: 普通物理/写在最前面.md
