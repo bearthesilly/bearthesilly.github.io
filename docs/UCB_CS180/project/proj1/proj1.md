@@ -1,6 +1,6 @@
 # Project 1
 
-## Part 1 - Colorize small picture
+## Part 1 - Colorize Small Picture
 
 ***Description / Hint***: 
 
@@ -13,18 +13,9 @@ The core of the project is to find the optimal offset for Green channel and Red 
 
 With in a certain offset search range, using loop iteration, we try all the offsets and get the best one using L2 norm as metric. Then we generate the colorful graph via this offset. The result pictures are as below:
 
-<head>
-    <style>
-        figure { 
-            display: inline-block;   /* allows figures to sit side by side */
-            margin: 0px;             /* spacing between figures */
-            text-align: center;      /* centers captions below each image */
-        }
-    </style>
-</head>
-<div>
+<div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
-            <img src="./img/cathedral.jpg" style="width: 333px; height: auto;">
+            <img src="./img/cathedral.jpg" style="zoom:60%; height: auto;">
             <figcaption>
                 cathedral.jpg <br>
                 Green offset: (2, 5) <br>
@@ -32,7 +23,7 @@ With in a certain offset search range, using loop iteration, we try all the offs
             </figcaption>
         </figure>
              <figure>
-            <img src="./img/monastery.jpg" style="width: 333px; height: auto;">
+            <img src="./img/monastery.jpg" style="zoom:60%; height: auto;">
             <figcaption>
                 monastery.jpg <br>
                 Green offset: (2, -3) <br>
@@ -40,7 +31,7 @@ With in a certain offset search range, using loop iteration, we try all the offs
             </figcaption>
         </figure>
              <figure>
-            <img src="./img/tobolsk.jpg" style="width: 333px; height: auto;">
+            <img src="./img/tobolsk.jpg" style="zoom:60%; height: auto;">
             <figcaption>
                 tobolsk.jpg <br>
                 Green offset: (3, 3) <br>
@@ -49,7 +40,9 @@ With in a certain offset search range, using loop iteration, we try all the offs
         </figure>
 </div>
 
-## Part 2
+
+
+## Part 2 - Colorize large picture
 
 ***Description / Hint***: 
 
@@ -63,34 +56,26 @@ For the metric, I used **Normalized Cross-Correlation** (NCC) for relatively bet
 
 Another problem is: under the scenario of 'light brightness bias', if still using the raw pixel data for metric evaluation, for large pictures, there ***might be*** other shift that can have the optimal metric. This means that other wrong shift may be selected since still somehow causing the lowest metric. The examples are as follows:
 
-<head>
-    <style>
-        figure { 
-            display: inline-block;   /* allows figures to sit side by side */
-            margin: 0px;             /* spacing between figures */
-            text-align: center;      /* centers captions below each image */
-        }
-    </style>
-</head>
-<div>
+<div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
-            <img src="./img/emir.jpg" style="width: 333px; height: auto;">
+            <img src="./img/emir.jpg" style="zoom:60%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/lugano.jpg" style="width: 333px; height: auto;">
+            <img src="./img/lugano.jpg" style="zoom:60%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/self_portrait.jpg" style="width: 333px; height: auto;">
+            <img src="./img/self_portrait.jpg" style="zoom:60%; height: auto;">
         </figure>
 </div>
+
 
 
 ***BELL AND WHISTLE:*** The core way to deal with this is to use ***edge feature*** instead of  raw pixels. Since the brightness distribution of three channels sometimes can be biased, the trend of change of brightness, i.e., the 'derivative' of the brightness of one pixel, still holds. More over, the pattern we see in a picture, its edge are actually the pixels who has rather high derivative, since the style of color may suddenly change, causing the value of one channel suddenly change. And the best thing is: instead of forcing every pixel to align, now, we only have to align the most important feature, which is more robust. So using ***sobel*** function, I calculated the edge feature and then use this as the input for the pyramid and alignment algorithm.
 
 The results are as follows:
-<div>
+<div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
-            <img src="./img/church_color.jpg" style="width: 333px; height: auto;">
+            <img src="./img/church_color.jpg" style="zoom:60%; height: auto;">
             <figcaption>
                 church.jpg 19.88s<br>
                 Green offset: (dx=4, dy=25) <br>
@@ -98,7 +83,7 @@ The results are as follows:
             </figcaption>
         </figure>
              <figure>
-            <img src="./img/emir_color.jpg" style="width: 333px; height: auto;">
+            <img src="./img/emir_color.jpg" style="zoom:60%; height: auto;">
             <figcaption>
                 emir.jpg 30.26s<br>
                 Green offset: (dx=24, dy=49) <br>
@@ -106,7 +91,7 @@ The results are as follows:
             </figcaption>
         </figure>
              <figure>
-            <img src="./img/harvesters_color.jpg" style="width: 333px; height: auto;">
+            <img src="./img/harvesters_color.jpg" style="zoom:60%; height: auto;">
             <figcaption>
                 harvest.jpg 30.72s<br>
                 Green offset: (dx=18, dy=60) <br>
@@ -115,9 +100,9 @@ The results are as follows:
         </figure>
 </div>
 
-<div>
+<div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
-            <img src="./img/icon_color.jpg" style="width: 333px; height: auto;">
+            <img src="./img/icon_color.jpg" style="zoom:60%; height: auto;">
             <figcaption>
                 icon.jpg 30.72s <br>
                 Green offset: (dx=17, dy=41) <br>
@@ -125,7 +110,7 @@ The results are as follows:
             </figcaption>
         </figure>
              <figure>
-            <img src="./img/italil_color.jpg" style="width: 333px; height: auto;">
+            <img src="./img/italil_color.jpg" style="zoom:60%; height: auto;">
             <figcaption>
                 italil.jpg 31.48s <br>
                 Green offset: (dx=22, dy=38) <br>
@@ -133,7 +118,7 @@ The results are as follows:
             </figcaption>
         </figure>
              <figure>
-            <img src="./img/lastochikino_color.jpg" style="width: 333px; height: auto;">
+            <img src="./img/lastochikino_color.jpg" style="zoom:60%; height: auto;">
             <figcaption>
                 lastochikino.jpg 31.22s<br>
                 Green offset: (dx=-1, dy=-3) <br>
@@ -142,9 +127,9 @@ The results are as follows:
         </figure>
 </div>
 
-<div>
+<div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
-            <img src="./img/lugano_color.jpg" style="width: 333px; height: auto;">
+            <img src="./img/lugano_color.jpg" style="zoom:60%; height: auto;">
             <figcaption>
                 lugano.jpg 33.08s<br>
                 Green offset: (dx=-17, dy=41) <br>
@@ -152,7 +137,7 @@ The results are as follows:
             </figcaption>
         </figure>
              <figure>
-            <img src="./img/melons_color.jpg" style="width: 333px; height: auto;">
+            <img src="./img/melons_color.jpg" style="zoom:60%; height: auto;">
             <figcaption>
                 melons.jpg 32.10s<br>
                 Green offset: (dx=10, dy=80) <br>
@@ -160,7 +145,7 @@ The results are as follows:
             </figcaption>
         </figure>
              <figure>
-            <img src="./img/self_portrait_color.jpg" style="width: 333px; height: auto;">
+            <img src="./img/self_portrait_color.jpg" style="zoom:60%; height: auto;">
             <figcaption>
                 self_portrait.jpg 32.71s<br>
                 Green offset: (dx=29, dy=78) <br>
@@ -169,9 +154,9 @@ The results are as follows:
         </figure>
 </div>
 
-<div>
+<div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
-            <img src="./img/siren_color.jpg" style="width: 333px; height: auto;">
+            <img src="./img/siren_color.jpg" style="zoom:60%; height: auto;">
             <figcaption>
                 siren.jpg 31.49s<br>
                 Green offset: (dx=-6, dy=49) <br>
@@ -179,13 +164,14 @@ The results are as follows:
             </figcaption>
         </figure>
              <figure>
-            <img src="./img/three_generations_color.jpg" style="width: 333px; height: auto;">
+            <img src="./img/three_generations_color.jpg" style="zoom:60%; height: auto;">
             <figcaption>
                 three_generations.jpg 28.14s<br>
                 Green offset: (dx=13, dy=53) <br>
                 Red offset: (dx=9, dy=111)
             </figcaption>
 </div>
+
 
 ## Part 3
 
@@ -196,9 +182,9 @@ The result of your algorithm on a few examples of your own choosing, downloaded 
 
 
 The results are as below:
-<div>
+<div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
-            <img src="./img/Kapri_color.jpg" style="width: 333px; height: auto;">
+            <img src="./img/Kapri_color.jpg" style="zoom:60%; height: auto;">
             <figcaption>
                 lugano.jpg 23.02s<br>
                 Green offset: (dx=-14, dy=45) <br>
@@ -206,7 +192,7 @@ The results are as below:
             </figcaption>
         </figure>
              <figure>
-            <img src="./img/melons_color.jpg" style="width: 333px; height: auto;">
+            <img src="./img/melons_color.jpg" style="zoom:60%; height: auto;">
             <figcaption>
                 melons.jpg 32.97s<br>
                 Green offset: (dx=-18, dy=-11) <br>
@@ -214,7 +200,7 @@ The results are as below:
             </figcaption>
         </figure>
              <figure>
-            <img src="./img/self_portrait_color.jpg" style="width: 333px; height: auto;">
+            <img src="./img/self_portrait_color.jpg" style="zoom:60%; height: auto;">
             <figcaption>
                 self_portrait.jpg 31.61s<br>
                 Green offset: (dx=-8, dy=49) <br>
@@ -222,3 +208,4 @@ The results are as below:
             </figcaption>
         </figure>
 </div>
+
