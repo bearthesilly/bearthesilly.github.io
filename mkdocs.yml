@@ -297,6 +297,7 @@ nav:
       - Project:
         - Intro: UCB_CS180/project/intro.html
         - Proj 0: UCB_CS180/project/proj0/proj0.md
+        - Proj 1: UCB_CS180/project/proj1/proj1.md
   - Course (General Education):
     - 普通物理:
       - 写在最前面: 普通物理/写在最前面.md
