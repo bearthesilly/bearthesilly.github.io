@@ -42,7 +42,7 @@ With in a certain offset search range, using loop iteration, we try all the offs
 
 
 
-## Part 2 - Colorize large picture
+## Part 2 - Colorize Large Picture
 
 ***Description / Hint***: 
 
@@ -173,36 +173,34 @@ The results are as follows:
 </div>
 
 
-## Part 3
+## Part 3 - Colorize Your Own Pictures
 
 ***Description / Hint***: 
 
 The result of your algorithm on a few examples of your own choosing, downloaded from the [Prokudin-Gorskii collection](https://www.loc.gov/collections/prokudin-gorskii/?st=grid).
-
-
 
 The results are as below:
 <div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
             <img src="./img/Kapri_color.jpg" style="zoom:60%; height: auto;">
             <figcaption>
-                lugano.jpg 23.02s<br>
+                Kapri.jpg 23.02s<br>
                 Green offset: (dx=-14, dy=45) <br>
                 Red offset: (dx=-11, dy=102)
             </figcaption>
         </figure>
              <figure>
-            <img src="./img/melons_color.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/Milanie_color.jpg" style="zoom:60%; height: auto;">
             <figcaption>
-                melons.jpg 32.97s<br>
+                Milanie.jpg 32.97s<br>
                 Green offset: (dx=-18, dy=-11) <br>
                 Red offset: (dx=-52, dy=2)
             </figcaption>
         </figure>
              <figure>
-            <img src="./img/self_portrait_color.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/monastyr_color.jpg" style="zoom:60%; height: auto;">
             <figcaption>
-                self_portrait.jpg 31.61s<br>
+                monastyr.jpg 31.61s<br>
                 Green offset: (dx=-8, dy=49) <br>
                 Red offset: (dx=-14, dy=113)
             </figcaption>
