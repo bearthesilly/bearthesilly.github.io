@@ -9134,7 +9134,7 @@ print(np.sum(edge_image_1 != edge_image_2))
 <p>After getting the <code>blended_stack[i]</code>, we add them up and divide by the number of layers for numerical balance. The numerical analysis in this section is important! Another thing is: if we read in the colorful picture as float, then the gaussian stack picture's values are in <span class="arithmatex">\([0,1]\)</span>. So the number value in Laplacian Stack can be in range <span class="arithmatex">\([-1,1]\)</span>. Apparently we need to transform them into <span class="arithmatex">\([0,1]\)</span>. I proposed two methods:</p>
 <ul>
 <li>Linear Transformation: <span class="arithmatex">\(x = \frac{x+1}{2}\)</span></li>
-<li>Z-normalization: <span class="arithmatex">\(x = \frac{x-x_{min}}{x_{max}-x_{min}}\)</span></li>
+<li>min-max-norm: <span class="arithmatex">\(x = \frac{x-x_{min}}{x_{max}-x_{min}}\)</span></li>
 </ul>
 <p>We take the orple example to demonstrate which method is better:</p>
 <div style="display: flex; justify-content: space-around; align-items: center;">
@@ -9151,7 +9151,7 @@ print(np.sum(edge_image_1 != edge_image_2))
             </figcaption>
         </figure>
 </div>
-<p>It shows that z-normalization is better so I will use this method in the following implementation. Here are the gallery of pictures:</p>
+<p>It shows that min-max-norm is better so I will use this method in the following implementation. Here are the gallery of pictures:</p>
 <div style="display: flex; justify-content: space-around; align-items: center;">
             <figure>
             <img src="./img/stack_blend/image/apple.jpg" style="zoom:100%; height: auto;">
