@@ -333,7 +333,7 @@ blended_stack[i] = mask * lap_stack1[i] + (1 - mask) * lap_stack2[i]
 After getting the `blended_stack[i]`, we add them up and divide by the number of layers for numerical balance. The numerical analysis in this section is important! Another thing is: if we read in the colorful picture as float, then the gaussian stack picture's values are in $[0,1]$. So the number value in Laplacian Stack can be in range $[-1,1]$. Apparently we need to transform them into $[0,1]$. I proposed two methods:
 
 - Linear Transformation: $x = \frac{x+1}{2}$
-- Z-normalization: $x = \frac{x-x_{min}}{x_{max}-x_{min}}$
+- min-max-norm: $x = \frac{x-x_{min}}{x_{max}-x_{min}}$
 
 We take the orple example to demonstrate which method is better:
 
@@ -351,7 +351,7 @@ We take the orple example to demonstrate which method is better:
             </figcaption>
         </figure>
 </div>
-It shows that z-normalization is better so I will use this method in the following implementation. Here are the gallery of pictures:
+It shows that min-max-norm is better so I will use this method in the following implementation. Here are the gallery of pictures:
 
 <div style="display: flex; justify-content: space-around; align-items: center;">
             <figure>
