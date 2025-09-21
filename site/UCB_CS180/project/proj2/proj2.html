@@ -9149,30 +9149,12 @@ print(np.sum(edge_image_1 != edge_image_2))
 </code></pre>
 <p>and the Laplacian Stack will include the last entry in Gaussian Stack. Using the Laplacian stack, we can restore the original figure. Note that the blurring is done via Gaussian kernel to every channel (RGB), and we don't downsample. In my implementation, the level of Gaussian and Laplacian Stack is 5. </p>
 <p>With the Laplacian Stacks of two figures, we can join them together under our defined weight. This weight is called 'mask'. In my implementation, for the <code>[:, :int(cols * (ratio - 1/8)), :]</code> part of the columns, they were set to 1, <code>[:, int(cols * (ratio + 1/8)):, :]</code> is set to 0, and the columns left were set to be a linear transition from 1 to 0. This mask is applied horizontally so we will expect a smooth transition in the <code>ratio</code> part of the figure in horizontal direction.</p>
-<p>Finally, we collapse two Laplacian Stack together with the mask. For one level, the stack layers will be combined with mask as follows:</p>
-<pre><code class="language-python">blended_stack[i] = mask * lap_stack1[i] + (1 - mask) * lap_stack2[i]
+<p>After that, we will prepare the mask. Design a mask and create its gaussian stack which will be further used in the blending. </p>
+<p>Finally, we collapse two Laplacian Stack together with this mask. For one level, the stack layers will be combined with mask as follows:</p>
+<pre><code class="language-python">blended_stack[i] = mask[i] * lap_stack1[i] + (1 - mask[i]) * lap_stack2[i]
 </code></pre>
-<p>After getting the <code>blended_stack[i]</code>, we add them up and divide by the number of layers for numerical balance. The numerical analysis in this section is important! Another thing is: if we read in the colorful picture as float, then the gaussian stack picture's values are in <span class="arithmatex">\([0,1]\)</span>. So the number value in Laplacian Stack can be in range <span class="arithmatex">\([-1,1]\)</span>. Apparently we need to transform them into <span class="arithmatex">\([0,1]\)</span>. I proposed two methods:</p>
-<ul>
-<li>Linear Transformation: <span class="arithmatex">\(x = \frac{x+1}{2}\)</span></li>
-<li>min-max-norm: <span class="arithmatex">\(x = \frac{x-x_{min}}{x_{max}-x_{min}}\)</span></li>
-</ul>
-<p>We take the orple example to demonstrate which method is better:</p>
-<div style="display: flex; justify-content: space-around; align-items: center;">
-            <figure>
-            <img src="./img/stack_blend/result/blended_orple_linear.png" style="zoom:100%; height: auto;">
-            <figcaption>
-                blurred_img_taj
-            </figcaption>
-        </figure>
-             <figure>
-            <img src="./img/stack_blend/result/blended_orple_znorm.png" style="zoom:100%; height: auto;">
-            <figcaption>
-                sharpened_image_taj
-            </figcaption>
-        </figure>
-</div>
-<p>It shows that min-max-norm is better so I will use this method in the following implementation. Here are the gallery of pictures:</p>
+<p>After getting the <code>blended_stack[i]</code>, we add them up. (Collapse)</p>
+<p>Here are the gallery of pictures:</p>
 <div style="display: flex; justify-content: space-around; align-items: center;">
             <figure>
             <img src="./img/stack_blend/image/apple.jpg" style="zoom:100%; height: auto;">
@@ -9187,7 +9169,7 @@ print(np.sum(edge_image_1 != edge_image_2))
             </figcaption>
         </figure>
             <figure>
-            <img src="./img/stack_blend/result/blended_orple_znorm.png" style="zoom:100%; height: auto;">
+            <img src="./img/stack_blend/result/blended_orple.png" style="zoom:100%; height: auto;">
                                 <figcaption>
                 orple
             </figcaption>
@@ -9207,12 +9189,13 @@ print(np.sum(edge_image_1 != edge_image_2))
             </figcaption>
         </figure>
             <figure>
-            <img src="./img/stack_blend/result/blended_gumayuzi_znorm.png" style="zoom:100%; height: auto;">
+            <img src="./img/stack_blend/result/blended_gumayuzi.png" style="zoom:100%; height: auto;">
                                 <figcaption>
                 gumayuzi
             </figcaption>
         </figure>
 </div>
+
 <blockquote>
 <p>Source Citation: </p>
 <p>https://baike.baidu.hk/item/Gumayusi/57152350</p>
@@ -9232,7 +9215,7 @@ print(np.sum(edge_image_1 != edge_image_2))
             </figcaption>
         </figure>
             <figure>
-            <img src="./img/stack_blend/result/blended_truden_znorm.png" style="zoom:100%; height: auto;">
+            <img src="./img/stack_blend/result/blended_truden.png" style="zoom:100%; height: auto;">
                                 <figcaption>
                 Truden
             </figcaption>
@@ -9244,7 +9227,14 @@ print(np.sum(edge_image_1 != edge_image_2))
 <p>https://www.foxnews.com/media/cnns-jim-acosta-objectively-speaking-without-bias-trump-bigger-threat-democracy-biden</p>
 <p>https://www.foxnews.com/media/cnns-jim-acosta-objectively-speaking-without-bias-trump-bigger-threat-democracy-biden</p>
 </blockquote>
-<p>Here is the Laplacian stack collapsing detail recreation of orple example : </p>
+<p>Here is the Laplacian stack collapsing detail recreation of  Figure 3.42 in <a href="https://www.dropbox.com/s/bzt69u4azxyfpjo/SzeliskiBookDraft_20210828.pdf?dl=0">Szelski (Ed 2)</a> page 167 : </p>
+<blockquote>
+<p>For the following laplacian stack pictures, since there are numerical values who are smaller than 0, I min-max normalize them before normalization. This mainly map the range [-1, 1] t0 [0, 1]. The formula is as follows:
+<script type="math/tex; mode=display">
+x = \frac{x-x_{min}}{x_{max}-x_{min}}
+</script>
+</p>
+</blockquote>
 <div style="display: flex; justify-content: space-around; align-items: center;">
             <figure>
             <img src="./img/stack_blend/lap_process/apple.jpg" style="zoom:100%; height: auto;">
@@ -9266,7 +9256,7 @@ print(np.sum(edge_image_1 != edge_image_2))
         </figure>
 </div>
 
-<p>Here are the Gaussian and Laplacian stacks for Orange + Apple, Gumayusi + Uzi and Biden + Trump images: (For original picture from up to down: Gaussian Stack, Laplacian Stack; For blended picture: Laplacian Stack)</p>
+<p>Here are the Gaussian and Laplacian stacks for Orange + Apple, Gumayusi + Uzi and Biden + Trump images: (For original picture <strong>from up to down: Gaussian Stack, Laplacian Stack</strong>; For blended picture: <strong>Laplacian Stack</strong>)</p>
 <p>Apple:</p>
 <p><img alt="image" src="img/stack_blend/gauss_stack/apple/apple.jpg" /></p>
 <p><img alt="image" src="img/stack_blend/lap_stack/apple/apple.jpg" /></p>

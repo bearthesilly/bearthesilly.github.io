@@ -348,34 +348,17 @@ and the Laplacian Stack will include the last entry in Gaussian Stack. Using the
 
 With the Laplacian Stacks of two figures, we can join them together under our defined weight. This weight is called 'mask'. In my implementation, for the `[:, :int(cols * (ratio - 1/8)), :]` part of the columns, they were set to 1, `[:, int(cols * (ratio + 1/8)):, :]` is set to 0, and the columns left were set to be a linear transition from 1 to 0. This mask is applied horizontally so we will expect a smooth transition in the `ratio` part of the figure in horizontal direction.
 
-Finally, we collapse two Laplacian Stack together with the mask. For one level, the stack layers will be combined with mask as follows:
+After that, we will prepare the mask. Design a mask and create its gaussian stack which will be further used in the blending. 
+
+Finally, we collapse two Laplacian Stack together with this mask. For one level, the stack layers will be combined with mask as follows:
 
 ````python
-blended_stack[i] = mask * lap_stack1[i] + (1 - mask) * lap_stack2[i]
+blended_stack[i] = mask[i] * lap_stack1[i] + (1 - mask[i]) * lap_stack2[i]
 ````
 
-After getting the `blended_stack[i]`, we add them up and divide by the number of layers for numerical balance. The numerical analysis in this section is important! Another thing is: if we read in the colorful picture as float, then the gaussian stack picture's values are in $[0,1]$. So the number value in Laplacian Stack can be in range $[-1,1]$. Apparently we need to transform them into $[0,1]$. I proposed two methods:
+After getting the `blended_stack[i]`, we add them up. (Collapse)
 
-- Linear Transformation: $x = \frac{x+1}{2}$
-- min-max-norm: $x = \frac{x-x_{min}}{x_{max}-x_{min}}$
-
-We take the orple example to demonstrate which method is better:
-
-<div style="display: flex; justify-content: space-around; align-items: center;">
-            <figure>
-            <img src="./img/stack_blend/result/blended_orple_linear.png" style="zoom:100%; height: auto;">
-            <figcaption>
-                blurred_img_taj
-            </figcaption>
-        </figure>
-             <figure>
-            <img src="./img/stack_blend/result/blended_orple_znorm.png" style="zoom:100%; height: auto;">
-            <figcaption>
-                sharpened_image_taj
-            </figcaption>
-        </figure>
-</div>
-It shows that min-max-norm is better so I will use this method in the following implementation. Here are the gallery of pictures:
+Here are the gallery of pictures:
 
 <div style="display: flex; justify-content: space-around; align-items: center;">
             <figure>
@@ -391,7 +374,7 @@ It shows that min-max-norm is better so I will use this method in the following 
             </figcaption>
         </figure>
             <figure>
-            <img src="./img/stack_blend/result/blended_orple_znorm.png" style="zoom:100%; height: auto;">
+            <img src="./img/stack_blend/result/blended_orple.png" style="zoom:100%; height: auto;">
                                 <figcaption>
                 orple
             </figcaption>
@@ -411,18 +394,18 @@ It shows that min-max-norm is better so I will use this method in the following 
             </figcaption>
         </figure>
             <figure>
-            <img src="./img/stack_blend/result/blended_gumayuzi_znorm.png" style="zoom:100%; height: auto;">
+            <img src="./img/stack_blend/result/blended_gumayuzi.png" style="zoom:100%; height: auto;">
                                 <figcaption>
                 gumayuzi
             </figcaption>
         </figure>
 </div> 
+
 > Source Citation: 
 >
 > https://baike.baidu.hk/item/Gumayusi/57152350
 >
 > https://wiki.biligame.com/lol/Uzi
-
 
 <div style="display: flex; justify-content: space-around; align-items: center;">
             <figure>
@@ -438,12 +421,13 @@ It shows that min-max-norm is better so I will use this method in the following 
             </figcaption>
         </figure>
             <figure>
-            <img src="./img/stack_blend/result/blended_truden_znorm.png" style="zoom:100%; height: auto;">
+            <img src="./img/stack_blend/result/blended_truden.png" style="zoom:100%; height: auto;">
                                 <figcaption>
                 Truden
             </figcaption>
         </figure>
 </div> 
+
 
 > Source Citation: 
 >
@@ -451,7 +435,13 @@ It shows that min-max-norm is better so I will use this method in the following 
 >
 > https://www.foxnews.com/media/cnns-jim-acosta-objectively-speaking-without-bias-trump-bigger-threat-democracy-biden
 
-Here is the Laplacian stack collapsing detail recreation of orple example : 
+Here is the Laplacian stack collapsing detail recreation of  Figure 3.42 in [Szelski (Ed 2)](https://www.dropbox.com/s/bzt69u4azxyfpjo/SzeliskiBookDraft_20210828.pdf?dl=0) page 167 : 
+
+> For the following laplacian stack pictures, since there are numerical values who are smaller than 0, I min-max normalize them before normalization. This mainly map the range [-1, 1] t0 [0, 1]. The formula is as follows:
+> $$
+> x = \frac{x-x_{min}}{x_{max}-x_{min}}
+> $$
+> 
 
 <div style="display: flex; justify-content: space-around; align-items: center;">
             <figure>
@@ -474,7 +464,7 @@ Here is the Laplacian stack collapsing detail recreation of orple example :
         </figure>
 </div> 
 
-Here are the Gaussian and Laplacian stacks for Orange + Apple, Gumayusi + Uzi and Biden + Trump images: (For original picture from up to down: Gaussian Stack, Laplacian Stack; For blended picture: Laplacian Stack)
+Here are the Gaussian and Laplacian stacks for Orange + Apple, Gumayusi + Uzi and Biden + Trump images: (For original picture **from up to down: Gaussian Stack, Laplacian Stack**; For blended picture: **Laplacian Stack**)
 
 Apple:
 
