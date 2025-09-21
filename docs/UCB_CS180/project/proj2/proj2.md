@@ -4,17 +4,31 @@
 
 ### Part 1.1: Convolutions from Scratch!
 
-Convolution is a multiplication-like operation*. For implementing a convolution operation, from my perspective, there are key operations:
+Convolution is a multiplication-like operation*. The formula is as follows:
+$$
+G[i,j] = \sum_{u=-k}^{k} \sum_{v=-k}^{k} H[u,v] F[i-u, j-v]
+$$
+I note that this form of operation is a little bit confusing because we are more happy to see cross-correlation form! So why not let $u=-u, v=-v$, and we can have:
+$$
+G[i,j] = \sum_{u=k}^{-k} \sum_{v=k}^{-k} H[-u,-v] F[i+u, j+v] \\
+= \sum_{u=-k}^{k} \sum_{v=-k}^{k} \hat{H}[u,v] F[i+u, j+v]
+$$
+where:
+$$
+\hat{H}[u,v] = H[-u,-v]
+$$
+This exactly represents the 'flip' operation to the kernel! For implementing a convolution operation, from my perspective, there are key operations:
 
 > *Source: UCB CS180 Slide ConvolutionAndDerivatives.pdf page 39
 
 - The implementation of a kernel
+- Flip the kernel (If not, we are doing a cross-correlation!). I use the numpy function: $kernel = np.flipud(np.fliplr(kernel))$
 - Optional but Common: Pad the kernelized image so as to keep the same shape **according to the step size and the kernel size**
 - Shift kernel, do element-wise multiplication and summation one step at a time
 
 > The step size doesn't have to be one, but in this project we limit the step size to one for simplicity
 
-The shift of kernel take up two loops, and element-wise multiplication can take up two loops without the help of ***broadcast operation in numpy***. Under the usage of broadcast, these two loops can be avoided. The following code of is a two-loop version code of using box_filter as kernel:
+The shift of kernel take up two loops, and element-wise multiplication can take up two loops without the help of ***broadcast operation in numpy*** (This emphasizes the importance of the 'flip' operation! Without this, it is hard to use the numpy broadcast property). Under the usage of broadcast, these two loops can be avoided. The following code of is a two-loop version code of using box_filter as kernel:
 
 ````python
 img = skio.imread('my_picture.jpg', as_gray=True)
@@ -25,6 +39,8 @@ def box_conv(image, box_filter):
     pad = box_filter.shape[0] // 2
     padded_img = np.pad(image, pad, mode='edge')
     output = np.zeros_like(image)
+    # Flip the box_filter
+    box_filter = np.flipud(np.fliplr(box_filter))
     for i in range(H):
         for j in range(W):
             window = padded_img[i:i + box_filter.shape[0], j:j + box_filter.shape[1]]
@@ -82,6 +98,8 @@ def defined_conv(image, kernel):
     # print(pad, kernel.shape)
     padded_img = np.pad(image, ((pad_height, pad_height), (pad_width, pad_width)), mode='edge')
     output = np.zeros_like(image)
+    # Flip the kernel
+    kernel = np.flipud(np.fliplr(kernel))
     for i in range(H):
         for j in range(W):
             window = padded_img[i:i + kernel.shape[0], j:j + kernel.shape[1]]
@@ -157,12 +175,13 @@ The result of the first approach is as follows:
             </figcaption>
         </figure>
              <figure>
-            <img src="./img/part1/DoG_1.png" style="zoom:75%; height: auto;">
+            <img src="./img/part1/dog_1.png" style="zoom:75%; height: auto;">
             <figcaption>
                 DoG1
             </figcaption>
         </figure>
 </div>
+
 
 The result of the second approach is as follows:
 
@@ -174,12 +193,13 @@ The result of the second approach is as follows:
             </figcaption>
         </figure>
              <figure>
-            <img src="./img/part1/DoG_2.png" style="zoom:75%; height: auto;">
+            <img src="./img/part1/dog_2.png" style="zoom:75%; height: auto;">
             <figcaption>
                 DoG2
             </figcaption>
         </figure>
 </div>
+
 
 We can tell that both processed edge images are much smoother and better. For DoG1 and DoG2, we use the following code to detect the difference:
 
@@ -195,9 +215,13 @@ The result is:
 3188
 ````
 
-This means that in the image consisting of $542*520$ pixels, only 3188 of them are different. This indicates that the two approaches can be equivalent! This is in fact true since convolution operation have associativity property*.
+This means that in the image consisting of $542*520$ pixels, only 3188 of them are different. This indicates that the two approaches can be equivalent! This is in fact true since convolution operation have associativity property (if we regard difference operators as kernels), or the property listed below*.
 
-> *Source: UCB CS180 Slide ConvolutionAndDerivatives.pdf page 39
+> *Source: UCB CS180 Slide ConvolutionAndDerivatives.pdf
+
+$$
+\frac{\partial}{\partial x}(f\star g) = (\frac{\partial g}{\partial x})\star f
+$$
 
 ## Part 2 - Fun with Frequencies!
 

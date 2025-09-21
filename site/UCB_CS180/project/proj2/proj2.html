@@ -8847,19 +8847,33 @@
 <h1 id="proj-2-fun-with-filters-and-frequencies">Proj 2 - Fun with Filters and Frequencies!</h1>
 <h2 id="part-1">Part 1</h2>
 <h3 id="part-11-convolutions-from-scratch">Part 1.1: Convolutions from Scratch!</h3>
-<p>Convolution is a multiplication-like operation*. For implementing a convolution operation, from my perspective, there are key operations:</p>
+<p>Convolution is a multiplication-like operation*. The formula is as follows:
+<script type="math/tex; mode=display">
+G[i,j] = \sum_{u=-k}^{k} \sum_{v=-k}^{k} H[u,v] F[i-u, j-v]
+</script>
+I note that this form of operation is a little bit confusing because we are more happy to see cross-correlation form! So why not let <span class="arithmatex">\(u=-u, v=-v\)</span>, and we can have:
+<script type="math/tex; mode=display">
+G[i,j] = \sum_{u=k}^{-k} \sum_{v=k}^{-k} H[-u,-v] F[i+u, j+v] \\
+= \sum_{u=-k}^{k} \sum_{v=-k}^{k} \hat{H}[u,v] F[i+u, j+v]
+</script>
+where:
+<script type="math/tex; mode=display">
+\hat{H}[u,v] = H[-u,-v]
+</script>
+This exactly represents the 'flip' operation to the kernel! For implementing a convolution operation, from my perspective, there are key operations:</p>
 <blockquote>
 <p>*Source: UCB CS180 Slide ConvolutionAndDerivatives.pdf page 39</p>
 </blockquote>
 <ul>
 <li>The implementation of a kernel</li>
+<li>Flip the kernel (If not, we are doing a cross-correlation!). I use the numpy function: <span class="arithmatex">\(kernel = np.flipud(np.fliplr(kernel))\)</span></li>
 <li>Optional but Common: Pad the kernelized image so as to keep the same shape <strong>according to the step size and the kernel size</strong></li>
 <li>Shift kernel, do element-wise multiplication and summation one step at a time</li>
 </ul>
 <blockquote>
 <p>The step size doesn't have to be one, but in this project we limit the step size to one for simplicity</p>
 </blockquote>
-<p>The shift of kernel take up two loops, and element-wise multiplication can take up two loops without the help of <strong><em>broadcast operation in numpy</em></strong>. Under the usage of broadcast, these two loops can be avoided. The following code of is a two-loop version code of using box_filter as kernel:</p>
+<p>The shift of kernel take up two loops, and element-wise multiplication can take up two loops without the help of <strong><em>broadcast operation in numpy</em></strong> (This emphasizes the importance of the 'flip' operation! Without this, it is hard to use the numpy broadcast property). Under the usage of broadcast, these two loops can be avoided. The following code of is a two-loop version code of using box_filter as kernel:</p>
 <pre><code class="language-python">img = skio.imread('my_picture.jpg', as_gray=True)
 box_filter = np.ones((9, 9)) / 81.0
 
@@ -8868,6 +8882,8 @@ def box_conv(image, box_filter):
     pad = box_filter.shape[0] // 2
     padded_img = np.pad(image, pad, mode='edge')
     output = np.zeros_like(image)
+    # Flip the box_filter
+    box_filter = np.flipud(np.fliplr(box_filter))
     for i in range(H):
         for j in range(W):
             window = padded_img[i:i + box_filter.shape[0], j:j + box_filter.shape[1]]
@@ -8917,6 +8933,8 @@ plt.savefig('box_conv2d_image.png')
     # print(pad, kernel.shape)
     padded_img = np.pad(image, ((pad_height, pad_height), (pad_width, pad_width)), mode='edge')
     output = np.zeros_like(image)
+    # Flip the kernel
+    kernel = np.flipud(np.fliplr(kernel))
     for i in range(H):
         for j in range(W):
             window = padded_img[i:i + kernel.shape[0], j:j + kernel.shape[1]]
@@ -8984,7 +9002,7 @@ We can utilize the <strong><em>broadcast property</em></strong> in numpy as well
             </figcaption>
         </figure>
              <figure>
-            <img src="./img/part1/DoG_1.png" style="zoom:75%; height: auto;">
+            <img src="./img/part1/dog_1.png" style="zoom:75%; height: auto;">
             <figcaption>
                 DoG1
             </figcaption>
@@ -9000,7 +9018,7 @@ We can utilize the <strong><em>broadcast property</em></strong> in numpy as well
             </figcaption>
         </figure>
              <figure>
-            <img src="./img/part1/DoG_2.png" style="zoom:75%; height: auto;">
+            <img src="./img/part1/dog_2.png" style="zoom:75%; height: auto;">
             <figcaption>
                 DoG2
             </figcaption>
@@ -9015,10 +9033,13 @@ print(np.sum(edge_image_1 != edge_image_2))
 <pre><code class="language-txt">(542, 540) (542, 540)
 3188
 </code></pre>
-<p>This means that in the image consisting of <span class="arithmatex">\(542*520\)</span> pixels, only 3188 of them are different. This indicates that the two approaches can be equivalent! This is in fact true since convolution operation have associativity property*.</p>
+<p>This means that in the image consisting of <span class="arithmatex">\(542*520\)</span> pixels, only 3188 of them are different. This indicates that the two approaches can be equivalent! This is in fact true since convolution operation have associativity property (if we regard difference operators as kernels), or the property listed below*.</p>
 <blockquote>
-<p>*Source: UCB CS180 Slide ConvolutionAndDerivatives.pdf page 39</p>
+<p>*Source: UCB CS180 Slide ConvolutionAndDerivatives.pdf</p>
 </blockquote>
+<div class="arithmatex">\[
+\frac{\partial}{\partial x}(f\star g) = (\frac{\partial g}{\partial x})\star f
+\]</div>
 <h2 id="part-2-fun-with-frequencies">Part 2 - Fun with Frequencies!</h2>
 <h3 id="part-21-image-sharpening">Part 2.1  Image "Sharpening"</h3>
 <p>As taught in the lecture, the Laplacian kernel, which is the subtraction of a unit impulse and a Gaussian, can be used to sharpen the image. So we simply have to write out a Laplacian kernel and let it do the convolution with the blurred image.</p>
