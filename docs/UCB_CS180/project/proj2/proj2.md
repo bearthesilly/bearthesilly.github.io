@@ -427,13 +427,51 @@ Here are the gallery of pictures:
             </figcaption>
         </figure>
 </div> 
-
-
 > Source Citation: 
 >
 > https://www.foxnews.com/media/cnns-jim-acosta-objectively-speaking-without-bias-trump-bigger-threat-democracy-biden
 >
 > https://www.foxnews.com/media/cnns-jim-acosta-objectively-speaking-without-bias-trump-bigger-threat-democracy-biden
+
+<div style="display: flex; justify-content: space-around; align-items: center;">
+            <figure>
+            <img src="./img/stack_blend/image/dog.jpg" style="zoom:100%; height: auto;">
+                <figcaption>
+                Dog
+            </figcaption>
+        </figure>
+             <figure>
+            <img src="./img/stack_blend/image/mask.png" style="zoom:100%; height: auto;">
+                                 <figcaption>
+               mask
+            </figcaption>
+        </figure>
+</div> 
+
+<div style="display: flex; justify-content: space-around; align-items: center;">
+             <figure>
+            <img src="./img/stack_blend/image/mountain.jpg" style="zoom:100%; height: auto;">
+                                 <figcaption>
+               Mountain
+            </figcaption>
+        </figure>
+            <figure>
+            <img src="./img/stack_blend/result/blended_mountdog.png" style="zoom:100%; height: auto;">
+                                <figcaption>
+                Mountdog
+            </figcaption>
+        </figure>
+</div> 
+
+Note that for the 'dog-mountain' picture, the mask has irregular shape. The dog and mask picture are borrowed from https://github.com/Anubisyy/COMPSCI180_website/blob/main/project2.md. 
+
+> Source Citation:
+>
+> https://github.com/Anubisyy/COMPSCI180_website/blob/main/project2_data/2_4/dog2.png
+>
+> https://th.bing.com/th/
+>
+> https://github.com/Anubisyy/COMPSCI180_website/blob/main/project2_data/2_4/mask.png
 
 Here is the Laplacian stack collapsing detail recreation of  Figure 3.42 in [Szelski (Ed 2)](https://www.dropbox.com/s/bzt69u4azxyfpjo/SzeliskiBookDraft_20210828.pdf?dl=0) page 167 : 
 
@@ -485,15 +523,10 @@ Orple:
 Gumayusi:
 ![image](./img/stack_blend/gauss_stack/gumayusi/gumayusi.jpg)
 
-> Source Citation: https://baike.baidu.hk/item/Gumayusi/57152350
-
 ![image](./img/stack_blend/lap_stack/gumayusi/gumayusi.jpg)
-
 
 Uzi:
 ![image](./img/stack_blend/gauss_stack/uzi/uzi.jpg)
-
-> Source Citation: https://wiki.biligame.com/lol/Uzi
 
 ![image](./img/stack_blend/lap_stack/uzi/uzi.jpg)
 
@@ -505,14 +538,10 @@ Gumayuzi:
 Biden:
 ![image](./img/stack_blend/gauss_stack/biden/biden.jpg)
 
-> Source Citation: https://www.foxnews.com/media/cnns-jim-acosta-objectively-speaking-without-bias-trump-bigger-threat-democracy-biden
-
 ![image](./img/stack_blend/lap_stack/biden/biden.jpg)
 
 Trump:
 ![image](./img/stack_blend/gauss_stack/trump/trump.jpg)
-
-> Source Citation: https://www.foxnews.com/media/cnns-jim-acosta-objectively-speaking-without-bias-trump-bigger-threat-democracy-biden
 
 ![image](./img/stack_blend/lap_stack/trump/trump.jpg)
 
@@ -521,5 +550,18 @@ Truden:
 
 ![image](./img/stack_blend/lap_stack/truden/truden.jpg)
 
+Dog:
+![image](./img/stack_blend/gauss_stack/dog/dog.jpg)
 
+![image](./img/stack_blend/lap_stack/dog/dog.jpg)
+
+Mountain:
+![image](./img/stack_blend/gauss_stack/mountain/mountain.jpg)
+
+![image](./img/stack_blend/lap_stack/mountain/mountain.jpg)
+
+
+Mountdog:
+
+![image](./img/stack_blend/lap_stack/mountdog/mountdog.jpg)
 
