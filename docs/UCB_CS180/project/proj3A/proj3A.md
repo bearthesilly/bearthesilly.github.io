@@ -50,7 +50,7 @@ H* = \arg \min_H \|p_1 - p_2\times H\|_2^2
 $$
 where:
 $$
-p_1, p_2 \in \R^{n\times 3}, H \in \R^{3\times 3}
+p_1, p_2 \in \mathbf{R}^{n\times 3}, H \in \mathbf{R}^{3\times 3}
 $$
 But this method can be problematic: the right-bottom entry of $H$ is not guaranteed to be 1! In another word, this constraint is difficult to be expressed in optimization problem. **If I divide $H$ by $h_{33}$, then objective L2 norm can change w.r.t. difference $h_{33}$!** The project website hints that the dimension of freedom of $H$ is 8, therefore I will expand the equations manually and try to seek for more inspiration. Suppose for a pair of corresponding points $(xp_w \ yp_w \ w), (x \ y \ 1)$:
 
@@ -70,9 +70,8 @@ Then convert back to the two dimension coordinates:
 $$
  xp = \frac{xp_w}{w} = \frac{h_{11}x + h_{12}y + h_{13}}{h_{31}x + h_{32}y + h_{33}} \quad \\
  yp = \frac{yp_w}{w} = \frac{h_{21}x + h_{22}y + h_{23}}{h_{31}x + h_{32}y + h_{33}} \quad 
- 
 $$
-***From our objectives above, we can tell that even all entries are divided by $h_33$, the formulas still hold true!*** We can re-write as:
+***From our objectives above, we can tell that even all entries are divided by $h_{33}$, the formulas still hold true!*** We can re-write as:
 $$
 (-x)h_{11} + (-y)h_{12} + (-1)h_{13} + (0)h_{21} + (0)h_{22} + (0)h_{23} + \\ (x \cdot xp)h_{31} + (y \cdot xp)h_{32} + (xp)h_{33} = 0
 \\
