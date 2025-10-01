@@ -90,7 +90,7 @@ Note that in the scenario above, I only consider one point. Matrix $A$ can stack
 $$
 h^{*} = \arg \min_{||h||_2^2=1}\|\mathbf{A}h\|_2^2
 $$
-If we SVD matric $A$, i.e., $ \mathbf{A} = \mathbf{U} \mathbf{S} \mathbf{V}^T $, then (the norm we are using is L2):
+If we SVD matric $A$, i.e., $\mathbf{A} = \mathbf{U} \mathbf{S} \mathbf{V}^T$, then (the norm we are using is L2):
 $$
 ||\mathbf{A}\mathbf{h}||^2 = ||(\mathbf{U}\mathbf{S}\mathbf{V}^T)h||^2  = ||\mathbf{S}\mathbf{V}^Th||^2 \\
 where \ ||\mathbf{V}^Th|| = ||h|| = 1
@@ -156,7 +156,7 @@ Here we can see that for the sign and picture with obvious rectangle frame in th
 
 ## Blend the Images into a Mosaic
 
-Now I have the warped images and the overall size of resulting image. Since I've considered the ***translation issue*** in ***Recover Homography*** section, now all the warped images are in the right place. Note that the unwarped image (which is the middle one of the three pictures) will be translated as well to move to the right place.
+Now I have the warped images and the overall size of resulting image. Since I've considered the ***translation issue*** in ***Recover Homography*** section, now all the warped images are in the right place. Note that the unwarped image (which is the middle one of the three pictures) will be translated as well to move to the right place. And I can get the overall 'panorama canvas' shape. I will create a pure black (zero-value) overall canvas, and put three warped and translated figures on that. 
 
 Originally I try the simplest blend: for the overlap section, take the average of them. For example, for pixels that are covered by 2 images, then I simply take the average of the value of these two figures. The result picture gallery is as below:
 
