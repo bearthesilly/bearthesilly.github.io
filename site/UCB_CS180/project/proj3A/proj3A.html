@@ -8816,7 +8816,7 @@ H* = \arg \min_H \|p_1 - p_2\times H\|_2^2
 </script>
 where:
 <script type="math/tex; mode=display">
-p_1, p_2 \in \R^{n\times 3}, H \in \R^{3\times 3}
+p_1, p_2 \in \mathbf{R}^{n\times 3}, H \in \mathbf{R}^{3\times 3}
 </script>
 But this method can be problematic: the right-bottom entry of <span class="arithmatex">\(H\)</span> is not guaranteed to be 1! In another word, this constraint is difficult to be expressed in optimization problem. <strong>If I divide <span class="arithmatex">\(H\)</span> by <span class="arithmatex">\(h_{33}\)</span>, then objective L2 norm can change w.r.t. difference <span class="arithmatex">\(h_{33}\)</span>!</strong> The project website hints that the dimension of freedom of <span class="arithmatex">\(H\)</span> is 8, therefore I will expand the equations manually and try to seek for more inspiration. Suppose for a pair of corresponding points <span class="arithmatex">\((xp_w \ yp_w \ w), (x \ y \ 1)\)</span>:</p>
 <blockquote>
@@ -8832,30 +8832,29 @@ yp_w = h_{21}x + h_{22}y + h_{23} \quad \\
  w = h_{31}x + h_{32}y + h_{33} \quad
 </script>
 Then convert back to the two dimension coordinates:
-$$
- xp = \frac{xp_w}{w} = \frac{h_{11}x + h_{12}y + h_{13}}{h_{31}x + h_{32}y + h_{33}} \quad \
- yp = \frac{yp_w}{w} = \frac{h_{21}x + h_{22}y + h_{23}}{h_{31}x + h_{32}y + h_{33}} \quad </p>
-<p>
 <script type="math/tex; mode=display">
-***From our objectives above, we can tell that even all entries are divided by <span class="arithmatex">\(h_33\)</span>, the formulas still hold true!*** We can re-write as:
+ xp = \frac{xp_w}{w} = \frac{h_{11}x + h_{12}y + h_{13}}{h_{31}x + h_{32}y + h_{33}} \quad \\
+ yp = \frac{yp_w}{w} = \frac{h_{21}x + h_{22}y + h_{23}}{h_{31}x + h_{32}y + h_{33}} \quad 
 </script>
-(-x)h_{11} + (-y)h_{12} + (-1)h_{13} + (0)h_{21} + (0)h_{22} + (0)h_{23} + \ (x \cdot xp)h_{31} + (y \cdot xp)h_{32} + (xp)h_{33} = 0
-\
-(0)h_{11} + (0)h_{12} + (0)h_{13} + (-x)h_{21} + (-y)h_{22} + (-1)h_{23} + \ (x \cdot yp)h_{31} + (y \cdot yp)h_{32} + (yp)h_{33} = 0
+<strong><em>From our objectives above, we can tell that even all entries are divided by <span class="arithmatex">\(h_{33}\)</span>, the formulas still hold true!</em></strong> We can re-write as:
 <script type="math/tex; mode=display">
+(-x)h_{11} + (-y)h_{12} + (-1)h_{13} + (0)h_{21} + (0)h_{22} + (0)h_{23} + \\ (x \cdot xp)h_{31} + (y \cdot xp)h_{32} + (xp)h_{33} = 0
+\\
+(0)h_{11} + (0)h_{12} + (0)h_{13} + (-x)h_{21} + (-y)h_{22} + (-1)h_{23} + \\ (x \cdot yp)h_{31} + (y \cdot yp)h_{32} + (yp)h_{33} = 0
+</script>
 We can construct:
-</script>
-A = <script type="math/tex; mode=display">\begin{pmatrix} -x \ -y \ -1 \ 0 \ 0 \ 0 \ x \cdot xp \ y \cdot xp \ xp
-\\ 0 \ 0 \ 0 \ -x \ -y \ -1 \ x \cdot yp \ y \cdot yp \ yp
-\end{pmatrix}</script>
-\
-h = <script type="math/tex; mode=display">\begin{pmatrix} h_{11}\\ h_{12}\\ h_{13}\\ h_{21}\\ h_{22}\\ h_{23}\\ h_{31}\\ h_{32}\\ h_{33} 
-\end{pmatrix}</script>
 <script type="math/tex; mode=display">
-Note that in the scenario above, I only consider one point. Matrix <span class="arithmatex">\(A\)</span> can stack <span class="arithmatex">\(n\)</span> times, forming a <span class="arithmatex">\(\mathbf{A} \in R^{2n\times9}\)</span> matrix. The constraint is <span class="arithmatex">\(||h||_2^2=1\)</span>. Our goal is now:
+A = \begin{pmatrix} -x \ -y \ -1 \ 0 \ 0 \ 0 \ x \cdot xp \ y \cdot xp \ xp
+\\ 0 \ 0 \ 0 \ -x \ -y \ -1 \ x \cdot yp \ y \cdot yp \ yp
+\end{pmatrix}
+\\
+h = \begin{pmatrix} h_{11}\\ h_{12}\\ h_{13}\\ h_{21}\\ h_{22}\\ h_{23}\\ h_{31}\\ h_{32}\\ h_{33} 
+\end{pmatrix}
 </script>
-h^{*} = \arg \min_{||h||_2^2=1}|\mathbf{A}h|_2^2
-$$
+Note that in the scenario above, I only consider one point. Matrix <span class="arithmatex">\(A\)</span> can stack <span class="arithmatex">\(n\)</span> times, forming a <span class="arithmatex">\(\mathbf{A} \in R^{2n\times9}\)</span> matrix. The constraint is <span class="arithmatex">\(||h||_2^2=1\)</span>. Our goal is now:
+<script type="math/tex; mode=display">
+h^{*} = \arg \min_{||h||_2^2=1}\|\mathbf{A}h\|_2^2
+</script>
 If we SVD matric <span class="arithmatex">\(A\)</span>, i.e., $ \mathbf{A} = \mathbf{U} \mathbf{S} \mathbf{V}^T $, then (the norm we are using is L2):
 <script type="math/tex; mode=display">
 ||\mathbf{A}\mathbf{h}||^2 = ||(\mathbf{U}\mathbf{S}\mathbf{V}^T)h||^2  = ||\mathbf{S}\mathbf{V}^Th||^2 \\
