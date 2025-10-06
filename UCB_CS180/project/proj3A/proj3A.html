@@ -8904,9 +8904,9 @@ h^* = \arg \min_h||Ah-b||_2^2
 </div>
 <blockquote>
 <p><strong><em>Homography Matrix:</em></strong></p>
-<p>[[ 5.07951563e-01 -3.32904310e-02  2.15065395e+00]
- [-1.95431423e-01  5.91330231e-01  2.49431655e+02]
- [-3.02312517e-04 -3.34458470e-05  1.00000000e+00]]</p>
+<p>[[ 5.07951563e-01 -3.32904310e-02  2.15065395e+00]</p>
+<p>[-1.95431423e-01 5.91330231e-01 2.49431655e+02]</p>
+<p>[-3.02312517e-04 -3.34458470e-05 1.00000000e+00]]</p>
 </blockquote>
 <div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
@@ -8921,9 +8921,9 @@ h^* = \arg \min_h||Ah-b||_2^2
 </div>
 <blockquote>
 <p><strong><em>Homography Matrix:</em></strong> </p>
-<p>[[ 5.04835194e-01 -3.73939833e-02  1.16087680e+01]
- [-1.81158560e-01  5.83232691e-01  2.45054643e+02]
- [-2.86528153e-04 -4.52234239e-05  1.00000000e+00]]</p>
+<p>[[ 5.04835194e-01 -3.73939833e-02  1.16087680e+01]]</p>
+<p>[-1.81158560e-01 5.83232691e-01 2.45054643e+02]</p>
+<p>[-2.86528153e-04 -4.52234239e-05 1.00000000e+00]]</p>
 </blockquote>
 <p>Here we can see that for the sign and picture with obvious rectangle frame in the real world, <strong><em>I successfully reshape them into the real rectangle in the warped figure, and the warped figure is correct.</em></strong> As for the comparison between Bilinear and NearestNeighbor, I zoom in the 'elevator man and woman part' in the first picture gallery and get the following result:</p>
 <blockquote>
@@ -9001,12 +9001,12 @@ pixel = \frac{\sum_{i=1}^{t}w_i\cdot f_i}{\sum_{i=1}^{t}w_i}
 <p><img alt="image" src="img/output/mosaic1_feather_bilinear_1.jpg" /></p>
 <blockquote>
 <p><strong><em>Homography Matrix:</em></strong></p>
-<p>[[ 3.06122050e+00  4.39113598e-02 -2.88814588e+03]
- [ 7.34412673e-01  2.59447733e+00 -9.75025092e+02]
- [ 1.17792019e-03  4.44158753e-05  1.00000000e+00]]</p>
-<p>[[ 1.35717752e+00  2.18071555e-02 -6.27664041e+02]
- [ 1.27211584e-01  1.24211746e+00 -1.52353887e+02]
- [ 1.94604341e-04  3.17155520e-05  1.00000000e+00]]</p>
+<p>[[ 3.06122050e+00  4.39113598e-02 -2.88814588e+03]</p>
+<p>[ 7.34412673e-01 2.59447733e+00 -9.75025092e+02]</p>
+<p>[ 1.17792019e-03 4.44158753e-05 1.00000000e+00]]</p>
+<p>[[ 1.35717752e+00  2.18071555e-02 -6.27664041e+02]</p>
+<p>[ 1.27211584e-01 1.24211746e+00 -1.52353887e+02]</p>
+<p>[ 1.94604341e-04 3.17155520e-05 1.00000000e+00]]</p>
 </blockquote>
 <div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
@@ -9023,12 +9023,12 @@ pixel = \frac{\sum_{i=1}^{t}w_i\cdot f_i}{\sum_{i=1}^{t}w_i}
 <p><img alt="image" src="img/output/mosaic1_feather_bilinear_2.jpg" /></p>
 <blockquote>
 <p><strong><em>Homography Matrix:</em></strong></p>
-<p>[[ 1.30102930e+00  8.18834656e-03 -5.89189943e+02]
- [ 1.10316917e-01  1.19378131e+00 -1.29417538e+02]
- [ 1.67001464e-04  1.10099768e-05  1.00000000e+00]]</p>
-<p>[[ 8.34409707e-01  1.15687740e-02  3.25353039e+02]
- [-6.43627649e-02  9.37872425e-01  3.11531613e+01]
- [-9.49545824e-05  5.08008439e-06  1.00000000e+00]]</p>
+<p>[[ 1.30102930e+00  8.18834656e-03 -5.89189943e+02]</p>
+<p>[ 1.10316917e-01 1.19378131e+00 -1.29417538e+02]</p>
+<p>[ 1.67001464e-04 1.10099768e-05 1.00000000e+00]]</p>
+<p>[[ 8.34409707e-01 1.15687740e-02 3.25353039e+02]</p>
+<p>[-6.43627649e-02 9.37872425e-01 3.11531613e+01]</p>
+<p>[-9.49545824e-05 5.08008439e-06 1.00000000e+00]]</p>
 </blockquote>
 <div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
@@ -9045,12 +9045,12 @@ pixel = \frac{\sum_{i=1}^{t}w_i\cdot f_i}{\sum_{i=1}^{t}w_i}
 <p><img alt="image" src="img/output/mosaic1_feather_bilinear_3.jpg" /></p>
 <blockquote>
 <p><strong><em>Homography Matrix:</em></strong></p>
-<p>[[ 1.60309551e+00  3.36832881e-02 -6.75362213e+02]
- [ 2.67356906e-01  1.30042620e+00 -3.13023101e+02]
- [ 5.60953866e-04  4.16810563e-05  1.00000000e+00]]</p>
-<p>[[ 6.23014666e-01  1.00131026e-03  2.55555207e+02]
- [-1.44890682e-01  8.32506764e-01  8.57408488e+01]
- [-2.75996624e-04 -3.28634124e-06  1.00000000e+00]]</p>
+<p>[[ 1.60309551e+00  3.36832881e-02 -6.75362213e+02]</p>
+<p>[ 2.67356906e-01 1.30042620e+00 -3.13023101e+02]</p>
+<p>[ 5.60953866e-04 4.16810563e-05 1.00000000e+00]]</p>
+<p>[[ 6.23014666e-01  1.00131026e-03  2.55555207e+02]</p>
+<p>[-1.44890682e-01 8.32506764e-01 8.57408488e+01]</p>
+<p>[-2.75996624e-04 -3.28634124e-06 1.00000000e+00]]</p>
 </blockquote>
 <p>Now the edge artifact phenomenon is largely eased under the influence of feathering algorithm. </p>
 
