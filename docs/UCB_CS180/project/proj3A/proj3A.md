@@ -105,6 +105,22 @@ $$
 $$
 So our optimal $h$ can be the last row of $\mathbf{V}$! After that, I can divide all entries with the $h_{33}$. And after assembling them together, we get the homography matrix.
 
+After the class and edstem post in the following week, I realizes that I can set $h_{33}$ to 1 and solve the equations via `np.linalg.lstsq`. So the problem formulation is now as follows, and can be easily solved by the `np.linalg.lstsq`:
+$$
+A = \begin{pmatrix} x \ y \ 1 \ 0 \ 0 \ 0 \ -x \cdot xp \ -y \cdot xp 
+\\ 0 \ 0 \ 0 \ x \ y \ 1 \ -x \cdot yp \ -y \cdot yp \
+\end{pmatrix}
+\\
+h = \begin{pmatrix} h_{11}\\ h_{12}\\ h_{13}\\ h_{21}\\ h_{22}\\ h_{23}\\ h_{31}\\ h_{32}
+\end{pmatrix}
+\\
+b = \begin{pmatrix} xp \\ yp
+\end{pmatrix}
+\\
+h^* = \arg \min_h||Ah-b||_2^2
+$$
+***For the deliverable correspondences visualized on the images and recovered homography matrix, please refer to them in the `Warp the Images`  section below.*** 
+
 ## Warp the Images
 
 Since the homography matrix has been obtained, then to warp the image, I have to first calculate the overall size of the expected image and then calculate the value of pixels using Bilinear or Nearest Neighbor technique. Note that the actual place for the center of the pixel is actually: $(row+0.5, col+0.5)$
@@ -126,6 +142,12 @@ Now I will test the ***Rectification*** Part:  I input a picture, create a blank
             <img src="./img/output/recitification1_neighbor.jpg" style="zoom:60%; height: auto;">
         </figure>
 </div>
+> ***Homography Matrix:***
+>
+>  [[ 5.07951563e-01 -3.32904310e-02  2.15065395e+00]
+>  [-1.95431423e-01  5.91330231e-01  2.49431655e+02]
+>  [-3.02312517e-04 -3.34458470e-05  1.00000000e+00]]
+
 
 <div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
@@ -138,6 +160,11 @@ Now I will test the ***Rectification*** Part:  I input a picture, create a blank
             <img src="./img/output/recitification2_neighbor.jpg" style="zoom:60%; height: auto;">
         </figure>
 </div>
+> ***Homography Matrix:*** 
+>
+>  [[ 5.04835194e-01 -3.73939833e-02  1.16087680e+01]
+>  [-1.81158560e-01  5.83232691e-01  2.45054643e+02]
+>  [-2.86528153e-04 -4.52234239e-05  1.00000000e+00]]
 
 Here we can see that for the sign and picture with obvious rectangle frame in the real world, ***I successfully reshape them into the real rectangle in the warped figure, and the warped figure is correct.*** As for the comparison between Bilinear and NearestNeighbor, I zoom in the 'elevator man and woman part' in the first picture gallery and get the following result:
 
@@ -222,6 +249,16 @@ $$
 
 ![image](img/output/mosaic1_feather_bilinear_1.jpg)
 
+> ***Homography Matrix:***
+>
+>  [[ 3.06122050e+00  4.39113598e-02 -2.88814588e+03]
+>  [ 7.34412673e-01  2.59447733e+00 -9.75025092e+02]
+>  [ 1.17792019e-03  4.44158753e-05  1.00000000e+00]]
+>
+>  [[ 1.35717752e+00  2.18071555e-02 -6.27664041e+02]
+>  [ 1.27211584e-01  1.24211746e+00 -1.52353887e+02]
+>  [ 1.94604341e-04  3.17155520e-05  1.00000000e+00]]
+
 <div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
             <img src="./img/input/fig2_1.jpg" style="zoom:60%; height: auto;">
@@ -236,6 +273,16 @@ $$
 
 ![image](img/output/mosaic1_feather_bilinear_2.jpg)
 
+> ***Homography Matrix:***
+>
+>  [[ 1.30102930e+00  8.18834656e-03 -5.89189943e+02]
+>  [ 1.10316917e-01  1.19378131e+00 -1.29417538e+02]
+>  [ 1.67001464e-04  1.10099768e-05  1.00000000e+00]]
+>
+>  [[ 8.34409707e-01  1.15687740e-02  3.25353039e+02]
+>  [-6.43627649e-02  9.37872425e-01  3.11531613e+01]
+>  [-9.49545824e-05  5.08008439e-06  1.00000000e+00]]
+
 <div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
             <img src="./img/input/fig3_1.jpg" style="zoom:48%; height: auto;">
@@ -249,5 +296,15 @@ $$
 </div>
 
 ![image](img/output/mosaic1_feather_bilinear_3.jpg)
+
+> ***Homography Matrix:***
+>
+>  [[ 1.60309551e+00  3.36832881e-02 -6.75362213e+02]
+>  [ 2.67356906e-01  1.30042620e+00 -3.13023101e+02]
+>  [ 5.60953866e-04  4.16810563e-05  1.00000000e+00]]
+>
+>  [[ 6.23014666e-01  1.00131026e-03  2.55555207e+02]
+>  [-1.44890682e-01  8.32506764e-01  8.57408488e+01]
+>  [-2.75996624e-04 -3.28634124e-06  1.00000000e+00]]
 
 Now the edge artifact phenomenon is largely eased under the influence of feathering algorithm. 
