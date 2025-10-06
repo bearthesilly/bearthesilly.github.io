@@ -8869,6 +8869,21 @@ Note that <span class="arithmatex">\(\mathbf{S}\)</span> is a matrix consisting 
 \end{pmatrix}
 </script>
 So our optimal <span class="arithmatex">\(h\)</span> can be the last row of <span class="arithmatex">\(\mathbf{V}\)</span>! After that, I can divide all entries with the <span class="arithmatex">\(h_{33}\)</span>. And after assembling them together, we get the homography matrix.</p>
+<p>After the class and edstem post in the following week, I realizes that I can set <span class="arithmatex">\(h_{33}\)</span> to 1 and solve the equations via <code>np.linalg.lstsq</code>. So the problem formulation is now as follows, and can be easily solved by the <code>np.linalg.lstsq</code>:
+<script type="math/tex; mode=display">
+A = \begin{pmatrix} x \ y \ 1 \ 0 \ 0 \ 0 \ -x \cdot xp \ -y \cdot xp 
+\\ 0 \ 0 \ 0 \ x \ y \ 1 \ -x \cdot yp \ -y \cdot yp \
+\end{pmatrix}
+\\
+h = \begin{pmatrix} h_{11}\\ h_{12}\\ h_{13}\\ h_{21}\\ h_{22}\\ h_{23}\\ h_{31}\\ h_{32}
+\end{pmatrix}
+\\
+b = \begin{pmatrix} xp \\ yp
+\end{pmatrix}
+\\
+h^* = \arg \min_h||Ah-b||_2^2
+</script>
+<strong><em>For the deliverable correspondences visualized on the images and recovered homography matrix, please refer to them in the <code>Warp the Images</code>  section below.</em></strong> </p>
 <h2 id="warp-the-images">Warp the Images</h2>
 <p>Since the homography matrix has been obtained, then to warp the image, I have to first calculate the overall size of the expected image and then calculate the value of pixels using Bilinear or Nearest Neighbor technique. Note that the actual place for the center of the pixel is actually: <span class="arithmatex">\((row+0.5, col+0.5)\)</span></p>
 <p>After calculating the overall size of the expected image, this overall shape actually undergoes two stage from the picture that is going to be warped: first warp, and then translate. The translation can be cause when there are negative warped pixel positions. The overall area will be applied the inverse of <span class="arithmatex">\(Translation * H\)</span>, and source from the warped original picture with Bilinear or Nearest Neighbor technique taught in the lecture. </p>
@@ -8887,7 +8902,12 @@ So our optimal <span class="arithmatex">\(h\)</span> can be the last row of <spa
             <img src="./img/output/recitification1_neighbor.jpg" style="zoom:60%; height: auto;">
         </figure>
 </div>
-
+<blockquote>
+<p><strong><em>Homography Matrix:</em></strong></p>
+<p>[[ 5.07951563e-01 -3.32904310e-02  2.15065395e+00]
+ [-1.95431423e-01  5.91330231e-01  2.49431655e+02]
+ [-3.02312517e-04 -3.34458470e-05  1.00000000e+00]]</p>
+</blockquote>
 <div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
             <img src="./img/input/fig2.jpg" style="zoom:70%; height: auto;">
@@ -8899,7 +8919,12 @@ So our optimal <span class="arithmatex">\(h\)</span> can be the last row of <spa
             <img src="./img/output/recitification2_neighbor.jpg" style="zoom:60%; height: auto;">
         </figure>
 </div>
-
+<blockquote>
+<p><strong><em>Homography Matrix:</em></strong> </p>
+<p>[[ 5.04835194e-01 -3.73939833e-02  1.16087680e+01]
+ [-1.81158560e-01  5.83232691e-01  2.45054643e+02]
+ [-2.86528153e-04 -4.52234239e-05  1.00000000e+00]]</p>
+</blockquote>
 <p>Here we can see that for the sign and picture with obvious rectangle frame in the real world, <strong><em>I successfully reshape them into the real rectangle in the warped figure, and the warped figure is correct.</em></strong> As for the comparison between Bilinear and NearestNeighbor, I zoom in the 'elevator man and woman part' in the first picture gallery and get the following result:</p>
 <blockquote>
 <p>Left: Bilinear; Right: NearestNeighbor</p>
@@ -8974,6 +8999,15 @@ pixel = \frac{\sum_{i=1}^{t}w_i\cdot f_i}{\sum_{i=1}^{t}w_i}
 </div>
 
 <p><img alt="image" src="img/output/mosaic1_feather_bilinear_1.jpg" /></p>
+<blockquote>
+<p><strong><em>Homography Matrix:</em></strong></p>
+<p>[[ 3.06122050e+00  4.39113598e-02 -2.88814588e+03]
+ [ 7.34412673e-01  2.59447733e+00 -9.75025092e+02]
+ [ 1.17792019e-03  4.44158753e-05  1.00000000e+00]]</p>
+<p>[[ 1.35717752e+00  2.18071555e-02 -6.27664041e+02]
+ [ 1.27211584e-01  1.24211746e+00 -1.52353887e+02]
+ [ 1.94604341e-04  3.17155520e-05  1.00000000e+00]]</p>
+</blockquote>
 <div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
             <img src="./img/input/fig2_1.jpg" style="zoom:60%; height: auto;">
@@ -8987,6 +9021,15 @@ pixel = \frac{\sum_{i=1}^{t}w_i\cdot f_i}{\sum_{i=1}^{t}w_i}
 </div>
 
 <p><img alt="image" src="img/output/mosaic1_feather_bilinear_2.jpg" /></p>
+<blockquote>
+<p><strong><em>Homography Matrix:</em></strong></p>
+<p>[[ 1.30102930e+00  8.18834656e-03 -5.89189943e+02]
+ [ 1.10316917e-01  1.19378131e+00 -1.29417538e+02]
+ [ 1.67001464e-04  1.10099768e-05  1.00000000e+00]]</p>
+<p>[[ 8.34409707e-01  1.15687740e-02  3.25353039e+02]
+ [-6.43627649e-02  9.37872425e-01  3.11531613e+01]
+ [-9.49545824e-05  5.08008439e-06  1.00000000e+00]]</p>
+</blockquote>
 <div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
             <img src="./img/input/fig3_1.jpg" style="zoom:48%; height: auto;">
@@ -9000,6 +9043,15 @@ pixel = \frac{\sum_{i=1}^{t}w_i\cdot f_i}{\sum_{i=1}^{t}w_i}
 </div>
 
 <p><img alt="image" src="img/output/mosaic1_feather_bilinear_3.jpg" /></p>
+<blockquote>
+<p><strong><em>Homography Matrix:</em></strong></p>
+<p>[[ 1.60309551e+00  3.36832881e-02 -6.75362213e+02]
+ [ 2.67356906e-01  1.30042620e+00 -3.13023101e+02]
+ [ 5.60953866e-04  4.16810563e-05  1.00000000e+00]]</p>
+<p>[[ 6.23014666e-01  1.00131026e-03  2.55555207e+02]
+ [-1.44890682e-01  8.32506764e-01  8.57408488e+01]
+ [-2.75996624e-04 -3.28634124e-06  1.00000000e+00]]</p>
+</blockquote>
 <p>Now the edge artifact phenomenon is largely eased under the influence of feathering algorithm. </p>
 
 
