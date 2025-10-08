@@ -191,45 +191,50 @@ Now I have the warped images and the overall size of resulting image. Since I've
 
 Originally I try the simplest blend: for the overlap section, take the average of them. For example, for pixels that are covered by 2 images, then I simply take the average of the value of these two figures. The result picture gallery is as below:
 
+> **The correspondence points are marked in the figures. Red Points: Left two pictures; Purple Points: Right two pictures**
+
 <div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
-            <img src="./img/input/fig1_1.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig1_1.jpg" style="zoom:60%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/input/fig1_2.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig1_2.jpg" style="zoom:60%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/input/fig1_3.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig1_3.jpg" style="zoom:60%; height: auto;">
         </figure>
 </div>
+
 
 ![image](img/output/mosaic1_no_feather_bilinear_1.jpg)
 
 <div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
-            <img src="./img/input/fig2_1.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig2_1.jpg" style="zoom:60%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/input/fig2_2.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig2_2.jpg" style="zoom:60%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/input/fig2_3.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig2_3.jpg" style="zoom:60%; height: auto;">
         </figure>
 </div>
+
 
 ![image](img/output/mosaic1_no_feather_bilinear_2.jpg)
 
 <div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
-            <img src="./img/input/fig3_1.jpg" style="zoom:48%; height: auto;">
+            <img src="./img/marked_input/fig3_1.jpg" style="zoom:48%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/input/fig3_2.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig3_2.jpg" style="zoom:60%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/input/fig3_3.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig3_3.jpg" style="zoom:60%; height: auto;">
         </figure>
 </div>
+
 
 ![image](img/output/mosaic1_no_feather_bilinear_3.jpg)
 
@@ -239,17 +244,20 @@ pixel = \frac{\sum_{i=1}^{t}w_i\cdot f_i}{\sum_{i=1}^{t}w_i}
 $$
  Of course, if a pixel is not covered by any figure, then its value is set to 0. The pictures gallery of the feather algorithm is as follows:
 
+> **For the two Homography Matrix listed: The upper one: Left two pictures; The lower one: Right two pictures**
+
 <div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
-            <img src="./img/input/fig1_1.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig1_1.jpg" style="zoom:60%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/input/fig1_2.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig1_2.jpg" style="zoom:60%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/input/fig1_3.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig1_3.jpg" style="zoom:60%; height: auto;">
         </figure>
 </div>
+
 
 ![image](img/output/mosaic1_feather_bilinear_1.jpg)
 
@@ -269,15 +277,16 @@ $$
 
 <div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
-            <img src="./img/input/fig2_1.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig2_1.jpg" style="zoom:60%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/input/fig2_2.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig2_2.jpg" style="zoom:60%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/input/fig2_3.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig2_3.jpg" style="zoom:60%; height: auto;">
         </figure>
 </div>
+
 
 ![image](img/output/mosaic1_feather_bilinear_2.jpg)
 
@@ -297,15 +306,16 @@ $$
 
 <div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
-            <img src="./img/input/fig3_1.jpg" style="zoom:48%; height: auto;">
+            <img src="./img/marked_input/fig3_1.jpg" style="zoom:48%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/input/fig3_2.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig3_2.jpg" style="zoom:60%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/input/fig3_3.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig3_3.jpg" style="zoom:60%; height: auto;">
         </figure>
 </div>
+
 
 ![image](img/output/mosaic1_feather_bilinear_3.jpg)
 

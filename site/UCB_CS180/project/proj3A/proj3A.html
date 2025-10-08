@@ -8942,41 +8942,44 @@ h^* = \arg \min_h||Ah-b||_2^2
 <h2 id="blend-the-images-into-a-mosaic">Blend the Images into a Mosaic</h2>
 <p>Now I have the warped images and the overall size of resulting image. Since I've considered the <strong><em>translation issue</em></strong> in <strong><em>Recover Homography</em></strong> section, now all the warped images are in the right place. Note that the unwarped image (which is the middle one of the three pictures) will be translated as well to move to the right place. And I can get the overall 'panorama canvas' shape. I will create a pure black (zero-value) overall canvas, and put three warped and translated figures on that. </p>
 <p>Originally I try the simplest blend: for the overlap section, take the average of them. For example, for pixels that are covered by 2 images, then I simply take the average of the value of these two figures. The result picture gallery is as below:</p>
+<blockquote>
+<p><strong>The correspondence points are marked in the figures. Red Points: Left two pictures; Purple Points: Right two pictures</strong></p>
+</blockquote>
 <div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
-            <img src="./img/input/fig1_1.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig1_1.jpg" style="zoom:60%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/input/fig1_2.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig1_2.jpg" style="zoom:60%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/input/fig1_3.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig1_3.jpg" style="zoom:60%; height: auto;">
         </figure>
 </div>
 
 <p><img alt="image" src="img/output/mosaic1_no_feather_bilinear_1.jpg" /></p>
 <div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
-            <img src="./img/input/fig2_1.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig2_1.jpg" style="zoom:60%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/input/fig2_2.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig2_2.jpg" style="zoom:60%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/input/fig2_3.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig2_3.jpg" style="zoom:60%; height: auto;">
         </figure>
 </div>
 
 <p><img alt="image" src="img/output/mosaic1_no_feather_bilinear_2.jpg" /></p>
 <div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
-            <img src="./img/input/fig3_1.jpg" style="zoom:48%; height: auto;">
+            <img src="./img/marked_input/fig3_1.jpg" style="zoom:48%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/input/fig3_2.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig3_2.jpg" style="zoom:60%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/input/fig3_3.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig3_3.jpg" style="zoom:60%; height: auto;">
         </figure>
 </div>
 
@@ -8986,15 +8989,18 @@ h^* = \arg \min_h||Ah-b||_2^2
 pixel = \frac{\sum_{i=1}^{t}w_i\cdot f_i}{\sum_{i=1}^{t}w_i}
 </script>
  Of course, if a pixel is not covered by any figure, then its value is set to 0. The pictures gallery of the feather algorithm is as follows:</p>
+<blockquote>
+<p><strong>For the two Homography Matrix listed: The upper one: Left two pictures; The lower one: Right two pictures</strong></p>
+</blockquote>
 <div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
-            <img src="./img/input/fig1_1.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig1_1.jpg" style="zoom:60%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/input/fig1_2.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig1_2.jpg" style="zoom:60%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/input/fig1_3.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig1_3.jpg" style="zoom:60%; height: auto;">
         </figure>
 </div>
 
@@ -9010,13 +9016,13 @@ pixel = \frac{\sum_{i=1}^{t}w_i\cdot f_i}{\sum_{i=1}^{t}w_i}
 </blockquote>
 <div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
-            <img src="./img/input/fig2_1.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig2_1.jpg" style="zoom:60%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/input/fig2_2.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig2_2.jpg" style="zoom:60%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/input/fig2_3.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig2_3.jpg" style="zoom:60%; height: auto;">
         </figure>
 </div>
 
@@ -9032,13 +9038,13 @@ pixel = \frac{\sum_{i=1}^{t}w_i\cdot f_i}{\sum_{i=1}^{t}w_i}
 </blockquote>
 <div style="display: flex; justify-content: space-around; align-items: center;">
         <figure>
-            <img src="./img/input/fig3_1.jpg" style="zoom:48%; height: auto;">
+            <img src="./img/marked_input/fig3_1.jpg" style="zoom:48%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/input/fig3_2.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig3_2.jpg" style="zoom:60%; height: auto;">
         </figure>
              <figure>
-            <img src="./img/input/fig3_3.jpg" style="zoom:60%; height: auto;">
+            <img src="./img/marked_input/fig3_3.jpg" style="zoom:60%; height: auto;">
         </figure>
 </div>
 
