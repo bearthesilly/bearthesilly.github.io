@@ -20,7 +20,7 @@
     
     
       
-        <title>Proj 3A - csrookie's website</title>
+        <title>Proj 3 - csrookie's website</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#proj-3a-image-warping-and-mosaicing" class="md-skip">
+        <a href="#proj-3-image-warping-and-mosaicing" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Proj 3A
+              Proj 3
             
           </span>
         </div>
@@ -6311,18 +6311,18 @@
           
   
   <span class="md-ellipsis">
-    Proj 3A
+    Proj 3
   </span>
   
 
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="proj3A.html" class="md-nav__link md-nav__link--active">
+      <a href="proj3.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Proj 3A
+    Proj 3
   </span>
   
 
@@ -6344,6 +6344,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#proj-3a-manual-point-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proj 3A: Manual Point Selection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Proj 3A: Manual Point Selection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#shoot-the-pictures-select-points" class="md-nav__link">
     <span class="md-ellipsis">
       Shoot the Pictures &amp; Select Points
@@ -6351,8 +6361,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#recover-homographies" class="md-nav__link">
     <span class="md-ellipsis">
       Recover Homographies
@@ -6360,8 +6370,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#warp-the-images" class="md-nav__link">
     <span class="md-ellipsis">
       Warp the Images
@@ -6369,13 +6379,78 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#blend-the-images-into-a-mosaic" class="md-nav__link">
     <span class="md-ellipsis">
       Blend the Images into a Mosaic
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-3b-auto-point-selection-and-stitching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 3B: Auto Point Selection and Stitching
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 3B: Auto Point Selection and Stitching">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#harris-corner-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Harris Corner Detection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-descriptor-extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Descriptor Extraction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-matching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Matching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ransac-for-robust-homography" class="md-nav__link">
+    <span class="md-ellipsis">
+      RANSAC for Robust Homography
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#some-observations-and-thoughts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Some observations and thoughts
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -8719,6 +8794,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#proj-3a-manual-point-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proj 3A: Manual Point Selection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Proj 3A: Manual Point Selection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#shoot-the-pictures-select-points" class="md-nav__link">
     <span class="md-ellipsis">
       Shoot the Pictures &amp; Select Points
@@ -8726,8 +8811,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#recover-homographies" class="md-nav__link">
     <span class="md-ellipsis">
       Recover Homographies
@@ -8735,8 +8820,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#warp-the-images" class="md-nav__link">
     <span class="md-ellipsis">
       Warp the Images
@@ -8744,13 +8829,78 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#blend-the-images-into-a-mosaic" class="md-nav__link">
     <span class="md-ellipsis">
       Blend the Images into a Mosaic
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-3b-auto-point-selection-and-stitching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 3B: Auto Point Selection and Stitching
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 3B: Auto Point Selection and Stitching">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#harris-corner-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Harris Corner Detection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-descriptor-extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Descriptor Extraction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-matching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Matching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ransac-for-robust-homography" class="md-nav__link">
+    <span class="md-ellipsis">
+      RANSAC for Robust Homography
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#some-observations-and-thoughts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Some observations and thoughts
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -8769,8 +8919,9 @@
                   
 
 
-<h1 id="proj-3a-image-warping-and-mosaicing">Proj 3A - IMAGE WARPING and MOSAICING</h1>
-<h2 id="shoot-the-pictures-select-points">Shoot the Pictures &amp; Select Points</h2>
+<h1 id="proj-3-image-warping-and-mosaicing">Proj 3 - IMAGE WARPING and MOSAICING</h1>
+<h2 id="proj-3a-manual-point-selection">Proj 3A: Manual Point Selection</h2>
+<h3 id="shoot-the-pictures-select-points">Shoot the Pictures &amp; Select Points</h3>
 <p>As we learn from the lecture, one key part of warping is that we need a set of points as evidence for the Homography matrix. In my code implementation, I use <code>plt.ginput</code> function to select sets of points who have corresponding orders.</p>
 <p>In my final implementation, I can stitch three pictures together. I shoot the photos following the requirement of <strong><em>fixing center of projection and rotate the camera only</em></strong>. They are as follows:</p>
 <div style="display: flex; justify-content: space-around; align-items: center;">
@@ -8808,8 +8959,7 @@
             <img src="./img/input/fig3_3.jpg" style="zoom:60%; height: auto;">
         </figure>
 </div>
-
-<h2 id="recover-homographies">Recover Homographies</h2>
+<h3 id="recover-homographies">Recover Homographies</h3>
 <p>With the points obtained, my first thought is to use the optimization technique (machine learning method):
 <script type="math/tex; mode=display">
 H* = \arg \min_H \|p_1 - p_2\times H\|_2^2
@@ -8884,7 +9034,7 @@ b = \begin{pmatrix} xp \\ yp
 h^* = \arg \min_h||Ah-b||_2^2
 </script>
 <strong><em>For the deliverable correspondences visualized on the images and recovered homography matrix, please refer to them in the <code>Warp the Images</code>  section below.</em></strong> </p>
-<h2 id="warp-the-images">Warp the Images</h2>
+<h3 id="warp-the-images">Warp the Images</h3>
 <p>Since the homography matrix has been obtained, then to warp the image, I have to first calculate the overall size of the expected image and then calculate the value of pixels using Bilinear or Nearest Neighbor technique. Note that the actual place for the center of the pixel is actually: <span class="arithmatex">\((row+0.5, col+0.5)\)</span></p>
 <p>After calculating the overall size of the expected image, this overall shape actually undergoes two stage from the picture that is going to be warped: first warp, and then translate. The translation can be cause when there are negative warped pixel positions. The overall area will be applied the inverse of <span class="arithmatex">\(Translation * H\)</span>, and source from the warped original picture with Bilinear or Nearest Neighbor technique taught in the lecture. </p>
 <p>Now I will test the <strong><em>Rectification</em></strong> Part:  I input a picture, create a blank rectangle with the same size, and pick rectangle points to align. (In another word, I replace the picture to be stitched as a blank one, to demonstrate that my warping is safe and sound. This is helpful for sanity check and debugging). The results are as follows:</p>
@@ -8939,7 +9089,7 @@ h^* = \arg \min_h||Ah-b||_2^2
 </div>
 
 <p><strong><em>We can tell that Bilinear is better in figure quality as NearestNeighbor has notable aliasing phenomenon. At the same time, Bilinear costs slightly more time.</em></strong> </p>
-<h2 id="blend-the-images-into-a-mosaic">Blend the Images into a Mosaic</h2>
+<h3 id="blend-the-images-into-a-mosaic">Blend the Images into a Mosaic</h3>
 <p>Now I have the warped images and the overall size of resulting image. Since I've considered the <strong><em>translation issue</em></strong> in <strong><em>Recover Homography</em></strong> section, now all the warped images are in the right place. Note that the unwarped image (which is the middle one of the three pictures) will be translated as well to move to the right place. And I can get the overall 'panorama canvas' shape. I will create a pure black (zero-value) overall canvas, and put three warped and translated figures on that. </p>
 <p>Originally I try the simplest blend: for the overlap section, take the average of them. For example, for pixels that are covered by 2 images, then I simply take the average of the value of these two figures. The result picture gallery is as below:</p>
 <blockquote>
@@ -9059,6 +9209,118 @@ pixel = \frac{\sum_{i=1}^{t}w_i\cdot f_i}{\sum_{i=1}^{t}w_i}
 <p>[-2.75996624e-04 -3.28634124e-06 1.00000000e+00]]</p>
 </blockquote>
 <p>Now the edge artifact phenomenon is largely eased under the influence of feathering algorithm. </p>
+<h2 id="part-3b-auto-point-selection-and-stitching">Part 3B: Auto Point Selection and Stitching</h2>
+<h3 id="harris-corner-detection">Harris Corner Detection</h3>
+<p>The basic idea: We should easily recognize the point by looking through a small window Shifting a window in any direction should give a large change in intensity. That's why we want to use harris corner as feature.</p>
+<p>After getting the Harris Corners, it is desirable to restrict the maximum number of interest points extracted from each image. At the same time, it is important that interest points are spatially well distributed over the image, since for image stitching applications, the area of overlap between a pair of images may be small. To satisfy these requirements, we have developed a novel adaptive non-maximal suppression (ANMS) strategy to select a fixed number of interest points from each image. [1]</p>
+<p>According to the paper, the minimum suppression radius <span class="arithmatex">\(r_i\)</span> is given by:
+<script type="math/tex; mode=display">
+r_i=\min_j|\mathbf{x}_i - \mathbf{x}_j|, s.t.\ f(\mathbf{x}_i)<c_{robust}f(\mathbf{x}_j)
+</script>
+We select the <span class="arithmatex">\(n_{ip} = 500\)</span> interest points with the largest values of <span class="arithmatex">\(r_i\)</span>. [1]</p>
+<p>Also, I've noticed that there can be harris corner points who contain little texture, which can be disturbing especially for pictures with rather proportion of plain texture. So I add a filter to discard harris corners whose surrounding texture is not rich enough (i.e., surrounding patch's std should be greater than a threshold). [2] According to my naive experiment, this can be helpful. </p>
+<p>The deliverable visualization of example (before and after ANMS) is presented below:</p>
+<p><img alt="image" src="img/figure/corners_visualization.jpg" /></p>
+<blockquote>
+<p>[1] <a href="https://cal-cs180.github.io/fa25/hw/proj3/Papers/MOPS.pdf">“Multi-Image Matching using Multi-Scale Oriented Patches” by Brown et al.</a></p>
+<p>[2] This solution is inspired by Gemini 2.5 Pro.</p>
+</blockquote>
+<h3 id="feature-descriptor-extraction">Feature Descriptor Extraction</h3>
+<p>We use descriptor feature to match the harris corner points in the previous step [3]. I use the same setting in the slide. For every point of interest, I take a square frame with length of 40 and downsample it to 8<span class="arithmatex">\(\times\)</span>8, blur it with Gaussian, and then do bias normalization to it. </p>
+<blockquote>
+<p>[3] [Brown, Szeliski, Winder, CVPR’2005]</p>
+</blockquote>
+<p>The example descriptors visualization is as below:</p>
+<p><img src="img/figure/descriptors_visualization.jpg" alt="image" style="zoom: 33%;" /></p>
+<h3 id="feature-matching">Feature Matching</h3>
+<p>The matching metric is evaluated, in this implementation, as suggested in <code>harris.py</code>, via Euclidean Distance. Two corners with smaller Euclidean Distance will be considered to match each other more. </p>
+<p>Lowe’s trick is also applied to enhance robustness. Lowe’s technique works by assuming that the 1-NN in some image is a potential correct match, whilst the 2-NN in that same image is an incorrect match. In fact, we have observed that the distance in feature space of the 2-NN and subsequent matches is almost constant. [1]</p>
+<blockquote>
+<p>[1] <a href="https://cal-cs180.github.io/fa25/hw/proj3/Papers/MOPS.pdf">“Multi-Image Matching using Multi-Scale Oriented Patches” by Brown et al.</a></p>
+</blockquote>
+<p>Visualization example of matched features between image pairs is as below:</p>
+<p><img alt="image" src="img/figure/feature_matches.jpg" /></p>
+<h3 id="ransac-for-robust-homography">RANSAC for Robust Homography</h3>
+<p>RANSAC loop [4]: </p>
+<ol>
+<li>Select four feature pairs (at random) </li>
+<li>Compute homography H (exact) </li>
+<li>Compute inliers where  <span class="arithmatex">\(dist(pi’, H pi ) &lt; ε\)</span></li>
+<li>Keep largest set of inliers </li>
+<li>Re-compute least-squares H estimate on all of the inliers</li>
+</ol>
+<blockquote>
+<p>[4] CS180 slides: feature-alignmentPart2.pdf</p>
+</blockquote>
+<p>OK, now it is all set. The pictures gallery is as follows:</p>
+<p>Raw Images:</p>
+<div style="display: flex; justify-content: space-around; align-items: center;">
+        <figure>
+            <img src="./img/input/1.jpg" style="zoom:60%; height: auto;">
+        </figure>
+             <figure>
+            <img src="./img/input/2.jpg" style="zoom:60%; height: auto;">
+        </figure>
+</div>
+
+<div style="display: flex; justify-content: space-around; align-items: center;">
+        <figure>
+            <img src="./img/input/3.jpg" style="zoom:60%; height: auto;">
+        </figure>
+             <figure>
+            <img src="./img/input/4.jpg" style="zoom:48%; height: auto;">
+        </figure>
+</div>
+
+<div style="display: flex; justify-content: space-around; align-items: center;">
+        <figure>
+            <img src="./img/input/5.jpg" style="zoom:60%; height: auto;">
+        </figure>
+             <figure>
+            <img src="./img/input/6.jpg" style="zoom:60%; height: auto;">
+        </figure>
+</div>
+
+<p><strong><em>AutoStitching v.s. Manual Stitching:</em></strong></p>
+<div style="display: flex; justify-content: space-around; align-items: center;">
+        <figure>
+            <img src="./img/output/mosaic_feather_auto_1.jpg" style="zoom:60%; height: auto;">
+        </figure>
+             <figure>
+            <img src="./img/output/mosaic_feather_manual_1.jpg" style="zoom:60%; height: auto;">
+        </figure>
+</div>
+
+<div style="display: flex; justify-content: space-around; align-items: center;">
+        <figure>
+            <img src="./img/output/mosaic_feather_auto_2.jpg" style="zoom:60%; height: auto;">
+        </figure>
+             <figure>
+            <img src="./img/output/mosaic_feather_manual_2.jpg" style="zoom:60%; height: auto;">
+        </figure>
+</div>
+
+<div style="display: flex; justify-content: space-around; align-items: center;">
+        <figure>
+            <img src="./img/output/mosaic_feather_auto_3.jpg" style="zoom:60%; height: auto;">
+        </figure>
+</div>
+
+<div style="display: flex; justify-content: space-around; align-items: center;">
+        <figure>
+            <img src="./img/output/mosaic_feather_manual_3.jpg" style="zoom:60%; height: auto;">
+        </figure>
+</div>
+
+<h3 id="some-observations-and-thoughts">Some observations and thoughts</h3>
+<p>I switched my images compared to part3A. Through some naive experiments, I noticed that:</p>
+<ul>
+<li>The images with rather proportion of plain area (with little texture) can suffer from mismatch</li>
+<li>A picture with suitable white balance (like avoid Highlights in image) can be better</li>
+<li>Avoid symmetric object in the building (at least in the figure)</li>
+</ul>
+<p>For the first and second point, I guess that plain areas can be confusing for the algorithm. A picture with rich texture can have more rich descriptors. Though the filter and lowe's trick is designed to deal with them, it is better to ease this phenomenon. For the third point, it is possible (though with very low probability) that two symmetric point in the two figures can have the satisfying matches (four combinations), bringing confusion to the algorithm. </p>
+<p>For the reasons above and experiments, I changed the images used in part3B. </p>
 
 
 
