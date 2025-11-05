@@ -300,13 +300,10 @@ nav:
         - Proj 1: UCB_CS180/project/proj1/proj1.md
         - Proj 2: UCB_CS180/project/proj2/proj2.md
         - Proj 3: UCB_CS180/project/proj3/proj3.md
+      - Midterm_Review: UCB_CS180/midterm_review.pdf
     - Natural Languange Processing (UCB EECS183):
-      - lec2_tasks_data_evaluation: UCB_EECS183/lec2_tasks_data_evaluation.md
-      - lec3_linguistics: UCB_EECS183/lec3_linguistics.md
-      - lec4_syntax: UCB_EECS183/lec4_syntax.md
-      - lec5_compositional_semantics: UCB_EECS183/lec5_compositional_semantics.md
-      - lec5_interaction: UCB_EECS183/lec5_interaction.md
-
+      - Midterm_Review: UCB_EECS183/mid-review.pdf
+      - Midterm_Cheatsheet: UCB_EECS183/cheatsheet_mid.pdf
   - Course (General Education):
     - 普通物理:
       - 写在最前面: 普通物理/写在最前面.md
