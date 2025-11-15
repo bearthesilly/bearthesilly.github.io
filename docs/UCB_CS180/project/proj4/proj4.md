@@ -129,6 +129,15 @@ The whole experiment is run with a GeForceRTX2080Ti.
             <img src="./material/lego_ray.png" style="zoom:100%; height: auto;">
         </figure>
 </div>
+<div style="display: flex; justify-content: space-around; align-items: center;">
+        <figure>
+            <img src="./material/android_frustum_ray.png" style="zoom:100%; height: auto;">
+        </figure>
+             <figure>
+            <img src="./material/android_ray.png" style="zoom:100%; height: auto;">
+        </figure>
+</div>
+
 
 ***Deliverable: Training progression visualization with predicted images across iterations***
 
