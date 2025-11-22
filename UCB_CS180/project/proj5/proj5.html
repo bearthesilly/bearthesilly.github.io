@@ -6484,6 +6484,57 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="1.7 Image-to-image Translation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#171-editing-hand-drawn-and-web-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.7.1 Editing Hand Drawn and Web Images
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#172-inpainting" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.7.2 Inpainting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#173-text-conditional-image-to-image-translation" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.7.3: Text Conditional Image to Image Translation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-visual-anagrams" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.8 Visual Anagrams
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-hybrid-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.9 Hybrid Images
+    </span>
+  </a>
+  
 </li>
         
       </ul>
@@ -8892,6 +8943,57 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="1.7 Image-to-image Translation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#171-editing-hand-drawn-and-web-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.7.1 Editing Hand Drawn and Web Images
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#172-inpainting" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.7.2 Inpainting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#173-text-conditional-image-to-image-translation" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.7.3: Text Conditional Image to Image Translation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-visual-anagrams" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.8 Visual Anagrams
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-hybrid-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.9 Hybrid Images
+    </span>
+  </a>
+  
 </li>
         
       </ul>
@@ -9161,114 +9263,81 @@ where <span class="arithmatex">\(\mathbf{\gamma}=7\)</span> controls the strengt
             <figcaption>
                 ShanghaiTech
             </figcaption>
+ </div>
 
-![image](material/part1/1_7-1.png)
-
-![image](material/part1/1_7-2.png)
-
-![image](material/part1/1_7-3.png)
-
-#####  1.7.1 Editing Hand Drawn and Web Images
-
-This procedure works particularly well if we start with a nonrealistic image (e.g. painting, a sketch, some scribbles) and project it onto the natural image manifold.
-
-Please experiment by starting with hand-drawn or other non-realistic images and see how you can get them onto the natural image manifold in fun ways.
-
-**Deliverables**:
-
-![image](material/part1/1_7_1-1.png)
-
-![image](material/part1/1_7_1-2.png)
-
-<img src="material/part1/1_7_1-3.png" alt="image" style="zoom:150%;" />
-
-##### 1.7.2 Inpainting
-
-We can use the same procedure to implement inpainting (following the [RePaint](https://arxiv.org/abs/2201.09865) paper). The formula is as follows:
-$$
+<p><img alt="image" src="material/part1/1_7-1.png" /></p>
+<p><img alt="image" src="material/part1/1_7-2.png" /></p>
+<p><img alt="image" src="material/part1/1_7-3.png" /></p>
+<h5 id="171-editing-hand-drawn-and-web-images">1.7.1 Editing Hand Drawn and Web Images</h5>
+<p>This procedure works particularly well if we start with a nonrealistic image (e.g. painting, a sketch, some scribbles) and project it onto the natural image manifold.</p>
+<p>Please experiment by starting with hand-drawn or other non-realistic images and see how you can get them onto the natural image manifold in fun ways.</p>
+<p><strong>Deliverables</strong>:</p>
+<p><img alt="image" src="material/part1/1_7_1-1.png" /></p>
+<p><img alt="image" src="material/part1/1_7_1-2.png" /></p>
+<p><img src="material/part1/1_7_1-3.png" alt="image" style="zoom:150%;" /></p>
+<h5 id="172-inpainting">1.7.2 Inpainting</h5>
+<p>We can use the same procedure to implement inpainting (following the <a href="https://arxiv.org/abs/2201.09865">RePaint</a> paper). The formula is as follows:
+<script type="math/tex; mode=display">
 \mathbf{x}_t \leftarrow \mathbf{m}\mathbf{x}_t + (1 - \mathbf{m})\text{forward}(\mathbf{x}_{\text{orig}}, t)
-$$
-Essentially, we leave everything inside the edit mask alone, but we replace everything outside the edit mask with our original image -- with the correct amount of noise added for timestep $\mathbf{t}$.
-
-**Deliverables**:
-
-![image](material/part1/1_7_2-1.png)
-
-![image](material/part1/1_7_2-2.png)
-
-![image](material/part1/1_7_2-4.png)![image](material/part1/1_7_2-3.png)
-
-##### 1.7.3: Text Conditional Image to Image Translation
-
-Now, we will do the same thing as SDEdit, but guide the projection with a text prompt. This is no longer pure "projection to the natural image manifold" but also adds control using language. This is simply a matter of changing the prompt from `"a high quality photo"` to any of your prompt!
-
-**Deliverables**:
-
-![image](material/part1/1_7_3-1.png)
-
-> "a rocket ship" $\rightarrow$ Companile
-
-![image](material/part1/1_7_3-2.png)
-
-> "a pencil" $\rightarrow$ Companile
-
-<img src="material/part1/1_7_3-3.png" alt="image" style="zoom:150%;" />
-
-> "a rocket ship" $\rightarrow$ Fox
-
-<img src="material/part1/1_7_3-4.png" alt="image" style="zoom:150%;" />
-
-> "a pencil" $\rightarrow$ ShanghaiTech
-
-#### 1.8 Visual Anagrams
-
-The full algorithm will be:
-$$
+</script>
+Essentially, we leave everything inside the edit mask alone, but we replace everything outside the edit mask with our original image -- with the correct amount of noise added for timestep <span class="arithmatex">\(\mathbf{t}\)</span>.</p>
+<p><strong>Deliverables</strong>:</p>
+<p><img alt="image" src="material/part1/1_7_2-1.png" /></p>
+<p><img alt="image" src="material/part1/1_7_2-2.png" /></p>
+<p><img alt="image" src="material/part1/1_7_2-4.png" /><img alt="image" src="material/part1/1_7_2-3.png" /></p>
+<h5 id="173-text-conditional-image-to-image-translation">1.7.3: Text Conditional Image to Image Translation</h5>
+<p>Now, we will do the same thing as SDEdit, but guide the projection with a text prompt. This is no longer pure "projection to the natural image manifold" but also adds control using language. This is simply a matter of changing the prompt from <code>"a high quality photo"</code> to any of your prompt!</p>
+<p><strong>Deliverables</strong>:</p>
+<p><img alt="image" src="material/part1/1_7_3-1.png" /></p>
+<blockquote>
+<p>"a rocket ship" <span class="arithmatex">\(\rightarrow\)</span> Companile</p>
+</blockquote>
+<p><img alt="image" src="material/part1/1_7_3-2.png" /></p>
+<blockquote>
+<p>"a pencil" <span class="arithmatex">\(\rightarrow\)</span> Companile</p>
+</blockquote>
+<p><img src="material/part1/1_7_3-3.png" alt="image" style="zoom:150%;" /></p>
+<blockquote>
+<p>"a rocket ship" <span class="arithmatex">\(\rightarrow\)</span> Fox</p>
+</blockquote>
+<p><img src="material/part1/1_7_3-4.png" alt="image" style="zoom:150%;" /></p>
+<blockquote>
+<p>"a pencil" <span class="arithmatex">\(\rightarrow\)</span> ShanghaiTech</p>
+</blockquote>
+<h4 id="18-visual-anagrams">1.8 Visual Anagrams</h4>
+<p>The full algorithm will be:
+<script type="math/tex; mode=display">
 \begin{align}
 \boldsymbol{\epsilon}_1 &= \text{CFG of UNet}(\mathbf{x}_t, t, \mathbf{p}_1) \\
 \boldsymbol{\epsilon}_2 &= \text{flip}(\text{CFG of UNet}(\text{flip}(\mathbf{x}_t), t, \mathbf{p}_2)) \\
 \boldsymbol{\epsilon} &= (\boldsymbol{\epsilon}_1 + \boldsymbol{\epsilon}_2)/2
 \end{align}
-$$
-**Deliverables**:
-
-
+</script>
+<strong>Deliverables</strong>:</p>
 <pre><code class="language-python">embeds_1 = prompt_embeds_dict[&quot;an oil painting of an old man&quot;]
 embeds_2 = prompt_embeds_dict[&quot;an oil painting of people around a campfire&quot;]
 </code></pre>
-
-
-![image](material/part1/1_8-1.png)
-
-
+<p><img alt="image" src="material/part1/1_8-1.png" /></p>
 <pre><code class="language-python">embeds_1 = prompt_embeds_dict[&quot;a photo of a hipster barista&quot;]
 embeds_2 = prompt_embeds_dict[&quot;a photo of a dog&quot;]
 </code></pre>
-
-
-![image](material/part1/1_8-2.png)
-
-
-
-#### 1.9 Hybrid Images
-
-In order to create hybrid images with a diffusion model we can use a similar technique as above. We will create a composite noise estimate $\epsilon$, by estimating the noise with two different text prompts, and then combining low frequencies from one noise estimate with high frequencies of the other. The algorithm is:
-$$
+<p><img alt="image" src="material/part1/1_8-2.png" /></p>
+<h4 id="19-hybrid-images">1.9 Hybrid Images</h4>
+<p>In order to create hybrid images with a diffusion model we can use a similar technique as above. We will create a composite noise estimate <span class="arithmatex">\(\epsilon\)</span>, by estimating the noise with two different text prompts, and then combining low frequencies from one noise estimate with high frequencies of the other. The algorithm is:
+<script type="math/tex; mode=display">
 \begin{align}
 \boldsymbol{\epsilon}_1 &= \text{CFG of UNet}(\mathbf{x}_t, t, \mathbf{p}_1) \\
 \boldsymbol{\epsilon}_2 &= \text{CFG of UNet}(\mathbf{x}_t, t, \mathbf{p}_2) \\
 \boldsymbol{\epsilon} &= f_{\text{lowpass}}(\boldsymbol{\epsilon}_1) + f_{\text{highpass}}(\boldsymbol{\epsilon}_2)
 \end{align}
-$$
-It is recommend to use a gaussian blur of kernel size 33 and sigma 2.
-
-**Deliverables**: 
-
-<img src="material/part1/1_9-1.png" alt="image" style="zoom:100%;" />
-
-<img src="material/part1/1_9-2.png" alt="image" style="zoom:100%;" />
-
-> Sorry the second figure is mislabeled, the caption should be `skull + campfire`
+</script>
+It is recommend to use a gaussian blur of kernel size 33 and sigma 2.</p>
+<p><strong>Deliverables</strong>: </p>
+<p><img src="material/part1/1_9-1.png" alt="image" style="zoom:100%;" /></p>
+<p><img src="material/part1/1_9-2.png" alt="image" style="zoom:100%;" /></p>
+<blockquote>
+<p>Sorry the second figure is mislabeled, the caption should be <code>skull + campfire</code></p>
+</blockquote>
 
 
 
