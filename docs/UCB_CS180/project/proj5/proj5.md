@@ -284,6 +284,8 @@ For 1.7.2 and 1.7.3, my own pictures are borrowed from project4: fox and shangha
             <figcaption>
                 ShanghaiTech
             </figcaption>
+ </div>
+
 
 ![image](material/part1/1_7-1.png)
 
