@@ -42,7 +42,7 @@ markdown_extensions:
   - pymdownx.pathconverter:
       absolute: false
 nav:
-  - Home: index.md
+  - Home: home.md
   - Course (Curriculum):
     - 高等数学上:
       - 写在最前面: 高等数学上/写在最前面/note.md
