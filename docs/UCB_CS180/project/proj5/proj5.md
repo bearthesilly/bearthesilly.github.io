@@ -392,3 +392,206 @@ It is recommend to use a gaussian blur of kernel size 33 and sigma 2.
 <img src="material/part1/1_9-2.png" alt="image" style="zoom:100%;" />
 
 > Sorry the second figure is mislabeled, the caption should be `skull + campfire`
+
+## Project 5B: Flow Matching from Scratch!
+
+### Part 1: Training a Single-Step Denoising UNet
+
+#### 1.1 Implementing the UNet
+
+Unconditional UNet:
+
+![image](material_b/unconditional_arch.png)
+
+Standard UNet Operations:
+
+![image](material_b/standard.png)
+
+#### 1.2 Using the UNet to Train a Denoiser
+
+For each training batch, we can generate $z$ from $x$ using the the following noising process:
+$$
+z = x + \sigma\epsilon, \quad \text{where } \epsilon \sim \mathcal{N}(0, I).
+$$
+***Deliverable:*** A visualization of the noising process using $\sigma = [0.0, 0.2, 0.4, 0.5, 0.6, 0.8, 1.0].$
+
+![image](material_b/1.2_noise.png)
+
+##### 1.2.1 Training
+
+Now, we will train the model to perform denoising.
+
+- **Objective:** Train a denoiser to denoise noisy image with $\sigma=0.5$ applied to a clean image $x$.
+- Dataset and dataloader: Use the MNIST dataset via `torchvision.datasets.MNIST`. Train only on the training set. Shuffle the dataset before creating the dataloader. Recommended batch size: 256. We'll train over our dataset for 5 epochs.
+  - You should only noise the image batches when fetched from the dataloader so that in every epoch the network will see new noised images due to a random , improving generalization.
+- **Model:** Use the UNet architecture defined in section 1.1 with recommended hidden dimension `D = 128`.
+- **Optimizer:** Use Adam optimizer with learning rate of 1e-4.
+
+***Deliverables:*** A training loss curve plot every few iterations during the whole training process of $\sigma=0.5$
+
+![image](material_b/1.2.1_curve.png)
+
+***Deliverables:*** Sample results on the test set with noise level 0.5 after the first and the 5-th epoch
+
+<div style="display: flex; justify-content: space-around; align-items: center;">
+        <figure>
+            <img src="material_b/1.2.1_denoise_1.png" style="zoom:100%; height: auto;">
+            <figcaption>
+                After 1-th epoch
+            </figcaption>
+        </figure>
+            <figure>
+            <img src="material_b/1.2.1_denoise_2.png" style="zoom:100%; height: auto;">
+            <figcaption>
+                After 5-th epoch
+            </figcaption>
+ </div>
+
+##### 1.2.2 Out-of-Distribution Testing
+
+Our denoiser was trained on MNIST digits noised with $\sigma=0.5$. Let's see how the denoiser performs on different 's that it wasn't trained for.
+
+Visualize the denoiser results on test set digits with varying levels of noise $\sigma = [0.0, 0.2, 0.4, 0.5, 0.6, 0.8, 1.0].$
+
+***Deliverables:*** Sample results on the test set with out-of-distribution noise levels after the model is trained. Keep the same image and vary $\sigma = [0.0, 0.2, 0.4, 0.5, 0.6, 0.8, 1.0].$ 
+
+![image](material_b/1.2.2_denoise_ood.png)
+
+##### 1.2.3 Denoising Pure Noise
+
+To make denoising a generative task, we'd like to be able to denoise pure, random Gaussian noise. We can think of this as starting with a blank canvas $z=\epsilon$ where $\epsilon \sim N(0, I)$ and denoising it to get a clean image $x$.
+
+Repeat the same training process as in part 1.2.1, but input pure noise $\epsilon \sim N(0, I)$ and denoise it for 5 epochs. Display your results after 1 and 5 epochs.
+
+Sample from the denoiser that was trained to denoise pure noise. What patterns do you observe in the generated outputs? What relationship, if any, do these outputs have with the training images (e.g., digits 0–9)? Why might this be happening?
+
+***Deliverables:*** A training loss curve plot every few iterations during the whole training process that denoises pure noise.
+
+![image](material_b/1.2.3_curve.png)
+
+![image](material_b/1.2.3_denoise_1.png)
+
+![image](material_b/1.2.3_denoise_2.png)
+
+***Deliverables:*** A brief description of the patterns observed in the generated outputs and explanations for why they may exist.
+
+Description: Since the denoised figure, i.e., input figure, is a pure noise. And what's more, there's no condition during denoise. So the model actually has no conditioned distribution bias, tending to predict toward the average of all figures. So in the end, the generated figures seem to be the blurring version combining all the digits.
+
+### Part 2: Training a Flow Matching Model
+
+We just saw that one-step denoising does not work well for generative tasks. Instead, we need to **iteratively denoise** the image, and we will do so with **flow matching**. Here, we will iteratively denoise an image by training a UNet model to predict the 'flow' from our noisy data to clean data. In our flow matching setup, we sample a pure noise image $x_0 \sim \mathcal{N}(0, I)$ and generate a realistic image $x_1$. 
+
+For iterative denoising, we need to define how **intermediate noisy samples** are constructed. The simplest approach would be a **linear interpolation** between noisy $x_0$ and clean $x_1$ for some $x_1$ in our training data: 
+$$
+x_t = (1-t)x_0 + tx_1 \quad \text{where } x_0 \sim \mathcal{N}(0, I), t \in [0, 1]
+$$
+This is a **vector field** describing the position of a point $x_t$ at time $t$ relative to the clean data distribution $p_1(x_1)$ and the noisy data distribution $p_0(x_0)$. Intuitively, we see that for small $t$, we remain close to noise, while for larger $t$, we approach the clean distribution. 
+
+Flow can be thought of as the **velocity** (change in position w.r.t. time) of this vector field, describing how to move from $x_0$ to $x_1$: 
+$$
+u(x_t, t) = \frac{d}{dt} x_t = x_1 - x_0.
+$$
+Our aim is to learn a UNet model $u_\theta(x_t, t)$ which approximates this flow $u(x_t, t) = x_1 - x_0$, giving us our **learning objective**: 
+$$
+L = \mathbb{E}_{x_0 \sim p_0(x_0), x_1 \sim p_1(x_1), t \sim \mathcal{U}[0, 1]} [\|(x_1 - x_0) - u_\theta(x_t, t)\|^2].
+$$
+
+#### 2.1 Adding Time Conditioning to UNet
+
+UNet with condition:
+
+![image](material_b/unet.png)
+
+Need a new operator which we use to inject the ***conditioning signal*** into the UNet:
+
+![image](material_b/fc_long.png)
+
+#### 2.2 Training the UNet
+
+![image](material_b/algo1_t_only_fm.png)
+
+***Deliverable:*** A training loss curve plot for the time-conditioned UNet over the whole training process.
+
+![image](material_b/2.2_curve.png)
+
+#### 2.3 Sampling from the UNet
+
+We can now use our UNet for iterative denoising using the algorithm below! The results would not be perfect, but legible digits should emerge:
+
+![image](material_b/algo2_t_only_fm.png)
+
+***Deliverables:*** Sampling results from the time-conditioned UNet for 1, 5, and 10 epochs. The results should not be perfect, but reasonably good.
+
+<div style="display: flex; justify-content: space-around; align-items: center;">
+        <figure>
+            <img src="material_b/2.3_1epoch.png" style="zoom:100%; height: auto;">
+            <figcaption>
+                After 1-th epoch
+            </figcaption>
+        </figure>
+            <figure>
+            <img src="material_b/2.3_5epoch.png" style="zoom:100%; height: auto;">
+            <figcaption>
+                After 5-th epoch
+            </figcaption>
+    </figure>
+    <figure>
+            <img src="material_b/2.3_10epoch.png" style="zoom:100%; height: auto;">
+            <figcaption>
+                After 10-th epoch
+            </figcaption>
+        </figure>
+ </div>
+
+#### 2.4 Adding Class-Conditioning to UNet
+
+To make the results better and give us more control for image generation, we can also optionally condition our UNet on the class of the digit 0-9. This will require adding 2 more `FCBlocks` to our UNet but, we suggest that for class-conditioning vector **c**, you make it a **one-hot vector** instead of a single scalar. Because we still want our UNet to work without it being conditioned on the class (recall the **classifier-free guidance** you implemented in part a)), we implement **dropout** where $10\%$ of the time ($P_{uncond} = 0.1$) we drop the class conditioning vector $c$ by setting it to $0$. Here is one way to condition our UNet $u_\theta(\mathbf{x}_t, t, c)$ on both time $t$ and class $c$:
+
+#### 2.5 Training the UNet
+
+Training for this section will be the same as time-only, with the only difference being the conditioning vector and doing unconditional generation periodically. Training class-conditioned UNet:
+
+![image](material_b/algo3_c_fm.png)
+
+***Deliverable:*** A training loss curve plot for the class-conditioned UNet over the whole training process.
+
+![image](material_b/2.5_curve.png)
+
+#### 2.6 Sampling from the UNet
+
+Now we will sample with class-conditioning and will use classifier-free guidance with $\gamma=5.0$. Sampling from class-conditioned UNet:
+
+![image](material_b/algo4_c_fm.png)
+
+***Deliverables:*** Sampling results from the class-conditioned UNet for 1, 5, and 10 epochs. Class-conditioning lets us converge faster, hence why we only train for 10 epochs. Generate 4 instances of each digit as shown above.
+
+1 Epoch:
+
+![image](material_b/2.6_sampling_epoch1_with_scheduler.png)
+
+5 Epoch:
+
+![image](material_b/2.6_sampling_epoch5_with_scheduler.png)
+
+10 Epoch:
+
+![image](material_b/2.6_sampling_epoch10_with_scheduler.png)
+
+***Deliverables:*** **Can we get rid of the annoying learning rate scheduler?** Simplicity is the best. Please try to maintain the same performance after removing the exponential learning rate scheduler. Show your visualization after training without the scheduler and provide a description of what you did to compensate for the loss of the scheduler.
+The mechanism of scheduler, in a nut shell, is to decrease the learning rate in the later phase of the training, since by model can be struggling to fit into the narrow optima. By then, larger learning rate, i.e., larger update steps, can bring trouble to the optimization. So my idea is to lower the learning rate and extend the number of training epochs if needed.
+
+1 Epoch:
+
+![image](material_b/2.6_sampling_epoch1_without_scheduler.png)
+
+5 Epoch:
+
+![image](material_b/2.6_sampling_epoch5_without_scheduler.png)
+
+10 Epoch:
+
+![image](material_b/2.6_sampling_epoch10_without_scheduler.png)
+
+15 Epoch:
+
+![image](material_b/2.6_sampling_epoch15_without_scheduler.png)
