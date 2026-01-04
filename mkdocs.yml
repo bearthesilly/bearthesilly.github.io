@@ -306,14 +306,17 @@ nav:
       - Final_Review: UCB_CS180/final_review.pdf
       - Cheatsheet: UCB_CS180/cheatsheet.pdf
     - Natural Languange Processing (UCB EECS183):
+      - 写在最前面: UCB_EECS183/写在最前面.md
       - Midterm_Review: UCB_EECS183/mid-review.pdf
       - Midterm_Cheatsheet: UCB_EECS183/cheatsheet_mid.pdf
       - Final_Review: UCB_EECS183/final-review.pdf
       - Final_Cheatsheet: UCB_EECS183/cheatsheet_final.pdf
     - Designing, Visualizing and Understanding Deep Neural Networks (UCB CS182):
+      - 写在最前面: UCB_CS182/写在最前面.md
       - Course_Notes: UCB_CS182/course_note.pdf
       - Homework_Discussion_Notes: UCB_CS182/course_hw_discussion.pdf
     - Stochastic Processes (UCB STAT150):
+      - 写在最前面: UCB_STAT150/写在最前面.md
       - Markov_Chain: UCB_STAT150/markov_chain_note.pdf
       - Markov_Chain_Summary: UCB_STAT150/markov_chain_summary.pdf
       - Poisson_Process: UCB_STAT150/poisson_process_note.pdf
