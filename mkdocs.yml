@@ -408,7 +408,7 @@ nav:
     - NeRF&Instant_NGP: Blog/NeRF&Instant_NGP/note.md
     - 3DGS: Blog/3DGS/note.md
     - 3DGS_reproduction: Blog/3DGS_reproduction/note.md
-    - Intern_Blog: Blog/AAAI2025/log.md
+    # - Intern_Blog: Blog/AAAI2025/log.md
   - CV: Zhangzhi_Xiong_CV.pdf
 
 copyright: Copyright &copy; 2025 csrookie
