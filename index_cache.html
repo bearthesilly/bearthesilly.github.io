@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>csrookie (Zhangzhi Xiong) 🐻</title>
+  <style>
+    * { box-sizing: border-box; }
+    
+    body { 
+      margin: 0; 
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
+      color: #fff;
+      /* 关键点：隐藏浏览器的原生滚动条，完全由我们接管 */
+      overflow: hidden; 
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* 背景层保持不动 */
+    .bg-container {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: url('./csrookie_background.png') no-repeat center center/cover;
+      z-index: -2;
+    }
+    
+    #particles-js {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1;
+    }
+
+    .bg-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(135deg, rgba(11, 16, 32, 0.85), rgba(11, 16, 32, 0.6));
+      pointer-events: none;
+    }
+
+    /* 这是一个巨大的容器，用来包裹所有的屏幕 */
+    .main-wrapper {
+      width: 100%;
+      height: 100vh;
+      /* 关键动画：使用 transform 进行位移，非常流畅 */
+      transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+
+    /* 每一个 section 强制占满一屏 */
+    section {
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+    }
+
+    /* ===== 第一屏样式 ===== */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    .avatar-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid rgba(59, 130, 246, 0.3);
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+      margin-bottom: 1rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .avatar-img:hover {
+      transform: scale(1.05) rotate(5deg);
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin: 0 0 0.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(to right, #fff, #93c5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 2.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      background: linear-gradient(90deg, #3b82f6, #2563eb);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer; /* 确保鼠标变成手型 */
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
+      background: linear-gradient(90deg, #2563eb, #1d4ed8);
+    }
+
+    /* 滚动提示区 */
+    .scroll-hint-wrapper {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .scroll-text {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+      animation: pulseText 2s infinite;
+    }
+
+    .scroll-indicator {
+      animation: bounce 2s infinite;
+      opacity: 0.7;
+    }
+
+    .scroll-indicator svg {
+      width: 30px;
+      height: 30px;
+      fill: white;
+    }
+
+    /* ===== 第二屏样式 ===== */
+    .gallery-section {
+      justify-content: center;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      font-weight: 700;
+      text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      background: linear-gradient(to right, #fff, #93c5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      width: 100%;
+      max-width: 1000px;
+      padding: 0 20px;
+    }
+
+    .photo-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      aspect-ratio: 4/3;
+    }
+
+    .photo-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .photo-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .photo-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .photo-card:hover .photo-overlay {
+      opacity: 1;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+
+    @keyframes pulseText {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    @media (max-width: 900px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      .glass-card { padding: 2rem 1.5rem; }
+      .gallery-grid { grid-template-columns: 1fr; max-height: 55vh; overflow-y: auto; } /* 移动端让画廊内部滚动 */
+      .section-title { font-size: 1.8rem; margin-bottom: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-container">
+    <div class="bg-overlay"></div>
+  </div>
+
+  <div id="particles-js"></div>
+
+  <div class="main-wrapper" id="mainWrapper">
+    
+    <section class="hero">
+      <div class="glass-card">
+        <img src="./csrookie.png" alt="csrookie logo" class="avatar-img">
+        <h1>Hello, I'm csrookie</h1>
+        <p>Welcome to my website! </p>
+        <a class="btn" href="home.html">
+          Let's Go! &rarr;
+        </a>
+      </div>
+      
+      <div class="scroll-hint-wrapper" onclick="scrollToPage(1)">
+        <span class="scroll-text"></span>
+        <div class="scroll-indicator">
+          <svg viewBox="0 0 24 24">
+            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- <section class="gallery-section">
+      <h2 class="section-title">Photography Gallery</h2>
+      
+      <div class="gallery-grid">
+        <div class="photo-card">
+          <img src="https://picsum.photos/id/1015/400/300" alt="Landscape">
+          <div class="photo-overlay">Mountain View</div>
+        </div>
+        <div class="photo-card">
+          <img src="https://picsum.photos/id/1016/400/300" alt="Canyon">
+          <div class="photo-overlay">Sunset Canyon</div>
+        </div>
+        <div class="photo-card">
+          <img src="https://picsum.photos/id/1025/400/300" alt="Pug">
+          <div class="photo-overlay">Street Life</div>
+        </div>
+        <div class="photo-card">
+          <img src="https://picsum.photos/id/1035/400/300" alt="Waterfall">
+          <div class="photo-overlay">Nature Hike</div>
+        </div>
+        <div class="photo-card">
+          <img src="https://picsum.photos/id/1040/400/300" alt="Castle">
+          <div class="photo-overlay">Architecture</div>
+        </div>
+        <div class="photo-card">
+          <img src="https://picsum.photos/id/1069/400/300" alt="Jellyfish">
+          <div class="photo-overlay">Deep Blue</div>
+        </div>
+      </div>
+
+      <div class="footer">
+        &copy; 2025 csrookie. All rights reserved.
+      </div>
+    </section> -->
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    /* 粒子配置 */
+    particlesJS('particles-js',
+    {
+      "particles": {
+        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": "#ffffff" },
+        "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 } },
+        "opacity": { "value": 0.5, "random": false },
+        "size": { "value": 3, "random": true },
+        "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 },
+        "move": { "enable": true, "speed": 3, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } }
+      },
+      "interactivity": {
+        "detect_on": "window",
+        "events": {
+          "onhover": { "enable": true, "mode": "attract" },
+          "onclick": { "enable": true, "mode": "push" },
+          "resize": true
+        },
+        "modes": {
+          "grab": { "distance": 400, "line_linked": { "opacity": 1 } },
+          "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 },
+          "repulse": { "distance": 200, "duration": 0.4 },
+          "push": { "particles_nb": 4 },
+          "remove": { "particles_nb": 2 },
+          "attract": { "distance": 200, "duration": 0.4, "speed": 5 }
+        }
+      },
+      "retina_detect": true
+    });
+
+    /* =========================================
+       核心逻辑：整页切换滚动控制
+    ========================================= */
+    let currentPage = 0; // 当前在第几页 (0 = 第一页, 1 = 第二页)
+    const totalPages = 2; // 总页数
+    let isScrolling = false; // 防抖动锁，防止一次滚轮触发多次切换
+
+    function scrollToPage(pageIndex) {
+      if (pageIndex < 0 || pageIndex >= totalPages) return;
+      
+      currentPage = pageIndex;
+      const wrapper = document.getElementById('mainWrapper');
+      
+      // 使用 CSS TranslateY 移动整个 wrapper，而不是滚动条
+      wrapper.style.transform = `translateY(-${currentPage * 100}vh)`;
+      
+      // 设置冷却时间，动画结束后才允许下一次滚动
+      isScrolling = true;
+      setTimeout(() => {
+        isScrolling = false;
+      }, 1000); // 1000ms = css transition duration + buffer
+    }
+
+    // 监听滚轮事件
+    window.addEventListener('wheel', (e) => {
+      // 如果正在动画中，或者在移动端 gallery 内部滚动时，忽略外部滚动
+      // 这里简单处理：如果正在切换中，直接返回
+      if (isScrolling) return;
+
+      // deltaY > 0 代表向下滚， < 0 代表向上滚
+      if (e.deltaY > 0) {
+        if (currentPage < totalPages - 1) {
+          scrollToPage(currentPage + 1);
+        }
+      } else {
+        if (currentPage > 0) {
+          scrollToPage(currentPage - 1);
+        }
+      }
+    });
+
+    // 简单的键盘支持 (上下键)
+    window.addEventListener('keydown', (e) => {
+      if (isScrolling) return;
+      if (e.key === 'ArrowDown') {
+        if (currentPage < totalPages - 1) scrollToPage(currentPage + 1);
+      } else if (e.key === 'ArrowUp') {
+        if (currentPage > 0) scrollToPage(currentPage - 1);
+      }
+    });
+
+  </script>
+</body>
+</html>
