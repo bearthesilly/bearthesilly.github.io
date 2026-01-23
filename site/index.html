@@ -153,8 +153,8 @@
         .timeline-item {
             position: relative;
             padding-left: 30px;
-            margin-bottom: 0; /* 去掉 margin-bottom，改用 padding 控制间距 */
-            padding-bottom: 30px; /* 用 padding 撑开间距，方便画线 */
+            margin-bottom: 0;
+            padding-bottom: 15px; /* 这里你刚才改成了15px */
         }
 
         /* 这是那条竖线 */
@@ -162,17 +162,22 @@
             content: '';
             position: absolute;
             left: 0;
-            top: 5px; /* 从圆点中心开始 */
-            bottom: 0;  /* 一直延伸到底部 */
+            /* 关键修改：从圆点位置向下延伸到超出当前 item 的底部，
+               因为下一个 item 的 padding-top 为 0，所以不需要太多额外计算，
+               但为了保证连接，我们可以让它稍微长一点或者精确计算 */
+            top: 5px; 
+            /* 让线一直画到当前容器的最底部，配合 padding-bottom: 15px */
+            /* 使用 height: 100% 会导致只画到 content 结束，如果有 padding 会有空隙 */
+            /* 更好的做法：使用 top 和 bottom 的组合 */
+            bottom: -5px; /* 向下延伸一点，覆盖下一个圆点的顶部空隙 */
             width: 2px;
             background-color: var(--border-color);
         }
 
-        /* 最后一个元素，线只画一小段或者不画（因为它下面没有东西了） */
+        /* 最后一个元素，线不画 */
         .timeline-item:last-child::after {
-            display: none; /* 最后一个元素不需要向下的连线 */
+            display: none;
         }
-
         /* 这是那个圆圈 */
         .timeline-item::before {
             content: '';
@@ -311,7 +316,7 @@
                     
                     <!-- 注意：删除了这里原本用来“绝对定位”的那个校徽 <img> 标签 -->
     
-                    <p>Research Interests: Artificial Intelligence</p>
+                    <p>Research Interests: ML/DL, Generative Model, Multimodality, Data Mining, Structured Representation</p>
                     
                     <div class="contact-grid">
                     
@@ -348,7 +353,7 @@
                     </div>
 
                 <a href="./Zhangzhi_Xiong_CV.pdf" class="btn-cv" target="_blank">
-                    <i class="fas fa-file-pdf"></i> Download CV / Resume
+                    <i class="fas fa-file-pdf"></i> Download Chinese CV / Resume
                 </a>
             </div>
         </header>
@@ -359,16 +364,19 @@
               Welcome! I am currently a Junior student majoring in Computer Science at <b>ShanghaiTech University(上海科技大学)</b>. I was also a visiting student at the College of Engineering (COE), <b>UC Berkeley</b>, during the first semester of junior year. 
           </p>
           <p>
+              I've been working in the fields of 3D Computer Viison, Time Series, and Structured Representation during my research intern experience over the past two years. My research interests mainly lie in ML/DL, Generative Model, Multimodality, Data Mining and Structured Representation.
+          </p>
+          <p>
               I name my Github repository "csrookie" because my favorite motto is Steve Jobs': <i>"Stay hungry, stay foolish."</i> In the field of AI research, I will always be a rookie and will never stop learning and exploring with a hungry and foolish heart.
               I have explored a diverse range of AI sub-fields, including 2D&3D Computer Vision, NLP, Time Series, Multimodality, Interpretability, etc, and I am always eager to explore new frontiers with excitement. 
           </p>
           <p style="background-color: #f9f9f9; padding: 10px; border-left: 4px solid var(--accent-color); font-size: 0.95rem;">
-              <b>基于目前的学业排名（Top 2%），我已基本锁定2026届推免资格。</b>
-              目前正积极寻求计算机专业<b>人工智能领域</b>的课题组，我对该领域内<b>多个方向均抱有广泛兴趣</b>，计划攻读<b>直博或学术型硕士</b>学位。
+              <b>基于目前的学业排名(Top 2%), 我已基本锁定2026届推免资格。</b>
+              目前正积极寻求计算机专业<b>人工智能领域</b>的课题组，计划攻读<b>直博或学术型硕士</b>学位。
           </p>
       </section>
       
-      <section id="publications">
+    <section id="publications">
         <div class="section-title">Research Output</div>
         <ul class="list-group">
             <li class="list-item">
@@ -379,56 +387,97 @@
                 </div>
                 <span class="list-date">2025</span>
             </li>
+            <li class="list-item">
+                <div class="list-content">
+                    <b>[ICML, under review]</b> 
+                    <br>
+                    <span style="font-size: 0.9rem; color: #666;">Shaocheng Lan, Shuqi Gu, <b>Zhangzhi Xiong</b>, Kan Ren</span>
+                </div>
+                <span class="list-date">2025</span>
+            </li>
         </ul>
     </section>
 
 
       <section id="timeline">
           <div class="section-title">Experience</div>
-          
+        
+
           <div class="timeline">
-            <div class="timeline-item">
-                <span class="timeline-date">2025.08 - 2025.12</span>
+
+
+            <div class="timeline-item" style="padding-bottom: 15px;">
                 <div class="timeline-content">
-                    <h3>Visiting Student @ UC Berkeley</h3>
-                    <p>College of Engineering (COE) GLOBE Exchange Program.</p>
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <h3 style="margin: 0; font-size: 1.1rem;">Research Intern @ <a href="https://sist.shanghaitech.edu.cn/2025/0325/c2858a1108547/page.htm" target="_blank">AI Honor Program</a>, ShanghaiTech University</h3>
+                        <span class="timeline-date" style="font-size: 0.85rem; color: #888; font-family: monospace;">2026.01 - 2026.01</span>
+                    </div>
+                    <p style="margin: 2px 0 0 0; color: #555;">
+                        Under the guidance of M.S. Shaocheng Lan and <a href="https://sist.shanghaitech.edu.cn/rk/list.htm" target="_blank">Asst. Prof. Kan Ren</a>.
+                        <br>
+                        Focus on benchmarking in the domain of Time Series. 
+                    </p>
                 </div>
             </div>
 
-              <div class="timeline-item">
-                  <span class="timeline-date">2025.02 - 2026.02</span>
-                  <div class="timeline-content">
-                      <h3>Research Intern @ <a href="https://sist.shanghaitech.edu.cn/2025/0325/c2858a1108547/page.htm" target="_blank">AI Honor Program</a>, ShanghaiTech University</h3>
-                      <p>
-                          Working with <a href="https://faculty.sist.shanghaitech.edu.cn/faculty/tukw/" target="_blank">Prof. Kewei Tu</a> and <a href="https://sist.shanghaitech.edu.cn/rk/list.htm" target="_blank">Prof. Kan Ren</a>.
-                          <br>
-                          Conducting exploration and research on a challenging frontier project.
-                      </p>
-                  </div>
-              </div>
+
+            <div class="timeline-item" style="padding-bottom: 15px;">
+                <div class="timeline-content">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <h3 style="margin: 0; font-size: 1.1rem;">Visiting Student @ UC Berkeley</h3>
+                        <span class="timeline-date" style="font-size: 0.85rem; color: #888; font-family: monospace;">2025.08 - 2025.12</span>
+                    </div>
+                    <p style="margin: 2px 0 0 0; color: #555;">College of Engineering (COE) GLOBE Exchange Program.
+                    <br>
+                    Courses Taken: Computer Vision, Deep Learning, Natural Language Processing, Stochastic Processes.
+                </p>
+                </div>
+            </div>
+
+            <div class="timeline-item" style="padding-bottom: 15px;">
+                <div class="timeline-content">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <h3 style="margin: 0; font-size: 1.1rem;">Research Intern @ <a href="https://sist.shanghaitech.edu.cn/2025/0325/c2858a1108547/page.htm" target="_blank">AI Honor Program</a>, ShanghaiTech University</h3>
+                        <span class="timeline-date" style="font-size: 0.85rem; color: #888; font-family: monospace;">2025.02 - 2026.02</span>
+                    </div>
+                    <p style="margin: 2px 0 0 0; color: #555;">
+                        Working with <a href="https://faculty.sist.shanghaitech.edu.cn/faculty/tukw/" target="_blank">Prof. & Asst. Dean Kewei Tu</a> and <a href="https://sist.shanghaitech.edu.cn/rk/list.htm" target="_blank">Asst. Prof. Kan Ren</a>.
+                        <br>
+                        Conducting exploration and research on a challenging frontier project involving Time Series and Structured Representation.
+                    </p>
+                </div>
+            </div>
 
 
-              <div class="timeline-item">
-                  <span class="timeline-date">2024.09 - 2024.11</span>
-                  <div class="timeline-content">
-                      <h3>Research Intern @ <a href="https://vic.shanghaitech.edu.cn/vrvc/en/" target="_blank">VRVC</a>, ShanghaiTech University</h3>
-                      <p>
-                          Under the guidance of M.S. <a href="https://moqiyinlun.github.io/" target="_blank">Zhehao Shen</a>.
-                      </p>
-                  </div>
-              </div>
+            <div class="timeline-item" style="padding-bottom: 15px;">
+                <div class="timeline-content">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <h3 style="margin: 0; font-size: 1.1rem;">Research Intern @ <a href="https://vic.shanghaitech.edu.cn/vrvc/en/" target="_blank">VRVC</a>, ShanghaiTech University</h3>
+                        <span class="timeline-date" style="font-size: 0.85rem; color: #888; font-family: monospace;">2024.09 - 2024.11</span>
+                    </div>
+                    <p style="margin: 2px 0 0 0; color: #555;">
+                        Under the guidance of M.S. <a href="https://moqiyinlun.github.io/" target="_blank">Zhehao Shen</a>.
+                    </p>
+                    <p style="margin: 2px 0 0 0; color: #555;">
+                        Focus on 3D Gaussian Splatting for Human Volumetric Rendering and simulated data collection.
+                    </p>
+                </div>
+            </div>
 
-              <div class="timeline-item">
-                  <span class="timeline-date">2024.03 - 2024.08</span>
-                  <div class="timeline-content">
-                      <h3>Research Intern @ <a href="https://4dvlab.github.io/index.html" target="_blank">4DVLab</a>, ShanghaiTech University</h3>
-                      <p>
-                          Under the instruction and guidance of <a href="https://yuexinma.me/aboutme.html" target="_blank">Prof. Yuexin Ma</a> and Ph.D. Student <a href="https://yiteng-xu.github.io/" target="_blank">Yiteng Xu</a>.
-                      </p>
-                  </div>
-              </div>
-            
-
+            <div class="timeline-item" style="padding-bottom: 15px;">
+                <div class="timeline-content">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <h3 style="margin: 0; font-size: 1.1rem;">Research Intern @ <a href="https://4dvlab.github.io/index.html" target="_blank">4DVLab</a>, ShanghaiTech University</h3>
+                        <span class="timeline-date" style="font-size: 0.85rem; color: #888; font-family: monospace;">2024.03 - 2024.08</span>
+                    </div>
+                    <p style="margin: 2px 0 0 0; color: #555;">
+                        Under the guidance of <a href="https://yuexinma.me/aboutme.html" target="_blank">Asst. Prof. Yuexin Ma</a> and Ph.D. Student <a href="https://yiteng-xu.github.io/" target="_blank">Yiteng Xu</a>.
+                    </p>
+                    <p style="margin: 2px 0 0 0; color: #555;">
+                        Focus on Human Point Cloud Video understanding and related downstreaming tasks. 
+                    </p>
+                </div>
+            </div>
           </div>
       </section>
 
@@ -441,11 +490,11 @@
                 <span class="list-date">2024-2027</span>
             </li>
             <li class="list-item">
-                <span class="list-content">Merit Student of ShanghaiTech University (Top 7%)</span>
+                <span class="list-content">ShanghaiTech University Outstanding Student (Top 7%)</span>
                 <span class="list-date">2023-2024</span>
             </li>
             <li class="list-item">
-              <span class="list-content">Merit Student of ShanghaiTech University (Top 7%)</span>
+              <span class="list-content">ShanghaiTech University Outstanding Student (Top 7%)</span>
               <span class="list-date">2024-2025</span>
           </li>
             <li class="list-item">
@@ -565,7 +614,7 @@
                 </div>
 
                 <ul style="margin: 0; padding-left: 20px; font-size: 0.95rem; color: #444;">
-                    <li>Images and pictures are lovely! It's also a good habit to develop the passion to introduce and demonstrate our work to others in the community!</li>
+                    <li>Images and pictures are lovely! It's also important and beneficial to develop the passion to introduce and demonstrate our work to others in the community! - A.A.Efros</li>
                     <li>Codes are not made public due to course regulations.</li>
                 </ul>
             </div>
