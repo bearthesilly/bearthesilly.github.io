@@ -294,6 +294,7 @@ nav:
       - Note_All: CA/ca_note_all.pdf
       - Cheatsheet: CA/ca_chsh.pdf
     - Intro to Computer Vision and Computational Photography (UCB CS180):
+      - 写在最前面: UCB_CS180/写在最前面.md
       - Project:
         - Intro: UCB_CS180/project/intro.html
         - Proj 0: UCB_CS180/project/proj0/proj0.md
@@ -407,7 +408,7 @@ nav:
     - NeRF&Instant_NGP: Blog/NeRF&Instant_NGP/note.md
     - 3DGS: Blog/3DGS/note.md
     - 3DGS_reproduction: Blog/3DGS_reproduction/note.md
-    - Intern_Blog: Blog/AAAI2025/log.md
+    # - Intern_Blog: Blog/AAAI2025/log.md
   - CV: Zhangzhi_Xiong_CV.pdf
 
-copyright: Copyright &copy; 2025 csrookie
+copyright: Copyright &copy; 2026 csrookie

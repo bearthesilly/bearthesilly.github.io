@@ -1,420 +1,755 @@
-<!doctype html>
-<html lang="zh-cn">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>csrookie (Zhangzhi Xiong) 🐻</title>
-  <style>
-    * { box-sizing: border-box; }
-    
-    body { 
-      margin: 0; 
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
-      color: #fff;
-      /* 关键点：隐藏浏览器的原生滚动条，完全由我们接管 */
-      overflow: hidden; 
-      height: 100vh;
-      width: 100vw;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zhangzhi Xiong (csrookie)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="./icon.png" type="image/png">
 
-    /* 背景层保持不动 */
-    .bg-container {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: url('./csrookie_background.png') no-repeat center center/cover;
-      z-index: -2;
-    }
-    
-    #particles-js {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      z-index: -1;
-    }
+    <style>
+        /* --- 全局变量与基础设置 --- */
+        :root {
+            --primary-color: #2c3e50; /* 深蓝灰色 */
+            --accent-color: #3498db;  /* 链接高亮蓝 */
+            --text-color: #333;
+            --light-gray: #f4f6f8;
+            --border-color: #e0e0e0;
+        }
 
-    .bg-overlay {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(135deg, rgba(11, 16, 32, 0.85), rgba(11, 16, 32, 0.6));
-      pointer-events: none;
-    }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+        }
 
-    /* 这是一个巨大的容器，用来包裹所有的屏幕 */
-    .main-wrapper {
-      width: 100%;
-      height: 100vh;
-      /* 关键动画：使用 transform 进行位移，非常流畅 */
-      transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
-    }
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
 
-    /* 每一个 section 强制占满一屏 */
-    section {
-      height: 100vh;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      position: relative;
-    }
+        a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
 
-    /* ===== 第一屏样式 ===== */
-    .glass-card {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 3rem 2rem;
-      text-align: center;
-      max-width: 600px;
-      width: 100%;
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 0.8s ease-out forwards;
-    }
+        /* --- 容器布局 --- */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
 
-    .avatar-img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 4px solid rgba(59, 130, 246, 0.3);
-      box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
-      margin-bottom: 1rem;
-      transition: transform 0.3s ease;
-    }
-    
-    .avatar-img:hover {
-      transform: scale(1.05) rotate(5deg);
-    }
+        /* --- 个人信息头部 (Profile Header) --- */
+        .profile-header {
+            display: flex;
+            align-items: flex-start; /* 改为顶部对齐，适应网格布局 */
+            margin-bottom: 40px;
+            gap: 40px;
+        }
 
-    .hero h1 {
-      font-size: 2.5rem;
-      margin: 0 0 0.5rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      background: linear-gradient(to right, #fff, #93c5fd);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+        .profile-photo {
+            flex-shrink: 0;
+            width: 188px;
+            height: 223px;
+            object-fit: cover;
+            border: 3px solid var(--light-gray);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 8px; /*稍微加点圆角更现代 */
+        }
 
-    .hero p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: rgba(255, 255, 255, 0.8);
-      margin-bottom: 2.5rem;
-    }
+        .profile-info {
+            flex-grow: 1;
+        }
 
-    .btn {
-      display: inline-block;
-      padding: 1rem 2.5rem;
-      border-radius: 50px;
-      background: linear-gradient(90deg, #3b82f6, #2563eb);
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer; /* 确保鼠标变成手型 */
-    }
+        .profile-info h1 {
+            margin: 0 0 5px 0;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+        }
 
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
-      background: linear-gradient(90deg, #2563eb, #1d4ed8);
-    }
+        .profile-info h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #666;
+        }
+        
+        /* --- 新增：显式联系人网格布局 --- */
+        .contact-grid {
+            display: grid;
+            /* 宽度足够时两列，窄屏自动变一列 */
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 8px 10px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
 
-    /* 滚动提示区 */
-    .scroll-hint-wrapper {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-      z-index: 10;
-    }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            color: #555;
+            overflow: hidden; /* 防止长邮箱撑破布局 */
+        }
 
-    .scroll-text {
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.8);
-      font-weight: 500;
-      letter-spacing: 0.5px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-      animation: pulseText 2s infinite;
-    }
+        .contact-item i {
+            width: 24px; /* 图标宽度固定，保证文字左对齐 */
+            text-align: center;
+            margin-right: 8px;
+            color: #777;
+        }
+        
+        .contact-item a {
+            color: #444;
+            border-bottom: 1px dashed #ccc; /* 虚线底纹增加可识别度 */
+        }
+        
+        .contact-item a:hover {
+            color: var(--accent-color);
+            border-bottom-style: solid;
+        }
 
-    .scroll-indicator {
-      animation: bounce 2s infinite;
-      opacity: 0.7;
-    }
+        /* --- CV 下载按钮 --- */
+        .btn-cv {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 15px;
+            padding: 8px 16px;
+            background-color: var(--primary-color);
+            color: #fff !important;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            text-decoration: none !important;
+            transition: background 0.3s;
+        }
 
-    .scroll-indicator svg {
-      width: 30px;
-      height: 30px;
-      fill: white;
-    }
+        .btn-cv i { margin-right: 8px; }
 
-    /* ===== 第二屏样式 ===== */
-    .gallery-section {
-      justify-content: center;
-    }
+        .btn-cv:hover {
+            background-color: #1a252f;
+        }
 
-    .section-title {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      font-weight: 700;
-      text-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      background: linear-gradient(to right, #fff, #93c5fd);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+        /* --- 通用章节样式 --- */
+        section {
+            margin-bottom: 50px;
+        }
 
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      width: 100%;
-      max-width: 1000px;
-      padding: 0 20px;
-    }
+        .section-title {
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
 
-    .photo-card {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-      position: relative;
-      aspect-ratio: 4/3;
-    }
+        /* --- 纵轴时间线样式 (Timeline) - 优化版 --- */
+        .timeline {
+            position: relative;
+            padding-left: 10px;
+        }
 
-    .photo-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-      border-color: rgba(255, 255, 255, 0.3);
-    }
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 0;
+            padding-bottom: 15px; /* 这里你刚才改成了15px */
+        }
 
-    .photo-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
+        /* 这是那条竖线 */
+        .timeline-item::after { 
+            content: '';
+            position: absolute;
+            left: 0;
+            /* 关键修改：从圆点位置向下延伸到超出当前 item 的底部，
+               因为下一个 item 的 padding-top 为 0，所以不需要太多额外计算，
+               但为了保证连接，我们可以让它稍微长一点或者精确计算 */
+            top: 5px; 
+            /* 让线一直画到当前容器的最底部，配合 padding-bottom: 15px */
+            /* 使用 height: 100% 会导致只画到 content 结束，如果有 padding 会有空隙 */
+            /* 更好的做法：使用 top 和 bottom 的组合 */
+            bottom: -5px; /* 向下延伸一点，覆盖下一个圆点的顶部空隙 */
+            width: 2px;
+            background-color: var(--border-color);
+        }
 
-    .photo-card:hover img {
-      transform: scale(1.1);
-    }
+        /* 最后一个元素，线不画 */
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        /* 这是那个圆圈 */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -4px; /* (2px线宽 / 2) - (10px圆宽 / 2) - 边框修正 */
+            top: 5px;   /* 调整圆点高度，使其对齐日期行的中心 */
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            z-index: 2;
+        }
+        
+        .list-group {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
 
-    .photo-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      padding: 20px;
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
+        .list-item {
+            display: flex;
+            justify-content: space-between; /* 内容和日期两端对齐 */
+            align-items: baseline;
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--border-color);
+        }
 
-    .photo-card:hover .photo-overlay {
-      opacity: 1;
-    }
+        .list-item:last-child {
+            border-bottom: none;
+        }
 
-    .footer {
-      position: absolute;
-      bottom: 20px;
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.4);
-    }
+        .list-content {
+            font-weight: 500;
+            color: #444;
+        }
 
-    @keyframes fadeInUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
+        .list-date {
+            font-size: 0.9rem;
+            color: #888;
+            flex-shrink: 0;
+            margin-left: 20px;
+            font-family: monospace; /* 等宽字体让日期看起来整齐 */
+        }
 
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-10px); }
-      60% { transform: translateY(-5px); }
-    }
+        /* --- 技能标签样式 --- */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
 
-    @keyframes pulseText {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 1; }
-    }
+        .skill-tag {
+            background-color: #f1f8ff;
+            color: var(--accent-color);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            border: 1px solid #cce5ff;
+            transition: all 0.2s ease;
+        }
 
-    @media (max-width: 900px) {
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-    }
+        .skill-tag:hover {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+        
+        .skill-category {
+            font-weight: bold;
+            margin-right: 10px;
+            color: var(--primary-color);
+            display: inline-block;
+            min-width: 120px;
+        }
 
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 2rem; }
-      .glass-card { padding: 2rem 1.5rem; }
-      .gallery-grid { grid-template-columns: 1fr; max-height: 55vh; overflow-y: auto; } /* 移动端让画廊内部滚动 */
-      .section-title { font-size: 1.8rem; margin-bottom: 1rem; }
-    }
-  </style>
+        .skill-row {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        @media (max-width: 600px) {
+            .skill-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+        }
+
+        .tech-tag {
+            display: inline-block;
+            font-size: 1rem;
+            color: var(--accent-color);
+            background-color: rgba(52, 152, 219, 0.08); /* 极淡的蓝色背景 */
+            padding: 1px 6px;
+            border-radius: 4px;
+            margin-right: 5px;
+            margin-bottom: 2px;
+            border: 1px solid rgba(52, 152, 219, 0.2);
+        }
+
+        /* --- 移动端适配 --- */
+        @media (max-width: 600px) {
+            .profile-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr; /* 手机端强制单列 */
+                text-align: left;
+                width: 100%;
+            }
+            
+            .btn-cv {
+                width: 100%;
+                justify-content: center;
+                box-sizing: border-box;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <div class="bg-container">
-    <div class="bg-overlay"></div>
-  </div>
-
-  <div id="particles-js"></div>
-
-  <div class="main-wrapper" id="mainWrapper">
+    <div class="container">
+        
+        <div class="container">
+        
+            <!-- 去掉了 position: relative，因为不再需要绝对定位了 -->
+            <header class="profile-header">
+                
+                <!-- 新增：左侧垂直容器 (Column) -->
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 20px; flex-shrink: 0;">
+                    <!-- 1. 校徽放在最上面 -->
+                    <!-- 这里的 height 控制校徽大小，根据图片比例调整 -->
+                    <img src="./shanghaitech.png" alt="ShanghaiTech Logo" style="height: 50px; width: auto;">
+                    
+                    <!-- 2. 头像放在校徽下面 -->
+                    <img src="./Zhangzhi_Xiong_picture.png" alt="Profile Photo" class="profile-photo" style="width: 160px; height: 190px;">
+                    <img src="./icon_csrookie.png" alt="Icon" style="width: 125px; height: auto;">
+                </div>
+                
+                <div class="profile-info">
+                    <h1>Zhangzhi Xiong (熊章智)</h1>
+                    <h2>ShanghaiTech Computer Science Undergraduate Student</h2>
+                    
+                    <!-- 注意：删除了这里原本用来“绝对定位”的那个校徽 <img> 标签 -->
     
-    <section class="hero">
-      <div class="glass-card">
-        <img src="./csrookie.png" alt="csrookie logo" class="avatar-img">
-        <h1>Hello, I'm csrookie</h1>
-        <p>Welcome to my website! </p>
-        <a class="btn" href="home.html">
-          Let's Go! &rarr;
-        </a>
-      </div>
+                    <p>Research Interests: ML/DL/RL, Generative Model, Multimodality, Data Mining, Structured Representation</p>
+                    
+                    <div class="contact-grid">
+                    
+                    <div class="contact-item" style="grid-column: 1 / -1;">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:xiongzhzh2023@shanghaitech.edu.cn">xiongzhzh2023@shanghaitech.edu.cn</a>
+                    </div>
+
+                    <div class="contact-item" style="grid-column: 1 / -1;">
+                      <i class="fas fa-envelope"></i>
+                      <a href="mailto:xiongzhangzhi0308@gmail.com">xiongzhangzhi0308@gmail.com</a>
+                  </div>
+
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <a href="https://github.com/bearthesilly" target="_blank">https://github.com/bearthesilly</a>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fab fa-weixin"></i>
+                        <a target="_blank">xiong18321103106</a>
+                    </div>
+
+                    <div class="contact-item">
+                      <i class="fab fa-qq"></i>
+                      <a target="_blank">2371478736</a>
+                  </div>
+
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <a target="_blank">18321103106</a>
+                    </div>
+
+                    </div>
+
+                <a href="./Zhangzhi_Xiong_CV.pdf" class="btn-cv" target="_blank">
+                    <i class="fas fa-file-pdf"></i> Download Chinese CV / Resume
+                </a>
+            </div>
+        </header>
+
+        <section id="about" class="about-text">
+          <div class="section-title">About Me</div>
+          <p>
+              Welcome! I am currently a Junior student majoring in Computer Science at <b>ShanghaiTech University(上海科技大学)</b>. I was also a visiting student at the College of Engineering (COE), <b>UC Berkeley</b>, during the first semester of junior year. 
+          </p>
+          <p>
+              I've been working in the fields of 3D Computer Viison, Time Series, and Structured Representation during my research intern experience over the past two years. <b>My research interests currently include, but are not limited to, ML/DL/RL, Data Mining, Structured Representation, Computer Vision, AI Agent & LLM, Generative Model and Multimodality.</b>
+          </p>
+          <p>
+              I name my Github repository "csrookie" because my favorite motto is Steve Jobs': <i>"Stay hungry, stay foolish."</i> In the field of AI research, I will always be a rookie and will never stop learning and exploring with a hungry and foolish heart.
+              I have explored a diverse range of AI sub-fields, including 2D&3D Computer Vision, NLP, Time Series, Multimodality, Interpretability, etc, and I am always eager to explore new frontiers with excitement. 
+          </p>
+          <p style="background-color: #f9f9f9; padding: 10px; border-left: 4px solid var(--accent-color); font-size: 0.95rem;">
+              <b>基于目前的学业排名(Top 2%), 我已基本锁定2026届推免资格。</b>
+              目前正积极寻求计算机专业<b>人工智能领域</b>的课题组，计划攻读<b>直博或学术型硕士</b>学位。
+          </p>
+      </section>
       
-      <div class="scroll-hint-wrapper" onclick="scrollToPage(1)">
-        <span class="scroll-text"></span>
-        <div class="scroll-indicator">
-          <svg viewBox="0 0 24 24">
-            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
-          </svg>
-        </div>
-      </div>
+    <section id="publications">
+        <div class="section-title">Research Output</div>
+        <ul class="list-group">
+            <li class="list-item">
+                <div class="list-content">
+                    <b>[Patent]</b> General-purpose Dynamic Point Cloud Understanding Model and Multi-task Collaborative Optimization System
+                    <br>
+                    (UniHPC: A Universal Model for Human-Centric Point Cloud Understanding)
+                    <br>
+                    <span style="font-size: 0.9rem; color: #666;">Yiteng Xu, Haoyu Wu, <b>Zhangzhi Xiong</b>, Shenshuo Yao, Leshi Li, Xinge Zhu, Yuexin Ma</span>
+                    <br>
+                    <span style="font-size: 0.9rem; color: #666;">(Publication No.CN120412083A; 3rd contribution; Patent owner: Ph.D. Student <a href="https://yiteng-xu.github.io/" target="_blank">Yiteng Xu</a> from <a href="https://4dvlab.github.io/index.html" target="_blank">4DVLab</a>)</span>
+                </div>
+                <span class="list-date">2025</span>
+            </li>
+            <li class="list-item">
+                <div class="list-content">
+                    <b>[ICML paper, under review]</b> 
+                    <br>
+                    <span style="font-size: 0.9rem; color: #666;">Shaocheng Lan, Shuqi Gu, <b>Zhangzhi Xiong</b>, Kan Ren</span>
+                </div>
+                <span class="list-date">2026</span>
+            </li>
+        </ul>
     </section>
 
-    <!-- <section class="gallery-section">
-      <h2 class="section-title">Photography Gallery</h2>
-      
-      <div class="gallery-grid">
-        <div class="photo-card">
-          <img src="https://picsum.photos/id/1015/400/300" alt="Landscape">
-          <div class="photo-overlay">Mountain View</div>
-        </div>
-        <div class="photo-card">
-          <img src="https://picsum.photos/id/1016/400/300" alt="Canyon">
-          <div class="photo-overlay">Sunset Canyon</div>
-        </div>
-        <div class="photo-card">
-          <img src="https://picsum.photos/id/1025/400/300" alt="Pug">
-          <div class="photo-overlay">Street Life</div>
-        </div>
-        <div class="photo-card">
-          <img src="https://picsum.photos/id/1035/400/300" alt="Waterfall">
-          <div class="photo-overlay">Nature Hike</div>
-        </div>
-        <div class="photo-card">
-          <img src="https://picsum.photos/id/1040/400/300" alt="Castle">
-          <div class="photo-overlay">Architecture</div>
-        </div>
-        <div class="photo-card">
-          <img src="https://picsum.photos/id/1069/400/300" alt="Jellyfish">
-          <div class="photo-overlay">Deep Blue</div>
-        </div>
-      </div>
 
-      <div class="footer">
-        &copy; 2025 csrookie. All rights reserved.
-      </div>
-    </section> -->
+      <section id="timeline">
+          <div class="section-title">Experience</div>
+        
 
+          <div class="timeline">
+
+
+            <div class="timeline-item" style="padding-bottom: 15px;">
+                <div class="timeline-content">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <h3 style="margin: 0; font-size: 1.1rem;">Research Intern @ <a href="https://huggingface.co/mldi-lab" target="_blank">MLDI Lab</a>, ShanghaiTech University</h3>
+                        <span class="timeline-date" style="font-size: 0.85rem; color: #888; font-family: monospace;">2025.11 - 2026.01</span>
+                    </div>
+                    <p style="margin: 2px 0 0 0; color: #555;">
+                        <span class="tech-tag">#Time Series</span>
+                        <span class="tech-tag">#Generative Model</span>
+                        <span class="tech-tag">#Multimodality</span>
+                        <span class="tech-tag">#Benchmarking</span>
+                        <br>
+                        Under the guidance of M.S. Student Shaocheng Lan and <a href="https://sist.shanghaitech.edu.cn/rk/list.htm" target="_blank">Asst. Prof. Kan Ren</a>.
+                        <br>
+                        Focus on benchmarking in the domain of Time Series. 
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="timeline-item" style="padding-bottom: 15px;">
+                <div class="timeline-content">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <h3 style="margin: 0; font-size: 1.1rem;">Visiting Student @ UC Berkeley</h3>
+                        <span class="timeline-date" style="font-size: 0.85rem; color: #888; font-family: monospace;">2025.08 - 2025.12</span>
+                    </div>
+                    <p style="margin: 2px 0 0 0; color: #555;">College of Engineering (COE) GLOBE Exchange Program.
+                    <br>
+                    Courses Taken: Computer Vision, Deep Learning, Natural Language Processing, Stochastic Processes.
+                </p>
+                </div>
+            </div>
+
+            <div class="timeline-item" style="padding-bottom: 15px;">
+                <div class="timeline-content">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <h3 style="margin: 0; font-size: 1.1rem;">Research Intern @ <a href="https://sist.shanghaitech.edu.cn/2025/0325/c2858a1108547/page.htm" target="_blank">AI Honor Program</a>, ShanghaiTech University</h3>
+                        <span class="timeline-date" style="font-size: 0.85rem; color: #888; font-family: monospace;">2025.02 - 2026.02</span>
+                    </div>
+                    <p style="margin: 2px 0 0 0; color: #555;">
+                        <span class="tech-tag">#Structured Representation</span>
+                        <span class="tech-tag">#Time Series</span>
+                        <br>
+                        Working with <a href="https://faculty.sist.shanghaitech.edu.cn/faculty/tukw/" target="_blank">Prof. & Asst. Dean Kewei Tu</a> and <a href="https://sist.shanghaitech.edu.cn/rk/list.htm" target="_blank">Asst. Prof. Kan Ren</a>.
+                        <br>
+                        Conducting exploration and research on a challenging frontier project involving Time Series and Structured Representation.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="timeline-item" style="padding-bottom: 15px;">
+                <div class="timeline-content">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <h3 style="margin: 0; font-size: 1.1rem;">Research Intern @ <a href="https://vic.shanghaitech.edu.cn/vrvc/en/" target="_blank">VRVC</a>, ShanghaiTech University</h3>
+                        <span class="timeline-date" style="font-size: 0.85rem; color: #888; font-family: monospace;">2024.09 - 2024.11</span>
+                    </div>
+                    <p style="margin: 2px 0 0 0; color: #555;">
+                        <span class="tech-tag">#3D Gaussian Splatting</span>
+                        <br>
+                        Under the guidance of M.S. Student <a href="https://moqiyinlun.github.io/" target="_blank">Zhehao Shen</a>.
+                    </p>
+                    <p style="margin: 2px 0 0 0; color: #555;">
+                        Focus on 3D Gaussian Splatting for Human Volumetric Rendering and simulated data collection.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item" style="padding-bottom: 15px;">
+                <div class="timeline-content">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <h3 style="margin: 0; font-size: 1.1rem;">Research Intern @ <a href="https://4dvlab.github.io/index.html" target="_blank">4DVLab</a>, ShanghaiTech University</h3>
+                        <span class="timeline-date" style="font-size: 0.85rem; color: #888; font-family: monospace;">2024.03 - 2024.08</span>
+                    </div>
+                    <p style="margin: 2px 0 0 0; color: #555;">
+                        <span class="tech-tag">#3D Point Cloud</span>
+                        <span class="tech-tag">#Multimodality</span>
+                        <br>
+                        Under the guidance of Ph.D. Student <a href="https://yiteng-xu.github.io/" target="_blank">Yiteng Xu</a> and <a href="https://yuexinma.me/aboutme.html" target="_blank">Asst. Prof. Yuexin Ma</a>.
+                    </p>
+                    <p style="margin: 2px 0 0 0; color: #555;">
+                        Focus on Human Point Cloud Video understanding and related downstreaming tasks. 
+                    </p>
+                </div>
+            </div>
+          </div>
+      </section>
+
+        <!-- 新增：荣誉奖项 -->
+    <section id="honors">
+        <div class="section-title">Honors & Awards</div>
+        <ul class="list-group">
+            <li class="list-item">
+                <span class="list-content">AI Honor Class, ShanghaiTech University</span>
+                <span class="list-date">2024-2027</span>
+            </li>
+            <li class="list-item">
+                <span class="list-content">ShanghaiTech University Outstanding Student</span>
+                <span class="list-date">2023-2024</span>
+            </li>
+            <li class="list-item">
+              <span class="list-content">ShanghaiTech University Outstanding Student</span>
+              <span class="list-date">2024-2025</span>
+          </li>
+            <li class="list-item">
+                <span class="list-content">Second Prize, The Chinese Mathematics Competitions (Non-math major group), Shanghai Region</span>
+                <span class="list-date">2024.12</span>
+            </li>
+            <li class="list-item">
+                <span class="list-content">Second Prize, Contemporary Undergraduate Mathematical Contest in Modeling (CUMCM), Shanghai Region (Team Leader)</span>
+                <span class="list-date">2025.11</span>
+            </li>
+        </ul>
+    </section>
+
+    <!-- 新增：技能 -->
+    <section id="skills">
+        <div class="section-title">Skills</div>
+        
+        <div class="skill-row">
+            <span class="skill-category">Languages</span>
+            <div class="skills-container">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">C/C++</span>
+                <span class="skill-tag">MATLAB</span>
+                <span class="skill-tag">Markdown</span>
+                <span class="skill-tag">LaTeX</span>
+            </div>
+        </div>
+
+        <div class="skill-row">
+            <span class="skill-category">Frameworks</span>
+            <div class="skills-container">
+                <span class="skill-tag">PyTorch</span>
+                <span class="skill-tag">Git</span>
+                <span class="skill-tag">Linux</span>
+                <span class="skill-tag">Conda</span>
+                <span class="skill-tag">Docker</span>
+            </div>
+        </div>
+        
+        <div class="skill-row">
+            <span class="skill-category">English</span>
+            <div class="skills-container">
+                <span class="skill-tag">CET-6 (613)</span>
+                <span class="skill-tag">CET-4 (616)</span>
+                <span class="skill-tag">TOFEL (101)</span>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="projects">
+        <div class="section-title">Selected Course Projects</div>
+        
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+            
+            <!-- Project 1: Halma Game Agent -->
+            <div class="project-item" style="border-left: 3px solid var(--accent-color); padding-left: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px;">
+                    <h3 style="margin: 0; color: var(--primary-color); font-size: 1.1rem;">Halma Game Agent</h3>
+                    <span style="font-size: 0.9rem; color: #888; font-family: monospace;">2025.05 - 2025.06</span>
+                </div>
+                
+                <div style="font-size: 0.95rem; color: #555; font-style: italic; margin-bottom: 5px;">
+                    Course Project for Artificial Intelligence, Supervisor: Prof. Sibei Yang
+                </div>
+                
+                <!-- 新增：Links 行 -->
+                <div style="margin-bottom: 8px; font-weight: bold; font-size: 0.9rem;">
+                    <!-- 请将 href 替换为你真实的 pdf 路径或 git 链接，如果暂时没有链接可以填 # -->
+                    <a href="./halma.pdf" target="_blank" style="margin-right: 10px;">[PDF]</a>
+                    <a href="https://github.com/bearthesilly/Shanghaitech_CS181_Halma" target="_blank">[Code]</a>
+                </div>
+
+                <ul style="margin: 0; padding-left: 20px; font-size: 0.95rem; color: #444;">
+                    <li>Deployed classical AI agent algorithms (Minimax with Alpha-Beta Pruning) for the Halma game.</li>
+                    <li>Implemented Neural Approximate Q-learning (DQN) to enhance the agent's decision-making capabilities.</li>
+                </ul>
+            </div>
+
+            <!-- Project 2: FP-GNN++ -->
+            <div class="project-item" style="border-left: 3px solid var(--accent-color); padding-left: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px;">
+                    <h3 style="margin: 0; color: var(--primary-color); font-size: 1.1rem;">FP-GNN++: Towards Accurate Molecule Property Classification</h3>
+                    <span style="font-size: 0.9rem; color: #888; font-family: monospace;">2025.05 - 2025.06</span>
+                </div>
+                
+                <div style="font-size: 0.95rem; color: #555; font-style: italic; margin-bottom: 5px;">
+                    Course Project for Introduction to Machine Learning, Supervisor: Prof. Yujiao Shi
+                </div>
+
+                <!-- 新增：Links 行 -->
+                <div style="margin-bottom: 8px; font-weight: bold; font-size: 0.9rem;">
+                    <a href="./fpgnn++.pdf" target="_blank" style="margin-right: 10px;">[PDF]</a>
+                    <a href="https://github.com/bearthesilly/Shanghaitech_CS182_Project" target="_blank">[Code]</a>
+                </div>
+
+                <ul style="margin: 0; padding-left: 20px; font-size: 0.95rem; color: #444;">
+                    <li>Modeled chemical bond information as additional inductive bias for better molecular representation.</li>
+                    <li>Designed Cross-Attention mechanisms and Multi-head GNNs for effective multi-feature fusion.</li>
+                    <li>Conducted extensive ablation studies to verify the effectiveness of the novel structural designs.</li>
+                </ul>
+            </div>
+
+            <div class="project-item" style="border-left: 3px solid var(--accent-color); padding-left: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px;">
+                    <h3 style="margin: 0; color: var(--primary-color); font-size: 1.1rem;">UC Berkeley Computer Vision Course Projects Personal Gallery</h3>
+                    <span style="font-size: 0.9rem; color: #888; font-family: monospace;">2025.08 - 2025.12</span>
+                </div>
+                
+                <div style="font-size: 0.95rem; color: #555; font-style: italic; margin-bottom: 5px;">
+                    Course Projects for Computer Vision in UC Berkeley, Supervisor: Prof.Angjoo Kanazawa, Prof.Alexei Efros	
+                </div>
+
+                <!-- 新增：Links 行 -->
+                <div style="margin-bottom: 8px; font-weight: bold; font-size: 0.9rem;">
+                    <a href="https://bearthesilly.github.io/UCB_CS180/project/intro.html" target="_blank" style="margin-right: 10px;">[Web]</a>
+                </div>
+
+                <ul style="margin: 0; padding-left: 20px; font-size: 0.95rem; color: #444;">
+                    <li>Images and pictures are lovely! It's also important and beneficial to develop the passion to introduce and demonstrate our work to others in the community! - A.A.Efros</li>
+                    <li>Codes are not made public due to course regulations.</li>
+                </ul>
+            </div>
+            <div class="project-item" style="border-left: 3px solid var(--accent-color); padding-left: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px;">
+                    <h3 style="margin: 0; color: var(--primary-color); font-size: 1.1rem;">Explorations on Catastrophic Forgetting Mitigation
+                        Curriculum</h3>
+                    <span style="font-size: 0.9rem; color: #888; font-family: monospace;">2025.10 - 2025.12</span>
+                </div>
+                
+                <div style="font-size: 0.95rem; color: #555; font-style: italic; margin-bottom: 5px;">
+                    Course Project for Deep Learning in UC Berkeley, Supervisor: Prof.Anant Sahai, Prof.Gireeja Ranade
+                </div>
+
+                <!-- 新增：Links 行 -->
+                <div style="margin-bottom: 8px; font-weight: bold; font-size: 0.9rem;">
+                    <a href="./UCB_CS182_Report.pdf" target="_blank" style="margin-right: 10px;">[PDF]</a>
+                    <a href="https://github.com/bearthesilly/UCB_CS182_project" target="_blank" style="margin-right: 10px;">[Code]</a>
+                    <a href="./cs182_poster.png" target="_blank">[Poster]</a>
+                </div>
+
+                <ul style="margin: 0; padding-left: 20px; font-size: 0.95rem; color: #444;">
+                    <li>Conducting free explorations on factors that affect Catastrophic Forgetting Phenomenon.</li>
+                    <li>Design curriculum accordingly to mitigate Catastrophic Forgetting and then attempt on verifying validicity of curriculum transfer.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+      <section id="resources" style="margin-bottom: 50px;">
+        <div style="
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 12px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.5);
+        ">
+            <div style="flex: 1; padding-right: 20px;">
+                <h3 style="margin-top: 0; color: var(--primary-color); font-size: 1.4rem;">
+                    <i class="fas fa-book-open" style="color: var(--accent-color); margin-right: 8px;"></i>
+                    Course Notes & Resources
+                </h3>
+                <p style="color: #555; margin-bottom: 20px;">
+                    This website also serves as my personal knowledge base. I have compiled some useful and detailed notes, reviews, and resources for various CS and Math courses at ShanghaiTech. Feel free to drop by!
+                </p>
+                <a href="home.html" style="
+                    display: inline-block;
+                    background-color: var(--accent-color);
+                    color: white;
+                    padding: 10px 24px;
+                    border-radius: 30px;
+                    font-weight: bold;
+                    text-decoration: none;
+                    box-shadow: 0 4px 6px rgba(52, 152, 219, 0.3);
+                    transition: transform 0.2s, background 0.2s;
+                " onmouseover="this.style.transform='translateY(-2px)'; this.style.backgroundColor='#2980b9'" onmouseout="this.style.transform='translateY(0)'; this.style.backgroundColor='#3498db'">
+                    Explore More &rarr;
+                </a>
+            </div>
+            
+            <!-- 右侧 Logo 图片 -->
+            <div style="flex-shrink: 0; display: none; @media (min-width: 600px) { display: block; }">
+                 <!-- 这里的 Logo 使用圆形裁剪，如果没有 csrookie.png，请确保路径正确 -->
+                <img src="./csrookie.png" alt="csrookie logo" style="
+                    width: 100px; 
+                    height: 100px; 
+                    border-radius: 50%; 
+                    border: 4px solid white;
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                    object-fit: cover;
+                ">
+            </div>
+            
+            <!-- 简单的 CSS hack 用于响应式显示图片 (内联写法) -->
+            <style>
+                @media (min-width: 600px) {
+                    .resource-logo-container { display: block !important; }
+                }
+                .resource-logo-container { display: none; }
+            </style>
+            <div class="resource-logo-container" style="flex-shrink: 0;">
+                <img src="./csrookie.png" alt="csrookie logo" style="
+                    width: 120px; 
+                    height: 120px; 
+                    border-radius: 50%; 
+                    border: 4px solid white;
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                    object-fit: cover;
+                ">
+            </div>
+        </div>
+      </section>
+
+      <section id="publications">
+
+      <footer style="text-align: center; font-size: 0.8rem; color: #999; margin-top: 60px;">
+          <p>&copy; 2026 Zhangzhi 'csrookie' Xiong.</p>
+      </footer>
+    
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <script>
-    /* 粒子配置 */
-    particlesJS('particles-js',
-    {
-      "particles": {
-        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-        "color": { "value": "#ffffff" },
-        "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 } },
-        "opacity": { "value": 0.5, "random": false },
-        "size": { "value": 3, "random": true },
-        "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 },
-        "move": { "enable": true, "speed": 3, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } }
-      },
-      "interactivity": {
-        "detect_on": "window",
-        "events": {
-          "onhover": { "enable": true, "mode": "attract" },
-          "onclick": { "enable": true, "mode": "push" },
-          "resize": true
-        },
-        "modes": {
-          "grab": { "distance": 400, "line_linked": { "opacity": 1 } },
-          "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 },
-          "repulse": { "distance": 200, "duration": 0.4 },
-          "push": { "particles_nb": 4 },
-          "remove": { "particles_nb": 2 },
-          "attract": { "distance": 200, "duration": 0.4, "speed": 5 }
-        }
-      },
-      "retina_detect": true
-    });
-
-    /* =========================================
-       核心逻辑：整页切换滚动控制
-    ========================================= */
-    let currentPage = 0; // 当前在第几页 (0 = 第一页, 1 = 第二页)
-    const totalPages = 2; // 总页数
-    let isScrolling = false; // 防抖动锁，防止一次滚轮触发多次切换
-
-    function scrollToPage(pageIndex) {
-      if (pageIndex < 0 || pageIndex >= totalPages) return;
-      
-      currentPage = pageIndex;
-      const wrapper = document.getElementById('mainWrapper');
-      
-      // 使用 CSS TranslateY 移动整个 wrapper，而不是滚动条
-      wrapper.style.transform = `translateY(-${currentPage * 100}vh)`;
-      
-      // 设置冷却时间，动画结束后才允许下一次滚动
-      isScrolling = true;
-      setTimeout(() => {
-        isScrolling = false;
-      }, 1000); // 1000ms = css transition duration + buffer
-    }
-
-    // 监听滚轮事件
-    window.addEventListener('wheel', (e) => {
-      // 如果正在动画中，或者在移动端 gallery 内部滚动时，忽略外部滚动
-      // 这里简单处理：如果正在切换中，直接返回
-      if (isScrolling) return;
-
-      // deltaY > 0 代表向下滚， < 0 代表向上滚
-      if (e.deltaY > 0) {
-        if (currentPage < totalPages - 1) {
-          scrollToPage(currentPage + 1);
-        }
-      } else {
-        if (currentPage > 0) {
-          scrollToPage(currentPage - 1);
-        }
-      }
-    });
-
-    // 简单的键盘支持 (上下键)
-    window.addEventListener('keydown', (e) => {
-      if (isScrolling) return;
-      if (e.key === 'ArrowDown') {
-        if (currentPage < totalPages - 1) scrollToPage(currentPage + 1);
-      } else if (e.key === 'ArrowUp') {
-        if (currentPage > 0) scrollToPage(currentPage - 1);
-      }
-    });
-
-  </script>
 </body>
 </html>
